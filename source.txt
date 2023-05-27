@@ -1,2 +1,3 @@
 https://ghproxy.net/https://raw.githubusercontent.com/NiceVPN123/NiceVPN/main/url
 https://ghproxy.net/https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list_raw.txt
+(base64)https://raw.githubusercontent.com/ermaozi01/free_clash_vpn/main/subscribe/v2ray.txt

@@ -18,7 +18,7 @@ import base64
 #         proxy = f"https://{ip}:{port}"
 #         # thisIP = "".join(IP.split(":")[0:1])
 #         # print(thisIP)
-#         res = requests.get(url="https://icanhazip.com/", timeout=2, proxies={"http": proxy})
+#         res = requests.get(url="https://www.google.com/", timeout=2, proxies={"http": proxy})
 #         proxyIP = res.text
 #         if (proxyIP == proxy):
 #             print("代理IP:'" + proxyIP + "'有效！")
@@ -30,7 +30,7 @@ import base64
 #         print("1代理IP无效！")
 #         return False
 
-# check_proxy('198.2.203.146','50002')
+# check_proxy('156.251.135.11','53302')
 
 with open('source.txt','r') as source_file:
     lines = source_file.readlines()
@@ -39,8 +39,13 @@ all_nodes = []
 test_latency_list = []
 
 for line in lines:
-    res = requests.get(line.replace('\'','').replace('\"','').replace('\n',''))
-    nodes = res.text.split('\n')
+    if line.startswith('(base64)'):
+        res = requests.get(line[8:].replace('\'','').replace('\"','').replace('\n',''))
+        # 对结果base64解码
+        nodes = str(base64.b64decode(res.text),encoding='utf-8').split('\n')
+    else:
+        res = requests.get(line.replace('\'','').replace('\"','').replace('\n',''))
+        nodes = res.text.split('\n')
     if len(nodes) != 0 :
         final_nodes = []
         for node_item in nodes:
