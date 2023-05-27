@@ -49,4 +49,6 @@ for item in [all_nodes[i:i+15] for i in range(0,len(all_nodes),15)]:
 
 open('raw_servers.list','w+',encoding='utf8').write('\n'.join(all_nodes))
 open('test_latency_servers.list','w+',encoding='utf8').write('\n'.join(test_latency_list))
-pass
+
+
+# 测试延迟 过滤出最佳vps 生成dist
