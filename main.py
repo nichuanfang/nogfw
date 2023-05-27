@@ -25,6 +25,9 @@ for line in lines:
                 # 匹配vmess密码的正则 如果存在vmess协议密码不是形如b65da4af-a12a-4a59-9316-4549e12ba62c的直接舍弃
                 if re.match(r'^(\d|\w){8}-(\d|\w){4}-(\d|\w){4}-(\d|\w){4}-(\d|\w){12}$',node_json['id']):
                     final_nodes.append(node_item)
+            else:
+                # 其他协议规则以后再加
+                final_nodes.append(node_item)
         all_nodes+=final_nodes
 # 去重
 all_nodes = list(set(all_nodes))
