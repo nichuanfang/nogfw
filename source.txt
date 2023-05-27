@@ -1,1 +1,2 @@
 https://ghproxy.net/https://raw.githubusercontent.com/NiceVPN123/NiceVPN/main/url
+https://ghproxy.net/https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list_raw.txt

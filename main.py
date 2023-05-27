@@ -7,6 +7,31 @@ from requests import Response
 import json
 import re
 import base64
+
+
+# def check_proxy(ip, port):
+#     """第二种："""
+#     try:
+#         # 设置重连次数
+#         requests.adapters.DEFAULT_RETRIES = 3
+#         # IP = random.choice(IPAgents)
+#         proxy = f"https://{ip}:{port}"
+#         # thisIP = "".join(IP.split(":")[0:1])
+#         # print(thisIP)
+#         res = requests.get(url="https://icanhazip.com/", timeout=2, proxies={"http": proxy})
+#         proxyIP = res.text
+#         if (proxyIP == proxy):
+#             print("代理IP:'" + proxyIP + "'有效！")
+#             return True
+#         else:
+#             print("2代理IP无效！")
+#             return False
+#     except:
+#         print("1代理IP无效！")
+#         return False
+
+# check_proxy('198.2.203.146','50002')
+
 with open('source.txt','r') as source_file:
     lines = source_file.readlines()
 
@@ -52,3 +77,6 @@ open('test_latency_servers.list','w+',encoding='utf8').write('\n'.join(test_late
 
 
 # 测试延迟 过滤出最佳vps 生成dist
+for test_node in test_latency_list:
+    # check_proxy()
+    pass
