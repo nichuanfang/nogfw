@@ -7,30 +7,21 @@ from requests import Response
 import json
 import re
 import base64
+import telnetlib
+import logging
 
+LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
+DATE_FORMAT = "%m/%d/%Y %H:%M:%S %p"
+logging.basicConfig(level=logging.INFO, format=LOG_FORMAT, datefmt=DATE_FORMAT)
 
-# def check_proxy(ip, port):
-#     """第二种："""
-#     try:
-#         # 设置重连次数
-#         requests.adapters.DEFAULT_RETRIES = 3
-#         # IP = random.choice(IPAgents)
-#         proxy = f"https://{ip}:{port}"
-#         # thisIP = "".join(IP.split(":")[0:1])
-#         # print(thisIP)
-#         res = requests.get(url="https://www.google.com/", timeout=2, proxies={"http": proxy})
-#         proxyIP = res.text
-#         if (proxyIP == proxy):
-#             print("代理IP:'" + proxyIP + "'有效！")
-#             return True
-#         else:
-#             print("2代理IP无效！")
-#             return False
-#     except:
-#         print("1代理IP无效！")
-#         return False
-
-# check_proxy('156.251.135.11','53302')
+def check_proxy(ip, port):
+    try:
+        telnetlib.Telnet(ip, port, timeout=3)
+        logging.info(f"代理IP:{ip}:{port}有效！")
+        return True
+    except:
+        logging.warn(f"代理IP:{ip}:{port}无效！")
+        return False
 
 with open('source.txt','r') as source_file:
     lines = source_file.readlines()
@@ -80,8 +71,14 @@ for item in [all_nodes[i:i+15] for i in range(0,len(all_nodes),15)]:
 open('raw_servers.list','w+',encoding='utf8').write('\n'.join(all_nodes))
 open('test_latency_servers.list','w+',encoding='utf8').write('\n'.join(test_latency_list))
 
-
+final_servers = []
 # 测试延迟 过滤出最佳vps 生成dist
 for test_node in test_latency_list:
-    # check_proxy()
-    pass
+    try: 
+        if check_proxy(test_node.split(',')[0].split(' = ')[1].split(':')[0],test_node.split(',')[0].split(' = ')[1].split(':')[1]):
+            # 继续进行检测 方法: https://developer.aliyun.com/article/1147404
+            final_servers.append(test_node)
+    except:
+        continue
+
+open('servers.list','w+',encoding='utf8').write('\n'.join(final_servers))
