@@ -73,12 +73,12 @@ for item in [all_nodes[i:i+15] for i in range(0,len(all_nodes),15)]:
 
 final_servers = []
 # 测试延迟 过滤出最佳vps 生成dist
-for test_node in test_latency_list:
-    try: 
-        if check_proxy(test_node.split(',')[0].split(' = ')[1].split(':')[0],test_node.split(',')[0].split(' = ')[1].split(':')[1]):
+#for test_node in test_latency_list:
+  #  try: 
+      #  if check_proxy(test_node.split(',')[0].split(' = ')[1].split(':')[0],test_node.split(',')[0].split(' = ')[1].split(':')[1]):
             # 继续进行检测 方法: https://developer.aliyun.com/article/1147404
-            final_servers.append(test_node)
-    except:
-        continue
+           # final_servers.append(test_node)
+  #  except:
+       # continue
 
-open('servers.list','w+',encoding='utf8').write('\n'.join(final_servers))
+open('servers.list','w+',encoding='utf8').write('\n'.join(test_latency_list))
