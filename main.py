@@ -4,6 +4,8 @@ import requests
 from urllib import request, parse
 from requests import Request
 from requests import Response
+import json
+import re
 import base64
 with open('source.txt','r') as source_file:
     lines = source_file.readlines()
@@ -15,7 +17,15 @@ for line in lines:
     res = requests.get(line.replace('\'','').replace('\"','').replace('\n',''))
     nodes = res.text.split('\n')
     if len(nodes) != 0 :
-        all_nodes+=nodes
+        final_nodes = []
+        for node_item in nodes:
+            if node_item.lstrip().startswith('vmess'):
+                node_str = str(base64.b64decode(node_item.split('//')[1]), encoding = "utf-8")
+                node_json = json.loads(node_str)
+                # 匹配vmess密码的正则 如果存在vmess协议密码不是形如b65da4af-a12a-4a59-9316-4549e12ba62c的直接舍弃
+                if re.match(r'^(\d|\w){8}-(\d|\w){4}-(\d|\w){4}-(\d|\w){4}-(\d|\w){12}$',node_json['id']):
+                    final_nodes.append(node_item)
+        all_nodes+=final_nodes
 # 去重
 all_nodes = list(set(all_nodes))
 # 去空串
