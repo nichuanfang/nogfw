@@ -47,6 +47,6 @@ for item in [all_nodes[i:i+15] for i in range(0,len(all_nodes),15)]:
             # 添加到目标节点中
             test_latency_list+=sub_res_list[index+1:index+len(item)+1]
 
-open('test_latency_servers.list','w+',encoding='utf8').write('\n'.join(test_latency_list))
 open('raw_servers.list','w+',encoding='utf8').write('\n'.join(all_nodes))
+open('test_latency_servers.list','w+',encoding='utf8').write('\n'.join(test_latency_list))
 pass
