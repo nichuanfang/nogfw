@@ -17,9 +17,8 @@ driver = get_driver('firefox')
 driver.get('https://www.youtube.com/watch?v=qmRkvKo-KbQ')
 driver.maximize_window()
 time.sleep(5)
+
+open('page_source','w+',encoding="UTF-8").write(driver.page_source)
 # 模拟点击播放youtube
 driver.find_element(By.CSS_SELECTOR, ".ytp-play-button").click()
 driver.save_screenshot('dist/res.png')
-
-html_res = requests.get('https://www.youtube.com/watch?v=qmRkvKo-KbQ')
-open('youtube.html','w+',encoding="UTF-8").write(html_res.text)
