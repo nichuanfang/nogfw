@@ -20,9 +20,14 @@ driver.maximize_window()
 time.sleep(10)
 
 open('dist/page_source.txt','w+',encoding="UTF-8").write(driver.page_source)
+logging.info(driver.page_source)
+
+driver.save_screenshot('dist/pre_res.png')
 
 # 模拟点击播放youtube
 element = driver.find_element(By.CSS_SELECTOR, ".ytp-play-button")
 ActionChains(driver).move_to_element(element).click().perform()
 
-driver.save_screenshot('dist/res.png')
+time.sleep(3)
+
+driver.save_screenshot('dist/post_res.png')
