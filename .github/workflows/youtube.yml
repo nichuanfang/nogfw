@@ -39,8 +39,6 @@ jobs:
 
       - name: install google chrome browser
         uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: 111.0.5563.147
 
       - name: check google chrome version
         run: chrome --version
