@@ -2,7 +2,7 @@ name: youtube proxy
 
 on:
   #github actions定时任务不稳定 改为gcp定时任务 订阅主题: often-updated
-  # repository_dispatch:
+  repository_dispatch:
   # 手动触发
   workflow_dispatch:
     inputs:
