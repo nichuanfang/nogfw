@@ -7,21 +7,12 @@ from requests import Response
 import json
 import re
 import base64
-import telnetlib
 import logging
 
 LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
 DATE_FORMAT = "%m/%d/%Y %H:%M:%S %p"
 logging.basicConfig(level=logging.INFO, format=LOG_FORMAT, datefmt=DATE_FORMAT)
 
-def check_proxy(ip, port):
-    try:
-        telnetlib.Telnet(ip, port, timeout=3)
-        logging.info(f"代理IP:{ip}:{port}有效！")
-        return True
-    except:
-        logging.warn(f"代理IP:{ip}:{port}无效！")
-        return False
 
 with open('source.txt','r') as source_file:
     lines = source_file.readlines()
