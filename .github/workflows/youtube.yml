@@ -57,7 +57,7 @@ jobs:
 
       - name: install geckodriver
         run: |
-          ls /opt/chromedriver/
+          sudo mkdir -p /opt/chromedriver/
           cd /opt/chromedriver/
           sudo wget https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz
           sudo tar -zxvf geckodriver-v0.33.0-linux64.tar.gz
