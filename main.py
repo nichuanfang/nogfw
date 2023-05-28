@@ -81,4 +81,4 @@ final_servers = []
   #  except:
        # continue
 
-open('servers.list','w+',encoding='utf8').write('\n'.join(test_latency_list))
+open('dist/servers.list','w+',encoding='utf8').write('\n'.join(test_latency_list))

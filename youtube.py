@@ -1,7 +1,7 @@
 import requests
-from my_selenium import get_driver
+from myselenium.my_selenium import get_driver
 from selenium.webdriver.common.by import By
-from my_selenium import BeautifulSoup
+from myselenium.my_selenium import BeautifulSoup
 import time
 import logging
 
@@ -13,5 +13,5 @@ driver.maximize_window()
 time.sleep(5)
 # 模拟点击播放youtube
 driver.find_element(By.CSS_SELECTOR, ".ytp-play-button").click()
-driver.save_screenshot('res.png')
+driver.save_screenshot('dist/res.png')
 driver.close()
