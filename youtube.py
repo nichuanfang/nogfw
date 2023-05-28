@@ -17,17 +17,18 @@ driver = get_driver('firefox')
 
 driver.get('https://www.youtube.com/watch?v=qmRkvKo-KbQ')
 driver.maximize_window()
-time.sleep(10)
+time.sleep(5)
 
 open('dist/page_source.txt','w+',encoding="UTF-8").write(driver.page_source)
-logging.info(driver.page_source)
+# logging.info(driver.page_source)
 
 driver.save_screenshot('dist/pre_res.png')
 
 # 模拟点击播放youtube
-element = driver.find_element(By.CSS_SELECTOR, ".ytp-play-button")
-ActionChains(driver).move_to_element(element).click().perform()
+element = driver.find_element(By.XPATH, r'//*[@id="movie_player"]/div[29]/div[2]/div[1]/button')
+element.click()
+# ActionChains(driver).move_to_element(element).click().perform()
 
-time.sleep(3)
+time.sleep(5)
 
 driver.save_screenshot('dist/post_res.png')
