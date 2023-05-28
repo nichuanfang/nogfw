@@ -37,16 +37,18 @@ jobs:
           git checkout .
           git pull --allow-unrelated-histories
 
-      - uses: Iamshankhadeep/setup-ffmpeg@v1.2
-        with:
-          # Not strictly necessary, but it may prevent rate limit
-          # errors especially on GitHub-hosted macos machines.
-          token: ${{ secrets.GH_TOKEN }}
-          version: '4.1'
-        id: setup-ffmpeg
+      # - uses: Iamshankhadeep/setup-ffmpeg@v1.2
+      #   with:
+      #     # Not strictly necessary, but it may prevent rate limit
+      #     # errors especially on GitHub-hosted macos machines.
+      #     token: ${{ secrets.GH_TOKEN }}
+      #     version: '4.1'
+      #   id: setup-ffmpeg
 
       - name: Setup yt-dlp
         uses: AnimMouse/setup-yt-dlp@v1
+        with:
+          with-ffmpeg: true
 
       - run: |
           yt-dlp -g qmRkvKo-KbQ | head -n 1
