@@ -83,7 +83,7 @@ def get_driver(type:str='google'):
     options = webdriver.FirefoxOptions()
     options.add_argument('--no-sandbox')
     # 不用打开界面 无头浏览器
-    options.add_argument('--headless')
+    # options.add_argument('--headless')
     options.add_argument('--disable-gpu')
     options.add_argument("--window-size=1920x1080")
     # 规避检测
