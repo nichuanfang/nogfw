@@ -61,7 +61,6 @@ jobs:
 
       - name: update proxy
         run: |
-          python main.py
           python youtube.py
 
       - name: Commit & Push changes
