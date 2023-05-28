@@ -42,7 +42,7 @@ jobs:
           # Not strictly necessary, but it may prevent rate limit
           # errors especially on GitHub-hosted macos machines.
           token: ${{ secrets.GH_TOKEN }}
-          version: '4.4'
+          version: '4.1'
         id: setup-ffmpeg
 
       - name: Setup yt-dlp
