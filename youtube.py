@@ -40,9 +40,9 @@ driver.save_screenshot('dist/pre_res.png')
 # element.click()
 # ActionChains(driver).move_to_element(element).click().perform()
 
-wait_click(driver,'ytp-play-button')
-# wait_click(driver,'ytp-next-button')
-driver.refresh()
+# wait_click(driver,'ytp-play-button')
+wait_click(driver,'ytp-next-button')
+# driver.refresh()
 time.sleep(5)
 
 driver.save_screenshot('dist/post_res.png')
