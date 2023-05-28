@@ -84,21 +84,21 @@ def get_driver(type:str='google'):
     options.add_argument('--no-sandbox')
     # 不用打开界面 无头浏览器
     options.add_argument('--headless')
-    # options.add_argument('--disable-gpu')
-    # options.add_argument("--window-size=1920x1080")
+    options.add_argument('--disable-gpu')
+    options.add_argument("--window-size=1920x1080")
     # 规避检测
-    # options.add_argument('--disable-blink-features')
-    # options.add_argument('--disable-blink-features=AutomationControlled')
-    # options.add_argument('--disable-extensions')
-    # options.add_argument('--no-default-browser-check')
+    options.add_argument('--disable-blink-features')
+    options.add_argument('--disable-blink-features=AutomationControlled')
+    options.add_argument('--disable-extensions')
+    options.add_argument('--no-default-browser-check')
     # 设置User-Agent
     options.add_argument(f'user-agent={ua}')
     # 最大化
-    # options.add_argument('--start-maximized')
+    options.add_argument('--start-maximized')
     # 禁用缓存
-    # options.add_argument("disable-cache")
-    # options.add_argument('disable-infobars')
-    # options.add_argument('--ignore-certificate-errors') 
+    options.add_argument("disable-cache")
+    options.add_argument('disable-infobars')
+    options.add_argument('--ignore-certificate-errors') 
     executable_path = '/opt/chromedriver/geckodriver'
     # service_log_path关闭geckodriver.log日志
     driver = webdriver.Firefox(executable_path=executable_path,options=options,log_path=os.devnull,service_log_path=os.devnull)

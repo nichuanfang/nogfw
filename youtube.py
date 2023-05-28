@@ -28,7 +28,6 @@ def wait_click(driver, class_name, delay = 20):
 driver = get_driver('firefox')
 
 driver.get('https://www.youtube.com/watch?v=qmRkvKo-KbQ')
-driver.maximize_window()
 time.sleep(5)
 
 open('dist/page_source.txt','w+',encoding="UTF-8").write(driver.page_source)
@@ -41,7 +40,8 @@ driver.save_screenshot('dist/pre_res.png')
 # element.click()
 # ActionChains(driver).move_to_element(element).click().perform()
 
-wait_click(driver,'ytp-play-button')
+# wait_click(driver,'ytp-play-button')
+wait_click(driver,'ytp-next-button')
 
 time.sleep(5)
 
