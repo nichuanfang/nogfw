@@ -73,7 +73,7 @@ def craw(number:int,video_ids:list[str],sleeptime:int):
     return log_list
 
 if __name__ == '__main__':
-    youtube_log = craw(60,['qmRkvKo-KbQ','N1Qyg0scz7g','aG7DcQhlu7I'],30)
+    youtube_log = craw(100,['qmRkvKo-KbQ','N1Qyg0scz7g','aG7DcQhlu7I'],20)
     open('dist/youtube.log','w+').write('\n'.join(youtube_log))
     open('dist/youtube.list','w+').write('\n'.join(all_nodes))
     logging.info(f'=========================================================================节点更新完成!')
