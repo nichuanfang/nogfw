@@ -51,6 +51,7 @@ for index in range(100):
         logging.info(f'===============================================================================raw_data: {data}')
         youtube_log.append(f'===============================================================================OCR: {ocr_result}')     # type: ignore
     except Exception as err:
+        data = ''
         logging.error(f'==============================={err}==============================================')
     sub_res = requests.get(f'https://sub.xeton.dev/sub?target=quanx&url={parse.quote(data)}&insert=false')
     sub_res_list: list[str] = sub_res.text.split('\n')
