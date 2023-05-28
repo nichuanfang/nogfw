@@ -14,6 +14,16 @@ import sys
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 
 logging.basicConfig(level=logging.INFO)
+
+def wait_click(driver, class_name, delay = 20):
+    try:
+        myElem = WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.CLASS_NAME, class_name)))
+        myElem.click()
+        return myElem
+    except RuntimeError:
+        print("Loading took too much time!")
+
+
 # 爬youtube只能用firefox!
 driver = get_driver('firefox')
 
@@ -31,8 +41,7 @@ driver.save_screenshot('dist/pre_res.png')
 # element.click()
 # ActionChains(driver).move_to_element(element).click().perform()
 
-WebDriverWait(driver, 1000000).until(EC.element_to_be_clickable((By.CLASS_NAME, 'ytp-play-button'))).click()
-WebDriverWait(driver, 1000000).until(EC.element_to_be_clickable((By.CLASS_NAME, 'ytp-play-button'))).click()
+wait_click(driver,'ytp-play-button')
 
 time.sleep(5)
 
