@@ -9,26 +9,9 @@ from urllib import request, parse
 import os
 import sys
 import subprocess
+from datetime import datetime
 # 图像识别
 import easyocr
-
-data = 'trojan://29645da0-a43a-4ec4-95a1-57eb5e92be44@kr1.microsoft-orgwly.vip:443?allowInsecure=1#%E9%9F%A9%E5%9B%BD-1.04MB%2Fs%28Youtube%3A%E4%B8%8D%E8%89%AF%E6%9E%97%29'
-sub_res = requests.get(f'https://sub.xeton.dev/sub?target=quanx&url={parse.quote(data)}&insert=false')
-sub_res_list: list[str] = sub_res.text.split('\n')
-for index,subitem in enumerate(sub_res_list):
-        if subitem == '[server_local]' and sub_res_list[index+1] not in ['','[filter_local]']:
-            # 有效qx订阅节点
-            pass
-
-
-
-
-
-
-
-
-
-
 # windows下需要先下载模型文件  https://blog.csdn.net/Loliykon/article/details/114334699
 reader = easyocr.Reader(['ch_sim','en'],model_storage_directory='ocr_models')
 
@@ -58,8 +41,8 @@ logging.info(f'=================================================================
 for index in range(100):
     subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g qmRkvKo-KbQ | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
     sleep(2)
-    try:
-        youtube_log.append(f'=====================================节点信息======================================================')
+    try:  
+        youtube_log.append(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
         # 处理生成的二维码 生成节点信息
         data:str = qr_recognize(f'dist/last.jpg')
         logging.info(f'===============================================================================raw_data: {data}')
