@@ -37,14 +37,18 @@ jobs:
           git checkout .
           git pull --allow-unrelated-histories
 
-      - name: install google chrome browser
-        run: |
-          sudo apt update
-          sudo apt upgrade
-          sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo apt install ./google-chrome-stable_current_amd64.deb -y
-          sudo rm -f google-chrome-stable_current_amd64.deb
-        # uses: browser-actions/setup-chrome@v1
+      - uses: logikal-io/install-chrome@v1
+        with:
+          version: 106.0.5249.91-1
+
+      # - name: install google chrome browser
+      #   run: |
+      #     sudo apt update
+      #     sudo apt upgrade
+      #     sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      #     sudo apt install ./google-chrome-stable_current_amd64.deb -y
+      #     sudo rm -f google-chrome-stable_current_amd64.deb
+      #   # uses: browser-actions/setup-chrome@v1
 
       - name: check google chrome version
         run: chrome --version
