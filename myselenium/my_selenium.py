@@ -86,6 +86,11 @@ def get_driver(type:str='google'):
     options.add_argument('--headless')
     options.add_argument('--disable-gpu')
     options.add_argument("--window-size=1920x1080")
+    # 规避检测
+    options.add_argument('--disable-blink-features')
+    options.add_argument('--disable-blink-features=AutomationControlled')
+    options.add_argument('--disable-extensions')
+    options.add_argument('--no-default-browser-check')
     # 设置User-Agent
     options.add_argument(f'user-agent={ua}')
     # 最大化
