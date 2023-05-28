@@ -23,6 +23,12 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
+      # 最佳实践 yt-dlp+ffmpeg
+      - name: Setup yt-dlp
+        uses: AnimMouse/setup-yt-dlp@v1
+        with:
+          with-ffmpeg: true
+
       - name: 设置python环境(v3.11)
         uses: actions/setup-python@v4
         with:
@@ -40,6 +46,7 @@ jobs:
       - name: update proxy
         run: |
           python main.py
+          python youtube.py
 
       - name: Commit & Push changes
         uses: actions-js/push@master
