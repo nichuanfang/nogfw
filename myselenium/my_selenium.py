@@ -101,7 +101,7 @@ def get_driver(type:str='google'):
     options.add_argument('--ignore-certificate-errors') 
     executable_path = '/opt/chromedriver/geckodriver'
     # service_log_path关闭geckodriver.log日志
-    driver = webdriver.Firefox(executable_path=executable_path,options=options,log_path=os.devnull,service_log_path=os.devnull)
+    driver = webdriver.Firefox(executable_path=executable_path,options=options)
     # 隐形等待20秒
     driver.implicitly_wait(20)
   else:
