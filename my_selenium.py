@@ -32,6 +32,7 @@ options = webdriver.ChromeOptions()
 options.add_argument('--no-sandbox')
 # 不用打开界面 无头浏览器
 options.add_argument('--headless')
+options.add_argument("--window-size=1920x1080")
 options.add_argument('--disable-dev-shm-usage')
 # 设置User-Agent
 options.add_argument(f'user-agent={ua}')
@@ -58,7 +59,6 @@ options.add_argument('--ignore-certificate-errors')
 # options.add_argument('log-level=3')
 # 禁止打印日志
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
-# executable_path = '/usr/local/bin/chromedriver'
 executable_path = '/opt/chromedriver/chromedriver'
 driver = webdriver.Chrome(executable_path=executable_path,chrome_options=options)
 # 绕过检测

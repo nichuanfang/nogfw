@@ -6,7 +6,7 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 
-driver.get('https://www.youtube.com/watch?v=qmRkvKo-KbQ')
+driver.get('https://www.google.com')
 driver.maximize_window()
 time.sleep(5)
-driver.get_screenshot_as_file('test.png')
+driver.save_screenshot('res.png')
