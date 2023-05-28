@@ -47,7 +47,7 @@ jobs:
 
       - run: |
           yt-dlp -g qmRkvKo-KbQ | head -n 1
-          sudo ffmpeg -i "$(yt-dlp -g qmRkvKo-KbQ | head -n 1)" -vframes 1 dist/last.jpg
+          ffmpeg -i "$(yt-dlp -g qmRkvKo-KbQ | head -n 1)" -vframes 1 dist/last.jpg
 
       # - name: update proxy
       #   run: |
