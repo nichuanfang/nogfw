@@ -39,10 +39,10 @@ jobs:
 
       - name: install chinese font
         run: |
-          sudo mkdir -p /usr/share/fonts/chinese/
+          sudo mkdir -p /usr/share/fonts/chinese/       
+          sudo cp songti.ttf /usr/share/fonts/chinese/  
           cd /usr/share/fonts/chinese/
-          sudo wget https://github.com/cokui/gdtextview/raw/master/app/src/main/assets/fonts/SongTi.ttf
-          sudo fc-cache -fv
+          sudo fc-cache -fv                             
           sudo fc-list
 
       # ================youtube is not incompatible with google chrome, please change to firefox=========================
