@@ -41,7 +41,7 @@ time.sleep(5)
 element = driver.find_element(By.CLASS_NAME, 'ytp-play-button')
 ActionChains(driver).move_to_element(element)
 
-wait_click(driver,'ytp-next-button')
+wait_click(driver,'ytp-play-button')
 
 # 解决方案 https://stackoverflow.com/questions/58644900/is-there-a-way-to-take-screenshots-of-a-livestream-happening-on-youtube-or-twitc
 driver.save_screenshot('dist/post_res.png')
