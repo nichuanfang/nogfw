@@ -1,6 +1,7 @@
 #!/usr/local/bin/python
 # coding=utf-8
 import lxml 
+import os
 from selenium import webdriver 
 from selenium.webdriver.remote.webdriver import WebDriver
 import random
@@ -94,7 +95,8 @@ def get_driver(type:str='google'):
     options.add_argument('disable-infobars')
     options.add_argument('--ignore-certificate-errors') 
     executable_path = '/opt/chromedriver/geckodriver'
-    driver = webdriver.Firefox(executable_path=executable_path,options=options)
+    # service_log_path关闭geckodriver.log日志
+    driver = webdriver.Firefox(executable_path=executable_path,options=options,log_path=os.devnull,service_log_path=os.devnull)
     # 隐形等待20秒
     driver.implicitly_wait(20)
   else:
