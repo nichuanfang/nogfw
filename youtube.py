@@ -75,7 +75,9 @@ def craw(number:int,video_id:str,alias:str,sleeptime:int):
 if __name__ == '__main__':
     bulianglin_log = craw(100,'qmRkvKo-KbQ','不良林',20)
     changfeng_log = craw(1,'N1Qyg0scz7g','长风',1)
+    keji_log = craw(1,'aG7DcQhlu7I','八度科技',1)
     open('dist/bulianglin.log','w+').write('\n'.join(bulianglin_log))
     open('dist/changfeng.log','w+').write('\n'.join(changfeng_log))
+    open('dist/keji.log','w+').write('\n'.join(keji_log))
     open('dist/youtube.list','w+').write('\n'.join(all_nodes))
     logging.info(f'=========================================================================节点更新完成!')
