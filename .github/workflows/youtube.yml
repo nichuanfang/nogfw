@@ -37,10 +37,13 @@ jobs:
           git checkout .
           git pull --allow-unrelated-histories
 
-      - uses: FedericoCarboni/setup-ffmpeg@v2
+      - uses: Iamshankhadeep/setup-ffmpeg@v1.2
+        with:
+          # Not strictly necessary, but it may prevent rate limit
+          # errors especially on GitHub-hosted macos machines.
+          token: ${{ secrets.GH_TOKEN }}
+          version: '4.4'
         id: setup-ffmpeg
-
-      - run: ffmpeg -version
 
       - name: Setup yt-dlp
         uses: AnimMouse/setup-yt-dlp@v1
