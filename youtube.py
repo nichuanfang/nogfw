@@ -25,7 +25,7 @@ def wait_click(driver, class_name, delay = 20):
 
 
 # 爬youtube只能用firefox!
-driver = get_driver()
+driver = get_driver('firefox')
 
 driver.get('https://www.youtube.com/watch?v=qmRkvKo-KbQ')
 time.sleep(5)
