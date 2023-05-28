@@ -36,11 +36,11 @@ logging.basicConfig(level=logging.INFO)
 def craw(number:int,video_ids:list[str],sleeptime:int,all_nodes:list[str]):
     logging.info(f'===========================================================================开始获取节点信息...')
     log_list = []
+    # 不良林节点数量
     count = 0
     for index in range(number):
         logging.info(f'==========================================================第{index+1}轮抓取======================================================')
         for video_id in video_ids:
-            pass
             subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
             sleep(2)
             try:
@@ -64,15 +64,15 @@ def craw(number:int,video_ids:list[str],sleeptime:int,all_nodes:list[str]):
                         # 有效qx订阅节点
                         # 添加到目标节点中
                         all_nodes.append(sub_res_list[index+1])
+                        if video_id == 'qmRkvKo-KbQ':
+                            count+=1
                         # 去重
                         all_nodes = list(set(all_nodes))
                         logging.info(f'==============================================================================当前节点池有: {len(all_nodes)}个节点')
                 except:
                     continue
-        for node in all_nodes:
-            if node.__contains__('不良林'):
-                count+=1
-        if count>=30 or len(all_nodes) >= 80:
+
+        if count>=40 or len(all_nodes) >= 100:
             break
         sleep(sleeptime)
     return log_list
