@@ -45,6 +45,16 @@ jobs:
           sudo fc-cache -fv                             
           sudo fc-list
 
+      - uses: FedericoCarboni/setup-ffmpeg@v2
+        id: setup-ffmpeg
+
+      - run: ffmpeg -verion
+
+      - name: Setup yt-dlp
+        uses: AnimMouse/setup-yt-dlp@v1
+
+      - run: yt-dlp https://www.youtube.com/watch?v=BaW_jenozKc
+
       # ================youtube is not incompatible with google chrome, please change to firefox=========================
       # - uses: logikal-io/install-chrome@v1
       #   with:
@@ -57,25 +67,25 @@ jobs:
       #     chrome --version
       # ================youtube is not incompatible with google chrome, please change to firefox=========================
 
-      - name: install firefox broswer
-        uses: browser-actions/setup-firefox@v1
+      # - name: install firefox broswer
+      #   uses: browser-actions/setup-firefox@v1
 
-      - name: check firefox chrome version
-        run: firefox --version
+      # - name: check firefox chrome version
+      #   run: firefox --version
 
-      - name: install geckodriver
-        run: |
-          sudo mkdir -p /opt/chromedriver/
-          cd /opt/chromedriver/
-          sudo wget https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz
-          sudo tar -zxvf geckodriver-v0.33.0-linux64.tar.gz
-          sudo chmod 777 geckodriver
+      # - name: install geckodriver
+      #   run: |
+      #     sudo mkdir -p /opt/chromedriver/
+      #     cd /opt/chromedriver/
+      #     sudo wget https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz
+      #     sudo tar -zxvf geckodriver-v0.33.0-linux64.tar.gz
+      #     sudo chmod 777 geckodriver
 
-      - name: update proxy
-        run: |
-          python youtube.py
+      # - name: update proxy
+      #   run: |
+      #     python youtube.py
 
-      - name: Commit & Push changes
-        uses: actions-js/push@master
-        with:
-          github_token: ${{ secrets.GH_TOKEN }}
+      # - name: Commit & Push changes
+      #   uses: actions-js/push@master
+      #   with:
+      #     github_token: ${{ secrets.GH_TOKEN }}
