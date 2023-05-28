@@ -19,8 +19,6 @@ LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
 DATE_FORMAT = "%m/%d/%Y %H:%M:%S %p"
 logging.basicConfig(level=logging.INFO, format=LOG_FORMAT, datefmt=DATE_FORMAT)
 
-youtube_nodes:list[str] = []
-
 def qr_recognize(file_path:str):
     qrcode_filename = file_path
     qrcode_image = cv2.imread(qrcode_filename)
@@ -35,46 +33,49 @@ logging.basicConfig(level=logging.INFO)
 # 隔一段时间获取二维码
 # ffmpeg -i "$(yt-dlp -g qmRkvKo-KbQ | head -n 1)" -vframes 1 dist/last.jpg
 
-youtube_log = []
+all_nodes = []
 
-logging.info(f'===========================================================================开始获取节点信息...')
-for index in range(100):
-    subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g qmRkvKo-KbQ | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
-    sleep(2)
-    try:
-        logging.info(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
-        youtube_log.append(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
-        # 处理生成的二维码 生成节点信息
-        data:str = qr_recognize(f'dist/last.jpg')
-        logging.info(f'===============================================================================raw_data: {data}')
-        youtube_log.append(f'===============================================================================raw_data: {data}')
-        ocr_result = reader.readtext('dist/last.jpg')
-        logging.info(f'===============================================================================OCR: {ocr_result}')
-        youtube_log.append(f'===============================================================================OCR: {ocr_result}')     # type: ignore
-    except Exception as err:
-        data = ''
-        logging.error(f'==============================={err}==============================================')
-    sub_res = requests.get(f'https://sub.xeton.dev/sub?target=quanx&url={parse.quote(data)}&insert=false')
-    sub_res_list: list[str] = sub_res.text.split('\n')
-    for index,subitem in enumerate(sub_res_list):
+def craw(number:int,video_id:str,alias:str,sleeptime:int):
+    logging.info(f'===========================================================================开始获取{alias}频道节点信息...')
+    log_list = []
+    nodes = []
+    for index in range(number):
+        subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
+        sleep(2)
         try:
-            if subitem == '[server_local]' and sub_res_list[index+1] not in ['','[filter_local]']:
-                # 有效qx订阅节点
-                # 添加到目标节点中
-                youtube_nodes.append(sub_res_list[index+1])
-                # 去重
-                youtube_nodes = list(set(youtube_nodes))
-                logging.info(f'==============================================================================当前节点池有: {len(youtube_nodes)}个节点')
-        except:
-            continue
-    # 如果youtube_nodes和ocr_result[12][1]节点数量大于或相同则爬取结束
-    try:
-        if len(youtube_nodes)>=(int(ocr_result[12][1].split(':')[1])): # type: ignore
-            break
-    except:
-        pass
-    sleep(20)
+            logging.info(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
+            log_list.append(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
+            # 处理生成的二维码 生成节点信息
+            data:str = qr_recognize(f'dist/last.jpg')
+            logging.info(f'===============================================================================raw_data: {data}')
+            log_list.append(f'===============================================================================raw_data: {data}')
+            ocr_result = reader.readtext('dist/last.jpg')
+            logging.info(f'===============================================================================OCR: {ocr_result}')
+            log_list.append(f'===============================================================================OCR: {ocr_result}')     # type: ignore
+        except Exception as err:
+            data = ''
+            logging.error(f'==============================={err}==============================================')
+        sub_res = requests.get(f'https://sub.xeton.dev/sub?target=quanx&url={parse.quote(data)}&insert=false')
+        sub_res_list: list[str] = sub_res.text.split('\n')
+        for index,subitem in enumerate(sub_res_list):
+            try:
+                if subitem == '[server_local]' and sub_res_list[index+1] not in ['','[filter_local]']:
+                    # 有效qx订阅节点
+                    # 添加到目标节点中
+                    nodes.append(sub_res_list[index+1])
+                    # 去重
+                    nodes = list(set(nodes))
+                    logging.info(f'==============================================================================当前节点池有: {len(nodes)}个节点')
+            except:
+                continue
+        sleep(sleeptime)
+    all_nodes = all_nodes+nodes # type: ignore
+    return log_list
 
-open('dist/youtube.log','w+').write('\n'.join(youtube_log))
-open('dist/youtube.list','w+').write('\n'.join(youtube_nodes))
-logging.info(f'=========================================================================节点更新完成!')
+if __name__ == '__main__':
+    bulianglin_log = craw(100,'qmRkvKo-KbQ','不良林',20)
+    changfeng_log = craw(1,'N1Qyg0scz7g','长风',1)
+    open('dist/bulianglin.log','w+').write('\n'.join(bulianglin_log))
+    open('dist/changfeng.log','w+').write('\n'.join(changfeng_log))
+    open('dist/youtube.list','w+').write('\n'.join(all_nodes))
+    logging.info(f'=========================================================================节点更新完成!')
