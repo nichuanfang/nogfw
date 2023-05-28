@@ -41,14 +41,15 @@ logging.info(f'=================================================================
 for index in range(100):
     subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g qmRkvKo-KbQ | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
     sleep(2)
-    try:  
+    try:
+        logging.info(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
         youtube_log.append(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
         # 处理生成的二维码 生成节点信息
         data:str = qr_recognize(f'dist/last.jpg')
         logging.info(f'===============================================================================raw_data: {data}')
         youtube_log.append(f'===============================================================================raw_data: {data}')
         ocr_result = reader.readtext('dist/last.jpg')
-        logging.info(f'===============================================================================raw_data: {data}')
+        logging.info(f'===============================================================================OCR: {ocr_result}')
         youtube_log.append(f'===============================================================================OCR: {ocr_result}')     # type: ignore
     except Exception as err:
         data = ''
