@@ -20,5 +20,4 @@ time.sleep(5)
 # 模拟点击播放youtube
 driver.find_element(By.CSS_SELECTOR, ".ytp-play-button").click()
 driver.save_screenshot('dist/res.png')
-driver.close()
 open('page.txt','w+',encoding="UTF-8").write(driver.page_source)
