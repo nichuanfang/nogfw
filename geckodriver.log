@@ -54,3 +54,30 @@ Read port: 7081
 [ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
 console.error: ({})
 DevTools listening on ws://127.0.0.1:7072/devtools/browser/d4f96910-04f5-42df-99f6-d360746534b2
+1685257235279	geckodriver	INFO	Listening on 127.0.0.1:39843
+1685257235816	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... =3" "--remote-debugging-port" "53787" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileUYEmdH"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: Unable to open a connection to the X server
+1685257241951	Marionette	INFO	Marionette enabled
+1685257242011	Marionette	INFO	Listening on port 38045
+Read port: 38045
+console.error: "Warning: unrecognized command line flag -no-sandbox\n"
+console.error: "Warning: unrecognized command line flag -disable-dev-shm-usage\n"
+console.error: "Warning: unrecognized command line flag -disable-blink-features\n"
+console.error: "Warning: unrecognized command line flag -disable-extensions\n"
+console.error: "Warning: unrecognized command line flag -disable-gpu\n"
+console.error: "Warning: unrecognized command line flag -incognito\n"
+console.error: "Warning: unrecognized command line flag -ignore-certificate-errors\n"
+WebDriver BiDi listening on ws://127.0.0.1:53787
+Read port: 38045
+1685257243304	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+DevTools listening on ws://127.0.0.1:53787/devtools/browser/a086bc00-7fc5-4275-9907-0f7269e85c12
+[Child 2386, MediaDecoderStateMachine #1] WARNING: Decoder=7fa841311200 Decode error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) - Error no decoder found for audio/mp4a-latm: file /build/firefox-mvch40/firefox-113.0+build2/dom/media/MediaDecoderStateMachineBase.cpp:164
+[Child 2386, MediaDecoderStateMachine #1] WARNING: Decoder=7fa84180a300 Decode error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) - Error no decoder found for audio/mp4a-latm: file /build/firefox-mvch40/firefox-113.0+build2/dom/media/MediaDecoderStateMachineBase.cpp:164
+[Child 2386, MediaDecoderStateMachine #1] WARNING: Decoder=7fa84180a000 Decode error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) - Error no decoder found for audio/mp4a-latm: file /build/firefox-mvch40/firefox-113.0+build2/dom/media/MediaDecoderStateMachineBase.cpp:164
+[Child 2386, MediaDecoderStateMachine #1] WARNING: Decoder=7fa841312d00 Decode error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) - Error no decoder found for audio/mp4a-latm: file /build/firefox-mvch40/firefox-113.0+build2/dom/media/MediaDecoderStateMachineBase.cpp:164
