@@ -32,7 +32,7 @@ driver.save_screenshot('dist/pre_res.png')
 # ActionChains(driver).move_to_element(element).click().perform()
 
 WebDriverWait(driver, 1000000).until(EC.element_to_be_clickable((By.CLASS_NAME, 'ytp-play-button'))).click()
-
+WebDriverWait(driver, 1000000).until(EC.element_to_be_clickable((By.CLASS_NAME, 'ytp-play-button'))).click()
 
 time.sleep(5)
 
