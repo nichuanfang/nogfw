@@ -31,7 +31,7 @@ ua = random.choice(chrome_ua)
 options = webdriver.ChromeOptions()
 options.add_argument('--no-sandbox')
 # 不用打开界面 无头浏览器
-# options.add_argument('--headless')
+options.add_argument('--headless')
 options.add_argument('--disable-dev-shm-usage')
 # 设置User-Agent
 options.add_argument(f'user-agent={ua}')
