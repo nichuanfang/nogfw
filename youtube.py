@@ -1,10 +1,14 @@
+#!/usr/local/bin/python
+# coding=utf-8
 import requests
 from myselenium.my_selenium import get_driver
 from selenium.webdriver.common.by import By
 from myselenium.my_selenium import BeautifulSoup
 import time
 import logging
-import os
+import io
+import sys
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 
 logging.basicConfig(level=logging.INFO)
 # 爬youtube只能用firefox!
