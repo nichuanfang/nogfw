@@ -35,14 +35,13 @@ open('dist/page_source.txt','w+',encoding="UTF-8").write(driver.page_source)
 
 driver.save_screenshot('dist/pre_res.png')
 
-# 模拟点击播放youtube
-# element = driver.find_element(By.CLASS_NAME, 'ytp-play-button')
-# element.click()
-# ActionChains(driver).move_to_element(element).click().perform()
-
-wait_click(driver,'ytp-play-button')
-# wait_click(driver,'ytp-next-button')
-# driver.refresh()
+driver.refresh()
 time.sleep(5)
+# 模拟点击播放youtube
+element = driver.find_element(By.CLASS_NAME, 'ytp-play-button')
+ActionChains(driver).move_to_element(element)
 
+wait_click(driver,'ytp-next-button')
+
+# 解决方案 https://stackoverflow.com/questions/58644900/is-there-a-way-to-take-screenshots-of-a-livestream-happening-on-youtube-or-twitc
 driver.save_screenshot('dist/post_res.png')
