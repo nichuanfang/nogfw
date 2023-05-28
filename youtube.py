@@ -63,8 +63,10 @@ for index in range(100):
         # 处理生成的二维码 生成节点信息
         data:str = qr_recognize(f'dist/last.jpg')
         logging.info(f'===============================================================================raw_data: {data}')
+        youtube_log.append(f'===============================================================================raw_data: {data}')
         ocr_result = reader.readtext('dist/last.jpg')
-        logging.info(f'===============================================================================OCR: {ocr_result}')     # type: ignore
+        logging.info(f'===============================================================================raw_data: {data}')
+        youtube_log.append(f'===============================================================================OCR: {ocr_result}')     # type: ignore
     except Exception as err:
         logging.error(f'==============================={err}==============================================')
     sub_res = requests.get(f'https://sub.xeton.dev/sub?target=quanx&url={parse.quote(data)}&insert=false')
