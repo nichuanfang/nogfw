@@ -19,7 +19,7 @@ driver.get('https://www.youtube.com/watch?v=qmRkvKo-KbQ')
 driver.maximize_window()
 time.sleep(10)
 
-open('page_source','w+',encoding="UTF-8").write(driver.page_source)
+open('dist/page_source.txt','w+',encoding="UTF-8").write(driver.page_source)
 
 # 模拟点击播放youtube
 element = driver.find_element(By.CSS_SELECTOR, ".ytp-play-button")
