@@ -83,39 +83,20 @@ def get_driver(type:str='google'):
     options.add_argument('--no-sandbox')
     # 不用打开界面 无头浏览器
     options.add_argument('--headless')
+    options.add_argument('--disable-gpu')
     options.add_argument("--window-size=1920x1080")
-    options.add_argument('--disable-dev-shm-usage')
     # 设置User-Agent
     options.add_argument(f'user-agent={ua}')
-    # 添加代理 代理还是有问题 todo待解决
-    # options.add_argument(proxy)
-    # 规避检测
-    options.add_argument('--disable-blink-features')
-    options.add_argument('--disable-blink-features=AutomationControlled')
-    options.add_argument('--disable-extensions')
-    options.add_argument('--no-default-browser-check')
-    # 避免某些网页出错
-    options.add_argument('--disable-gpu')
     # 最大化
     options.add_argument('--start-maximized')
-    # 无痕模式
-    options.add_argument('--incognito')
     # 禁用缓存
     options.add_argument("disable-cache")
     options.add_argument('disable-infobars')
     options.add_argument('--ignore-certificate-errors') 
-    # 日志级别 0:INFO  1:WARNING 2:LOG_ERROR 3:LOG_FATAL  default is 0
-    options.add_argument('log-level=3')
-    # 禁止打印日志
     executable_path = '/opt/chromedriver/geckodriver'
     driver = webdriver.Firefox(executable_path=executable_path,options=options)
     # 隐形等待20秒
     driver.implicitly_wait(20)
-    # 绕过检测
-    # with open('stealth.min.js', 'r') as f:
-    #   js = f.read()
-    #     # 调用函数在页面加载前执行脚本 
-    #   driver.execute_script('Page.addScriptToEvaluateOnNewDocument', {'source': js})
   else:
     driver = WebDriver()
   return driver
