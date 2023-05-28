@@ -35,49 +35,45 @@ logging.basicConfig(level=logging.INFO)
 
 all_nodes = []
 
-def craw(number:int,video_id:str,alias:str,sleeptime:int):
-    logging.info(f'===========================================================================开始获取{alias}频道节点信息...')
+def craw(number:int,video_ids:list[str],sleeptime:int):
+    logging.info(f'===========================================================================开始获取节点信息...')
     log_list = []
-    nodes = []
     for index in range(number):
-        subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
-        sleep(2)
-        try:
-            logging.info(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
-            log_list.append(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
-            # 处理生成的二维码 生成节点信息
-            data:str = qr_recognize(f'dist/last.jpg')
-            logging.info(f'===============================================================================raw_data: {data}')
-            log_list.append(f'===============================================================================raw_data: {data}')
-            ocr_result = reader.readtext('dist/last.jpg')
-            logging.info(f'===============================================================================OCR: {ocr_result}')
-            log_list.append(f'===============================================================================OCR: {ocr_result}')     # type: ignore
-        except Exception as err:
-            data = ''
-            logging.error(f'==============================={err}==============================================')
-        sub_res = requests.get(f'https://sub.xeton.dev/sub?target=quanx&url={parse.quote(data)}&insert=false')
-        sub_res_list: list[str] = sub_res.text.split('\n')
-        for index,subitem in enumerate(sub_res_list):
+        for video_id in video_ids:
+            pass
+            subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
+            sleep(2)
             try:
-                if subitem == '[server_local]' and sub_res_list[index+1] not in ['','[filter_local]']:
-                    # 有效qx订阅节点
-                    # 添加到目标节点中
-                    nodes.append(sub_res_list[index+1])
-                    # 去重
-                    nodes = list(set(nodes))
-                    logging.info(f'==============================================================================当前节点池有: {len(nodes)}个节点')
-            except:
-                continue
+                logging.info(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
+                log_list.append(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
+                # 处理生成的二维码 生成节点信息
+                data:str = qr_recognize(f'dist/last.jpg')
+                logging.info(f'===============================================================================raw_data: {data}')
+                log_list.append(f'===============================================================================raw_data: {data}')
+                ocr_result = reader.readtext('dist/last.jpg')
+                logging.info(f'===============================================================================OCR: {ocr_result}')
+                log_list.append(f'===============================================================================OCR: {ocr_result}')     # type: ignore
+            except Exception as err:
+                data = ''
+                logging.error(f'==============================={err}==============================================')
+            sub_res = requests.get(f'https://sub.xeton.dev/sub?target=quanx&url={parse.quote(data)}&insert=false')
+            sub_res_list: list[str] = sub_res.text.split('\n')
+            for index,subitem in enumerate(sub_res_list):
+                try:
+                    if subitem == '[server_local]' and sub_res_list[index+1] not in ['','[filter_local]']:
+                        # 有效qx订阅节点
+                        # 添加到目标节点中
+                        all_nodes.append(sub_res_list[index+1])
+                        # 去重
+                        nodes = list(set(all_nodes))
+                        logging.info(f'==============================================================================当前节点池有: {len(nodes)}个节点')
+                except:
+                    continue
         sleep(sleeptime)
-    all_nodes = all_nodes+nodes # type: ignore
     return log_list
 
 if __name__ == '__main__':
-    bulianglin_log = craw(100,'qmRkvKo-KbQ','不良林',20)
-    changfeng_log = craw(1,'N1Qyg0scz7g','长风',1)
-    keji_log = craw(1,'aG7DcQhlu7I','八度科技',1)
-    open('dist/bulianglin.log','w+').write('\n'.join(bulianglin_log))
-    open('dist/changfeng.log','w+').write('\n'.join(changfeng_log))
-    open('dist/keji.log','w+').write('\n'.join(keji_log))
+    youtube_log = craw(60,['qmRkvKo-KbQ','N1Qyg0scz7g','aG7DcQhlu7I'],30)
+    open('dist/youtube.log','w+').write('\n'.join(youtube_log))
     open('dist/youtube.list','w+').write('\n'.join(all_nodes))
     logging.info(f'=========================================================================节点更新完成!')
