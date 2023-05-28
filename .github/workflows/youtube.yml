@@ -49,14 +49,13 @@ jobs:
         uses: AnimMouse/setup-yt-dlp@v1
         with:
           with-ffmpeg: true
+      # - run: |
+      #     yt-dlp -g qmRkvKo-KbQ | head -n 1
+      #     ffmpeg -i "$(yt-dlp -g qmRkvKo-KbQ | head -n 1)" -vframes 1 dist/last.jpg
 
-      - run: |
-          yt-dlp -g qmRkvKo-KbQ | head -n 1
-          ffmpeg -i "$(yt-dlp -g qmRkvKo-KbQ | head -n 1)" -vframes 1 dist/last.jpg
-
-      # - name: update proxy
-      #   run: |
-      #     python youtube.py
+      - name: update proxy
+        run: |
+          python youtube.py
 
       - name: Commit & Push changes
         uses: actions-js/push@master
