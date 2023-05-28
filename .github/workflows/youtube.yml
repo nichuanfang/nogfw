@@ -39,7 +39,7 @@ jobs:
 
       - uses: logikal-io/install-chrome@v1
         with:
-          version: 106.0.5249.91-1
+          version: 113.0.5672.126-1
 
       # - name: install google chrome browser
       #   run: |
