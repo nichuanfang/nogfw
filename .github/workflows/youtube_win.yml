@@ -1,4 +1,4 @@
-name: youtube proxy
+name: youtube proxy windows
 
 on:
   #github actions定时任务不稳定 改为gcp定时任务 订阅主题: often-updated
@@ -11,12 +11,12 @@ on:
         required: true
         default: 'warning'
       tags:
-        description: 'youtube proxy'
+        description: 'youtube proxy windows'
 
 jobs:
   job:
     name: youtube proxy
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@master
         with:
@@ -37,13 +37,13 @@ jobs:
           git checkout .
           git pull --allow-unrelated-histories
 
-      - name: install chinese font
-        run: |
-          sudo mkdir -p /usr/share/fonts/chinese/       
-          sudo cp songti.ttf /usr/share/fonts/chinese/  
-          cd /usr/share/fonts/chinese/
-          sudo fc-cache -fv                             
-          sudo fc-list
+      # - name: install chinese font
+      #   run: |
+      #     sudo mkdir -p /usr/share/fonts/chinese/
+      #     sudo cp songti.ttf /usr/share/fonts/chinese/
+      #     cd /usr/share/fonts/chinese/
+      #     sudo fc-cache -fv
+      #     sudo fc-list
 
       # ================youtube is not incompatible with google chrome, please change to firefox=========================
       # - uses: logikal-io/install-chrome@v1
