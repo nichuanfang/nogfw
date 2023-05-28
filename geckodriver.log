@@ -1,0 +1,56 @@
+1685254591162	geckodriver	INFO	Listening on 127.0.0.1:6193
+1685254594181	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "6194" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\CHUANF~1\\AppData\\Local\\Temp\\rust_mozprofileRlro7c"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1685254594429	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1685254594432	Marionette	INFO	Listening on port 6210
+WebDriver BiDi listening on ws://127.0.0.1:6194
+Read port: 6210
+1685254594628	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+DevTools listening on ws://127.0.0.1:6194/devtools/browser/43276183-c732-4ddc-92be-fea92f0a7161
+1685256095149	geckodriver	INFO	Listening on 127.0.0.1:6988
+1685256098222	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--no-sandbox" "--headless" "--window-size= ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\CHUANF~1\\AppData\\Local\\Temp\\rust_mozprofiley6Qgdf"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1685256098455	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1685256098458	Marionette	INFO	Listening on port 6998
+console.error: "Warning: unrecognized command line flag -no-sandbox\n"
+console.error: "Warning: unrecognized command line flag -disable-dev-shm-usage\n"
+console.error: "Warning: unrecognized command line flag -disable-blink-features\n"
+console.error: "Warning: unrecognized command line flag -disable-extensions\n"
+console.error: "Warning: unrecognized command line flag -disable-gpu\n"
+console.error: "Warning: unrecognized command line flag -incognito\n"
+console.error: "Warning: unrecognized command line flag -ignore-certificate-errors\n"
+WebDriver BiDi listening on ws://127.0.0.1:6989
+Read port: 6998
+1685256098617	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+console.error: ({})
+DevTools listening on ws://127.0.0.1:6989/devtools/browser/b5159074-4fee-4606-a6a9-e8fd7aa78ef9
+1685256126995	geckodriver	INFO	Listening on 127.0.0.1:7071
+1685256130038	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--no-sandbox" "--headless" "--window-size= ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\CHUANF~1\\AppData\\Local\\Temp\\rust_mozprofile8adSsK"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1685256130280	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1685256130283	Marionette	INFO	Listening on port 7081
+console.error: "Warning: unrecognized command line flag -no-sandbox\n"
+console.error: "Warning: unrecognized command line flag -disable-dev-shm-usage\n"
+console.error: "Warning: unrecognized command line flag -disable-blink-features\n"
+console.error: "Warning: unrecognized command line flag -disable-extensions\n"
+console.error: "Warning: unrecognized command line flag -disable-gpu\n"
+console.error: "Warning: unrecognized command line flag -incognito\n"
+console.error: "Warning: unrecognized command line flag -ignore-certificate-errors\n"
+WebDriver BiDi listening on ws://127.0.0.1:7072
+Read port: 7081
+1685256130450	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+console.error: ({})
+DevTools listening on ws://127.0.0.1:7072/devtools/browser/d4f96910-04f5-42df-99f6-d360746534b2
