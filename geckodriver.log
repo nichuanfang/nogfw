@@ -1,7 +1,7 @@
 1685258075081	geckodriver	INFO	Listening on 127.0.0.1:10873
 1685258078151	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--no-sandbox" "--headless" "--disable-gpu" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\CHUANF~1\\AppData\\Local\\Temp\\rust_mozprofile6BFxWb"
 *** You are running in headless mode.
-console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Ignoring preference override of remote settings server 
 console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
 1685258078404	Marionette	INFO	Marionette enabled
 Dynamically enable window occlusion 0
