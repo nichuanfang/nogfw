@@ -9,7 +9,9 @@ from urllib import request, parse
 import os
 import sys
 import subprocess
-logging.basicConfig(level=logging.INFO)
+LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
+DATE_FORMAT = "%m/%d/%Y %H:%M:%S %p"
+logging.basicConfig(level=logging.INFO, format=LOG_FORMAT, datefmt=DATE_FORMAT)
 
 youtube_nodes:list[str] = []
 
@@ -27,7 +29,7 @@ logging.basicConfig(level=logging.INFO)
 # 隔一段时间获取二维码
 # ffmpeg -i "$(yt-dlp -g qmRkvKo-KbQ | head -n 1)" -vframes 1 dist/last.jpg
 
-logging.info(f'开始获取节点信息...')
+logging.info(f'===========================================================================开始获取节点信息...')
 for index in range(60):
     subprocess.call(f'ffmpeg -i "$(yt-dlp -g qmRkvKo-KbQ | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
     try:
@@ -36,7 +38,7 @@ for index in range(60):
     except:
         subprocess.call(f'ffmpeg -i "$(yt-dlp -g qmRkvKo-KbQ | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
         data:str = qr_recognize(f'dist/last.jpg')
-    logging.info(f'已获取到节点: {data}')
+    logging.info(f'===============================================================================已获取到节点: {data}')
     sub_res = requests.get(f'https://sub.xeton.dev/sub?target=quanx&url={parse.quote(data)}&insert=false')
     sub_res_list: list[str] = sub_res.text.split('\n')
     for index,subitem in enumerate(sub_res_list):
@@ -46,10 +48,14 @@ for index in range(60):
                 youtube_nodes.append(sub_res_list[index+1])
                 # 去重
                 youtube_nodes = list(set(youtube_nodes))
+                logging.info(f'==============================================================================节点池有: {len(youtube_nodes)}个节点')
+                try:
+                    os.remove(f'dist/last.jpg')
+                except:
+                    continue
         except:
             continue
     sleep(30)
 
 open('dist/youtube.list','w+').write('\n'.join(youtube_nodes))
-os.remove(f'dist/last.jpg')
-logging.info(f'节点更新完成!')
+logging.info(f'=========================================================================节点更新完成!')
