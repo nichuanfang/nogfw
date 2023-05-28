@@ -1,1 +1,1 @@
-vmess = 198.2.208.189:443, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, obfs=wss, obfs-host=, obfs-uri=/path/1683715826870, tag=🇺🇲 美国-2.34MB/s(Youtube:不良林)
+vmess = tw99-hinet.mynodes001.one:5432, method=chacha20-ietf-poly1305, password=d5ef1df3-4069-3b25-9dc1-16b2be9b3e6b, aead=true, tag=🇨🇳 台湾-450.4KB/s(Youtube:不良林)
