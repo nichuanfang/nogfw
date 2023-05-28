@@ -48,7 +48,7 @@ jobs:
       - uses: FedericoCarboni/setup-ffmpeg@v2
         id: setup-ffmpeg
 
-      - run: ffmpeg -verion
+      - run: ffmpeg -version
 
       - name: Setup yt-dlp
         uses: AnimMouse/setup-yt-dlp@v1
