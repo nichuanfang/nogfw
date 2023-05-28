@@ -59,7 +59,7 @@ for index in range(100):
     subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g qmRkvKo-KbQ | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
     sleep(2)
     try:
-        youtube_log.append(f'=====================================节点:{index+1}信息======================================================')
+        youtube_log.append(f'=====================================节点信息======================================================')
         # 处理生成的二维码 生成节点信息
         data:str = qr_recognize(f'dist/last.jpg')
         logging.info(f'===============================================================================raw_data: {data}')
