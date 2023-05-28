@@ -1,8 +1,12 @@
 import requests
 import my_selenium
+from my_selenium import driver
+import time
 import logging
 
 logging.basicConfig(level=logging.INFO)
 
-soup = my_selenium.get_soup('https://www.youtube.com/watch?v=qmRkvKo-KbQ')
-logging.info(soup.prettify())
+driver.get('https://www.youtube.com/watch?v=qmRkvKo-KbQ')
+driver.maximize_window()
+time.sleep(5)
+driver.get_screenshot_as_file('test.png')
