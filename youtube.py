@@ -17,5 +17,3 @@ time.sleep(5)
 driver.find_element(By.CSS_SELECTOR, ".ytp-play-button").click()
 driver.save_screenshot('dist/res.png')
 driver.close()
-
-# 清除firefox日志
