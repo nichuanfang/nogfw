@@ -24,11 +24,20 @@ jobs:
           fetch-depth: 0
 
       - uses: actions/cache@v2
+        id: cache-ocr-models
         with:
-          path: node_modules
+          path: ocr_models
           key: ${{ runner.os }}-ocr
           restore-keys: |
             ${{ runner.os }}-ocr
+
+      # - name: install ocr dependencies
+      #   if: steps.cache-ocr-models.outputs.cache-hit != 'true'
+      #   run: |
+      #     cd ocr_models
+      #     sudo wget https://github.com/JaidedAI/EasyOCR/releases/download/pre-v1.1.6/craft_mlt_25k.zip
+      #     sudo wget https://github.com/JaidedAI/EasyOCR/releases/download/pre-v1.1.6/chinese.zip
+      #     sudo wget https://github.com/JaidedAI/EasyOCR/releases/download/pre-v1.1.6/chinese_sim.zip
 
       # 最佳实践 yt-dlp+ffmpeg
       - name: Setup yt-dlp

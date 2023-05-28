@@ -12,7 +12,7 @@ import subprocess
 # 图像识别
 import easyocr
 # windows下需要先下载模型文件  https://blog.csdn.net/Loliykon/article/details/114334699
-reader = easyocr.Reader(['ch_sim','en'])
+reader = easyocr.Reader(['ch_sim','en'],model_storage_directory='ocr_models')
 
 LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
 DATE_FORMAT = "%m/%d/%Y %H:%M:%S %p"
@@ -48,25 +48,25 @@ for index in range(100):
         ocr_result = reader.readtext('dist/last.jpg')
         # 服务器
         youtube_log.append(f'==============================================================================={ocr_result[1][1]}') # type: ignore
-        log.info(f'==============================================================================={ocr_result[1][1]}') # type: ignore
+        logging.info(f'==============================================================================={ocr_result[1][1]}') # type: ignore
         # 地区
         youtube_log.append(f'==============================================================================={ocr_result[2][1]}')     # type: ignore
-        log.info(f'==============================================================================={ocr_result[2][1]}')     # type: ignore
+        logging.info(f'==============================================================================={ocr_result[2][1]}')     # type: ignore
         # 类型
         youtube_log.append(f'==============================================================================={ocr_result[3][1]}:{ocr_result[4][1]}')     # type: ignore
-        log.info(f'==============================================================================={ocr_result[3][1]}:{ocr_result[4][1]}')     # type: ignore
+        logging.info(f'==============================================================================={ocr_result[3][1]}:{ocr_result[4][1]}')     # type: ignore
         # 速度
         youtube_log.append(f'==============================================================================={ocr_result[5][1]}')     # type: ignore
-        log.info(f'==============================================================================={ocr_result[5][1]}')     # type: ignore
+        logging.info(f'==============================================================================={ocr_result[5][1]}')     # type: ignore
         # 测速时间
         youtube_log.append(f'==============================================================================={ocr_result[6][1]}:{ocr_result[7][1].replace(".",":")}')     # type: ignore
-        log.info(f'==============================================================================={ocr_result[6][1]}:{ocr_result[7][1].replace(".",":")}')     # type: ignore
+        logging.info(f'==============================================================================={ocr_result[6][1]}:{ocr_result[7][1].replace(".",":")}')     # type: ignore
         # 二维码更新时间
         youtube_log.append(f'==============================================================================={ocr_result[10][1]}:{ocr_result[11][1].replace(".",":")}')     # type: ignore
-        log.info(f'==============================================================================={ocr_result[10][1]}:{ocr_result[11][1].replace(".",":")}')     # type: ignore
+        logging.info(f'==============================================================================={ocr_result[10][1]}:{ocr_result[11][1].replace(".",":")}')     # type: ignore
         # 节点数量
         youtube_log.append(f'==============================================================================={ocr_result[12][1]}')     # type: ignore
-        log.info(f'==============================================================================={ocr_result[12][1]}')     # type: ignore
+        logging.info(f'==============================================================================={ocr_result[12][1]}')     # type: ignore
     except Exception as err:
         logging.error(f'==============================={err}==============================================')
         continue
