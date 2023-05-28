@@ -51,7 +51,9 @@ jobs:
       #   # uses: browser-actions/setup-chrome@v1
 
       - name: check google chrome version
-        run: chrome --version
+        run: |
+          ls /opt/google/chrome
+          ls /opt/chromedriver/
 
       - name: update proxy
         run: |
