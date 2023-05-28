@@ -1,5 +1,8 @@
 import requests
+import my_selenium
+import logging
 
-res = requests.get('https://www.youtube.com/live/qmRkvKo-KbQ?feature=share')
+logging.basicConfig(level=logging.INFO)
 
-pass
+soup = my_selenium.get_soup('https://www.youtube.com/watch?v=qmRkvKo-KbQ')
+logging.info(soup.prettify())

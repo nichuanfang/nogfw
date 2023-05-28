@@ -2,8 +2,6 @@
 # coding=utf-8
 import lxml 
 from selenium import webdriver
-from selenium.webdriver import ActionChains
-from selenium.webdriver.common.by import By
 import random
 import io
 import sys
@@ -60,10 +58,11 @@ options.add_argument('--ignore-certificate-errors')
 # options.add_argument('log-level=3')
 # 禁止打印日志
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
-executable_path = '/usr/local/bin/chromedriver'
+# executable_path = '/usr/local/bin/chromedriver'
+executable_path = 'chromedriver'
 driver = webdriver.Chrome(executable_path=executable_path,chrome_options=options)
 # 绕过检测
-with open('/code/crawler/my_selenium/stealth.min.js', 'r') as f:
+with open('stealth.min.js', 'r') as f:
   js = f.read()
     # 调用函数在页面加载前执行脚本 
 driver.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument', {'source': js})
