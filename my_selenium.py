@@ -59,7 +59,7 @@ options.add_argument('--ignore-certificate-errors')
 # 禁止打印日志
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 # executable_path = '/usr/local/bin/chromedriver'
-executable_path = 'chromedriver'
+executable_path = '/opt/chromedriver/chromedriver'
 driver = webdriver.Chrome(executable_path=executable_path,chrome_options=options)
 # 绕过检测
 with open('stealth.min.js', 'r') as f:

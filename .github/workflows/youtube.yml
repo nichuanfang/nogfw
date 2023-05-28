@@ -52,8 +52,9 @@ jobs:
 
       - name: check google chrome version
         run: |
-          ls /opt/google/chrome
-          ls /opt/chromedriver/
+          sudo ln -fs /opt/google/chrome/chrome /usr/bin/chrome
+          sudo ln -fs /opt/google/chrome/chrome /usr/local/bin/chrome
+          chrome --version
 
       - name: update proxy
         run: |
