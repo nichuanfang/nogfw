@@ -28,7 +28,7 @@ logging.basicConfig(level=logging.INFO)
 # ffmpeg -i "$(yt-dlp -g qmRkvKo-KbQ | head -n 1)" -vframes 1 dist/last.jpg
 
 logging.info(f'开始获取节点信息...')
-for index in range(1):
+for index in range(60):
     subprocess.call(f'ffmpeg -i "$(yt-dlp -g qmRkvKo-KbQ | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
     try:
         # 处理生成的二维码 生成节点信息
