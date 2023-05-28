@@ -31,7 +31,7 @@ logging.basicConfig(level=logging.INFO)
 
 logging.info(f'===========================================================================开始获取节点信息...')
 for index in range(60):
-    subprocess.call(f'ffmpeg -i "$(yt-dlp -g qmRkvKo-KbQ | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
+    subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g qmRkvKo-KbQ | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
     try:
         # 处理生成的二维码 生成节点信息
         data:str = qr_recognize(f'dist/last.jpg')
@@ -49,10 +49,6 @@ for index in range(60):
                 # 去重
                 youtube_nodes = list(set(youtube_nodes))
                 logging.info(f'==============================================================================节点池有: {len(youtube_nodes)}个节点')
-                try:
-                    os.remove(f'dist/last.jpg')
-                except:
-                    continue
         except:
             continue
     sleep(30)
