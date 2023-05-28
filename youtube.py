@@ -67,7 +67,8 @@ for index in range(100):
         # 节点数量
         youtube_log.append(f'==============================================================================={ocr_result[12][1]}')     # type: ignore
         log.info(f'==============================================================================={ocr_result[12][1]}')     # type: ignore
-    except:
+    except Exception as err:
+        logging.error(f'==============================={err}==============================================')
         continue
     sub_res = requests.get(f'https://sub.xeton.dev/sub?target=quanx&url={parse.quote(data)}&insert=false')
     sub_res_list: list[str] = sub_res.text.split('\n')

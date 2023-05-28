@@ -23,6 +23,13 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
+      - uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-ocr
+          restore-keys: |
+            ${{ runner.os }}-ocr
+
       # 最佳实践 yt-dlp+ffmpeg
       - name: Setup yt-dlp
         uses: AnimMouse/setup-yt-dlp@v1
