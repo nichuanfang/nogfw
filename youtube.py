@@ -39,40 +39,16 @@ logging.basicConfig(level=logging.INFO)
 def craw(video_id:str,sleeptime:int):
     all_nodes = []
     logging.info(f'===========================================================================开始获取节点信息...')
-    # 首先确定节点池数量
-    # 默认抓取60次
-    number = 60
-    subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
-    while True:
-        if not os.path.exists('dist/last.jpg'):
-            logging.info(f'==========================================================等待截图生成...======================================================')
-            sleep(1)
-        else:
-            break
-    res = reader.readtext('dist/last.jpg')
-    try:
-        for parent_node in res: 
-            for child in parent_node:
-                if type(child)==str and child.__contains__('当前节点数量'):
-                    number = int(child.split(':')[1])
-                    logging.info(f'==========================================================共需抓取{number*2+5}轮======================================================')
-    
-    except:
-        # 获取失败取默认值
-        logging.info(f'==========================================================共需抓取{number*2+5}轮======================================================')
-
-    # 5次冗余时间 number*2+5
-    for index in range(number*2+5):
-        logging.info(f'==========================================================第{index+1}/{number*2+5}轮抓取======================================================')
+    # 默认130
+    for index in range(130):
         # 隔一段时间获取二维码
-        if index != 0:
-            subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
-            while True:
-                if not os.path.exists('dist/last.jpg'):
-                    logging.info(f'==========================================================等待截图生成...======================================================')
-                    sleep(1)
-                else:
-                    break
+        subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
+        while True:
+            if not os.path.exists('dist/last.jpg'):
+                logging.info(f'==========================================================等待截图生成...======================================================')
+                sleep(1)
+            else:
+                break
         try:
             logging.info(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
             # 处理生成的二维码 生成节点信息
@@ -80,6 +56,7 @@ def craw(video_id:str,sleeptime:int):
             raw_list.append(data)
             logging.info(f'===============================================================================raw_data: {data}')
             ocr_result = reader.readtext('dist/last.jpg')
+            # additional handling to ocr result... 
             logging.info(f'===============================================================================OCR: {ocr_result}')
         except Exception as err:
             data = ''
@@ -102,7 +79,7 @@ def craw(video_id:str,sleeptime:int):
                     logging.info(f'')
             except:
                 continue
-        if index != (number*2+4):
+        if index != 129:
             sleep(sleeptime)
     return all_nodes
 
