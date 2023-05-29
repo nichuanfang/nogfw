@@ -54,7 +54,7 @@ def craw(video_id:str,sleeptime:int):
                 logging.info(f'==========================================================共需抓取{number*2+5}轮======================================================')
 
     # 5次冗余时间 number*2+5
-    for index in range(number*2+5):
+    for index in range(10):
         logging.info(f'==========================================================第{index+1}/{number*2+5}轮抓取======================================================')
         # 隔一段时间获取二维码
         if index != 0:
@@ -101,14 +101,20 @@ def craw(video_id:str,sleeptime:int):
 
 def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     for raw in raw_list:
+        logging.info(f'handle raw:{raw}======================================')
         sub_res = requests.get(f'https://sub.xeton.dev/sub?target=clash&url={parse.quote(raw)}&insert=false')
+        logging.info(f'clash dict:{sub_res.text}======================================')
         with open('dist/clash_temp.yml','w+',encoding='utf-8') as temp_file:
             temp_file.write(sub_res.text)
         with open('dist/clash_temp.yml','r+',encoding='utf-8') as f:
           try:
               data_dict:dict = yaml.load(f, Loader=yaml.FullLoader)
+              logging.info(f'clash dict:{data_dict}======================================')
               if not final_dict:
                   final_dict:dict = copy.deepcopy(data_dict)
+                  del final_dict['socks-port']
+                  del final_dict['port']
+                  del  final_dict['proxy-groups'][1]['interval']
                   final_dict['socks-port'] = 10808 # type: ignore
                   final_dict['port'] = 10809 # type: ignore
                   #自动选择 多久检测一次速度 自动切换 单位s(秒)
