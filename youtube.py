@@ -89,50 +89,47 @@ def craw(number:int,video_id:str,sleeptime:int):
 def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     for raw in raw_list:
         logging.info(f'handle raw:{raw}======================================')
-        sub_res = requests.get(f'https://sub.xeton.dev/sub?target=clash&url={raw}&insert=false')
-        logging.info(f'订阅转换后的响应:状态码:{sub_res.status_code}  ok:{sub_res.ok}=====================================================')
+        sub_res = request.urlopen(f'https://sub.xeton.dev/sub?target=clash&url={raw}&insert=false')
+        # logging.info(f'订阅转换后的响应:状态码:{sub_res.status_code}  ok:{sub_res.ok}=====================================================')
         # logging.info(f'clash dict:{sub_res.text}======================================')
-        if not sub_res.ok:
-            continue
-        with open('dist/clash_temp.yml','w+',encoding='utf-8') as temp_file:
-            temp_file.write(sub_res.text)
-        with open('dist/clash_temp.yml','r+',encoding='utf-8') as f:
-          try:
-              data_dict:dict = yaml.load(f, Loader=yaml.FullLoader)
-            #   logging.info(f'clash dict:{data_dict}======================================')
-              if not final_dict:
-                  final_dict:dict = copy.deepcopy(data_dict)
-                  final_dict['socks-port'] = 10808 # type: ignore
-                  final_dict['port'] = 10809 # type: ignore
-                #   #自动选择 多久检测一次速度 自动切换 单位s(秒)
-                  final_dict['proxy-groups'][1]['interval'] = 1800 # type: ignore
-              else:
-                  # 添加节点
-                  proxy:dict= copy.deepcopy(data_dict['proxies'][0])
-                  proxies:list = final_dict['proxies'] # type: ignore
-                  proxies.append(proxy)
-                  # 分组配置
+        # if not sub_res.ok:
+        #     continue
+        try:
+            data_dict:dict = yaml.load(sub_res, Loader=yaml.FullLoader)
+            #logging.info(f'clash dict:{data_dict}======================================')
+            if not final_dict:
+                final_dict:dict = copy.deepcopy(data_dict)
+                final_dict['socks-port'] = 10808 # type: ignore
+                final_dict['port'] = 10809 # type: ignore
+            #   #自动选择 多久检测一次速度 自动切换 单位s(秒)
+                final_dict['proxy-groups'][1]['interval'] = 1800 # type: ignore
+            else:
+                # 添加节点
+                proxy:dict= copy.deepcopy(data_dict['proxies'][0])
+                
+                final_dict['proxies'].append(proxy)
 
-                  # 节点选择
-                  final_dict['proxy-groups'][0]['proxies'].append(proxy['name']) # type: ignore
-                  # 自动选择
+                # 分组配置
 
-                  # 正则匹配 排除延迟低的节点
-                  if re.match(r'香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|Korea|KR|kr',proxy['name']):
-                    final_dict['proxy-groups'][1]['proxies'].append(proxy['name']) # type: ignore
-                  # 国外媒体
-                  final_dict['proxy-groups'][2]['proxies'].append(proxy['name']) # type: ignore
-                  # 微软服务
-                  final_dict['proxy-groups'][4]['proxies'].append(proxy['name']) # type: ignore
-                  # 电报信息
-                  final_dict['proxy-groups'][5]['proxies'].append(proxy['name']) # type: ignore
-                  # 苹果服务
-                  final_dict['proxy-groups'][6]['proxies'].append(proxy['name']) # type: ignore
-                  # 漏网之鱼
-                  final_dict['proxy-groups'][9]['proxies'].append(proxy['name']) # type: ignore
-          except Exception as e:
-              logging.error(f'=========================================raw:{raw}转换为clash配置文件失败!: {e}')
-        os.remove('dist/clash_temp.yml')
+                # 节点选择
+                final_dict['proxy-groups'][0]['proxies'].append(proxy['name']) # type: ignore
+                # 自动选择
+
+                # 正则匹配 排除延迟低的节点
+                if re.match(r'香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|Korea|KR|kr',proxy['name']):
+                final_dict['proxy-groups'][1]['proxies'].append(proxy['name']) # type: ignore
+                # 国外媒体
+                final_dict['proxy-groups'][2]['proxies'].append(proxy['name']) # type: ignore
+                # 微软服务
+                final_dict['proxy-groups'][4]['proxies'].append(proxy['name']) # type: ignore
+                # 电报信息
+                final_dict['proxy-groups'][5]['proxies'].append(proxy['name']) # type: ignore
+                # 苹果服务
+                final_dict['proxy-groups'][6]['proxies'].append(proxy['name']) # type: ignore
+                # 漏网之鱼
+                final_dict['proxy-groups'][9]['proxies'].append(proxy['name']) # type: ignore
+        except Exception as e:
+            logging.error(f'=========================================raw:{raw}转换为clash配置文件失败!: {e}')
     return final_dict
 
 
