@@ -138,7 +138,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
 
 if __name__ == '__main__':
     # sys.argv[1]): CRAW_NUMBER 抓取次数
-    all_nodes = craw(int(sys.argv[1])-1,'qmRkvKo-KbQ',10)
+    all_nodes = craw(int(sys.argv[1]),'qmRkvKo-KbQ',10)
     # 生成qx专用订阅
     open('dist/qx-sub','w+').write('\n'.join(all_nodes))
 
