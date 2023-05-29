@@ -15,6 +15,7 @@ import json
 import yaml
 import copy
 import re
+import qrcode
 # 图像识别
 import easyocr
 # windows下需要先下载模型文件  https://blog.csdn.net/Loliykon/article/details/114334699
@@ -157,16 +158,29 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
 
 if __name__ == '__main__':
     all_nodes = craw('qmRkvKo-KbQ',10)
-    open('dist/youtube.list','w+').write('\n'.join(all_nodes))
+    # 生成qx专用订阅
+    open('dist/qx-sub','w+').write('\n'.join(all_nodes))
 
     # 生成clash配置文件
     logging.info(f'=========================================================================生成clash配置文件...')
-    # raw数据去重
+
     # raw_list = ['vmess://eyJ2IjoiMiIsInBzIjoi576O5Zu9LTUuNjNNQi9zKFlvdXR1YmU65LiN6Imv5p6XKSIsImFkZCI6IjIzLjIyNC4xMTAuMTg0IiwicG9ydCI6IjQ0MyIsInR5cGUiOiJub25lIiwiaWQiOiI0MTgwNDhhZi1hMjkzLTRiOTktOWIwYy05OGNhMzU4MGRkMjQiLCJhaWQiOiI2NCIsIm5ldCI6IndzIiwicGF0aCI6Ii9wYXRoLzA4MDcxMjM0MjMxMCIsImhvc3QiOiIiLCJ0bHMiOiJ0bHMifQ==','vmess://eyJ2IjoiMiIsInBzIjoi576O5Zu9LTQuMzlNQi9zKFlvdXR1YmU65LiN6Imv5p6XKSIsImFkZCI6IjE5OC4yLjE5Ni40OSIsInBvcnQiOiI1NDQzNCIsInR5cGUiOiJub25lIiwiaWQiOiI0MTgwNDhhZi1hMjkzLTRiOTktOWIwYy05OGNhMzU4MGRkMjQiLCJhaWQiOiI2NCIsIm5ldCI6InRjcCIsInBhdGgiOiIvIiwiaG9zdCI6IiIsInRscyI6IiJ9']
+
+    # raw数据去重
     raw_list = copy.deepcopy(list(set(raw_list)) )
+
+    # base64加密
     encoder = base64.b64encode(('\n'.join(raw_list)).encode("utf-8"))
     # 解码为 utf-8 字符串
+
+    # 生成通用订阅
     open('dist/sub', 'w+',encoding='utf-8').write(encoder.decode('utf-8'))
+
+    # 生成通用订阅二维码
+    img = qrcode.make('\n'.join(raw_list))
+    with open('dist/sub.jpg', 'wb') as qrc:
+        img.save(qrc)
+
     clash_dict = generate_clash_config(raw_list,{})
     with open('dist/clash.yml', 'w+',encoding='utf-8') as file:
         file.write(yaml.dump(clash_dict, allow_unicode=True,default_flow_style=False,sort_keys=False))
