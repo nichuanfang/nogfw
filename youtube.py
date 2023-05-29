@@ -89,13 +89,14 @@ def craw(number:int,video_id:str,sleeptime:int):
 def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     for raw in raw_list:
         logging.info(f'handle raw:{raw}======================================')
-        sub_res = request.urlopen(f'https://sub.xeton.dev/sub?target=clash&url={parse.quote(raw)}&insert=false')
+        # sub_res = request.urlopen(f'https://sub.xeton.dev/sub?target=clash&url={parse.quote(raw)}&insert=false')
+        sub_res = requests.get(f'https://sub.xeton.dev/sub?target=clash&url={parse.quote(raw)}&insert=false')
         # logging.info(f'订阅转换后的响应:状态码:{sub_res.status_code}  ok:{sub_res.ok}=====================================================')
         # logging.info(f'clash dict:{sub_res.text}======================================')
-        # if not sub_res.ok:
-        #     continue
+        if not sub_res.ok:
+            continue
         try:
-            data_dict:dict = yaml.load(sub_res, Loader=yaml.FullLoader)
+            data_dict:dict = yaml.load(sub_res.text, Loader=yaml.FullLoader)
             #logging.info(f'clash dict:{data_dict}======================================')
             if not final_dict:
                 final_dict:dict = copy.deepcopy(data_dict)
