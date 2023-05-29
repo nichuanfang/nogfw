@@ -1,1 +1,5 @@
-trojan = 138.2.115.240:443, password=3a2c0c6c-9ee5-c05f-c951-fcd73831983e, over-tls=true, tls-host=, tls-verification=false, tag=🇰🇷 韩国-6.15MB/s(Youtube:不良林)
+shadowsocks = cm1-nc.go001.buzz:19561, method=chacha20-ietf-poly1305, password=b605e314-f6f8-481e-9c74-e8d5621e379d, tag=_电报频道： @shendu666
+vmess = tw99-hinet.mynodes001.one:5432, method=chacha20-ietf-poly1305, password=d5ef1df3-4069-3b25-9dc1-16b2be9b3e6b, aead=true, tag=🇨🇳 台湾-337.4KB/s(Youtube:不良林)
+trojan = 148.59.74.52:443, password=f66d4fdd-71a2-4041-abf7-f4e121dfd789, over-tls=true, tls-host=18-140-66-207.nhost.00cdn.com, tls-verification=false, tag=_电报频道： @shendu666
+vmess = 188.114.99.102:2095, method=chacha20-ietf-poly1305, password=67597b31-fba2-42ba-b3df-b7264d346235, aead=true, obfs=ws, obfs-host=jp.wyhkaa0.ga, obfs-uri=/tg@hkaa0, tag=🇳🇱 _NL_荷兰
+vmess = 192.74.228.179:42857, method=chacha20-ietf-poly1305, password=051b844f-efe3-4847-92aa-66b5de0b6d4e, aead=false, tag=🇺🇲 美国-5.00MB/s(Youtube:不良林)
