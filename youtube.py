@@ -29,7 +29,6 @@ def qr_recognize(file_path:str):
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 
 logging.basicConfig(level=logging.INFO)
-raw_data = []
 def craw(number:int,video_ids:list[str],sleeptime:int):
     all_nodes = []
     logging.info(f'===========================================================================开始获取节点信息...')
@@ -40,10 +39,9 @@ def craw(number:int,video_ids:list[str],sleeptime:int):
             subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
             sleep(2)
             try:
-                logging.info(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息--索引======================================================')
+                logging.info(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
                 # 处理生成的二维码 生成节点信息
                 data:str = qr_recognize(f'dist/last.jpg')
-                raw_data.append(data)
                 logging.info(f'===============================================================================raw_data: {data}')
                 ocr_result = reader.readtext('dist/last.jpg')
                 logging.info(f'===============================================================================OCR: {ocr_result}')
@@ -64,12 +62,11 @@ def craw(number:int,video_ids:list[str],sleeptime:int):
                         logging.info(f'==============================================================================当前节点池有: {len(all_nodes)}个节点')
                 except:
                     continue
-        sleep(sleeptime)
+        if index != number-1:
+            sleep(sleeptime)
     return all_nodes
 
 if __name__ == '__main__':
     all_nodes = craw(2,['qmRkvKo-KbQ'],20)
-    b64 = str(base64.b64encode('\n'.join(raw_data).encode("utf-8")), "utf-8")
-    open('dist/raw_data.txt','w+').write('\n'.join(b64))
     open('dist/youtube.list','w+').write('\n'.join(all_nodes))
     logging.info(f'=========================================================================节点更新完成!')
