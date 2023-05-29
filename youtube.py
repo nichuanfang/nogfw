@@ -16,6 +16,7 @@ import yaml
 import copy
 import re
 import qrcode
+from qrcode import constants
 # 图像识别
 import easyocr
 # windows下需要先下载模型文件  https://blog.csdn.net/Loliykon/article/details/114334699
@@ -168,22 +169,35 @@ if __name__ == '__main__':
 
     # raw数据去重
     raw_list = copy.deepcopy(list(set(raw_list)) )
-
+    
     # base64加密
     encoder = base64.b64encode(('\n'.join(raw_list)).encode("utf-8"))
     # 解码为 utf-8 字符串
-
-    # 生成通用订阅
-    open('dist/sub', 'w+',encoding='utf-8').write(encoder.decode('utf-8'))
+    try:
+        # 生成通用订阅
+        open('dist/sub', 'w+',encoding='utf-8').write(encoder.decode('utf-8'))
+    except Exception as e:
+        logging.error(f'================================通用订阅生成失败!:{e}==========================================')
 
     # 生成通用订阅二维码
-    img = qrcode.make('\n'.join(raw_list))
-    with open('dist/sub.jpg', 'wb') as qrc:
-        img.save(qrc)
+    try:
+        img = qrcode.make('\n'.join(raw_list),version=None,
+                    error_correction=constants.ERROR_CORRECT_M,
+                    box_size=10, border=4,
+                    image_factory=None,
+                    mask_pattern=None)
+        with open('dist/sub.jpg', 'wb') as qrc:
+            img.save(qrc)
+    except Exception as e:
+        logging.error(f'================================二维码生成失败!:{e}==========================================')
 
-    clash_dict = generate_clash_config(raw_list,{})
-    with open('dist/clash.yml', 'w+',encoding='utf-8') as file:
-        file.write(yaml.dump(clash_dict, allow_unicode=True,default_flow_style=False,sort_keys=False))
+    try:
+        clash_dict = generate_clash_config(raw_list,{})
+        with open('dist/clash.yml', 'w+',encoding='utf-8') as file:
+            file.write(yaml.dump(clash_dict, allow_unicode=True,default_flow_style=False,sort_keys=False))
+    except Exception as e:
+        logging.error(f'================================clash文件生成失败!:{e}==========================================')
+
     logging.info(f'=========================================================================clash配置文件已生成!')
     logging.info(f'')
     logging.info(f'')
