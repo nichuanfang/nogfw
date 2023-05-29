@@ -6,7 +6,6 @@ import requests
 import logging
 import io
 from urllib import request, parse
-import os
 import sys
 import subprocess
 from datetime import datetime
@@ -30,31 +29,27 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 
 logging.basicConfig(level=logging.INFO)
 
-# 隔一段时间获取二维码
-# ffmpeg -i "$(yt-dlp -g qmRkvKo-KbQ | head -n 1)" -vframes 1 dist/last.jpg
-
-def craw(number:int,video_ids:list[str],sleeptime:int,all_nodes:list[str]):
+def craw(number:int,video_ids:list[str],sleeptime:int):
+    all_nodes = []
     logging.info(f'===========================================================================开始获取节点信息...')
-    log_list = []
     # 不良林节点数量
     count = 0
     for index in range(number):
         logging.info(f'==========================================================第{index+1}轮抓取======================================================')
         for video_id in video_ids:
+            # 隔一段时间获取二维码
             subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
             sleep(2)
             try:
                 logging.info(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息--索引======================================================')
-                log_list.append(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
                 # 处理生成的二维码 生成节点信息
                 data:str = qr_recognize(f'dist/last.jpg')
                 logging.info(f'===============================================================================raw_data: {data}')
-                log_list.append(f'===============================================================================raw_data: {data}')
                 ocr_result = reader.readtext('dist/last.jpg')
                 logging.info(f'===============================================================================OCR: {ocr_result}')
-                log_list.append(f'===============================================================================OCR: {ocr_result}')     # type: ignore
             except Exception as err:
                 data = ''
+                all_nodes = []
                 logging.error(f'==============================={err}==============================================')
             sub_res = requests.get(f'https://sub.xeton.dev/sub?target=quanx&url={parse.quote(data)}&insert=false')
             sub_res_list: list[str] = sub_res.text.split('\n')
@@ -75,11 +70,9 @@ def craw(number:int,video_ids:list[str],sleeptime:int,all_nodes:list[str]):
         if count>=40 or len(all_nodes) >= 100:
             break
         sleep(sleeptime)
-    return log_list
+    return all_nodes
 
 if __name__ == '__main__':
-    all_nodes:list[str] = []
-    youtube_log = craw(100,['qmRkvKo-KbQ','N1Qyg0scz7g','aG7DcQhlu7I'],10,all_nodes)
-    open('dist/youtube.log','w+').write('\n'.join(youtube_log))
+    all_nodes = craw(2,['qmRkvKo-KbQ','N1Qyg0scz7g','aG7DcQhlu7I'],10)
     open('dist/youtube.list','w+').write('\n'.join(all_nodes))
     logging.info(f'=========================================================================节点更新完成!')
