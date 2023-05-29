@@ -5,4 +5,5 @@ page_source
 myselenium/__pycache__/*.pyc
 dist/last.jpg
 ocr_module/*.zip
-ocr_module/*.pth
+ocr_models/craft_mlt_25k.pth
+ocr_models/zh_sim_g2.pth
