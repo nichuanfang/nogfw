@@ -11,6 +11,7 @@ import subprocess
 from datetime import datetime
 import os
 import base64
+import yaml
 # 图像识别
 import easyocr
 # windows下需要先下载模型文件  https://blog.csdn.net/Loliykon/article/details/114334699
@@ -28,7 +29,7 @@ def qr_recognize(file_path:str):
     return data
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
-
+raw_list = []
 logging.basicConfig(level=logging.INFO)
 def craw(video_id:str,sleeptime:int):
     all_nodes = []
@@ -67,6 +68,7 @@ def craw(video_id:str,sleeptime:int):
             logging.info(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
             # 处理生成的二维码 生成节点信息
             data:str = qr_recognize(f'dist/last.jpg')
+            raw_list.append(data)
             logging.info(f'===============================================================================raw_data: {data}')
             ocr_result = reader.readtext('dist/last.jpg')
             logging.info(f'===============================================================================OCR: {ocr_result}')
@@ -95,7 +97,58 @@ def craw(video_id:str,sleeptime:int):
             sleep(sleeptime)
     return all_nodes
 
+
+def generate_clash_config(raw_list:list,final_dict:dict):
+    for raw in raw_list:
+        sub_res = requests.get(f'https://sub.xeton.dev/sub?target=clash&url={parse.quote(raw)}&insert=false')
+        with open('dist/clash_temp.yml','w+',encoding='utf-8') as temp_file:
+            temp_file.write(sub_res.text)
+        with open('dist/clash_temp.yml','r+',encoding='utf-8') as f:
+          try:
+              dict = yaml.load(f, Loader=yaml.FullLoader)
+              if not final_dict:
+                  final_dict = dict
+              else:
+                  # 添加节点
+                  proxy = dict['proxies'][0]
+
+                  final_dict['proxies'].append(proxy)
+                  # 分组配置
+
+                  # 节点选择
+                  final_dict['proxy-groups'][0]['proxies'].append(proxy['name'])
+                  # 自动选择
+                  final_dict['proxy-groups'][1]['proxies'].append(proxy['name'])
+                  # 国外媒体
+                  final_dict['proxy-groups'][2]['proxies'].append(proxy['name'])
+                  # 微软服务
+                  final_dict['proxy-groups'][4]['proxies'].append(proxy['name'])
+                  # 电报信息
+                  final_dict['proxy-groups'][5]['proxies'].append(proxy['name'])
+                  # 苹果服务
+                  final_dict['proxy-groups'][6]['proxies'].append(proxy['name'])
+                  # 漏网之鱼
+                  final_dict['proxy-groups'][9]['proxies'].append(proxy['name'])
+          except yaml.YAMLError as e:
+              print(e)
+        os.remove('dist/clash_temp.yml')
+    return final_dict
+
+
 if __name__ == '__main__':
     all_nodes = craw('qmRkvKo-KbQ',10)
     open('dist/youtube.list','w+').write('\n'.join(all_nodes))
+
+    # 生成clash配置文件
+    logging.info(f'=========================================================================生成clash配置文件...')
+    # raw数据去重
+    raw_list = list(set(raw_list))
+    clash_dict = generate_clash_config(raw_list,{})
+    with open('dist/clash.yml', 'w+',encoding='utf-8') as file:
+        file.write(yaml.dump(clash_dict, allow_unicode=True))
+    logging.info(f'=========================================================================clash配置文件已生成!')
+    logging.info(f'')
+    logging.info(f'')
+    logging.info(f'')
+    logging.info(f'')
     logging.info(f'=========================================================================节点更新完成!')
