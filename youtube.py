@@ -96,16 +96,16 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
         with open('dist/clash_temp.yml','r+',encoding='utf-8') as f:
           try:
               data_dict:dict = yaml.load(f, Loader=yaml.FullLoader)
-              logging.info(f'clash dict:{data_dict}======================================')
+            #   logging.info(f'clash dict:{data_dict}======================================')
               if not final_dict:
                   final_dict:dict = copy.deepcopy(data_dict)
-                  del final_dict['socks-port']
-                  del final_dict['port']
-                  del  final_dict['proxy-groups'][1]['interval']
-                  final_dict['socks-port'] = 10808 # type: ignore
-                  final_dict['port'] = 10809 # type: ignore
-                  #自动选择 多久检测一次速度 自动切换 单位s(秒)
-                  final_dict['proxy-groups'][1]['interval'] = 1800 # type: ignore
+                #   del final_dict['socks-port']
+                #   del final_dict['port']
+                #   del  final_dict['proxy-groups'][1]['interval']
+                #   final_dict['socks-port'] = 10808 # type: ignore
+                #   final_dict['port'] = 10809 # type: ignore
+                #   #自动选择 多久检测一次速度 自动切换 单位s(秒)
+                #   final_dict['proxy-groups'][1]['interval'] = 1800 # type: ignore
               else:
                   # 添加节点
                   proxy:dict= copy.deepcopy(data_dict['proxies'][0])
