@@ -123,7 +123,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
                   final_dict['socks-port'] = 10808 # type: ignore
                   final_dict['port'] = 10809 # type: ignore
                   #自动选择 多久检测一次速度 自动切换 单位s(秒)
-                  final_dict['proxy-groups'][1]['interval'] = 3600 # type: ignore
+                  final_dict['proxy-groups'][1]['interval'] = 1800 # type: ignore
               else:
                   # 添加节点
                   proxy:dict= copy.deepcopy(data_dict['proxies'][0])
