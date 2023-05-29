@@ -52,8 +52,8 @@ def craw(video_id:str,sleeptime:int):
                 number = int(child.split(':')[1])
                 logging.info(f'==========================================================共需抓取{number*2+5}轮======================================================')
 
-    # 5次冗余时间
-    for index in range(number*2+5):
+    # 5次冗余时间 number*2+5
+    for index in range(3):
         logging.info(f'==========================================================第{index+1}/{number*2+5}轮抓取======================================================')
         # 隔一段时间获取二维码
         if index != 0:
@@ -105,30 +105,30 @@ def generate_clash_config(raw_list:list,final_dict:dict):
             temp_file.write(sub_res.text)
         with open('dist/clash_temp.yml','r+',encoding='utf-8') as f:
           try:
-              dict = yaml.load(f, Loader=yaml.FullLoader)
+              data_dict = yaml.load(f, Loader=yaml.FullLoader)
               if not final_dict:
-                  final_dict = dict
+                  final_dict = data_dict
               else:
                   # 添加节点
-                  proxy = dict['proxies'][0]
-
-                  final_dict['proxies'].append(proxy)
+                  proxy:dict= data_dict['proxies'][0]
+                  proxies:list = final_dict['proxies'] # type: ignore
+                  proxies.append(proxy)
                   # 分组配置
 
                   # 节点选择
-                  final_dict['proxy-groups'][0]['proxies'].append(proxy['name'])
+                  final_dict['proxy-groups'][0]['proxies'].append(proxy['name']) # type: ignore
                   # 自动选择
-                  final_dict['proxy-groups'][1]['proxies'].append(proxy['name'])
+                  final_dict['proxy-groups'][1]['proxies'].append(proxy['name']) # type: ignore
                   # 国外媒体
-                  final_dict['proxy-groups'][2]['proxies'].append(proxy['name'])
+                  final_dict['proxy-groups'][2]['proxies'].append(proxy['name']) # type: ignore
                   # 微软服务
-                  final_dict['proxy-groups'][4]['proxies'].append(proxy['name'])
+                  final_dict['proxy-groups'][4]['proxies'].append(proxy['name']) # type: ignore
                   # 电报信息
-                  final_dict['proxy-groups'][5]['proxies'].append(proxy['name'])
+                  final_dict['proxy-groups'][5]['proxies'].append(proxy['name']) # type: ignore
                   # 苹果服务
-                  final_dict['proxy-groups'][6]['proxies'].append(proxy['name'])
+                  final_dict['proxy-groups'][6]['proxies'].append(proxy['name']) # type: ignore
                   # 漏网之鱼
-                  final_dict['proxy-groups'][9]['proxies'].append(proxy['name'])
+                  final_dict['proxy-groups'][9]['proxies'].append(proxy['name']) # type: ignore
           except yaml.YAMLError as e:
               print(e)
         os.remove('dist/clash_temp.yml')
@@ -136,13 +136,14 @@ def generate_clash_config(raw_list:list,final_dict:dict):
 
 
 if __name__ == '__main__':
-    all_nodes = craw('qmRkvKo-KbQ',10)
-    open('dist/youtube.list','w+').write('\n'.join(all_nodes))
+    # all_nodes = craw('qmRkvKo-KbQ',10)
+    # open('dist/youtube.list','w+').write('\n'.join(all_nodes))
 
     # 生成clash配置文件
     logging.info(f'=========================================================================生成clash配置文件...')
     # raw数据去重
-    raw_list = list(set(raw_list))
+    # raw_list = list(set(raw_list)) 
+    raw_list = ['vmess://eyJ2IjoiMiIsInBzIjoi576O5Zu9LTUuNjNNQi9zKFlvdXR1YmU65LiN6Imv5p6XKSIsImFkZCI6IjIzLjIyNC4xMTAuMTg0IiwicG9ydCI6IjQ0MyIsInR5cGUiOiJub25lIiwiaWQiOiI0MTgwNDhhZi1hMjkzLTRiOTktOWIwYy05OGNhMzU4MGRkMjQiLCJhaWQiOiI2NCIsIm5ldCI6IndzIiwicGF0aCI6Ii9wYXRoLzA4MDcxMjM0MjMxMCIsImhvc3QiOiIiLCJ0bHMiOiJ0bHMifQ==','vmess://eyJ2IjoiMiIsInBzIjoi576O5Zu9LTQuMzlNQi9zKFlvdXR1YmU65LiN6Imv5p6XKSIsImFkZCI6IjE5OC4yLjE5Ni40OSIsInBvcnQiOiI1NDQzNCIsInR5cGUiOiJub25lIiwiaWQiOiI0MTgwNDhhZi1hMjkzLTRiOTktOWIwYy05OGNhMzU4MGRkMjQiLCJhaWQiOiI2NCIsIm5ldCI6InRjcCIsInBhdGgiOiIvIiwiaG9zdCI6IiIsInRscyI6IiJ9']
     clash_dict = generate_clash_config(raw_list,{})
     with open('dist/clash.yml', 'w+',encoding='utf-8') as file:
         file.write(yaml.dump(clash_dict, allow_unicode=True))
