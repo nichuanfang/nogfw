@@ -54,7 +54,7 @@ def craw(video_id:str,sleeptime:int):
                 logging.info(f'==========================================================共需抓取{number*2+5}轮======================================================')
 
     # 5次冗余时间 number*2+5
-    for index in range(number*2+5):
+    for index in range(5):
         logging.info(f'==========================================================第{index+1}/{number*2+5}轮抓取======================================================')
         # 隔一段时间获取二维码
         if index != 0:
@@ -108,11 +108,12 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
           try:
               data_dict:dict = yaml.load(f, Loader=yaml.FullLoader)
               if not final_dict:
+                
                   final_dict:dict = data_dict
-                  final_dict['socks-port'] = 10808 # type: ignore
-                  final_dict['port'] = 10809 # type: ignore
+                #   final_dict['socks-port'] = 10808 # type: ignore
+                #   final_dict['port'] = 10809 # type: ignore
                   #自动选择 多久检测一次速度 自动切换 单位s(秒)
-                  final_dict['proxy-groups'][1]['interval'] = 3600 # type: ignore
+                #   final_dict['proxy-groups'][1]['interval'] = 3600 # type: ignore
               else:
                   # 添加节点
                   proxy:dict= data_dict['proxies'][0]
@@ -134,8 +135,8 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
                   final_dict['proxy-groups'][6]['proxies'].append(proxy['name']) # type: ignore
                   # 漏网之鱼
                   final_dict['proxy-groups'][9]['proxies'].append(proxy['name']) # type: ignore
-          except yaml.YAMLError as e:
-              print(e)
+          except Exception as e:
+              logging.error(f'=========================================raw:{raw}转换为clash配置文件失败!: {e}')
         os.remove('dist/clash_temp.yml')
     return final_dict
 
