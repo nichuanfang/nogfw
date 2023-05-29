@@ -1,2 +1,1 @@
-vmess = mg.txy.a.node1.jijio.stream:38999, method=chacha20-ietf-poly1305, password=adc570f1-d591-4a5a-93f0-0013bba3f116, aead=true, obfs=wss, obfs-host=mg.txy.a.node1.jijio.stream, obfs-uri=/wesad, tag=🇺🇲 美国-1.42MB/s(Youtube:不良林)
-trojan = 165.154.246.207:443, password=ca7febc2-bb45-4e6d-810e-ab0af6009c4e, over-tls=true, tls-host=, tls-verification=false, tag=🇨🇳 台湾-1.06MB/s(Youtube:不良林)
+shadowsocks = n111.boom.skin:29000, method=aes-256-cfb, password=Uk92CS, ssr-protocol=auth_aes128_sha1, ssr-protocol-param=23957:nZCp9Y, obfs=http_simple, obfs-host=download.windowsupdate.com, tag=(已存活9天)中转节点-11.50MB/s(Youtube:不良林)
