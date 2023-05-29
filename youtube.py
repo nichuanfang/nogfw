@@ -53,7 +53,7 @@ def craw(video_id:str,sleeptime:int):
 
     # 5次冗余时间
     for index in range(number*2+5):
-        logging.info(f'==========================================================第{index+1}轮抓取======================================================')
+        logging.info(f'==========================================================第{index+1}/{number*2+5}轮抓取======================================================')
         # 隔一段时间获取二维码
         if index != 0:
             subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
