@@ -29,44 +29,55 @@ def qr_recognize(file_path:str):
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 
 logging.basicConfig(level=logging.INFO)
-def craw(number:int,video_ids:list[str],sleeptime:int):
+def craw(number:int,video_id:str,sleeptime:int):
     all_nodes = []
     logging.info(f'===========================================================================开始获取节点信息...')
-    for index in range(number):
+
+
+    # 首先确定节点池数量
+    subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
+    data:str = qr_recognize(f'dist/last.jpg')
+    for parent_node in res:
+        for child in parent_node:
+            if type(child)==str and child.__contains__('当前节点数量'):
+                number = int(child.split(':')[1])
+                logging.info(f'==========================================================共需抓取{number+5}轮======================================================')
+
+    # 5次冗余时间
+    for index in range(number+5):
         logging.info(f'==========================================================第{index+1}轮抓取======================================================')
-        for video_id in video_ids:
-            # 隔一段时间获取二维码
-            subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
-            sleep(2)
+        # 隔一段时间获取二维码
+        subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
+        sleep(2)
+        try:
+            logging.info(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
+            # 处理生成的二维码 生成节点信息
+            data:str = qr_recognize(f'dist/last.jpg')
+            logging.info(f'===============================================================================raw_data: {data}')
+            ocr_result = reader.readtext('dist/last.jpg')
+            logging.info(f'===============================================================================OCR: {ocr_result}')
+        except Exception as err:
+            data = ''
+            all_nodes = []
+            logging.error(f'==============================={err}==============================================')
+        sub_res = requests.get(f'https://sub.xeton.dev/sub?target=quanx&url={parse.quote(data)}&insert=false')
+        sub_res_list: list[str] = sub_res.text.split('\n')
+        for index,subitem in enumerate(sub_res_list):
             try:
-                logging.info(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
-                # 处理生成的二维码 生成节点信息
-                data:str = qr_recognize(f'dist/last.jpg')
-                logging.info(f'===============================================================================raw_data: {data}')
-                ocr_result = reader.readtext('dist/last.jpg')
-                logging.info(f'===============================================================================OCR: {ocr_result}')
-            except Exception as err:
-                data = ''
-                all_nodes = []
-                logging.error(f'==============================={err}==============================================')
-            sub_res = requests.get(f'https://sub.xeton.dev/sub?target=quanx&url={parse.quote(data)}&insert=false')
-            sub_res_list: list[str] = sub_res.text.split('\n')
-            for index,subitem in enumerate(sub_res_list):
-                try:
-                    if subitem == '[server_local]' and sub_res_list[index+1] not in ['','[filter_local]']:
-                        # 有效qx订阅节点
-                        # 添加到目标节点中
-                        all_nodes.append(sub_res_list[index+1])
-                        # 去重
-                        all_nodes = list(set(all_nodes))
-                        logging.info(f'==============================================================================当前节点池有: {len(all_nodes)}个节点')
-                except:
-                    continue
+                if subitem == '[server_local]' and sub_res_list[index+1] not in ['','[filter_local]']:
+                    # 有效qx订阅节点
+                    # 添加到目标节点中
+                    all_nodes.append(sub_res_list[index+1])
+                    # 去重
+                    all_nodes = list(set(all_nodes))
+                    logging.info(f'==============================================================================当前节点池有: {len(all_nodes)}个节点')
+            except:
+                continue
         if index != number-1:
             sleep(sleeptime)
     return all_nodes
 
 if __name__ == '__main__':
-    all_nodes = craw(2,['qmRkvKo-KbQ'],20)
+    all_nodes = craw(2,'qmRkvKo-KbQ',20)
     open('dist/youtube.list','w+').write('\n'.join(all_nodes))
     logging.info(f'=========================================================================节点更新完成!')

@@ -7,3 +7,8 @@ dist/last.jpg
 ocr_module/*.zip
 ocr_models/craft_mlt_25k.pth
 ocr_models/zh_sim_g2.pth
+ocr_models/chinese_sim.zip
+ocr_models/chinese.zip
+ocr_models/craft_mlt_25k.zip
+ocr_models/japanese.zip
+ocr_models/korean.zip
