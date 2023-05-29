@@ -15,6 +15,8 @@ import easyocr
 # windows下需要先下载模型文件  https://blog.csdn.net/Loliykon/article/details/114334699
 reader = easyocr.Reader(['ch_sim','en'],model_storage_directory='ocr_models')
 
+res = reader.readtext('dist/last.jpg')
+
 LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
 DATE_FORMAT = "%m/%d/%Y %H:%M:%S %p"
 logging.basicConfig(level=logging.INFO, format=LOG_FORMAT, datefmt=DATE_FORMAT)
@@ -29,15 +31,16 @@ def qr_recognize(file_path:str):
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 
 logging.basicConfig(level=logging.INFO)
-def craw(number:int,video_id:str,sleeptime:int):
+def craw(video_id:str,sleeptime:int):
     all_nodes = []
     logging.info(f'===========================================================================开始获取节点信息...')
-
-
     # 首先确定节点池数量
+
+    # 默认抓取60次
+    number = 60
     subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
-    data:str = qr_recognize(f'dist/last.jpg')
-    for parent_node in res:
+    res = reader.readtext('dist/last.jpg')
+    for parent_node in res: 
         for child in parent_node:
             if type(child)==str and child.__contains__('当前节点数量'):
                 number = int(child.split(':')[1])
@@ -73,11 +76,11 @@ def craw(number:int,video_id:str,sleeptime:int):
                     logging.info(f'==============================================================================当前节点池有: {len(all_nodes)}个节点')
             except:
                 continue
-        if index != number-1:
+        if index != number+4:
             sleep(sleeptime)
     return all_nodes
 
 if __name__ == '__main__':
-    all_nodes = craw(2,'qmRkvKo-KbQ',20)
+    all_nodes = craw('qmRkvKo-KbQ',20)
     open('dist/youtube.list','w+').write('\n'.join(all_nodes))
     logging.info(f'=========================================================================节点更新完成!')
