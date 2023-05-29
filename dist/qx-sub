@@ -1,5 +1,3 @@
-trojan = kr3.microsoft-orgwly.vip:443, password=c4af9494-3e19-4f09-9693-1a18e28b441f, over-tls=true, tls-host=tls.microsoft-orgwly.vip, tls-verification=false, tag=🇰🇷 韩国-989.2KB/s(Youtube:不良林)
-vmess = cf.yxjnode.com:80, method=chacha20-ietf-poly1305, password=09c1d32d-4458-4ebf-b36d-4dd732bae3aa, aead=true, obfs=ws, obfs-host=buyvm1.yxjnode.com, obfs-uri=/yxzbp, tag=🇺🇲 美国-667.6KB/s(Youtube:不良林)
-vmess = 23.224.110.184:443, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, obfs=wss, obfs-host=, obfs-uri=/path/080712342310, tag=🇺🇲 美国-2.13MB/s(Youtube:不良林)
-shadowsocks = 14.29.124.168:24002, method=aes-128-cfb, password=QazEdcTgb159@$*, tag=中转节点-316.3KB/s(Youtube:不良林)
-shadowsocks = 216.52.183.243:80, method=aes-128-gcm, password=83XvX4Vo%*3a, obfs=http, tag=🇺🇲 美国-1.37MB/s(Youtube:不良林)
+shadowsocks = 122.248.217.131:443, method=aes-256-cfb, password=amazonskr05, tag=🇸🇬 新加坡-1.42MB/s(Youtube:不良林)
+trojan = hk3.microsoft-orgwly.vip:443, password=ce58cab4-2675-47f7-b3e1-96f08839f86b, over-tls=true, tls-host=, tls-verification=false, tag=中转节点-683.1KB/s(Youtube:不良林)
+shadowsocks = 103.177.33.180:443, method=chacha20-ietf-poly1305, password=9e44e9ffe5c2, obfs=wss, obfs-host=wtw1000mline004.chilines.club, obfs-uri=/isaifqaagpi, tag=🇨🇳 (已存活1天)台湾-6.87MB/s(Youtube:不良林)
