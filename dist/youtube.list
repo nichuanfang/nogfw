@@ -1,3 +1,4 @@
-trojan = jp2.downloadvip.cfd:443, password=c94b0ddd-2387-4d5b-af64-13bd1a5b7569, over-tls=true, tls-host=download.xn--mes358a9urctx.com, tls-verification=false, tag=🇭🇰 香港-159.3KB/s(Youtube:不良林)
-vmess = 198.2.196.49:54434, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=🇺🇲 美国-3.66MB/s(Youtube:不良林)
-vmess = 23.224.110.184:443, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, obfs=wss, obfs-host=, obfs-uri=/path/080712342310, tag=🇺🇲 美国-3.65MB/s(Youtube:不良林)
+shadowsocks = 103.177.33.180:443, method=chacha20-ietf-poly1305, password=9e44e9ffe5c2, obfs=wss, obfs-host=wtw1000mline004.chilines.club, obfs-uri=/isaifqaagpi, tag=🇨🇳 (已存活1天)台湾-12.80MB/s(Youtube:不良林)
+shadowsocks = opt26.boom.skin:36000, method=aes-256-cfb, password=Uk92CS, ssr-protocol=auth_aes128_sha1, ssr-protocol-param=23957:nZCp9Y, obfs=http_simple, obfs-host=download.windowsupdate.com, tag=(已存活9天)中转节点-9.76MB/s(Youtube:不良林)
+shadowsocks = cnuakpj.xfltd.cc:17301, method=chacha20-ietf-poly1305, password=cdd60d19-9aa0-4cd0-93bf-e94b25d33d4b, tag=中转节点-7.61MB/s(Youtube:不良林)
+vmess = 142.4.103.199:45252, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=🇺🇲 美国-3.61MB/s(Youtube:不良林)
