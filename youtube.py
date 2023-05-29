@@ -99,7 +99,7 @@ def craw(video_id:str,sleeptime:int):
     return all_nodes
 
 
-def generate_clash_config(raw_list:list,final_dict:dict):
+def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     for raw in raw_list:
         sub_res = requests.get(f'https://sub.xeton.dev/sub?target=clash&url={parse.quote(raw)}&insert=false')
         with open('dist/clash_temp.yml','w+',encoding='utf-8') as temp_file:
