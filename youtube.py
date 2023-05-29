@@ -85,6 +85,10 @@ def craw(video_id:str,sleeptime:int):
                     # 去重
                     all_nodes = list(set(all_nodes))
                     logging.info(f'==============================================================================当前节点池有: {len(all_nodes)}个节点')
+                    logging.info(f'')
+                    logging.info(f'')
+                    logging.info(f'')
+                    logging.info(f'')
             except:
                 continue
         if index != (number*2+4):
