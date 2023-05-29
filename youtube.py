@@ -9,6 +9,7 @@ from urllib import request, parse
 import sys
 import subprocess
 from datetime import datetime
+import os
 import base64
 # 图像识别
 import easyocr
@@ -39,7 +40,12 @@ def craw(video_id:str,sleeptime:int):
     # 默认抓取60次
     number = 60
     subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
-    sleep(3)
+    while True:
+        if not os.path.exists('dist/last.jpg'):
+            logging.info(f'==========================================================等待截图生成...======================================================')
+            sleep(1)
+        else:
+            break
     res = reader.readtext('dist/last.jpg')
     for parent_node in res: 
         for child in parent_node:
@@ -53,7 +59,12 @@ def craw(video_id:str,sleeptime:int):
         # 隔一段时间获取二维码
         if index != 0:
             subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
-            sleep(2)
+            while True:
+                if not os.path.exists('dist/last.jpg'):
+                    logging.info(f'==========================================================等待截图生成...======================================================')
+                    sleep(1)
+                else:
+                    break
         try:
             logging.info(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
             # 处理生成的二维码 生成节点信息
