@@ -106,9 +106,9 @@ def generate_clash_config(raw_list:list,final_dict:dict):
             temp_file.write(sub_res.text)
         with open('dist/clash_temp.yml','r+',encoding='utf-8') as f:
           try:
-              data_dict = yaml.load(f, Loader=yaml.FullLoader)
+              data_dict:dict = yaml.load(f, Loader=yaml.FullLoader)
               if not final_dict:
-                  final_dict = data_dict
+                  final_dict:dict = data_dict
                   final_dict['socks-port'] = 10808 # type: ignore
                   final_dict['port'] = 10809 # type: ignore
                   #自动选择 多久检测一次速度 自动切换 单位s(秒)
