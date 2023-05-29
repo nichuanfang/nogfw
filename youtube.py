@@ -91,7 +91,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
         logging.info(f'handle raw:{raw}======================================')
         sleep(0.5)
         sub_res = requests.get(f'https://sub.xeton.dev/sub?target=clash&url={parse.quote(raw)}&insert=false')
-        logging.info(f'订阅转换后的响应:{sub_res.text}')
+        logging.info(f'订阅转换后的响应:{sub_res.text}=====================================================')
         # logging.info(f'clash dict:{sub_res.text}======================================')
         with open('dist/clash_temp.yml','w+',encoding='utf-8') as temp_file:
             temp_file.write(sub_res.text)
