@@ -1,3 +1,4 @@
-trojan = kr3.microsoft-orgwly.vip:443, password=5739a955-6413-4e88-8999-eb65dd3972c0, over-tls=true, tls-host=tls.microsoft-orgwly.vip, tls-verification=false, tag=🇰🇷 韩国-2.17MB/s(Youtube:不良林)
-vmess = 192.74.231.175:49202, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=🇺🇲 美国-2.16MB/s(Youtube:不良林)
-vmess = 198.2.196.49:54434, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=🇺🇲 美国-2.73MB/s(Youtube:不良林)
+trojan = sg2.downloadvip.cfd:443, password=24575fff-8ca3-4b59-a5ea-e0c3f2f57747, over-tls=true, tls-host=download.xn--mes358a9urctx.com, tls-verification=false, tag=🇭🇰 香港-233.2KB/s(Youtube:不良林)
+trojan = kr1.microsoft-orgwly.vip:443, password=169e7740-a73d-49ff-b838-eec2bab35f82, over-tls=true, tls-host=, tls-verification=false, tag=🇰🇷 韩国-256.9KB/s(Youtube:不良林)
+vmess = 146.56.46.187:8080, method=chacha20-ietf-poly1305, password=951180de-7e88-4ca9-8c17-9df2cbe7709b, aead=true, obfs=ws, obfs-host=, obfs-uri=/, tag=🇰🇷 韩国-3.45MB/s(Youtube:不良林)
+trojan = fscus.fscloud123456789.com:443, password=de32b9aa-c60d-4e76-8d7e-aae3cfb94a82, over-tls=true, tls-host=, tls-verification=false, tag=🇯🇵 日本-200.0KB/s(Youtube:不良林)
