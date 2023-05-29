@@ -1,4 +1,4 @@
-trojan = sg2.downloadvip.cfd:443, password=24575fff-8ca3-4b59-a5ea-e0c3f2f57747, over-tls=true, tls-host=download.xn--mes358a9urctx.com, tls-verification=false, tag=🇭🇰 香港-233.2KB/s(Youtube:不良林)
-trojan = kr1.microsoft-orgwly.vip:443, password=169e7740-a73d-49ff-b838-eec2bab35f82, over-tls=true, tls-host=, tls-verification=false, tag=🇰🇷 韩国-256.9KB/s(Youtube:不良林)
-vmess = 146.56.46.187:8080, method=chacha20-ietf-poly1305, password=951180de-7e88-4ca9-8c17-9df2cbe7709b, aead=true, obfs=ws, obfs-host=, obfs-uri=/, tag=🇰🇷 韩国-3.45MB/s(Youtube:不良林)
-trojan = fscus.fscloud123456789.com:443, password=de32b9aa-c60d-4e76-8d7e-aae3cfb94a82, over-tls=true, tls-host=, tls-verification=false, tag=🇯🇵 日本-200.0KB/s(Youtube:不良林)
+shadowsocks = 54.187.97.19:443, method=aes-256-cfb, password=amazonskr05, tag=🇺🇲 美国-1.02MB/s(Youtube:不良林)
+vmess = 192.74.228.179:42857, method=chacha20-ietf-poly1305, password=051b844f-efe3-4847-92aa-66b5de0b6d4e, aead=false, tag=🇺🇲 美国-175.5KB/s(Youtube:不良林)
+shadowsocks = nf3.boom.skin:13000, method=aes-256-cfb, password=Uk92CS, ssr-protocol=auth_aes128_sha1, ssr-protocol-param=23957:nZCp9Y, obfs=http_simple, obfs-host=download.windowsupdate.com, tag=(已存活10天)中转节点-6.13MB/s(Youtube:不良林)
+vmess = 142.0.133.53:50044, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=🇺🇲 美国-247.5KB/s(Youtube:不良林)
