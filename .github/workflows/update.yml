@@ -61,8 +61,10 @@ jobs:
 
       - name: update proxy
         continue-on-error: true
+        env:
+          CRAW_NUMBER: ${{ vars.CRAW_NUMBER }}
         run: |
-          python youtube.py
+          python youtube.py $CRAW_NUMBER
 
       - name: Commit & Push changes
         uses: actions-js/push@master

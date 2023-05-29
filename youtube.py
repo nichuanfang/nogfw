@@ -19,6 +19,7 @@ import qrcode
 from qrcode import constants
 # 图像识别
 import easyocr
+
 # windows下需要先下载模型文件  https://blog.csdn.net/Loliykon/article/details/114334699
 reader = easyocr.Reader(['ch_sim','en'],model_storage_directory='ocr_models')
 
@@ -135,7 +136,8 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
 
 
 if __name__ == '__main__':
-    all_nodes = craw(10,'qmRkvKo-KbQ',10)
+    # sys.argv[1]): CRAW_NUMBER 抓取次数
+    all_nodes = craw(int(sys.argv[1]),'qmRkvKo-KbQ',10)
     # 生成qx专用订阅
     open('dist/qx-sub','w+').write('\n'.join(all_nodes))
 
