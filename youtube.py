@@ -91,6 +91,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
         logging.info(f'handle raw:{raw}======================================')
         sleep(0.5)
         sub_res = requests.get(f'https://sub.xeton.dev/sub?target=clash&url={parse.quote(raw)}&insert=false')
+        logging.info(f'订阅转换后的响应:{sub_res.text}')
         # logging.info(f'clash dict:{sub_res.text}======================================')
         with open('dist/clash_temp.yml','w+',encoding='utf-8') as temp_file:
             temp_file.write(sub_res.text)
@@ -100,13 +101,10 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
             #   logging.info(f'clash dict:{data_dict}======================================')
               if not final_dict:
                   final_dict:dict = copy.deepcopy(data_dict)
-                #   del final_dict['socks-port']
-                #   del final_dict['port']
-                #   del  final_dict['proxy-groups'][1]['interval']
-                #   final_dict['socks-port'] = 10808 # type: ignore
-                #   final_dict['port'] = 10809 # type: ignore
+                  final_dict['socks-port'] = 10808 # type: ignore
+                  final_dict['port'] = 10809 # type: ignore
                 #   #自动选择 多久检测一次速度 自动切换 单位s(秒)
-                #   final_dict['proxy-groups'][1]['interval'] = 1800 # type: ignore
+                  final_dict['proxy-groups'][1]['interval'] = 1800 # type: ignore
               else:
                   # 添加节点
                   proxy:dict= copy.deepcopy(data_dict['proxies'][0])
