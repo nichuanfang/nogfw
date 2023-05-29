@@ -39,6 +39,7 @@ def craw(video_id:str,sleeptime:int):
     # 默认抓取60次
     number = 60
     subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
+    sleep(2)
     res = reader.readtext('dist/last.jpg')
     for parent_node in res: 
         for child in parent_node:
@@ -50,8 +51,9 @@ def craw(video_id:str,sleeptime:int):
     for index in range(number+5):
         logging.info(f'==========================================================第{index+1}轮抓取======================================================')
         # 隔一段时间获取二维码
-        subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
-        sleep(2)
+        if index != 0:
+            subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
+            sleep(2)
         try:
             logging.info(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
             # 处理生成的二维码 生成节点信息
