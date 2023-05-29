@@ -13,6 +13,7 @@ import os
 import base64
 import yaml
 import copy
+import re
 # 图像识别
 import easyocr
 # windows下需要先下载模型文件  https://blog.csdn.net/Loliykon/article/details/114334699
@@ -133,7 +134,10 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
                   # 节点选择
                   final_dict['proxy-groups'][0]['proxies'].append(proxy['name']) # type: ignore
                   # 自动选择
-                  final_dict['proxy-groups'][1]['proxies'].append(proxy['name']) # type: ignore
+
+                  # 正则匹配 排除延迟低的节点
+                  if re.match(r'香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|Korea|KR|kr',proxy['name']):
+                    final_dict['proxy-groups'][1]['proxies'].append(proxy['name']) # type: ignore
                   # 国外媒体
                   final_dict['proxy-groups'][2]['proxies'].append(proxy['name']) # type: ignore
                   # 微软服务
