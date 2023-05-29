@@ -118,6 +118,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
 
                 # 正则匹配 排除延迟低的节点
                 if re.match(r'香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|Korea|KR|kr',proxy['name']):
+                    logging.info(f'=====================新增自动选择的节点:{proxy["name"]}=============================')
                     final_dict['proxy-groups'][1]['proxies'].append(proxy['name']) # type: ignore
                 # 国外媒体
                 final_dict['proxy-groups'][2]['proxies'].append(proxy['name']) # type: ignore
