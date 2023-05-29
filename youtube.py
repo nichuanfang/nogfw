@@ -9,6 +9,7 @@ from urllib import request, parse
 import sys
 import subprocess
 from datetime import datetime
+import base64
 # 图像识别
 import easyocr
 # windows下需要先下载模型文件  https://blog.csdn.net/Loliykon/article/details/114334699
@@ -28,7 +29,7 @@ def qr_recognize(file_path:str):
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 
 logging.basicConfig(level=logging.INFO)
-
+raw_data = []
 def craw(number:int,video_ids:list[str],sleeptime:int):
     all_nodes = []
     logging.info(f'===========================================================================开始获取节点信息...')
@@ -42,6 +43,7 @@ def craw(number:int,video_ids:list[str],sleeptime:int):
                 logging.info(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息--索引======================================================')
                 # 处理生成的二维码 生成节点信息
                 data:str = qr_recognize(f'dist/last.jpg')
+                raw_data.append(data)
                 logging.info(f'===============================================================================raw_data: {data}')
                 ocr_result = reader.readtext('dist/last.jpg')
                 logging.info(f'===============================================================================OCR: {ocr_result}')
@@ -66,6 +68,8 @@ def craw(number:int,video_ids:list[str],sleeptime:int):
     return all_nodes
 
 if __name__ == '__main__':
-    all_nodes = craw(100,['qmRkvKo-KbQ'],20)
+    all_nodes = craw(2,['qmRkvKo-KbQ'],20)
+    b64 = str(base64.b64encode('\n'.join(raw_data).encode("utf-8")), "utf-8")
+    open('dist/raw_data.txt','w+').write('\n'.join(b64))
     open('dist/youtube.list','w+').write('\n'.join(all_nodes))
     logging.info(f'=========================================================================节点更新完成!')
