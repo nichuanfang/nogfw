@@ -58,7 +58,7 @@ def craw(video_id:str,sleeptime:int):
         logging.info(f'==========================================================共需抓取{number*2+5}轮======================================================')
 
     # 5次冗余时间 number*2+5
-    for index in range(10):
+    for index in range(number*2+5):
         logging.info(f'==========================================================第{index+1}/{number*2+5}轮抓取======================================================')
         # 隔一段时间获取二维码
         if index != 0:
@@ -107,7 +107,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     for raw in raw_list:
         logging.info(f'handle raw:{raw}======================================')
         sub_res = requests.get(f'https://sub.xeton.dev/sub?target=clash&url={parse.quote(raw)}&insert=false')
-        logging.info(f'clash dict:{sub_res.text}======================================')
+        # logging.info(f'clash dict:{sub_res.text}======================================')
         with open('dist/clash_temp.yml','w+',encoding='utf-8') as temp_file:
             temp_file.write(sub_res.text)
         with open('dist/clash_temp.yml','r+',encoding='utf-8') as f:
