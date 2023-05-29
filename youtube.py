@@ -39,16 +39,16 @@ def craw(video_id:str,sleeptime:int):
     # 默认抓取60次
     number = 60
     subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
-    sleep(2)
+    sleep(3)
     res = reader.readtext('dist/last.jpg')
     for parent_node in res: 
         for child in parent_node:
             if type(child)==str and child.__contains__('当前节点数量'):
                 number = int(child.split(':')[1])
-                logging.info(f'==========================================================共需抓取{number+5}轮======================================================')
+                logging.info(f'==========================================================共需抓取{number*2+5}轮======================================================')
 
     # 5次冗余时间
-    for index in range(number+5):
+    for index in range(number*2+5):
         logging.info(f'==========================================================第{index+1}轮抓取======================================================')
         # 隔一段时间获取二维码
         if index != 0:
@@ -78,11 +78,11 @@ def craw(video_id:str,sleeptime:int):
                     logging.info(f'==============================================================================当前节点池有: {len(all_nodes)}个节点')
             except:
                 continue
-        if index != number+4:
+        if index != (number*2+4):
             sleep(sleeptime)
     return all_nodes
 
 if __name__ == '__main__':
-    all_nodes = craw('qmRkvKo-KbQ',20)
+    all_nodes = craw('qmRkvKo-KbQ',10)
     open('dist/youtube.list','w+').write('\n'.join(all_nodes))
     logging.info(f'=========================================================================节点更新完成!')
