@@ -92,6 +92,8 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
         sub_res = requests.get(f'https://sub.xeton.dev/sub?target=clash&url={raw}&insert=false')
         logging.info(f'订阅转换后的响应:状态码:{sub_res.status_code}  ok:{sub_res.ok}=====================================================')
         # logging.info(f'clash dict:{sub_res.text}======================================')
+        if not sub_res.ok:
+            continue
         with open('dist/clash_temp.yml','w+',encoding='utf-8') as temp_file:
             temp_file.write(sub_res.text)
         with open('dist/clash_temp.yml','r+',encoding='utf-8') as f:
