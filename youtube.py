@@ -42,7 +42,7 @@ def craw(number:int,video_id:str,sleeptime:int):
     logging.info(f'===========================================================================开始获取节点信息...')
     # 默认130
     for index in range(number):
-        logging.info(f'=====================================开始第{index+1}/{number+1}轮抓取======================================================')
+        logging.info(f'=====================================开始第{index+1}/{number}轮抓取======================================================')
         # 隔一段时间获取二维码
         subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
         while True:
@@ -139,7 +139,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
 
 if __name__ == '__main__':
     # sys.argv[1]): CRAW_NUMBER 抓取次数
-    all_nodes = craw(int(sys.argv[1]),'qmRkvKo-KbQ',10)
+    all_nodes = craw(int(sys.argv[1])-1,'qmRkvKo-KbQ',10)
     # 生成qx专用订阅
     open('dist/qx-sub','w+').write('\n'.join(all_nodes))
 
