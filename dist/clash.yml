@@ -5,12 +5,12 @@ mode: Rule
 log-level: info
 external-controller: 127.0.0.1:9090
 proxies:
-- name: 122.248.217.131:443
-  server: 122.248.217.131
+- name: fscjp.fscloud123456789.com:443
+  server: fscjp.fscloud123456789.com
   port: 443
-  type: ss
-  cipher: aes-256-cfb
-  password: amazonskr05
+  type: trojan
+  password: 858ad8e5-1566-46cd-a8d8-30d20a6a1b19
+  skip-cert-verify: true
 - name: 103.177.33.180:443
   server: 103.177.33.180
   port: 443
@@ -24,36 +24,94 @@ proxies:
     path: /isaifqaagpi
     tls: true
     mux: true
-- name: 🇭🇰 hk3.microsoft-orgwly.vip:443
-  server: hk3.microsoft-orgwly.vip
+- name: 🇺🇲 美国-2.66MB/s(Youtube:不良林)
+  server: 23.224.110.184
+  port: 443
+  type: vmess
+  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+  alterId: 64
+  cipher: auto
+  tls: true
+  network: ws
+  ws-opts:
+    path: /path/080712342310
+- name: 🇭🇰 fschk.fscloud123456789.com:443
+  server: fschk.fscloud123456789.com
   port: 443
   type: trojan
-  password: ce58cab4-2675-47f7-b3e1-96f08839f86b
+  password: 858ad8e5-1566-46cd-a8d8-30d20a6a1b19
   skip-cert-verify: true
+- name: 🇺🇲 美国-3.18MB/s(Youtube:不良林)
+  server: downloadvip.cfd
+  port: 443
+  type: vmess
+  uuid: 92622695-8087-4f81-97ea-1bd9cfeddfcf
+  alterId: 0
+  cipher: auto
+  tls: true
+  network: ws
+  ws-opts:
+    path: /djjc/us4
+    headers:
+      Host: us4.djjc.sbs
+- name: 🇺🇲 美国-1.41MB/s(Youtube:不良林)
+  server: 108.186.116.174
+  port: 55005
+  type: vmess
+  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+  alterId: 64
+  cipher: auto
+  tls: false
+- name: 122.248.217.131:443
+  server: 122.248.217.131
+  port: 443
+  type: ss
+  cipher: aes-256-cfb
+  password: amazonskr05
+- name: (已存活10天)中转节点-11.28MB/s(Youtube:不良林)
+  server: jp5.boom.skin
+  port: 34000
+  type: ssr
+  cipher: aes-256-cfb
+  password: Uk92CS
+  protocol: auth_aes128_sha1
+  obfs: http_simple
+  protocol-param: 23957:nZCp9Y
+  obfs-param: download.windowsupdate.com
 proxy-groups:
 - name: 🔰 节点选择
   type: select
   proxies:
   - ♻️ 自动选择
   - 🎯 全球直连
-  - 122.248.217.131:443
+  - fscjp.fscloud123456789.com:443
   - 103.177.33.180:443
-  - 🇭🇰 hk3.microsoft-orgwly.vip:443
+  - 🇺🇲 美国-2.66MB/s(Youtube:不良林)
+  - 🇭🇰 fschk.fscloud123456789.com:443
+  - 🇺🇲 美国-3.18MB/s(Youtube:不良林)
+  - 🇺🇲 美国-1.41MB/s(Youtube:不良林)
+  - 122.248.217.131:443
+  - (已存活10天)中转节点-11.28MB/s(Youtube:不良林)
 - name: ♻️ 自动选择
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 1800
   proxies:
-  - 122.248.217.131:443
+  - fscjp.fscloud123456789.com:443
 - name: 🌍 国外媒体
   type: select
   proxies:
   - 🔰 节点选择
   - ♻️ 自动选择
   - 🎯 全球直连
-  - 122.248.217.131:443
+  - fscjp.fscloud123456789.com:443
   - 103.177.33.180:443
-  - 🇭🇰 hk3.microsoft-orgwly.vip:443
+  - 🇺🇲 美国-2.66MB/s(Youtube:不良林)
+  - 🇭🇰 fschk.fscloud123456789.com:443
+  - 🇺🇲 美国-3.18MB/s(Youtube:不良林)
+  - 🇺🇲 美国-1.41MB/s(Youtube:不良林)
+  - 122.248.217.131:443
+  - (已存活10天)中转节点-11.28MB/s(Youtube:不良林)
 - name: 🌏 国内媒体
   type: select
   proxies:
@@ -64,26 +122,41 @@ proxy-groups:
   proxies:
   - 🎯 全球直连
   - 🔰 节点选择
-  - 122.248.217.131:443
+  - fscjp.fscloud123456789.com:443
   - 103.177.33.180:443
-  - 🇭🇰 hk3.microsoft-orgwly.vip:443
+  - 🇺🇲 美国-2.66MB/s(Youtube:不良林)
+  - 🇭🇰 fschk.fscloud123456789.com:443
+  - 🇺🇲 美国-3.18MB/s(Youtube:不良林)
+  - 🇺🇲 美国-1.41MB/s(Youtube:不良林)
+  - 122.248.217.131:443
+  - (已存活10天)中转节点-11.28MB/s(Youtube:不良林)
 - name: 📲 电报信息
   type: select
   proxies:
   - 🔰 节点选择
-  - 122.248.217.131:443
+  - fscjp.fscloud123456789.com:443
   - 🎯 全球直连
   - 103.177.33.180:443
-  - 🇭🇰 hk3.microsoft-orgwly.vip:443
+  - 🇺🇲 美国-2.66MB/s(Youtube:不良林)
+  - 🇭🇰 fschk.fscloud123456789.com:443
+  - 🇺🇲 美国-3.18MB/s(Youtube:不良林)
+  - 🇺🇲 美国-1.41MB/s(Youtube:不良林)
+  - 122.248.217.131:443
+  - (已存活10天)中转节点-11.28MB/s(Youtube:不良林)
 - name: 🍎 苹果服务
   type: select
   proxies:
   - 🎯 全球直连
   - 🔰 节点选择
   - ♻️ 自动选择
-  - 122.248.217.131:443
+  - fscjp.fscloud123456789.com:443
   - 103.177.33.180:443
-  - 🇭🇰 hk3.microsoft-orgwly.vip:443
+  - 🇺🇲 美国-2.66MB/s(Youtube:不良林)
+  - 🇭🇰 fschk.fscloud123456789.com:443
+  - 🇺🇲 美国-3.18MB/s(Youtube:不良林)
+  - 🇺🇲 美国-1.41MB/s(Youtube:不良林)
+  - 122.248.217.131:443
+  - (已存活10天)中转节点-11.28MB/s(Youtube:不良林)
 - name: 🎯 全球直连
   type: select
   proxies:
@@ -99,9 +172,14 @@ proxy-groups:
   - 🔰 节点选择
   - 🎯 全球直连
   - ♻️ 自动选择
-  - 122.248.217.131:443
+  - fscjp.fscloud123456789.com:443
   - 103.177.33.180:443
-  - 🇭🇰 hk3.microsoft-orgwly.vip:443
+  - 🇺🇲 美国-2.66MB/s(Youtube:不良林)
+  - 🇭🇰 fschk.fscloud123456789.com:443
+  - 🇺🇲 美国-3.18MB/s(Youtube:不良林)
+  - 🇺🇲 美国-1.41MB/s(Youtube:不良林)
+  - 122.248.217.131:443
+  - (已存活10天)中转节点-11.28MB/s(Youtube:不良林)
 rules:
 - DOMAIN-SUFFIX,local,🎯 全球直连
 - IP-CIDR,192.168.0.0/16,🎯 全球直连,no-resolve
