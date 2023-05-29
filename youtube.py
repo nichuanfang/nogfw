@@ -32,8 +32,6 @@ logging.basicConfig(level=logging.INFO)
 def craw(number:int,video_ids:list[str],sleeptime:int):
     all_nodes = []
     logging.info(f'===========================================================================开始获取节点信息...')
-    # 不良林节点数量
-    count = 0
     for index in range(number):
         logging.info(f'==========================================================第{index+1}轮抓取======================================================')
         for video_id in video_ids:
@@ -59,20 +57,15 @@ def craw(number:int,video_ids:list[str],sleeptime:int):
                         # 有效qx订阅节点
                         # 添加到目标节点中
                         all_nodes.append(sub_res_list[index+1])
-                        if video_id == 'qmRkvKo-KbQ':
-                            count+=1
                         # 去重
                         all_nodes = list(set(all_nodes))
                         logging.info(f'==============================================================================当前节点池有: {len(all_nodes)}个节点')
                 except:
                     continue
-
-        if count>=40 or len(all_nodes) >= 100:
-            break
         sleep(sleeptime)
     return all_nodes
 
 if __name__ == '__main__':
-    all_nodes = craw(100,['qmRkvKo-KbQ','N1Qyg0scz7g','aG7DcQhlu7I'],10)
+    all_nodes = craw(100,['qmRkvKo-KbQ'],20)
     open('dist/youtube.list','w+').write('\n'.join(all_nodes))
     logging.info(f'=========================================================================节点更新完成!')
