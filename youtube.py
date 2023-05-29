@@ -89,6 +89,7 @@ def craw(number:int,video_id:str,sleeptime:int):
 def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     for raw in raw_list:
         logging.info(f'handle raw:{raw}======================================')
+        sleep(0.5)
         sub_res = requests.get(f'https://sub.xeton.dev/sub?target=clash&url={parse.quote(raw)}&insert=false')
         # logging.info(f'clash dict:{sub_res.text}======================================')
         with open('dist/clash_temp.yml','w+',encoding='utf-8') as temp_file:
@@ -170,7 +171,7 @@ if __name__ == '__main__':
             img.save(qrc)
     except Exception as e:
         logging.error(f'================================二维码生成失败!:{e}==========================================')
-
+    
     try:
         clash_dict = generate_clash_config(raw_list,{})
         with open('dist/clash.yml', 'w+',encoding='utf-8') as file:
