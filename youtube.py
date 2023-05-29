@@ -73,6 +73,6 @@ def craw(number:int,video_ids:list[str],sleeptime:int):
     return all_nodes
 
 if __name__ == '__main__':
-    all_nodes = craw(2,['qmRkvKo-KbQ','N1Qyg0scz7g','aG7DcQhlu7I'],10)
+    all_nodes = craw(100,['qmRkvKo-KbQ','N1Qyg0scz7g','aG7DcQhlu7I'],10)
     open('dist/youtube.list','w+').write('\n'.join(all_nodes))
     logging.info(f'=========================================================================节点更新完成!')
