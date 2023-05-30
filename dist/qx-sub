@@ -1,2 +1,2 @@
-shadowsocks = nn5.boom.skin:44000, method=aes-256-cfb, password=Uk92CS, ssr-protocol=auth_aes128_sha1, ssr-protocol-param=23957:nZCp9Y, obfs=http_simple, obfs-host=download.windowsupdate.com, tag=[1] (已存活11天)中转节点-5.84MB/s
-shadowsocks = 103.177.33.180:443, method=chacha20-ietf-poly1305, password=9e44e9ffe5c2, obfs=wss, obfs-host=wtw1000mline004.chilines.club, obfs-uri=/isaifqaagpi, tag=[2] 🇨🇳 台湾-13.02MB/s
+vmess = 23.225.33.171:56662, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[1] 🇺🇲 美国-4.70MB/s
+shadowsocks = 43.201.34.16:443, method=aes-256-cfb, password=amazonskr05, tag=[2] 🇰🇷 韩国-1.29MB/s
