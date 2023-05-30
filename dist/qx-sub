@@ -1,5 +1,7 @@
-vmess = cf.yxjnode.com:80, method=chacha20-ietf-poly1305, password=09c1d32d-4458-4ebf-b36d-4dd732bae3aa, aead=true, obfs=ws, obfs-host=dp3.yxjnode.com, obfs-uri=/yxzbp, tag=[1] 🇺🇲 美国-3.09MB/s
-vmess = 37.120.193.102:52920, method=chacha20-ietf-poly1305, password=57170ff0-7180-4664-8f61-8debdda345f7, aead=false, tag=[2] 塞尔维亚-2.91MB/s
-shadowsocks = jp-am48-6.eqnode.net:8081, method=aes-256-cfb, password=eAokbaDN6, ssr-protocol=origin, obfs=tls1.2_ticket_auth, tag=[3] 🇯🇵 日本-1.06MB/s
-vmess = 23.224.110.184:443, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, obfs=wss, obfs-host=, obfs-uri=/path/080712342310, tag=[4] 🇺🇲 美国-4.48MB/s
-trojan = fscsg.fscloud123456789.com:443, password=3fd06daf-32db-4927-a3f2-ee40b627f191, over-tls=true, tls-host=, tls-verification=false, tag=[5] 🇸🇬 新加坡-7.20MB/s
+shadowsocks = nm7.boom.skin:17000, method=aes-256-cfb, password=Uk92CS, ssr-protocol=auth_aes128_sha1, ssr-protocol-param=23957:nZCp9Y, obfs=http_simple, obfs-host=download.windowsupdate.com, tag=[1] (已存活11天)中转节点-9.51MB/s
+trojan = 103.169.7.11:80, password=c0d9da22-2569-4bed-a395-607d9e7ae687, over-tls=true, tls-host=sciencedirect.com, tls-verification=false, tag=[2] 🇮🇩 印度尼西亚-1.32MB/s
+vmess = 23.224.173.104:57183, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[3] 🇺🇲 美国-5.75MB/s
+shadowsocks = m3u8.cm.xfltd.cc:27759, method=chacha20-ietf-poly1305, password=0bb8a29d-81fb-49fa-9a16-c6d3135b9870, tag=[4] 中转节点-6.90MB/s
+vmess = 140.99.59.253:55512, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[5] 🇺🇲 美国-4.40MB/s
+trojan = azjp2.downloadvip.cfd:443, password=f5a18240-423f-47a0-b9a3-5e647bcdf38f, over-tls=true, tls-host=us4.xn--mes358a9urctx.com, tls-verification=false, tag=[6] 🇯🇵 日本-7.58MB/s
+vmess = cf-lt.sharecentre.online:80, method=chacha20-ietf-poly1305, password=2d5d8b9c-8ec4-4a37-b610-78e71e13eaef, aead=true, obfs=ws, obfs-host=gcore.ilovescp.com, obfs-uri=/shirker, tag=[7] 🇺🇲 美国-437.7KB/s
