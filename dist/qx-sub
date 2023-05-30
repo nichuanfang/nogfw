@@ -1,4 +1,5 @@
-vmess = 192.74.228.179:42857, method=chacha20-ietf-poly1305, password=051b844f-efe3-4847-92aa-66b5de0b6d4e, aead=false, tag=[1] 🇺🇲 美国-5.04MB/s
-vmess = 23.224.110.184:443, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, obfs=wss, obfs-host=, obfs-uri=/path/080712342310, tag=[2] 🇺🇲 美国-3.31MB/s
-trojan = 163.123.192.155:443, password=1113a9fa-c6ee-4929-ae93-d29d024b1728, over-tls=true, tls-host=download.xn--mes358a9urctx.com, tls-verification=false, tag=[3] 🇺🇲 美国-4.39MB/s
-vmess = 23.224.173.104:57183, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[4] 🇺🇲 美国-5.60MB/s
+trojan = 163.123.192.153:443, password=1113a9fa-c6ee-4929-ae93-d29d024b1728, over-tls=true, tls-host=download.xn--mes358a9urctx.com, tls-verification=false, tag=[1] 🇺🇲 美国-3.37MB/s
+vmess = 104.21.53.35:80, method=chacha20-ietf-poly1305, password=09c1d32d-4458-4ebf-b36d-4dd732bae3aa, aead=true, obfs=ws, obfs-host=buyvm1.yxjnode.com, obfs-uri=/yxzbp, tag=[2] 未知国家-1.14MB/s
+trojan = 163.123.192.155:443, password=1113a9fa-c6ee-4929-ae93-d29d024b1728, over-tls=true, tls-host=download.xn--mes358a9urctx.com, tls-verification=false, tag=[3] 🇺🇲 美国-5.04MB/s
+vmess = 202.79.171.155:443, method=chacha20-ietf-poly1305, password=7f37da61-c734-41b4-a8c2-eccfd6ca48f0, aead=false, obfs=wss, obfs-host=, obfs-uri=/path/080712342310, tag=[4] 🇸🇬 新加坡-190.3KB/s
+vmess = 140.99.59.253:55512, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[5] 🇺🇲 美国-3.09MB/s
