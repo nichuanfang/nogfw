@@ -323,13 +323,13 @@ if __name__ == '__main__':
 
     # 生成通用订阅二维码
     try:
-        qr = qrcode.QRCode(version=None
+        qr = qrcode.QRCode(version=40
                     ,error_correction=constants.ERROR_CORRECT_M,
-                    box_size=10, border=4,
+                    box_size=20, border=4,
                     image_factory=None,
                     mask_pattern=None)
         # 自适应大小
-        qr.best_fit()
+        qr.best_fit(qr.version)
         qr.add_data('\n'.join(raw_list))
         img = qr.make_image()
         with open('dist/sub.jpg', 'wb') as qrc:
