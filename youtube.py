@@ -20,7 +20,6 @@ from PIL import Image
 from qrcode import constants
 # 图像识别
 import easyocr
-
 # windows下需要先下载模型文件  https://blog.csdn.net/Loliykon/article/details/114334699
 reader = easyocr.Reader(['ch_sim','en'],model_storage_directory='ocr_models')
 
@@ -281,6 +280,8 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
         # 获取测速结果
         match = re.search(r'\d+.\d+',proxy.split('-')[-1])
         if match is not None:
+            if proxy.split('-')[-1].lower().__contains__('mb'):
+                return float(match.group())*1000
             return float(match.group())
         return 0.0
     
@@ -360,6 +361,8 @@ if __name__ == '__main__':
         # 获取测速结果
         match = re.search(r'\d+.\d+',node.split('-')[-1])
         if match is not None:
+            if node.split('-')[-1].lower().__contains__('mb'):
+                return float(match.group())*1000
             return float(match.group())
         return 0.0
     all_nodes.sort(key=qx_sort,reverse=True) # type: ignore
