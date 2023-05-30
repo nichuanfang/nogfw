@@ -149,7 +149,10 @@ def google_github_openai_ruleset():
             else:
                 final_rulesets.append(','.join(['DOMAIN',second,third]))
         elif first == 'host-suffix' or first == 'HOST-SUFFIX':
-            final_rulesets.append(','.join(['DOMAIN-SUFFIX',second,third]))
+            if third == 'Google Domestic':
+                final_rulesets.append(','.join(['DOMAIN-SUFFIX','🎯 全球直连']))
+            else:
+                final_rulesets.append(','.join(['DOMAIN-SUFFIX',second,third]))
         elif first == 'host-keyword' or first == 'HOST-KEYWORD':
             final_rulesets.append(','.join(['DOMAIN-KEYWORD',second,third]))
         elif first == 'ip-cidr' or first == 'IP-CIDR':
@@ -267,6 +270,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
         if rule.__contains__('国外媒体'):
             # 找到插入位置
             flag = index
+            break
     rulesets = google_github_openai_ruleset()
     for rule_index,ruleset in enumerate(rulesets):
         rules.insert(flag+rule_index,ruleset)
