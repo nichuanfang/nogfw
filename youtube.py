@@ -38,7 +38,11 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 raw_list = []
 logging.basicConfig(level=logging.INFO)
 def craw(number:int,video_id:str,sleeptime:int):
+    # 未去重 打好标签的节点列表
     all_nodes = []
+    # 未去重 未打标签的节点列表缓存 用于去重
+    node_cache = []
+    # 去重后 打好标签的节点列表
     result = []
     logging.info(f'===========================================================================开始获取节点信息...')
     count = 1
@@ -86,7 +90,6 @@ def craw(number:int,video_id:str,sleeptime:int):
                     all_nodes.append(new_node)
                     count+=1
                     # 节点去重
-                    node_cache = []
                     for node_item in all_nodes:
                         # vmess = 107.167.29.229:46321, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[4] 🇺🇲 美国-5.74MB/s
                         node_cache_item = copy.deepcopy(node_item)
