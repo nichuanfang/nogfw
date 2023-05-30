@@ -1,6 +1,5 @@
-shadowsocks = 14.29.124.168:24003, method=aes-128-cfb, password=QazEdcTgb159@$*, tag=[1] 中转节点-337.7KB/s
-trojan = fschk.fscloud123456789.com:443, password=858ad8e5-1566-46cd-a8d8-30d20a6a1b19, over-tls=true, tls-host=, tls-verification=false, tag=[2] 🇯🇵 日本-7.53MB/s
-vmess = 23.224.110.184:443, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, obfs=wss, obfs-host=, obfs-uri=/path/080712342310, tag=[3] 🇺🇲 美国-5.62MB/s
-vmess = 23.224.110.184:443, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, obfs=wss, obfs-host=, obfs-uri=/path/080712342310, tag=[4] 🇺🇲 美国-5.52MB/s
-vmess = 108.186.116.174:55005, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[5] 🇺🇲 美国-4.58MB/s
-vmess = 107.167.29.229:46321, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[6] 🇺🇲 美国-5.69MB/s
+vmess = cf.yxjnode.com:80, method=chacha20-ietf-poly1305, password=09c1d32d-4458-4ebf-b36d-4dd732bae3aa, aead=true, obfs=ws, obfs-host=dp3.yxjnode.com, obfs-uri=/yxzbp, tag=[1] 🇺🇲 美国-3.09MB/s
+vmess = 37.120.193.102:52920, method=chacha20-ietf-poly1305, password=57170ff0-7180-4664-8f61-8debdda345f7, aead=false, tag=[2] 塞尔维亚-2.91MB/s
+shadowsocks = jp-am48-6.eqnode.net:8081, method=aes-256-cfb, password=eAokbaDN6, ssr-protocol=origin, obfs=tls1.2_ticket_auth, tag=[3] 🇯🇵 日本-1.06MB/s
+vmess = 23.224.110.184:443, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, obfs=wss, obfs-host=, obfs-uri=/path/080712342310, tag=[4] 🇺🇲 美国-4.48MB/s
+trojan = fscsg.fscloud123456789.com:443, password=3fd06daf-32db-4927-a3f2-ee40b627f191, over-tls=true, tls-host=, tls-verification=false, tag=[5] 🇸🇬 新加坡-7.20MB/s
