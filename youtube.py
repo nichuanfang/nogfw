@@ -40,9 +40,10 @@ logging.basicConfig(level=logging.INFO)
 def craw(number:int,video_id:str,sleeptime:int):
     all_nodes = []
     logging.info(f'===========================================================================开始获取节点信息...')
+    count = 1
     # 默认130
-    for index in range(number):
-        logging.info(f'=====================================开始第{index+1}/{number}轮抓取======================================================')
+    for craw_index in range(number):
+        logging.info(f'=====================================开始第{craw_index+1}/{number}轮抓取======================================================')
         # 隔一段时间获取二维码
         subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
         while True:
@@ -77,11 +78,12 @@ def craw(number:int,video_id:str,sleeptime:int):
                     match = re.search(r'tag.+$',node)
                     if match is not None:
                         tag = match.group()
-                        new_tag = 'tag='+f'[{index+1}]'+tag.replace('(Youtube:不良林)','').split('=')[1]
+                        new_tag = 'tag='+f'[{count}] '+tag.replace('(Youtube:不良林)','').split('=')[1]
                         new_node = re.sub(r'tag.+$',new_tag,node)
                     if new_node == None:
                         continue
                     all_nodes.append(new_node)
+                    count+=1
                     # 去重
                     all_nodes = list(set(all_nodes))
                     logging.info(f'==============================================================================当前节点池有: {len(all_nodes)}个节点')
@@ -91,12 +93,13 @@ def craw(number:int,video_id:str,sleeptime:int):
                     logging.info(f'')
             except:
                 continue
-        if index != number-1:
+        if craw_index != number-1:
             sleep(sleeptime)
     return all_nodes
 
 
 def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
+    count = 1
     for index,raw in enumerate(raw_list):
         logging.info(f'handle raw:{raw}======================================')
         # sub_res = request.urlopen(f'https://sub.xeton.dev/sub?target=clash&url={parse.quote(raw)}&insert=false')
@@ -118,12 +121,15 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
                 if not bool(re.search(r'香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|Korea|KR|kr',final_dict['proxy-groups'][1]['proxies'][0])):
                     final_dict['proxy-groups'][1]['proxies'] = []
                 else:
-                    final_dict['proxy-groups'][1]['proxies'] = [f'[{index+1}] '+ final_dict['proxy-groups'][1]['proxies'][0].replace('(Youtube:不良林)','')]
+                    final_dict['proxy-groups'][1]['proxies'] = [f'[{count}] '+ final_dict['proxy-groups'][1]['proxies'][0].replace('(Youtube:不良林)','')]
+                proxy:dict= copy.deepcopy(data_dict['proxies'][0])
+                data_dict['proxies'][0]['name'] = f'[{count}] ' + proxy['name'].replace('(Youtube:不良林)','')
+                count+=1
             else:
                 # 添加节点
                 proxy:dict= copy.deepcopy(data_dict['proxies'][0])
 
-                proxy['name'] = ''.join([f'[{index+1}] ', proxy['name'].replace('(Youtube:不良林)','')])
+                proxy['name'] = f'[{count}] ' + proxy['name'].replace('(Youtube:不良林)','')
 
                 final_dict['proxies'].append(proxy)
 
@@ -146,6 +152,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
                 final_dict['proxy-groups'][6]['proxies'].append(proxy['name']) # type: ignore
                 # 漏网之鱼
                 final_dict['proxy-groups'][9]['proxies'].append(proxy['name']) # type: ignore
+                count+=1
         except Exception as e:
             logging.error(f'=========================================raw:{raw}转换为clash配置文件失败!: {e}')
     return final_dict
