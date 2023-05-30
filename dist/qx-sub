@@ -1,2 +1,3 @@
-shadowsocks = 14.29.124.168:24003, method=aes-128-cfb, password=QazEdcTgb159@$*, tag=[1] 中转节点-296.2KB/s
-trojan = fscjp.fscloud123456789.com:443, password=3d927416-3e74-45ce-ac16-df69c33c725a, over-tls=true, tls-host=, tls-verification=false, tag=[2] 🇯🇵 日本-254.1KB/s
+vmess = 173.245.58.140:8080, method=chacha20-ietf-poly1305, password=9588cb0f-5102-4e66-d5fb-f96cba9acdda, aead=true, obfs=ws, obfs-host=tou.vtcss.top, obfs-uri=/qazxcv03, tag=[1] 🇺🇲 美国-2.21MB/s
+vmess = 104.31.16.62:443, method=chacha20-ietf-poly1305, password=9aa6b5ad-c0fc-47f4-a837-f72179d7b662, aead=true, obfs=wss, obfs-host=channel3.unlimiteddev.tk, obfs-uri=/Lsv4s7nS0ErewnEN, tag=[2] 🇺🇲 美国-2.14MB/s
+shadowsocks = 43.207.97.107:443, method=aes-256-cfb, password=amazonskr05, tag=[3] 🇯🇵 日本-266.7KB/s
