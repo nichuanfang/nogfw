@@ -138,7 +138,12 @@ def direct_rulesets():
         new_rule = all_rule.strip()
         if new_rule == '' or new_rule.startswith('#'):
             continue
-        rule_list = new_rule.split(',')
+        try:
+            rule_list = new_rule.split(',')
+        except:
+            continue
+        if len(rule_list) < 3:
+            continue
         first = rule_list[0]
         second = rule_list[1]
         third = rule_list[2]
@@ -173,7 +178,12 @@ def google_github_openai_ruleset():
         new_rule = all_rule.strip()
         if new_rule == '' or new_rule.startswith('#'):
             continue
-        rule_list = new_rule.split(',')
+        try:
+            rule_list = new_rule.split(',')
+        except:
+            continue
+        if len(rule_list) < 3:
+            continue
         first = rule_list[0]
         second = rule_list[1]
         third = rule_list[2]
@@ -333,6 +343,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
                 rules.remove(rule_)
             except:
                 continue
+    logging.info(f'=============================================开始获取direct_rules...')
     direct_rules = direct_rulesets()
     logging.info(f'direct_rules:{direct_rules}')
     for direct_rule in direct_rules:
