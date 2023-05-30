@@ -93,6 +93,10 @@ def get_group_proxy_index(proxies:list):
             return index
     return -1
 
+def handle_group_proxy(final_dict,count,index):
+    final_dict['proxy-groups'][index]['proxies'][get_group_proxy_index(final_dict['proxy-groups'][index]['proxies'])] = f'[{count}] '+final_dict['proxy-groups'][index] \
+                    ['proxies'][get_group_proxy_index(final_dict['proxy-groups'][index]['proxies'])].replace('(Youtube:不良林)','')
+
 def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     count = 1
     for index,raw in enumerate(raw_list):
@@ -116,22 +120,22 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
                 if not bool(re.search(r'香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|Korea|KR|kr',final_dict['proxy-groups'][1]['proxies'][0])):
                     final_dict['proxy-groups'][1]['proxies'] = []
                 else:
-                    final_dict['proxy-groups'][1]['proxies'][get_group_proxy_index(final_dict['proxy-groups'][1]['proxies'])] = f'[{count}] '+final_dict['proxy-groups'][1] \
-                    ['proxies'][get_group_proxy_index(final_dict['proxy-groups'][1]['proxies'])].replace('(Youtube:不良林)','')
+                    # 自动选择
+                    handle_group_proxy(final_dict,count,1)
                 proxy:dict= copy.deepcopy(data_dict['proxies'][0])
                 final_dict['proxies'][0]['name'] = f'[{count}] ' + proxy['name'].replace('(Youtube:不良林)','')
-                final_dict['proxy-groups'][0]['proxies'][get_group_proxy_index(final_dict['proxy-groups'][0]['proxies'])] = f'[{count}] '+final_dict['proxy-groups'][0] \
-                    ['proxies'][get_group_proxy_index(final_dict['proxy-groups'][0]['proxies'])].replace('(Youtube:不良林)','')
-                final_dict['proxy-groups'][2]['proxies'][get_group_proxy_index(final_dict['proxy-groups'][2]['proxies'])] = f'[{count}] '+final_dict['proxy-groups'][2] \
-                    ['proxies'][get_group_proxy_index(final_dict['proxy-groups'][2]['proxies'])].replace('(Youtube:不良林)','')
-                final_dict['proxy-groups'][4]['proxies'][get_group_proxy_index(final_dict['proxy-groups'][4]['proxies'])] = f'[{count}] '+final_dict['proxy-groups'][4] \
-                    ['proxies'][get_group_proxy_index(final_dict['proxy-groups'][4]['proxies'])].replace('(Youtube:不良林)','')
-                final_dict['proxy-groups'][5]['proxies'][get_group_proxy_index(final_dict['proxy-groups'][5]['proxies'])] = f'[{count}] '+final_dict['proxy-groups'][5] \
-                    ['proxies'][get_group_proxy_index(final_dict['proxy-groups'][5]['proxies'])].replace('(Youtube:不良林)','')
-                final_dict['proxy-groups'][6]['proxies'][get_group_proxy_index(final_dict['proxy-groups'][6]['proxies'])] = f'[{count}] '+final_dict['proxy-groups'][6] \
-                    ['proxies'][get_group_proxy_index(final_dict['proxy-groups'][6]['proxies'])].replace('(Youtube:不良林)','')
-                final_dict['proxy-groups'][9]['proxies'][get_group_proxy_index(final_dict['proxy-groups'][9]['proxies'])] = f'[{count}] '+final_dict['proxy-groups'][9] \
-                    ['proxies'][get_group_proxy_index(final_dict['proxy-groups'][9]['proxies'])].replace('(Youtube:不良林)','')
+                # 节点选择
+                handle_group_proxy(final_dict,count,0)
+                # 国外媒体
+                handle_group_proxy(final_dict,count,2)
+                # 微软服务
+                handle_group_proxy(final_dict,count,4)
+                # 电报信息
+                handle_group_proxy(final_dict,count,5)
+                # 苹果服务
+                handle_group_proxy(final_dict,count,6)
+                # 漏网之鱼
+                handle_group_proxy(final_dict,count,9)
                 count+=1
             else:
                 # 添加节点
@@ -146,7 +150,6 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
                 # 节点选择
                 final_dict['proxy-groups'][0]['proxies'].append(proxy['name']) # type: ignore
                 # 自动选择
-
                 # 正则匹配 排除延迟低的节点
                 if bool(re.search(r'香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|Korea|KR|kr',proxy['name'])):
                     final_dict['proxy-groups'][1]['proxies'].append(proxy['name']) # type: ignore
