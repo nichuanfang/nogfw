@@ -107,6 +107,8 @@ def handle_group_proxy(final_dict,count,index):
 def filter_proxies(tag:str,proxies:list):
     res = []
     for proxy in proxies:
+        if proxy == '🎯 全球直连':
+            continue
         if tag == 'google':
             # 使用延迟低的节点 
             if bool(re.search(r'香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|Korea|KR|kr',proxy)):
