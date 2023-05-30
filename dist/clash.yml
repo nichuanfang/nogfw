@@ -5,13 +5,41 @@ mode: Rule
 log-level: info
 external-controller: 127.0.0.1:9090
 proxies:
-- name: '[1] 🇮🇳 印度-3.03MB/s'
-  server: 152.70.74.66
+- name: '[1] 中转节点-337.7KB/s'
+  server: 14.29.124.168
+  port: 24003
+  type: ss
+  cipher: aes-128-cfb
+  password: QazEdcTgb159@$*
+- name: '[2] 🇯🇵 日本-7.53MB/s'
+  server: fschk.fscloud123456789.com
   port: 443
   type: trojan
-  password: d906afe5-7c3c-4ddc-aaa4-61c154a82e5e
+  password: 858ad8e5-1566-46cd-a8d8-30d20a6a1b19
   skip-cert-verify: true
-- name: '[2] 🇺🇲 美国-4.58MB/s'
+- name: '[3] 🇺🇲 美国-5.62MB/s'
+  server: 23.224.110.184
+  port: 443
+  type: vmess
+  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+  alterId: 64
+  cipher: auto
+  tls: true
+  network: ws
+  ws-opts:
+    path: /path/080712342310
+- name: '[4] 🇺🇲 美国-5.52MB/s'
+  server: 23.224.110.184
+  port: 443
+  type: vmess
+  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+  alterId: 64
+  cipher: auto
+  tls: true
+  network: ws
+  ws-opts:
+    path: /path/080712342310
+- name: '[5] 🇺🇲 美国-4.58MB/s'
   server: 108.186.116.174
   port: 55005
   type: vmess
@@ -19,35 +47,9 @@ proxies:
   alterId: 64
   cipher: auto
   tls: false
-- name: '[3] 🇰🇷 韩国-331.7KB/s'
-  server: 141.164.43.153
-  port: 80
-  type: vmess
-  uuid: 8afbd60f-aa52-49e6-8f37-9aca0b90f2c8
-  alterId: 0
-  cipher: auto
-  tls: false
-  network: ws
-  ws-opts:
-    path: /zingfast.vn
-- name: '[4] 🇺🇲 美国-3.48MB/s'
-  server: 163.123.192.156
-  port: 443
-  type: trojan
-  password: 1113a9fa-c6ee-4929-ae93-d29d024b1728
-  sni: download.xn--mes358a9urctx.com
-  skip-cert-verify: true
-- name: '[5] 🇺🇲 美国-4.22MB/s'
-  server: 140.99.59.253
-  port: 55512
-  type: vmess
-  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-  alterId: 64
-  cipher: auto
-  tls: false
-- name: '[6] 🇺🇲 美国-5.30MB/s'
-  server: 107.148.194.233
-  port: 55504
+- name: '[6] 🇺🇲 美国-5.69MB/s'
+  server: 107.167.29.229
+  port: 46321
   type: vmess
   uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
   alterId: 64
@@ -60,57 +62,57 @@ proxy-groups:
   - ♻️ 自动选择
   - 🤔 高可用
   - 🎯 全球直连
-  - '[1] 🇮🇳 印度-3.03MB/s'
-  - '[2] 🇺🇲 美国-4.58MB/s'
-  - '[3] 🇰🇷 韩国-331.7KB/s'
-  - '[4] 🇺🇲 美国-3.48MB/s'
-  - '[5] 🇺🇲 美国-4.22MB/s'
-  - '[6] 🇺🇲 美国-5.30MB/s'
+  - '[1] 中转节点-337.7KB/s'
+  - '[2] 🇯🇵 日本-7.53MB/s'
+  - '[3] 🇺🇲 美国-5.62MB/s'
+  - '[4] 🇺🇲 美国-5.52MB/s'
+  - '[5] 🇺🇲 美国-4.58MB/s'
+  - '[6] 🇺🇲 美国-5.69MB/s'
 - name: ♻️ 自动选择
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 600
   proxies:
-  - '[3] 🇰🇷 韩国-331.7KB/s'
+  - '[2] 🇯🇵 日本-7.53MB/s'
 - name: 🤔 高可用
   type: fallback
   proxies:
-  - '[1] 🇮🇳 印度-3.03MB/s'
-  - '[2] 🇺🇲 美国-4.58MB/s'
-  - '[3] 🇰🇷 韩国-331.7KB/s'
-  - '[4] 🇺🇲 美国-3.48MB/s'
-  - '[5] 🇺🇲 美国-4.22MB/s'
-  - '[6] 🇺🇲 美国-5.30MB/s'
+  - '[1] 中转节点-337.7KB/s'
+  - '[2] 🇯🇵 日本-7.53MB/s'
+  - '[3] 🇺🇲 美国-5.62MB/s'
+  - '[4] 🇺🇲 美国-5.52MB/s'
+  - '[5] 🇺🇲 美国-4.58MB/s'
+  - '[6] 🇺🇲 美国-5.69MB/s'
 - name: Google
   type: fallback
   proxies:
   - 🎯 全球直连
-  - '[3] 🇰🇷 韩国-331.7KB/s'
+  - '[2] 🇯🇵 日本-7.53MB/s'
 - name: Github
   type: fallback
   proxies:
   - 🎯 全球直连
-  - '[3] 🇰🇷 韩国-331.7KB/s'
+  - '[2] 🇯🇵 日本-7.53MB/s'
 - name: OpenAI
   type: fallback
   proxies:
   - 🎯 全球直连
-  - '[2] 🇺🇲 美国-4.58MB/s'
-  - '[4] 🇺🇲 美国-3.48MB/s'
-  - '[5] 🇺🇲 美国-4.22MB/s'
-  - '[6] 🇺🇲 美国-5.30MB/s'
+  - '[3] 🇺🇲 美国-5.62MB/s'
+  - '[4] 🇺🇲 美国-5.52MB/s'
+  - '[5] 🇺🇲 美国-4.58MB/s'
+  - '[6] 🇺🇲 美国-5.69MB/s'
 - name: 🌍 国外媒体
   type: select
   proxies:
   - 🔰 节点选择
   - ♻️ 自动选择
   - 🎯 全球直连
-  - '[1] 🇮🇳 印度-3.03MB/s'
-  - '[2] 🇺🇲 美国-4.58MB/s'
-  - '[3] 🇰🇷 韩国-331.7KB/s'
-  - '[4] 🇺🇲 美国-3.48MB/s'
-  - '[5] 🇺🇲 美国-4.22MB/s'
-  - '[6] 🇺🇲 美国-5.30MB/s'
+  - '[1] 中转节点-337.7KB/s'
+  - '[2] 🇯🇵 日本-7.53MB/s'
+  - '[3] 🇺🇲 美国-5.62MB/s'
+  - '[4] 🇺🇲 美国-5.52MB/s'
+  - '[5] 🇺🇲 美国-4.58MB/s'
+  - '[6] 🇺🇲 美国-5.69MB/s'
 - name: 🌏 国内媒体
   type: select
   proxies:
@@ -121,35 +123,35 @@ proxy-groups:
   proxies:
   - 🎯 全球直连
   - 🔰 节点选择
-  - '[1] 🇮🇳 印度-3.03MB/s'
-  - '[2] 🇺🇲 美国-4.58MB/s'
-  - '[3] 🇰🇷 韩国-331.7KB/s'
-  - '[4] 🇺🇲 美国-3.48MB/s'
-  - '[5] 🇺🇲 美国-4.22MB/s'
-  - '[6] 🇺🇲 美国-5.30MB/s'
+  - '[1] 中转节点-337.7KB/s'
+  - '[2] 🇯🇵 日本-7.53MB/s'
+  - '[3] 🇺🇲 美国-5.62MB/s'
+  - '[4] 🇺🇲 美国-5.52MB/s'
+  - '[5] 🇺🇲 美国-4.58MB/s'
+  - '[6] 🇺🇲 美国-5.69MB/s'
 - name: 📲 电报信息
   type: select
   proxies:
   - 🔰 节点选择
-  - '[1] 🇮🇳 印度-3.03MB/s'
+  - '[1] 中转节点-337.7KB/s'
   - 🎯 全球直连
-  - '[2] 🇺🇲 美国-4.58MB/s'
-  - '[3] 🇰🇷 韩国-331.7KB/s'
-  - '[4] 🇺🇲 美国-3.48MB/s'
-  - '[5] 🇺🇲 美国-4.22MB/s'
-  - '[6] 🇺🇲 美国-5.30MB/s'
+  - '[2] 🇯🇵 日本-7.53MB/s'
+  - '[3] 🇺🇲 美国-5.62MB/s'
+  - '[4] 🇺🇲 美国-5.52MB/s'
+  - '[5] 🇺🇲 美国-4.58MB/s'
+  - '[6] 🇺🇲 美国-5.69MB/s'
 - name: 🍎 苹果服务
   type: select
   proxies:
   - 🎯 全球直连
   - 🔰 节点选择
   - ♻️ 自动选择
-  - '[1] 🇮🇳 印度-3.03MB/s'
-  - '[2] 🇺🇲 美国-4.58MB/s'
-  - '[3] 🇰🇷 韩国-331.7KB/s'
-  - '[4] 🇺🇲 美国-3.48MB/s'
-  - '[5] 🇺🇲 美国-4.22MB/s'
-  - '[6] 🇺🇲 美国-5.30MB/s'
+  - '[1] 中转节点-337.7KB/s'
+  - '[2] 🇯🇵 日本-7.53MB/s'
+  - '[3] 🇺🇲 美国-5.62MB/s'
+  - '[4] 🇺🇲 美国-5.52MB/s'
+  - '[5] 🇺🇲 美国-4.58MB/s'
+  - '[6] 🇺🇲 美国-5.69MB/s'
 - name: 🎯 全球直连
   type: select
   proxies:
@@ -165,12 +167,12 @@ proxy-groups:
   - 🔰 节点选择
   - 🎯 全球直连
   - ♻️ 自动选择
-  - '[1] 🇮🇳 印度-3.03MB/s'
-  - '[2] 🇺🇲 美国-4.58MB/s'
-  - '[3] 🇰🇷 韩国-331.7KB/s'
-  - '[4] 🇺🇲 美国-3.48MB/s'
-  - '[5] 🇺🇲 美国-4.22MB/s'
-  - '[6] 🇺🇲 美国-5.30MB/s'
+  - '[1] 中转节点-337.7KB/s'
+  - '[2] 🇯🇵 日本-7.53MB/s'
+  - '[3] 🇺🇲 美国-5.62MB/s'
+  - '[4] 🇺🇲 美国-5.52MB/s'
+  - '[5] 🇺🇲 美国-4.58MB/s'
+  - '[6] 🇺🇲 美国-5.69MB/s'
 rules:
 - DOMAIN-SUFFIX,local,🎯 全球直连
 - IP-CIDR,192.168.0.0/16,🎯 全球直连,no-resolve
@@ -9168,6 +9170,118 @@ rules:
 - DOMAIN-SUFFIX,yuanchengxiezuo.com,🛑 全球拦截
 - DOMAIN-SUFFIX,zbrushcn.com,🛑 全球拦截
 - DOMAIN-SUFFIX,zhzzx.com,🛑 全球拦截
+- DOMAIN-KEYWORD,google,Google
+- DOMAIN-SUFFIX,265.com,Google
+- DOMAIN-SUFFIX,abc.xyz,Google
+- DOMAIN-SUFFIX,capitalg.com,Google
+- DOMAIN-SUFFIX,android.com,Google
+- DOMAIN-SUFFIX,androidify.com,Google
+- DOMAIN-KEYWORD,appspot,Google
+- DOMAIN-SUFFIX,chrome.com,Google
+- DOMAIN-SUFFIX,chromeexperiments.com,Google
+- DOMAIN-SUFFIX,chromestatus.com,Google
+- DOMAIN-SUFFIX,chromium.org,Google
+- DOMAIN-SUFFIX,whatbrowser.org,Google
+- DOMAIN-SUFFIX,autodraw.com,Google
+- DOMAIN-SUFFIX,deepmind.com,Google
+- DOMAIN-SUFFIX,tensorflow.org,Google
+- DOMAIN-SUFFIX,tfhub.dev,Google
+- DOMAIN-SUFFIX,googleapis.com,Google
+- DOMAIN-KEYWORD,blogspot,Google
+- DOMAIN-SUFFIX,blogger.com,Google
+- DOMAIN-SUFFIX,googleblog.com,Google
+- DOMAIN-SUFFIX,dialogflow.com,Google
+- DOMAIN-SUFFIX,gcp.gvt2.com,Google
+- DOMAIN-KEYWORD,googlesource,Google
+- DOMAIN-SUFFIX,godoc.org,Google
+- DOMAIN-SUFFIX,golang.org,Google
+- DOMAIN-SUFFIX,googlemashups.com,Google
+- DOMAIN-SUFFIX,gwtproject.org,Google
+- DOMAIN-SUFFIX,itasoftware.com,Google
+- DOMAIN-SUFFIX,pkg.go.dev,Google
+- DOMAIN-SUFFIX,shattered.io,Google
+- DOMAIN-SUFFIX,waveprotocol.org,Google
+- DOMAIN-SUFFIX,webmproject.org,Google
+- DOMAIN-SUFFIX,webrtc.org,Google
+- DOMAIN-SUFFIX,withgoogle.com,Google
+- DOMAIN-SUFFIX,madewithcode.com,Google
+- DOMAIN-SUFFIX,synergyse.com,Google
+- DOMAIN-KEYWORD,gmail,Google
+- DOMAIN-KEYWORD,recaptcha,Google
+- DOMAIN-KEYWORD,gstatic,Google
+- DOMAIN-SUFFIX,gmodules.com,Google
+- DOMAIN-SUFFIX,googleusercontent.com,Google
+- DOMAIN-SUFFIX,gvt0.com,Google
+- DOMAIN-SUFFIX,gvt1.com,Google
+- DOMAIN-SUFFIX,gvt3.com,Google
+- DOMAIN-SUFFIX,tiltbrush.com,Google
+- DOMAIN-SUFFIX,getmdl.io,Google
+- DOMAIN-SUFFIX,material.io,Google
+- DOMAIN-SUFFIX,certificate-transparency.org,Google
+- DOMAIN-SUFFIX,certificate-transparency.dev,Google
+- DOMAIN-SUFFIX,creativelab5.com,Google
+- DOMAIN-SUFFIX,debug.com,Google
+- DOMAIN-SUFFIX,gv.com,Google
+- DOMAIN-SUFFIX,polymer-project.org,Google
+- DOMAIN-SUFFIX,waymo.com,Google
+- DOMAIN-SUFFIX,widevine.com,Google
+- DOMAIN-SUFFIX,x.company,Google
+- IP-CIDR,173.194.0.0/16,Google
+- IP-CIDR,74.125.0.0/16,Google
+- DOMAIN,fonts.googleapis.com,🎯 全球直连
+- DOMAIN,fonts.gstatic.com,🎯 全球直连
+- DOMAIN,ocsp.pki.goog,🎯 全球直连
+- DOMAIN,crl.pki.goog,🎯 全球直连
+- DOMAIN,redirector.c.bigcache.googleapis.com,🎯 全球直连
+- DOMAIN,redirector.gvt1.com,🎯 全球直连
+- DOMAIN,safebrowsing.googleapis.com,🎯 全球直连
+- DOMAIN,safebrowsing-cache.google.com,🎯 全球直连
+- DOMAIN,translate.googleapis.com,🎯 全球直连
+- DOMAIN-SUFFIX,🎯 全球直连
+- DOMAIN-SUFFIX,🎯 全球直连
+- DOMAIN-SUFFIX,🎯 全球直连
+- DOMAIN-SUFFIX,🎯 全球直连
+- DOMAIN-SUFFIX,🎯 全球直连
+- DOMAIN-SUFFIX,🎯 全球直连
+- DOMAIN-SUFFIX,🎯 全球直连
+- DOMAIN-KEYWORD,github,Github
+- DOMAIN-SUFFIX,github.blog,Github
+- DOMAIN-SUFFIX,github.com,Github
+- DOMAIN-SUFFIX,github.community,Github
+- DOMAIN-SUFFIX,githubstatus.com,Github
+- DOMAIN-SUFFIX,githubusercontent.com,Github
+- DOMAIN-SUFFIX,githubassets.com,Github
+- DOMAIN-SUFFIX,dependabot.com,Github
+- DOMAIN-SUFFIX,atom.io,Github
+- DOMAIN-SUFFIX,ghcr.io,Github
+- DOMAIN-SUFFIX,git.io,Github
+- DOMAIN-SUFFIX,github.io,Github
+- DOMAIN-SUFFIX,github.dev,Github
+- DOMAIN-SUFFIX,githubapp.com,Github
+- DOMAIN-SUFFIX,githubpreview.dev,Github
+- DOMAIN-SUFFIX,github-atom-io-herokuapp-com.freetls.fastly.net,Github
+- DOMAIN-SUFFIX,github-avatars.oss-cn-hongkong.aliyuncs.com,Github
+- DOMAIN-SUFFIX,github-cloud.s3.amazonaws.com,Github
+- DOMAIN-SUFFIX,thegithubshop.com,Github
+- DOMAIN-SUFFIX,githubuniverse.com,Github
+- DOMAIN-SUFFIX,githubnext.com,Github
+- DOMAIN-SUFFIX,githubhackathon.com,Github
+- DOMAIN-SUFFIX,myoctocat.com,Github
+- DOMAIN-SUFFIX,opensource.guide,Github
+- DOMAIN-SUFFIX,repo.new,Github
+- DOMAIN-SUFFIX,auth0.com,OpenAI
+- DOMAIN,challenges.cloudflare.com,OpenAI
+- DOMAIN-SUFFIX,ai.com,OpenAI
+- DOMAIN-SUFFIX,openai.com,OpenAI
+- DOMAIN-SUFFIX,sentry.io,OpenAI
+- DOMAIN-SUFFIX,intercom.io,OpenAI
+- DOMAIN-SUFFIX,identrust.com,OpenAI
+- DOMAIN-SUFFIX,chat.openai.com.cdn.cloudflare.net,OpenAI
+- DOMAIN-SUFFIX,openaiapi-site.azureedge.net,OpenAI
+- DOMAIN-SUFFIX,challenges.cloudflare.com,OpenAI
+- DOMAIN-SUFFIX,invoice.stripe.com,OpenAI
+- DOMAIN-SUFFIX,stripe.com,OpenAI
+- DOMAIN-SUFFIX,poe.com,OpenAI
 - DOMAIN-SUFFIX,ext-twitch.tv,🌍 国外媒体
 - DOMAIN-SUFFIX,jtvnw.net,🌍 国外媒体
 - DOMAIN-SUFFIX,ttvnw.net,🌍 国外媒体
@@ -9399,118 +9513,6 @@ rules:
 - DOMAIN-SUFFIX,yt.be,🌍 国外媒体
 - DOMAIN-SUFFIX,ytimg.com,🌍 国外媒体
 - DOMAIN,youtubei.googleapis.com,🌍 国外媒体
-- DOMAIN-KEYWORD,google,Google
-- DOMAIN-SUFFIX,265.com,Google
-- DOMAIN-SUFFIX,abc.xyz,Google
-- DOMAIN-SUFFIX,capitalg.com,Google
-- DOMAIN-SUFFIX,android.com,Google
-- DOMAIN-SUFFIX,androidify.com,Google
-- DOMAIN-KEYWORD,appspot,Google
-- DOMAIN-SUFFIX,chrome.com,Google
-- DOMAIN-SUFFIX,chromeexperiments.com,Google
-- DOMAIN-SUFFIX,chromestatus.com,Google
-- DOMAIN-SUFFIX,chromium.org,Google
-- DOMAIN-SUFFIX,whatbrowser.org,Google
-- DOMAIN-SUFFIX,autodraw.com,Google
-- DOMAIN-SUFFIX,deepmind.com,Google
-- DOMAIN-SUFFIX,tensorflow.org,Google
-- DOMAIN-SUFFIX,tfhub.dev,Google
-- DOMAIN-SUFFIX,googleapis.com,Google
-- DOMAIN-KEYWORD,blogspot,Google
-- DOMAIN-SUFFIX,blogger.com,Google
-- DOMAIN-SUFFIX,googleblog.com,Google
-- DOMAIN-SUFFIX,dialogflow.com,Google
-- DOMAIN-SUFFIX,gcp.gvt2.com,Google
-- DOMAIN-KEYWORD,googlesource,Google
-- DOMAIN-SUFFIX,godoc.org,Google
-- DOMAIN-SUFFIX,golang.org,Google
-- DOMAIN-SUFFIX,googlemashups.com,Google
-- DOMAIN-SUFFIX,gwtproject.org,Google
-- DOMAIN-SUFFIX,itasoftware.com,Google
-- DOMAIN-SUFFIX,pkg.go.dev,Google
-- DOMAIN-SUFFIX,shattered.io,Google
-- DOMAIN-SUFFIX,waveprotocol.org,Google
-- DOMAIN-SUFFIX,webmproject.org,Google
-- DOMAIN-SUFFIX,webrtc.org,Google
-- DOMAIN-SUFFIX,withgoogle.com,Google
-- DOMAIN-SUFFIX,madewithcode.com,Google
-- DOMAIN-SUFFIX,synergyse.com,Google
-- DOMAIN-KEYWORD,gmail,Google
-- DOMAIN-KEYWORD,recaptcha,Google
-- DOMAIN-KEYWORD,gstatic,Google
-- DOMAIN-SUFFIX,gmodules.com,Google
-- DOMAIN-SUFFIX,googleusercontent.com,Google
-- DOMAIN-SUFFIX,gvt0.com,Google
-- DOMAIN-SUFFIX,gvt1.com,Google
-- DOMAIN-SUFFIX,gvt3.com,Google
-- DOMAIN-SUFFIX,tiltbrush.com,Google
-- DOMAIN-SUFFIX,getmdl.io,Google
-- DOMAIN-SUFFIX,material.io,Google
-- DOMAIN-SUFFIX,certificate-transparency.org,Google
-- DOMAIN-SUFFIX,certificate-transparency.dev,Google
-- DOMAIN-SUFFIX,creativelab5.com,Google
-- DOMAIN-SUFFIX,debug.com,Google
-- DOMAIN-SUFFIX,gv.com,Google
-- DOMAIN-SUFFIX,polymer-project.org,Google
-- DOMAIN-SUFFIX,waymo.com,Google
-- DOMAIN-SUFFIX,widevine.com,Google
-- DOMAIN-SUFFIX,x.company,Google
-- IP-CIDR,173.194.0.0/16,Google
-- IP-CIDR,74.125.0.0/16,Google
-- DOMAIN,fonts.googleapis.com,🎯 全球直连
-- DOMAIN,fonts.gstatic.com,🎯 全球直连
-- DOMAIN,ocsp.pki.goog,🎯 全球直连
-- DOMAIN,crl.pki.goog,🎯 全球直连
-- DOMAIN,redirector.c.bigcache.googleapis.com,🎯 全球直连
-- DOMAIN,redirector.gvt1.com,🎯 全球直连
-- DOMAIN,safebrowsing.googleapis.com,🎯 全球直连
-- DOMAIN,safebrowsing-cache.google.com,🎯 全球直连
-- DOMAIN,translate.googleapis.com,🎯 全球直连
-- DOMAIN-SUFFIX,dl.google.com,Google Domestic
-- DOMAIN-SUFFIX,dl.l.google.com,Google Domestic
-- DOMAIN-SUFFIX,google.cn,Google Domestic
-- DOMAIN-SUFFIX,ssl.gstatic.com,Google Domestic
-- DOMAIN-SUFFIX,tools.google.com,Google Domestic
-- DOMAIN-SUFFIX,tools.l.google.com,Google Domestic
-- DOMAIN-SUFFIX,update.googleapis.com,Google Domestic
-- DOMAIN-KEYWORD,github,Github
-- DOMAIN-SUFFIX,github.blog,Github
-- DOMAIN-SUFFIX,github.com,Github
-- DOMAIN-SUFFIX,github.community,Github
-- DOMAIN-SUFFIX,githubstatus.com,Github
-- DOMAIN-SUFFIX,githubusercontent.com,Github
-- DOMAIN-SUFFIX,githubassets.com,Github
-- DOMAIN-SUFFIX,dependabot.com,Github
-- DOMAIN-SUFFIX,atom.io,Github
-- DOMAIN-SUFFIX,ghcr.io,Github
-- DOMAIN-SUFFIX,git.io,Github
-- DOMAIN-SUFFIX,github.io,Github
-- DOMAIN-SUFFIX,github.dev,Github
-- DOMAIN-SUFFIX,githubapp.com,Github
-- DOMAIN-SUFFIX,githubpreview.dev,Github
-- DOMAIN-SUFFIX,github-atom-io-herokuapp-com.freetls.fastly.net,Github
-- DOMAIN-SUFFIX,github-avatars.oss-cn-hongkong.aliyuncs.com,Github
-- DOMAIN-SUFFIX,github-cloud.s3.amazonaws.com,Github
-- DOMAIN-SUFFIX,thegithubshop.com,Github
-- DOMAIN-SUFFIX,githubuniverse.com,Github
-- DOMAIN-SUFFIX,githubnext.com,Github
-- DOMAIN-SUFFIX,githubhackathon.com,Github
-- DOMAIN-SUFFIX,myoctocat.com,Github
-- DOMAIN-SUFFIX,opensource.guide,Github
-- DOMAIN-SUFFIX,repo.new,Github
-- DOMAIN-SUFFIX,auth0.com,OpenAI
-- DOMAIN,challenges.cloudflare.com,OpenAI
-- DOMAIN-SUFFIX,ai.com,OpenAI
-- DOMAIN-SUFFIX,openai.com,OpenAI
-- DOMAIN-SUFFIX,sentry.io,OpenAI
-- DOMAIN-SUFFIX,intercom.io,OpenAI
-- DOMAIN-SUFFIX,identrust.com,OpenAI
-- DOMAIN-SUFFIX,chat.openai.com.cdn.cloudflare.net,OpenAI
-- DOMAIN-SUFFIX,openaiapi-site.azureedge.net,OpenAI
-- DOMAIN-SUFFIX,challenges.cloudflare.com,OpenAI
-- DOMAIN-SUFFIX,invoice.stripe.com,OpenAI
-- DOMAIN-SUFFIX,stripe.com,OpenAI
-- DOMAIN-SUFFIX,poe.com,OpenAI
 - DOMAIN,yt3.ggpht.com,🌍 国外媒体
 - DOMAIN-SUFFIX,t.me,📲 电报信息
 - DOMAIN-SUFFIX,tdesktop.com,📲 电报信息
