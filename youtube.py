@@ -100,6 +100,11 @@ def craw(number:int,video_id:str,sleeptime:int):
             sleep(sleeptime)
     return all_nodes
 
+def get_group_proxy_index(proxies:list):
+    for index,proxy in enumerate(proxies):
+        if proxy not in ['🔰 节点选择','♻️ 自动选择','🎯 全球直连']:
+            return index
+    return -1
 
 def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     count = 1
@@ -124,14 +129,22 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
                 if not bool(re.search(r'香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|Korea|KR|kr',final_dict['proxy-groups'][1]['proxies'][0])):
                     final_dict['proxy-groups'][1]['proxies'] = []
                 else:
-                    final_dict['proxy-groups'][1]['proxies'][-1] = f'[{count}] '+final_dict['proxy-groups'][1]['proxies'][-1].replace('(Youtube:不良林)','')
+                    final_dict['proxy-groups'][1]['proxies'][get_group_proxy_index(final_dict['proxy-groups'][1]['proxies'])] = f'[{count}] '+final_dict['proxy-groups'][1] \
+                    ['proxies'][get_group_proxy_index(final_dict['proxy-groups'][1]['proxies'])].replace('(Youtube:不良林)','')
                 proxy:dict= copy.deepcopy(data_dict['proxies'][0])
                 final_dict['proxies'][0]['name'] = f'[{count}] ' + proxy['name'].replace('(Youtube:不良林)','')
-                final_dict['proxy-groups'][2]['proxies'][-1] = f'[{count}] '+final_dict['proxy-groups'][2]['proxies'][-1].replace('(Youtube:不良林)','')
-                final_dict['proxy-groups'][4]['proxies'][-1] = f'[{count}] '+final_dict['proxy-groups'][4]['proxies'][-1].replace('(Youtube:不良林)','')
-                final_dict['proxy-groups'][5]['proxies'][-1] = f'[{count}] '+final_dict['proxy-groups'][5]['proxies'][-1].replace('(Youtube:不良林)','')
-                final_dict['proxy-groups'][6]['proxies'][-1] = f'[{count}] '+final_dict['proxy-groups'][6]['proxies'][-1].replace('(Youtube:不良林)','')
-                final_dict['proxy-groups'][9]['proxies'][-1] = f'[{count}] '+final_dict['proxy-groups'][9]['proxies'][-1].replace('(Youtube:不良林)','')
+                final_dict['proxy-groups'][0]['proxies'][get_group_proxy_index(final_dict['proxy-groups'][0]['proxies'])] = f'[{count}] '+final_dict['proxy-groups'][0] \
+                    ['proxies'][get_group_proxy_index(final_dict['proxy-groups'][0]['proxies'])].replace('(Youtube:不良林)','')
+                final_dict['proxy-groups'][2]['proxies'][get_group_proxy_index(final_dict['proxy-groups'][2]['proxies'])] = f'[{count}] '+final_dict['proxy-groups'][2] \
+                    ['proxies'][get_group_proxy_index(final_dict['proxy-groups'][2]['proxies'])].replace('(Youtube:不良林)','')
+                final_dict['proxy-groups'][4]['proxies'][get_group_proxy_index(final_dict['proxy-groups'][4]['proxies'])] = f'[{count}] '+final_dict['proxy-groups'][4] \
+                    ['proxies'][get_group_proxy_index(final_dict['proxy-groups'][4]['proxies'])].replace('(Youtube:不良林)','')
+                final_dict['proxy-groups'][5]['proxies'][get_group_proxy_index(final_dict['proxy-groups'][5]['proxies'])] = f'[{count}] '+final_dict['proxy-groups'][5] \
+                    ['proxies'][get_group_proxy_index(final_dict['proxy-groups'][5]['proxies'])].replace('(Youtube:不良林)','')
+                final_dict['proxy-groups'][6]['proxies'][get_group_proxy_index(final_dict['proxy-groups'][6]['proxies'])] = f'[{count}] '+final_dict['proxy-groups'][6] \
+                    ['proxies'][get_group_proxy_index(final_dict['proxy-groups'][6]['proxies'])].replace('(Youtube:不良林)','')
+                final_dict['proxy-groups'][9]['proxies'][get_group_proxy_index(final_dict['proxy-groups'][9]['proxies'])] = f'[{count}] '+final_dict['proxy-groups'][9] \
+                    ['proxies'][get_group_proxy_index(final_dict['proxy-groups'][9]['proxies'])].replace('(Youtube:不良林)','')
                 count+=1
             else:
                 # 添加节点
