@@ -16,6 +16,7 @@ import yaml
 import copy
 import re
 import qrcode
+from PIL import Image
 from qrcode import constants
 # 图像识别
 import easyocr
@@ -86,6 +87,12 @@ def craw(number:int,video_id:str,sleeptime:int):
         if craw_index != number-1:
             sleep(sleeptime)
     return all_nodes
+
+def resize(file):
+    im = Image.open(file)
+    reim=im.resize((640, 640))#宽*高
+
+    reim.save(file,dpi=(300.0,300.0)) ##200.0,200.0分别为想要设定的dpi值
 
 def get_group_proxy_index(proxies:list):
     for index,proxy in enumerate(proxies):
@@ -221,6 +228,8 @@ if __name__ == '__main__':
         img = qr.make_image()
         with open('dist/sub.jpg', 'wb') as qrc:
             img.save(qrc)
+        # 调整分辨率
+        resize('dist/sub.jpg')
     except Exception as e:
         logging.error(f'================================二维码生成失败!:{e}==========================================')
     
