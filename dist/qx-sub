@@ -1,10 +1,10 @@
-vmess = 45.33.37.229:443, method=chacha20-ietf-poly1305, password=927094d3-d678-4763-8591-e240d0bcae87, aead=true, obfs=wss, obfs-host=, obfs-uri=/chat, tag=[1] 🇺🇲 美国-4.21MB/s
-vmess = 45.33.37.229:443, method=chacha20-ietf-poly1305, password=927094d3-d678-4763-8591-e240d0bcae87, aead=true, obfs=wss, obfs-host=, obfs-uri=/chat, tag=[2] 🇺🇲 美国-4.21MB/s
-vmess = 107.167.29.229:46321, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[3] 🇺🇲 美国-5.74MB/s
-vmess = 107.167.29.229:46321, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[4] 🇺🇲 美国-5.74MB/s
-vmess = 107.167.29.229:46321, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[5] 🇺🇲 美国-5.74MB/s
-trojan = 103.169.7.11:80, password=c0d9da22-2569-4bed-a395-607d9e7ae687, over-tls=true, tls-host=sciencedirect.com, tls-verification=false, tag=[6] 🇮🇩 印度尼西亚-1.59MB/s
-trojan = 152.70.74.66:443, password=d906afe5-7c3c-4ddc-aaa4-61c154a82e5e, over-tls=true, tls-host=, tls-verification=false, tag=[7] 🇮🇳 印度-1.45MB/s
-trojan = 152.70.74.66:443, password=d906afe5-7c3c-4ddc-aaa4-61c154a82e5e, over-tls=true, tls-host=, tls-verification=false, tag=[8] 🇮🇳 印度-1.45MB/s
-trojan = 163.123.192.154:443, password=1113a9fa-c6ee-4929-ae93-d29d024b1728, over-tls=true, tls-host=download.xn--mes358a9urctx.com, tls-verification=false, tag=[9] 🇺🇲 美国-3.42MB/s
-trojan = 163.123.192.154:443, password=1113a9fa-c6ee-4929-ae93-d29d024b1728, over-tls=true, tls-host=download.xn--mes358a9urctx.com, tls-verification=false, tag=[10] 🇺🇲 美国-3.42MB/s
+trojan = 163.123.192.153:443, password=1113a9fa-c6ee-4929-ae93-d29d024b1728, over-tls=true, tls-host=download.xn--mes358a9urctx.com, tls-verification=false, tag=[1] 🇺🇲 美国-2.27MB/s
+vmess = 23.224.110.184:443, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, obfs=wss, obfs-host=, obfs-uri=/path/080712342310, tag=[2] 🇺🇲 美国-4.60MB/s
+vmess = 170.178.167.144:50002, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[3] 🇺🇲 美国-1.87MB/s
+trojan = 163.123.192.153:443, password=1113a9fa-c6ee-4929-ae93-d29d024b1728, over-tls=true, tls-host=download.xn--mes358a9urctx.com, tls-verification=false, tag=[4] 🇺🇲 美国-2.27MB/s
+vmess = 23.224.173.104:57183, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[5] 🇺🇲 美国-3.01MB/s
+vmess = 23.224.173.104:57183, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[6] 🇺🇲 美国-3.01MB/s
+vmess = 192.74.231.172:49202, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[7] 🇺🇲 美国-3.77MB/s
+vmess = 172.247.148.85:53302, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[8] 🇺🇲 美国-2.22MB/s
+vmess = 107.167.29.229:46321, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[9] 🇺🇲 美国-4.58MB/s
+shadowsocks = free.themars.top:32102, method=chacha20-ietf-poly1305, password=b89b39c2-dc8d-4595-a4c5-54b4fbab3fc2, tag=[10] 中转节点-8.13MB/s
