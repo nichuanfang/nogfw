@@ -124,6 +124,40 @@ def filter_proxies(tag:str,proxies:list[str]):
         res.append('🎯 全球直连')
     return res
 
+def direct_rulesets():
+    unbreak_ruleset = requests.get('https://cdn.jsdelivr.net/gh/sve1r/Rules-For-Quantumult-X@develop/Rules/Services/Unbreak.list')
+    china_ruleset = requests.get('https://raw.githubusercontent.com/sve1r/Rules-For-Quantumult-X/develop/Rules/Region/China.list')
+    china_ip_ruleset = requests.get('https://raw.githubusercontent.com/sve1r/Rules-For-Quantumult-X/develop/Rules/Region/ChinaIP.list')
+
+    unbreak_rules = unbreak_ruleset.text.split('\n')
+    china_rules = china_ruleset.text.split('\n')
+    china_ip_rules = china_ip_ruleset.text.split('\n')
+    all_rules = unbreak_rules+china_rules+china_ip_rules
+    final_rulesets = []
+    for all_rule in all_rules:
+        new_rule = all_rule.strip()
+        if new_rule == '' or new_rule.startswith('#'):
+            continue
+        rule_list = new_rule.split(',')
+        first = rule_list[0]
+        second = rule_list[1]
+        third = rule_list[2]
+        if first == 'host' or first == 'HOST':
+            if third == 'DIRECT' or third == 'direct':
+                final_rulesets.append(','.join(['DOMAIN',second,'🎯 全球直连']))
+
+        elif first == 'host-suffix' or first == 'HOST-SUFFIX':
+            if third == 'DIRECT' or third == 'direct':
+                final_rulesets.append(','.join(['DOMAIN-SUFFIX','🎯 全球直连']))
+
+        elif first == 'host-keyword' or first == 'HOST-KEYWORD':
+            final_rulesets.append(','.join(['DOMAIN-KEYWORD',second,'🎯 全球直连']))
+
+        elif first == 'ip-cidr' or first == 'IP-CIDR':
+            final_rulesets.append(','.join(['IP-CIDR',second,'🎯 全球直连']))
+
+    return final_rulesets
+
 def google_github_openai_ruleset():
     google_ruleset = requests.get('https://raw.githubusercontent.com/sve1r/Rules-For-Quantumult-X/develop/Rules/Services/Google.list')
     github_ruleset = requests.get('https://raw.githubusercontent.com/sve1r/Rules-For-Quantumult-X/develop/Rules/Services/Github.list')
@@ -282,6 +316,14 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     rulesets = google_github_openai_ruleset()
     for rule_index,ruleset in enumerate(rulesets):
         rules.insert(flag+rule_index,ruleset)
+
+    # 针对性直连
+    for index,rule in enumerate(rules):
+        if rule.__contains__('全球直连'):
+            rules.remove(rule)
+    direct_rules = direct_rulesets()
+    for direct_rule in direct_rules:
+        rules.append(direct_rule)
     return final_dict
 
 
