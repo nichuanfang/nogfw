@@ -267,7 +267,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
         final_dict['proxy-groups'][1]['proxies'].append('🎯 全球直连')
     proxies = []
     for p in final_dict['proxies']:
-        # 按照测速结果排序(降序)
+        # TODO按照测速结果排序(降序) 
 
         # 获取测速结果
         match = re.search(r'\d+.\d+',p['name'])
@@ -327,10 +327,10 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
 
     logging.info(f'======================添加自定义规则: 🎯 全球直连==========================================')
     # 针对性直连
-    for index,rule in enumerate(rules):
-        if rule.__contains__('全球直连'):
+    for rule_ in rules:
+        if rule_.__contains__('全球直连'):
             try:
-                rules.remove(rule)
+                rules.remove(rule_)
             except:
                 continue
     direct_rules = direct_rulesets()
@@ -343,6 +343,8 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
 if __name__ == '__main__':
     # sys.argv[1]): CRAW_NUMBER 抓取次数
     all_nodes = craw(int(sys.argv[1]),'qmRkvKo-KbQ',10)
+    # TODO对节点按照测速结果 从快到慢降速排序
+    # sorted_nodes = sort_nodes(all_nodes)
     taged_nodes = []
     # 节点更改tag
     for index,node in enumerate(all_nodes):
