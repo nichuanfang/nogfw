@@ -20,6 +20,9 @@ from qrcode import constants
 # 图像识别
 import easyocr
 
+data = ['🔰 节点选择','♻️ 自动选择','🎯 全球直连','🇺🇲 美国-4.03MB/s(Youtube:不良林)']
+data[-1] = '[1] '+data[-1].replace('(Youtube:不良林)','')
+
 # windows下需要先下载模型文件  https://blog.csdn.net/Loliykon/article/details/114334699
 reader = easyocr.Reader(['ch_sim','en'],model_storage_directory='ocr_models')
 
@@ -121,9 +124,14 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
                 if not bool(re.search(r'香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|Korea|KR|kr',final_dict['proxy-groups'][1]['proxies'][0])):
                     final_dict['proxy-groups'][1]['proxies'] = []
                 else:
-                    final_dict['proxy-groups'][1]['proxies'] = [f'[{count}] '+ final_dict['proxy-groups'][1]['proxies'][0].replace('(Youtube:不良林)','')]
+                    final_dict['proxy-groups'][1]['proxies'][-1] = f'[{count}] '+final_dict['proxy-groups'][1]['proxies'][-1].replace('(Youtube:不良林)','')
                 proxy:dict= copy.deepcopy(data_dict['proxies'][0])
                 final_dict['proxies'][0]['name'] = f'[{count}] ' + proxy['name'].replace('(Youtube:不良林)','')
+                final_dict['proxy-groups'][2]['proxies'][-1] = f'[{count}] '+final_dict['proxy-groups'][2]['proxies'][-1].replace('(Youtube:不良林)','')
+                final_dict['proxy-groups'][4]['proxies'][-1] = f'[{count}] '+final_dict['proxy-groups'][4]['proxies'][-1].replace('(Youtube:不良林)','')
+                final_dict['proxy-groups'][5]['proxies'][-1] = f'[{count}] '+final_dict['proxy-groups'][5]['proxies'][-1].replace('(Youtube:不良林)','')
+                final_dict['proxy-groups'][6]['proxies'][-1] = f'[{count}] '+final_dict['proxy-groups'][6]['proxies'][-1].replace('(Youtube:不良林)','')
+                final_dict['proxy-groups'][9]['proxies'][-1] = f'[{count}] '+final_dict['proxy-groups'][9]['proxies'][-1].replace('(Youtube:不良林)','')
                 count+=1
             else:
                 # 添加节点
