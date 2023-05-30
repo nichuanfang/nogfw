@@ -240,6 +240,8 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     proxy_groups.insert(2,{
         'name': '🤔 高可用',
         'type': 'fallback',
+        'url': 'http://www.gstatic.com/generate_204',
+        'interval': 600,
         'proxies': proxies
     })
     final_dict['proxy-groups'][0]['proxies'].insert(1,'🤔 高可用')
@@ -247,12 +249,16 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     proxy_groups.insert(3,{
         'name': 'Google',
         'type': 'fallback',
+        'url': 'http://www.gstatic.com/generate_204',
+        'interval': 600,
         'proxies': filter_proxies('google',proxies)
     })
     # 添加自定义策略  Github
     proxy_groups.insert(4,{
         'name': 'Github',
         'type': 'fallback',
+        'url': 'http://www.gstatic.com/generate_204',
+        'interval': 600,
         'proxies': filter_proxies('github',proxies)
     })
 
@@ -260,6 +266,8 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     proxy_groups.insert(5,{
         'name': 'OpenAI',
         'type': 'fallback',
+        'url': 'http://www.gstatic.com/generate_204',
+        'interval': 600,
         'proxies': filter_proxies('openai',proxies)
     })
 
