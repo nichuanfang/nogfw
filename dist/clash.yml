@@ -13,14 +13,97 @@ proxies:
   alterId: 64
   cipher: auto
   tls: false
-- name: '[2] 🇺🇲 美国-1.47MB/s'
-  server: 23.225.33.171
-  port: 56662
+- name: '[2] 🇺🇲 美国-212.7KB/s'
+  server: v2ray.online
+  port: 443
+  type: vmess
+  uuid: 00BBF5B8-173E-6818-9927-5AD1AA073C7D
+  alterId: 0
+  cipher: auto
+  tls: true
+  network: ws
+  ws-opts:
+    path: /speedtest
+    headers:
+      Host: Kansas.v2ray.online
+- name: '[3] 🇺🇲 美国-1.97MB/s'
+  server: 23.224.110.184
+  port: 443
   type: vmess
   uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
   alterId: 64
   cipher: auto
-  tls: false
+  tls: true
+  network: ws
+  ws-opts:
+    path: /path/080712342310
+- name: '[4] (已存活11天)中转节点-5.95MB/s'
+  server: nma.boom.skin
+  port: 20000
+  type: ssr
+  cipher: aes-256-cfb
+  password: Uk92CS
+  protocol: auth_aes128_sha1
+  obfs: http_simple
+  protocol-param: 23957:nZCp9Y
+  obfs-param: download.windowsupdate.com
+- name: '[5] 未知国家-2.15MB/s'
+  server: yd1.01dj.sbs
+  port: 443
+  type: vmess
+  uuid: 95b2dc83-a476-4a82-93b2-0d77b4c30c18
+  alterId: 0
+  cipher: auto
+  tls: true
+  network: ws
+  ws-opts:
+    path: /sometimesnaive
+    headers:
+      Host: yd1.01dj.sbs
+- name: '[6] 未知国家-577.9KB/s'
+  server: dallas.starsea.vip
+  port: 443
+  type: vmess
+  uuid: 10735fe6-6c8f-498b-b22e-8e98a57e033d
+  alterId: 0
+  cipher: auto
+  tls: true
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: dallas.starsea.vip
+- name: '[7] 未知国家-163.7KB/s'
+  server: v2ray.online
+  port: 443
+  type: vmess
+  uuid: 00BBF5B8-173E-6818-9927-5AD1AA073C7D
+  alterId: 0
+  cipher: auto
+  tls: true
+  network: ws
+  ws-opts:
+    path: /speedtest
+    headers:
+      Host: Kansas.v2ray.online
+- name: '[8] 🇸🇬 新加坡-2.41MB/s'
+  server: fscjp.fscloud123456789.com
+  port: 443
+  type: trojan
+  password: 3d927416-3e74-45ce-ac16-df69c33c725a
+  skip-cert-verify: true
+- name: '[9] 🇺🇲 美国-1.90MB/s'
+  server: 54.189.216.64
+  port: 443
+  type: ss
+  cipher: aes-256-cfb
+  password: amazonskr05
+- name: '[10] 中转节点-310.4KB/s'
+  server: 14.29.124.168
+  port: 24002
+  type: ss
+  cipher: aes-128-cfb
+  password: QazEdcTgb159@$*
 proxy-groups:
 - name: 🔰 节点选择
   type: select
@@ -29,39 +112,57 @@ proxy-groups:
   - 🤔 高可用
   - 🎯 全球直连
   - '[1] 🇺🇲 美国-1.93MB/s'
-  - '[2] 🇺🇲 美国-1.47MB/s'
+  - '[2] 🇺🇲 美国-212.7KB/s'
+  - '[3] 🇺🇲 美国-1.97MB/s'
+  - '[4] (已存活11天)中转节点-5.95MB/s'
+  - '[5] 未知国家-2.15MB/s'
+  - '[6] 未知国家-577.9KB/s'
+  - '[7] 未知国家-163.7KB/s'
+  - '[8] 🇸🇬 新加坡-2.41MB/s'
+  - '[9] 🇺🇲 美国-1.90MB/s'
+  - '[10] 中转节点-310.4KB/s'
 - name: ♻️ 自动选择
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 600
   proxies:
-  - 🎯 全球直连
+  - '[8] 🇸🇬 新加坡-2.41MB/s'
 - name: 🤔 高可用
   type: fallback
   url: http://www.gstatic.com/generate_204
   interval: 43200
   proxies:
+  - '[6] 未知国家-577.9KB/s'
+  - '[10] 中转节点-310.4KB/s'
+  - '[2] 🇺🇲 美国-212.7KB/s'
+  - '[7] 未知国家-163.7KB/s'
+  - '[4] (已存活11天)中转节点-5.95MB/s'
+  - '[8] 🇸🇬 新加坡-2.41MB/s'
+  - '[5] 未知国家-2.15MB/s'
+  - '[3] 🇺🇲 美国-1.97MB/s'
   - '[1] 🇺🇲 美国-1.93MB/s'
-  - '[2] 🇺🇲 美国-1.47MB/s'
+  - '[9] 🇺🇲 美国-1.90MB/s'
 - name: Google
   type: fallback
   url: http://www.gstatic.com/generate_204
   interval: 43200
   proxies:
-  - 🎯 全球直连
+  - '[8] 🇸🇬 新加坡-2.41MB/s'
 - name: Github
   type: fallback
   url: http://www.gstatic.com/generate_204
   interval: 43200
   proxies:
-  - 🎯 全球直连
+  - '[8] 🇸🇬 新加坡-2.41MB/s'
 - name: OpenAI
   type: fallback
   url: http://www.gstatic.com/generate_204
   interval: 43200
   proxies:
+  - '[2] 🇺🇲 美国-212.7KB/s'
+  - '[3] 🇺🇲 美国-1.97MB/s'
   - '[1] 🇺🇲 美国-1.93MB/s'
-  - '[2] 🇺🇲 美国-1.47MB/s'
+  - '[9] 🇺🇲 美国-1.90MB/s'
 - name: 🌍 国外媒体
   type: select
   proxies:
@@ -69,7 +170,15 @@ proxy-groups:
   - ♻️ 自动选择
   - 🎯 全球直连
   - '[1] 🇺🇲 美国-1.93MB/s'
-  - '[2] 🇺🇲 美国-1.47MB/s'
+  - '[2] 🇺🇲 美国-212.7KB/s'
+  - '[3] 🇺🇲 美国-1.97MB/s'
+  - '[4] (已存活11天)中转节点-5.95MB/s'
+  - '[5] 未知国家-2.15MB/s'
+  - '[6] 未知国家-577.9KB/s'
+  - '[7] 未知国家-163.7KB/s'
+  - '[8] 🇸🇬 新加坡-2.41MB/s'
+  - '[9] 🇺🇲 美国-1.90MB/s'
+  - '[10] 中转节点-310.4KB/s'
 - name: 🌏 国内媒体
   type: select
   proxies:
@@ -81,14 +190,30 @@ proxy-groups:
   - 🎯 全球直连
   - 🔰 节点选择
   - '[1] 🇺🇲 美国-1.93MB/s'
-  - '[2] 🇺🇲 美国-1.47MB/s'
+  - '[2] 🇺🇲 美国-212.7KB/s'
+  - '[3] 🇺🇲 美国-1.97MB/s'
+  - '[4] (已存活11天)中转节点-5.95MB/s'
+  - '[5] 未知国家-2.15MB/s'
+  - '[6] 未知国家-577.9KB/s'
+  - '[7] 未知国家-163.7KB/s'
+  - '[8] 🇸🇬 新加坡-2.41MB/s'
+  - '[9] 🇺🇲 美国-1.90MB/s'
+  - '[10] 中转节点-310.4KB/s'
 - name: 📲 电报信息
   type: select
   proxies:
   - 🔰 节点选择
   - '[1] 🇺🇲 美国-1.93MB/s'
   - 🎯 全球直连
-  - '[2] 🇺🇲 美国-1.47MB/s'
+  - '[2] 🇺🇲 美国-212.7KB/s'
+  - '[3] 🇺🇲 美国-1.97MB/s'
+  - '[4] (已存活11天)中转节点-5.95MB/s'
+  - '[5] 未知国家-2.15MB/s'
+  - '[6] 未知国家-577.9KB/s'
+  - '[7] 未知国家-163.7KB/s'
+  - '[8] 🇸🇬 新加坡-2.41MB/s'
+  - '[9] 🇺🇲 美国-1.90MB/s'
+  - '[10] 中转节点-310.4KB/s'
 - name: 🍎 苹果服务
   type: select
   proxies:
@@ -96,7 +221,15 @@ proxy-groups:
   - 🔰 节点选择
   - ♻️ 自动选择
   - '[1] 🇺🇲 美国-1.93MB/s'
-  - '[2] 🇺🇲 美国-1.47MB/s'
+  - '[2] 🇺🇲 美国-212.7KB/s'
+  - '[3] 🇺🇲 美国-1.97MB/s'
+  - '[4] (已存活11天)中转节点-5.95MB/s'
+  - '[5] 未知国家-2.15MB/s'
+  - '[6] 未知国家-577.9KB/s'
+  - '[7] 未知国家-163.7KB/s'
+  - '[8] 🇸🇬 新加坡-2.41MB/s'
+  - '[9] 🇺🇲 美国-1.90MB/s'
+  - '[10] 中转节点-310.4KB/s'
 - name: 🎯 全球直连
   type: select
   proxies:
@@ -113,7 +246,15 @@ proxy-groups:
   - 🎯 全球直连
   - ♻️ 自动选择
   - '[1] 🇺🇲 美国-1.93MB/s'
-  - '[2] 🇺🇲 美国-1.47MB/s'
+  - '[2] 🇺🇲 美国-212.7KB/s'
+  - '[3] 🇺🇲 美国-1.97MB/s'
+  - '[4] (已存活11天)中转节点-5.95MB/s'
+  - '[5] 未知国家-2.15MB/s'
+  - '[6] 未知国家-577.9KB/s'
+  - '[7] 未知国家-163.7KB/s'
+  - '[8] 🇸🇬 新加坡-2.41MB/s'
+  - '[9] 🇺🇲 美国-1.90MB/s'
+  - '[10] 中转节点-310.4KB/s'
 rules:
 - IP-CIDR,192.168.0.0/16,🎯 全球直连,no-resolve
 - IP-CIDR,172.16.0.0/12,🎯 全球直连,no-resolve
