@@ -84,8 +84,8 @@ def craw(number:int,video_id:str,sleeptime:int):
                         continue
                     all_nodes.append(new_node)
                     count+=1
-                    # 去重
-                    all_nodes = list(set(all_nodes))
+                    # 去重list(set(all_nodes))
+                    all_nodes = sorted(set(all_nodes),key=all_nodes.index)
                     logging.info(f'==============================================================================当前节点池有: {len(all_nodes)}个节点')
                     logging.info(f'')
                     logging.info(f'')
@@ -170,8 +170,7 @@ if __name__ == '__main__':
     # raw_list = ['vmess://eyJ2IjoiMiIsInBzIjoi576O5Zu9LTUuNjNNQi9zKFlvdXR1YmU65LiN6Imv5p6XKSIsImFkZCI6IjIzLjIyNC4xMTAuMTg0IiwicG9ydCI6IjQ0MyIsInR5cGUiOiJub25lIiwiaWQiOiI0MTgwNDhhZi1hMjkzLTRiOTktOWIwYy05OGNhMzU4MGRkMjQiLCJhaWQiOiI2NCIsIm5ldCI6IndzIiwicGF0aCI6Ii9wYXRoLzA4MDcxMjM0MjMxMCIsImhvc3QiOiIiLCJ0bHMiOiJ0bHMifQ==','vmess://eyJ2IjoiMiIsInBzIjoi576O5Zu9LTQuMzlNQi9zKFlvdXR1YmU65LiN6Imv5p6XKSIsImFkZCI6IjE5OC4yLjE5Ni40OSIsInBvcnQiOiI1NDQzNCIsInR5cGUiOiJub25lIiwiaWQiOiI0MTgwNDhhZi1hMjkzLTRiOTktOWIwYy05OGNhMzU4MGRkMjQiLCJhaWQiOiI2NCIsIm5ldCI6InRjcCIsInBhdGgiOiIvIiwiaG9zdCI6IiIsInRscyI6IiJ9']
 
     # raw数据去重
-    raw_list = copy.deepcopy(list(set(raw_list)) )
-    
+    raw_list = copy.deepcopy(sorted(set(raw_list),key=raw_list.index))
     # base64加密
     encoder = base64.b64encode(('\n'.join(raw_list)).encode("utf-8"))
     # 解码为 utf-8 字符串
