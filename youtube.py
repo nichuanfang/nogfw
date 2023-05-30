@@ -40,10 +40,6 @@ logging.basicConfig(level=logging.INFO)
 def craw(number:int,video_id:str,sleeptime:int):
     # 未去重 打好标签的节点列表
     all_nodes = []
-    # 未去重 未打标签的节点列表缓存 用于去重
-    node_cache = []
-    # 去重后 打好标签的节点列表
-    result = []
     logging.info(f'===========================================================================开始获取节点信息...')
     count = 1
     # 默认130
@@ -77,27 +73,9 @@ def craw(number:int,video_id:str,sleeptime:int):
                 if subitem == '[server_local]' and sub_res_list[index+1] not in ['','[filter_local]']:
                     # 有效qx订阅节点
                     # 添加到目标节点中
-                    node = sub_res_list[index+1]
-                    new_node = None
-                    # 更改tag
-                    match = re.search(r'tag.+$',node)
-                    if match is not None:
-                        tag = match.group()
-                        new_tag = 'tag='+f'[{count}] '+tag.replace('(Youtube:不良林)','').split('=')[1]
-                        new_node = re.sub(r'tag.+$',new_tag,node)
-                    if new_node == None:
-                        continue
-                    all_nodes.append(new_node)
-                    count+=1
-                    # 节点去重
-                    for node_item in all_nodes:
-                        # vmess = 107.167.29.229:46321, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[4] 🇺🇲 美国-5.74MB/s
-                        node_cache_item = copy.deepcopy(node_item)
-                        # 去除自定义tag再判断
-                        node_cache_item =re.sub(r'tag.+$','',node_cache_item)
-                        if node_cache_item not in node_cache:
-                            result.append(node_item)
-                            node_cache.append(node_cache_item)
+                    all_nodes.append(sub_res_list[index+1])
+                    # 节点去重 利用字典去重
+                    all_nodes = list(dict.fromkeys(all_nodes))
                     logging.info(f'==============================================================================当前节点池有: {len(all_nodes)}个节点')
                     logging.info(f'')
                     logging.info(f'')
@@ -191,8 +169,22 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
 if __name__ == '__main__':
     # sys.argv[1]): CRAW_NUMBER 抓取次数
     all_nodes = craw(int(sys.argv[1]),'qmRkvKo-KbQ',10)
+    taged_nodes = []
+    # 节点更改tag
+    for index,node in enumerate(all_nodes):
+        new_node = None
+        # 更改tag
+        match = re.search(r'tag.+$',node)
+        if match is not None:
+            tag = match.group()
+            new_tag = 'tag='+f'[{index+1}] '+tag.replace('(Youtube:不良林)','').split('=')[1]
+            new_node = re.sub(r'tag.+$',new_tag,node)
+        if new_node == None:
+            continue
+        taged_nodes.append(new_node)
+    
     # 生成qx专用订阅
-    open('dist/qx-sub','w+').write('\n'.join(all_nodes))
+    open('dist/qx-sub','w+').write('\n'.join(taged_nodes))
 
     # 生成clash配置文件
     logging.info(f'=========================================================================生成clash配置文件...')
