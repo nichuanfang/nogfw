@@ -276,15 +276,18 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
         # 如果自动选择没用可用的节点 默认🎯 全球直连 防止clash客户端报错
         final_dict['proxy-groups'][1]['proxies'].append('🎯 全球直连')
     proxies = []
-    for p in final_dict['proxies']:
-        # TODO按照测速结果排序(降序) 
 
+    def sort_func(proxy):
         # 获取测速结果
-        match = re.search(r'\d+.\d+',p['name'])
+        match = re.search(r'\d+.\d+',proxy)
         if match is not None:
-            logging.info(f'节点:{p["name"]}测速结果:{match.group()}')
-        
+            return float(match.group())
+        return 0.0
+    
+    for p in final_dict['proxies']:
+        # 按照测速结果排序(降序) 
         proxies.append(p['name'])
+    proxies.sort(sort_func,reverse=True) # type: ignore
     proxy_groups:list = final_dict['proxy-groups']
     # clash策略组详细配置请查看 https://stash.wiki/proxy-protocols/proxy-groups
     # 添加自定义策略 高可用 Fallback
@@ -343,9 +346,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
                 rules.remove(rule_)
             except:
                 continue
-    logging.info(f'=============================================开始获取direct_rules...')
     direct_rules = direct_rulesets()
-    logging.info(f'direct_rules:{direct_rules}')
     for direct_rule in direct_rules:
         rules.append(direct_rule)
     return final_dict
@@ -354,7 +355,14 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
 if __name__ == '__main__':
     # sys.argv[1]): CRAW_NUMBER 抓取次数
     all_nodes = craw(int(sys.argv[1]),'qmRkvKo-KbQ',10)
-    # TODO对节点按照测速结果 从快到慢降速排序
+    # 对节点按照测速结果 从快到慢降速排序
+    def qx_sort(node):
+        # 获取测速结果
+        match = re.search(r'\d+.\d+',node)
+        if match is not None:
+            return float(match.group())
+        return 0.0
+    all_nodes.sort(key=qx_sort,reverse=True) # type: ignore
     # sorted_nodes = sort_nodes(all_nodes)
     taged_nodes = []
     # 节点更改tag
@@ -393,7 +401,7 @@ if __name__ == '__main__':
     try:
         qr = qrcode.QRCode(version=40
                     ,error_correction=constants.ERROR_CORRECT_M,
-                    box_size=20, border=4,
+                    box_size=15, border=4,
                     image_factory=None,
                     mask_pattern=None)
         # 自适应大小
