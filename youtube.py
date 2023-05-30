@@ -329,8 +329,12 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     # 针对性直连
     for index,rule in enumerate(rules):
         if rule.__contains__('全球直连'):
-            rules.remove(rule)
+            try:
+                rules.remove(rule)
+            except:
+                continue
     direct_rules = direct_rulesets()
+    logging.info(f'direct_rules:{direct_rules}')
     for direct_rule in direct_rules:
         rules.append(direct_rule)
     return final_dict
