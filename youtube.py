@@ -104,11 +104,9 @@ def handle_group_proxy(final_dict,count,index):
     final_dict['proxy-groups'][index]['proxies'][get_group_proxy_index(final_dict['proxy-groups'][index]['proxies'])] = f'[{count}] '+final_dict['proxy-groups'][index] \
                     ['proxies'][get_group_proxy_index(final_dict['proxy-groups'][index]['proxies'])].replace('(Youtube:不良林)','')
     
-def filter_proxies(tag:str,proxies:list):
+def filter_proxies(tag:str,proxies:list[str]):
     res = []
     for proxy in proxies:
-        if proxy == '🎯 全球直连':
-            continue
         if tag == 'google':
             # 使用延迟低的节点 
             if bool(re.search(r'香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|Korea|KR|kr',proxy)):
@@ -121,9 +119,9 @@ def filter_proxies(tag:str,proxies:list):
             # 使用美国节点 
             if bool(re.search(r'美国|United States|US|us',proxy)):
                 res.append(proxy)
-        # 如果没有就缺省🎯 全球直连
-        if len(res) == 0:
-            res.append('🎯 全球直连')
+    # 如果没有就缺省🎯 全球直连
+    if len(res) == 0:
+        res.append('🎯 全球直连')
     return res
 
 def google_github_openai_ruleset():
