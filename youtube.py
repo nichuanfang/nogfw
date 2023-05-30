@@ -20,9 +20,6 @@ from qrcode import constants
 # 图像识别
 import easyocr
 
-data = ['🔰 节点选择','♻️ 自动选择','🎯 全球直连','🇺🇲 美国-4.03MB/s(Youtube:不良林)']
-data[-1] = '[1] '+data[-1].replace('(Youtube:不良林)','')
-
 # windows下需要先下载模型文件  https://blog.csdn.net/Loliykon/article/details/114334699
 reader = easyocr.Reader(['ch_sim','en'],model_storage_directory='ocr_models')
 
@@ -42,6 +39,7 @@ raw_list = []
 logging.basicConfig(level=logging.INFO)
 def craw(number:int,video_id:str,sleeptime:int):
     all_nodes = []
+    result = []
     logging.info(f'===========================================================================开始获取节点信息...')
     count = 1
     # 默认130
@@ -87,8 +85,16 @@ def craw(number:int,video_id:str,sleeptime:int):
                         continue
                     all_nodes.append(new_node)
                     count+=1
-                    # 去重list(set(all_nodes))
-                    all_nodes = sorted(set(all_nodes),key=all_nodes.index)
+                    # 节点去重
+                    node_cache = []
+                    for node_item in all_nodes:
+                        # vmess = 107.167.29.229:46321, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[4] 🇺🇲 美国-5.74MB/s
+                        node_cache_item = copy.deepcopy(node_item)
+                        # 去除自定义tag再判断
+                        node_cache_item =re.sub(r'tag.+$','',node_cache_item)
+                        if node_cache_item not in node_cache:
+                            result.append(node_item)
+                            node_cache.append(node_cache_item)
                     logging.info(f'==============================================================================当前节点池有: {len(all_nodes)}个节点')
                     logging.info(f'')
                     logging.info(f'')
