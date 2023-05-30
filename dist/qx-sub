@@ -1,2 +1,2 @@
-vmess = 23.224.173.104:57183, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[1] 🇺🇲 美国-1.42MB/s
-vmess = 142.4.104.195:56002, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[2] 🇺🇲 美国-1.15MB/s
+shadowsocks = 14.29.124.168:24003, method=aes-128-cfb, password=QazEdcTgb159@$*, tag=[1] 中转节点-296.2KB/s
+trojan = fscjp.fscloud123456789.com:443, password=3d927416-3e74-45ce-ac16-df69c33c725a, over-tls=true, tls-host=, tls-verification=false, tag=[2] 🇯🇵 日本-254.1KB/s
