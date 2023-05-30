@@ -267,7 +267,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
         final_dict['proxy-groups'][1]['proxies'].append('🎯 全球直连')
     proxies = []
     for p in final_dict['proxies']:
-        # 按照测速结果排序 
+        # 按照测速结果排序(降序)
 
         # 获取测速结果
         match = re.search(r'\d+.\d+',p['name'])
@@ -314,6 +314,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
 
     rules:list[str] = final_dict['rules']
     # 添加自定义规则 在第一个`国外媒体`之前 添加自定义规则
+    logging.info(f'======================添加自定义规则: Google Github OpenAI==========================================')
     flag = 0
     for index,rule in enumerate(rules):
         if rule.__contains__('国外媒体'):
@@ -324,6 +325,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     for rule_index,ruleset in enumerate(rulesets):
         rules.insert(flag+rule_index,ruleset)
 
+    logging.info(f'======================添加自定义规则: 🎯 全球直连==========================================')
     # 针对性直连
     for index,rule in enumerate(rules):
         if rule.__contains__('全球直连'):
