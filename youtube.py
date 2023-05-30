@@ -113,7 +113,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
                 # 添加节点
                 proxy:dict= copy.deepcopy(data_dict['proxies'][0])
 
-                proxy['name'] = ''.join([f'[{index}] ', proxy['name'].replace('(Youtube:不良林)','')])
+                proxy['name'] = ''.join([f'[{index+1}] ', proxy['name'].replace('(Youtube:不良林)','')])
 
                 final_dict['proxies'].append(proxy)
 
