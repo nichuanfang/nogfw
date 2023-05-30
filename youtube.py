@@ -279,7 +279,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
 
     def sort_func(proxy):
         # 获取测速结果
-        match = re.search(r'\d+.\d+',proxy)
+        match = re.search(r'\d+.\d+',proxy.split('-')[-1])
         if match is not None:
             return float(match.group())
         return 0.0
@@ -287,7 +287,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     for p in final_dict['proxies']:
         # 按照测速结果排序(降序) 
         proxies.append(p['name'])
-    proxies.sort(sort_func,reverse=True) # type: ignore
+    proxies.sort(key=sort_func,reverse=True) # type: ignore
     proxy_groups:list = final_dict['proxy-groups']
     # clash策略组详细配置请查看 https://stash.wiki/proxy-protocols/proxy-groups
     # 添加自定义策略 高可用 Fallback
@@ -358,7 +358,7 @@ if __name__ == '__main__':
     # 对节点按照测速结果 从快到慢降速排序
     def qx_sort(node):
         # 获取测速结果
-        match = re.search(r'\d+.\d+',node)
+        match = re.search(r'\d+.\d+',node.split('-')[-1])
         if match is not None:
             return float(match.group())
         return 0.0
