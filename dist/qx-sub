@@ -1,6 +1,10 @@
-vmess = 173.82.51.118:57912, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[45]🇺🇲 美国-3.73MB/s
-vmess = 107.167.29.229:46321, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[45]🇺🇲 美国-5.59MB/s
-shadowsocks = 216.52.183.243:80, method=aes-128-gcm, password=83XvX4Vo%*3a, obfs=http, tag=[45]🇺🇲 美国-1.59MB/s
-shadowsocks = free.themars.top:32102, method=chacha20-ietf-poly1305, password=b89b39c2-dc8d-4595-a4c5-54b4fbab3fc2, tag=[45]中转节点-6.51MB/s
-shadowsocks = 103.177.33.180:443, method=chacha20-ietf-poly1305, password=9e44e9ffe5c2, obfs=wss, obfs-host=wtw1000mline004.chilines.club, obfs-uri=/isaifqaagpi, tag=[45]🇨🇳 台湾-14.31MB/s
-vmess = 83.142.225.20:49920, method=chacha20-ietf-poly1305, password=5267ca71-97e6-44c8-8fb5-9fe4afe0954e, aead=false, tag=[45]🇬🇧 英国-3.29MB/s
+vmess = 107.167.12.27:41702, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[4] 🇺🇲 美国-5.58MB/s
+vmess = 202.79.171.155:443, method=chacha20-ietf-poly1305, password=7f37da61-c734-41b4-a8c2-eccfd6ca48f0, aead=false, obfs=wss, obfs-host=, obfs-uri=/path/080712342310, tag=[9] 🇸🇬 新加坡-504.8KB/s
+shadowsocks = nf8.boom.skin:18000, method=aes-256-cfb, password=Uk92CS, ssr-protocol=auth_aes128_sha1, ssr-protocol-param=23957:nZCp9Y, obfs=http_simple, obfs-host=download.windowsupdate.com, tag=[1] (已存活10天)中转节点-13.49MB/s
+trojan = us1.microsoft-orgwly.vip:80, password=324f12c1-9520-4f7f-b80b-048c8ce2b5f7, over-tls=true, tls-host=tls.microsoft-orgwly.vip, tls-verification=false, tag=[7] 🇺🇲 美国-5.73MB/s
+vmess = 156.227.6.7:43692, method=chacha20-ietf-poly1305, password=d3b43b85-1b50-4cb5-9738-8d65bae2c95d, aead=true, tag=[10] 🇭🇰 香港-312.3KB/s
+shadowsocks = m3u8.cm.xfltd.cc:27759, method=chacha20-ietf-poly1305, password=0bb8a29d-81fb-49fa-9a16-c6d3135b9870, tag=[6] 中转节点-16.43MB/s
+shadowsocks = m3u8.cm.xfltd.cc:27759, method=chacha20-ietf-poly1305, password=0bb8a29d-81fb-49fa-9a16-c6d3135b9870, tag=[5] 中转节点-16.43MB/s
+vmess = 107.167.12.27:41702, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[3] 🇺🇲 美国-5.58MB/s
+trojan = fschk.fscloud123456789.com:443, password=858ad8e5-1566-46cd-a8d8-30d20a6a1b19, over-tls=true, tls-host=, tls-verification=false, tag=[2] 🇯🇵 日本-8.90MB/s
+trojan = us1.microsoft-orgwly.vip:80, password=324f12c1-9520-4f7f-b80b-048c8ce2b5f7, over-tls=true, tls-host=tls.microsoft-orgwly.vip, tls-verification=false, tag=[8] 🇺🇲 美国-5.73MB/s

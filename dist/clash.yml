@@ -5,89 +5,96 @@ mode: Rule
 log-level: info
 external-controller: 127.0.0.1:9090
 proxies:
-- name: 🇺🇲 美国-1.59MB/s(Youtube:不良林)
-  server: 216.52.183.243
-  port: 80
-  type: ss
-  cipher: aes-128-gcm
-  password: 83XvX4Vo%*3a
-  plugin: obfs
-  plugin-opts:
-    mode: http
-    host: ''
-- name: '[3] 🇺🇲 美国-5.59MB/s'
-  server: 107.167.29.229
-  port: 46321
-  type: vmess
-  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-  alterId: 64
-  cipher: auto
-  tls: false
-- name: '[4] 🇬🇧 英国-3.29MB/s'
-  server: 83.142.225.20
-  port: 49920
-  type: vmess
-  uuid: 5267ca71-97e6-44c8-8fb5-9fe4afe0954e
-  alterId: 64
-  cipher: auto
-  tls: false
-- name: '[5] 🇺🇲 美国-3.73MB/s'
-  server: 173.82.51.118
-  port: 57912
-  type: vmess
-  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-  alterId: 64
-  cipher: auto
-  tls: false
-- name: '[6] 中转节点-6.51MB/s'
-  server: free.themars.top
-  port: 32102
-  type: ss
-  cipher: chacha20-ietf-poly1305
-  password: b89b39c2-dc8d-4595-a4c5-54b4fbab3fc2
-- name: '[7] 🇨🇳 台湾-14.31MB/s'
-  server: 103.177.33.180
+- name: 🇯🇵 日本-8.90MB/s(Youtube:不良林)
+  server: fschk.fscloud123456789.com
   port: 443
+  type: trojan
+  password: 858ad8e5-1566-46cd-a8d8-30d20a6a1b19
+  skip-cert-verify: true
+- name: '[2] 🇺🇲 美国-5.58MB/s'
+  server: 107.167.12.27
+  port: 41702
+  type: vmess
+  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+  alterId: 64
+  cipher: auto
+  tls: false
+- name: '[3] 中转节点-16.43MB/s'
+  server: m3u8.cm.xfltd.cc
+  port: 27759
   type: ss
   cipher: chacha20-ietf-poly1305
-  password: 9e44e9ffe5c2
-  plugin: v2ray-plugin
-  plugin-opts:
-    mode: websocket
-    host: wtw1000mline004.chilines.club
-    path: /isaifqaagpi
-    tls: true
-    mux: true
+  password: 0bb8a29d-81fb-49fa-9a16-c6d3135b9870
+- name: '[4] 🇭🇰 香港-312.3KB/s'
+  server: 156.227.6.7
+  port: 43692
+  type: vmess
+  uuid: d3b43b85-1b50-4cb5-9738-8d65bae2c95d
+  alterId: 0
+  cipher: auto
+  tls: false
+- name: '[5] 🇺🇲 美国-5.73MB/s'
+  server: us1.microsoft-orgwly.vip
+  port: 80
+  type: trojan
+  password: 324f12c1-9520-4f7f-b80b-048c8ce2b5f7
+  sni: tls.microsoft-orgwly.vip
+  skip-cert-verify: true
+- name: '[6] (已存活10天)中转节点-13.49MB/s'
+  server: nf8.boom.skin
+  port: 18000
+  type: ssr
+  cipher: aes-256-cfb
+  password: Uk92CS
+  protocol: auth_aes128_sha1
+  obfs: http_simple
+  protocol-param: 23957:nZCp9Y
+  obfs-param: download.windowsupdate.com
+- name: '[7] 🇸🇬 新加坡-504.8KB/s'
+  server: 202.79.171.155
+  port: 443
+  type: vmess
+  uuid: 7f37da61-c734-41b4-a8c2-eccfd6ca48f0
+  alterId: 64
+  cipher: auto
+  tls: true
+  network: ws
+  ws-opts:
+    path: /path/080712342310
 proxy-groups:
 - name: 🔰 节点选择
   type: select
   proxies:
   - ♻️ 自动选择
   - 🎯 全球直连
-  - 🇺🇲 美国-1.59MB/s(Youtube:不良林)
-  - '[3] 🇺🇲 美国-5.59MB/s'
-  - '[4] 🇬🇧 英国-3.29MB/s'
-  - '[5] 🇺🇲 美国-3.73MB/s'
-  - '[6] 中转节点-6.51MB/s'
-  - '[7] 🇨🇳 台湾-14.31MB/s'
+  - 🇯🇵 日本-8.90MB/s(Youtube:不良林)
+  - '[2] 🇺🇲 美国-5.58MB/s'
+  - '[3] 中转节点-16.43MB/s'
+  - '[4] 🇭🇰 香港-312.3KB/s'
+  - '[5] 🇺🇲 美国-5.73MB/s'
+  - '[6] (已存活10天)中转节点-13.49MB/s'
+  - '[7] 🇸🇬 新加坡-504.8KB/s'
 - name: ♻️ 自动选择
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 1800
   proxies:
-  - '[7] 🇨🇳 台湾-14.31MB/s'
+  - '[1] 🇯🇵 日本-8.90MB/s'
+  - '[4] 🇭🇰 香港-312.3KB/s'
+  - '[7] 🇸🇬 新加坡-504.8KB/s'
 - name: 🌍 国外媒体
   type: select
   proxies:
   - 🔰 节点选择
   - ♻️ 自动选择
   - 🎯 全球直连
-  - 🇺🇲 美国-1.59MB/s(Youtube:不良林)
-  - '[3] 🇺🇲 美国-5.59MB/s'
-  - '[4] 🇬🇧 英国-3.29MB/s'
-  - '[5] 🇺🇲 美国-3.73MB/s'
-  - '[6] 中转节点-6.51MB/s'
-  - '[7] 🇨🇳 台湾-14.31MB/s'
+  - 🇯🇵 日本-8.90MB/s(Youtube:不良林)
+  - '[2] 🇺🇲 美国-5.58MB/s'
+  - '[3] 中转节点-16.43MB/s'
+  - '[4] 🇭🇰 香港-312.3KB/s'
+  - '[5] 🇺🇲 美国-5.73MB/s'
+  - '[6] (已存活10天)中转节点-13.49MB/s'
+  - '[7] 🇸🇬 新加坡-504.8KB/s'
 - name: 🌏 国内媒体
   type: select
   proxies:
@@ -98,35 +105,38 @@ proxy-groups:
   proxies:
   - 🎯 全球直连
   - 🔰 节点选择
-  - 🇺🇲 美国-1.59MB/s(Youtube:不良林)
-  - '[3] 🇺🇲 美国-5.59MB/s'
-  - '[4] 🇬🇧 英国-3.29MB/s'
-  - '[5] 🇺🇲 美国-3.73MB/s'
-  - '[6] 中转节点-6.51MB/s'
-  - '[7] 🇨🇳 台湾-14.31MB/s'
+  - 🇯🇵 日本-8.90MB/s(Youtube:不良林)
+  - '[2] 🇺🇲 美国-5.58MB/s'
+  - '[3] 中转节点-16.43MB/s'
+  - '[4] 🇭🇰 香港-312.3KB/s'
+  - '[5] 🇺🇲 美国-5.73MB/s'
+  - '[6] (已存活10天)中转节点-13.49MB/s'
+  - '[7] 🇸🇬 新加坡-504.8KB/s'
 - name: 📲 电报信息
   type: select
   proxies:
   - 🔰 节点选择
-  - 🇺🇲 美国-1.59MB/s(Youtube:不良林)
+  - 🇯🇵 日本-8.90MB/s(Youtube:不良林)
   - 🎯 全球直连
-  - '[3] 🇺🇲 美国-5.59MB/s'
-  - '[4] 🇬🇧 英国-3.29MB/s'
-  - '[5] 🇺🇲 美国-3.73MB/s'
-  - '[6] 中转节点-6.51MB/s'
-  - '[7] 🇨🇳 台湾-14.31MB/s'
+  - '[2] 🇺🇲 美国-5.58MB/s'
+  - '[3] 中转节点-16.43MB/s'
+  - '[4] 🇭🇰 香港-312.3KB/s'
+  - '[5] 🇺🇲 美国-5.73MB/s'
+  - '[6] (已存活10天)中转节点-13.49MB/s'
+  - '[7] 🇸🇬 新加坡-504.8KB/s'
 - name: 🍎 苹果服务
   type: select
   proxies:
   - 🎯 全球直连
   - 🔰 节点选择
   - ♻️ 自动选择
-  - 🇺🇲 美国-1.59MB/s(Youtube:不良林)
-  - '[3] 🇺🇲 美国-5.59MB/s'
-  - '[4] 🇬🇧 英国-3.29MB/s'
-  - '[5] 🇺🇲 美国-3.73MB/s'
-  - '[6] 中转节点-6.51MB/s'
-  - '[7] 🇨🇳 台湾-14.31MB/s'
+  - 🇯🇵 日本-8.90MB/s(Youtube:不良林)
+  - '[2] 🇺🇲 美国-5.58MB/s'
+  - '[3] 中转节点-16.43MB/s'
+  - '[4] 🇭🇰 香港-312.3KB/s'
+  - '[5] 🇺🇲 美国-5.73MB/s'
+  - '[6] (已存活10天)中转节点-13.49MB/s'
+  - '[7] 🇸🇬 新加坡-504.8KB/s'
 - name: 🎯 全球直连
   type: select
   proxies:
@@ -142,12 +152,13 @@ proxy-groups:
   - 🔰 节点选择
   - 🎯 全球直连
   - ♻️ 自动选择
-  - 🇺🇲 美国-1.59MB/s(Youtube:不良林)
-  - '[3] 🇺🇲 美国-5.59MB/s'
-  - '[4] 🇬🇧 英国-3.29MB/s'
-  - '[5] 🇺🇲 美国-3.73MB/s'
-  - '[6] 中转节点-6.51MB/s'
-  - '[7] 🇨🇳 台湾-14.31MB/s'
+  - 🇯🇵 日本-8.90MB/s(Youtube:不良林)
+  - '[2] 🇺🇲 美国-5.58MB/s'
+  - '[3] 中转节点-16.43MB/s'
+  - '[4] 🇭🇰 香港-312.3KB/s'
+  - '[5] 🇺🇲 美国-5.73MB/s'
+  - '[6] (已存活10天)中转节点-13.49MB/s'
+  - '[7] 🇸🇬 新加坡-504.8KB/s'
 rules:
 - DOMAIN-SUFFIX,local,🎯 全球直连
 - IP-CIDR,192.168.0.0/16,🎯 全球直连,no-resolve
