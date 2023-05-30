@@ -1,3 +1,1 @@
-vmess = 173.245.58.140:8080, method=chacha20-ietf-poly1305, password=9588cb0f-5102-4e66-d5fb-f96cba9acdda, aead=true, obfs=ws, obfs-host=tou.vtcss.top, obfs-uri=/qazxcv03, tag=[1] 🇺🇲 美国-2.21MB/s
-vmess = 104.31.16.62:443, method=chacha20-ietf-poly1305, password=9aa6b5ad-c0fc-47f4-a837-f72179d7b662, aead=true, obfs=wss, obfs-host=channel3.unlimiteddev.tk, obfs-uri=/Lsv4s7nS0ErewnEN, tag=[2] 🇺🇲 美国-2.14MB/s
-shadowsocks = 43.207.97.107:443, method=aes-256-cfb, password=amazonskr05, tag=[3] 🇯🇵 日本-266.7KB/s
+trojan = jp10.microsoft-orgwly.vip:80, password=c00e46fc-8caa-4de0-a0a3-58a0f3a453e2, over-tls=true, tls-host=, tls-verification=false, tag=[1] 🇯🇵 日本-1.58MB/s
