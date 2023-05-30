@@ -123,7 +123,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
                 else:
                     final_dict['proxy-groups'][1]['proxies'] = [f'[{count}] '+ final_dict['proxy-groups'][1]['proxies'][0].replace('(Youtube:不良林)','')]
                 proxy:dict= copy.deepcopy(data_dict['proxies'][0])
-                data_dict['proxies'][0]['name'] = f'[{count}] ' + proxy['name'].replace('(Youtube:不良林)','')
+                final_dict['proxies'][0]['name'] = f'[{count}] ' + proxy['name'].replace('(Youtube:不良林)','')
                 count+=1
             else:
                 # 添加节点
