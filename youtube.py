@@ -87,7 +87,7 @@ def craw(number:int,video_id:str,sleeptime:int):
 
 
 def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
-    for raw in raw_list:
+    for index,raw in enumerate(raw_list):
         logging.info(f'handle raw:{raw}======================================')
         # sub_res = request.urlopen(f'https://sub.xeton.dev/sub?target=clash&url={parse.quote(raw)}&insert=false')
         sub_res = requests.get(f'https://sub.xeton.dev/sub?target=clash&url={parse.quote(raw)}&insert=false')
@@ -107,10 +107,13 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
                 # 剔除低延迟节点
                 if not bool(re.search(r'香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|Korea|KR|kr',final_dict['proxy-groups'][1]['proxies'][0])):
                     final_dict['proxy-groups'][1]['proxies'] = []
+                final_dict['proxy-groups'][1]['proxies'] = [f'[{index+1}] '+ final_dict['proxy-groups'][1]['proxies'][0].replace('(Youtube:不良林)','')]
             else:
                 # 添加节点
                 proxy:dict= copy.deepcopy(data_dict['proxies'][0])
-                
+
+                proxy['name'] = ''.join([f'[{index}] ', final_dict[proxy['name']].replace('(Youtube:不良林)','')])
+
                 final_dict['proxies'].append(proxy)
 
                 # 分组配置
