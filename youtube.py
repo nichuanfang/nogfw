@@ -107,7 +107,8 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
                 # 剔除低延迟节点
                 if not bool(re.search(r'香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|Korea|KR|kr',final_dict['proxy-groups'][1]['proxies'][0])):
                     final_dict['proxy-groups'][1]['proxies'] = []
-                final_dict['proxy-groups'][1]['proxies'] = [f'[{index+1}] '+ final_dict['proxy-groups'][1]['proxies'][0].replace('(Youtube:不良林)','')]
+                else:
+                    final_dict['proxy-groups'][1]['proxies'] = [f'[{index+1}] '+ final_dict['proxy-groups'][1]['proxies'][0].replace('(Youtube:不良林)','')]
             else:
                 # 添加节点
                 proxy:dict= copy.deepcopy(data_dict['proxies'][0])
