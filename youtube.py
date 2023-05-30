@@ -163,6 +163,9 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
                 count+=1
         except Exception as e:
             logging.error(f'=========================================raw:{raw}转换为clash配置文件失败!: {e}')
+    if len(final_dict['proxy-groups'][1]['proxies'])==0:
+        # 如果自动选择没用可用的节点 默认🎯 全球直连 防止clash客户端报错
+        final_dict['proxy-groups'][1]['proxies'].append('🎯 全球直连')
     return final_dict
 
 
