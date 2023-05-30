@@ -103,6 +103,58 @@ def get_group_proxy_index(proxies:list):
 def handle_group_proxy(final_dict,count,index):
     final_dict['proxy-groups'][index]['proxies'][get_group_proxy_index(final_dict['proxy-groups'][index]['proxies'])] = f'[{count}] '+final_dict['proxy-groups'][index] \
                     ['proxies'][get_group_proxy_index(final_dict['proxy-groups'][index]['proxies'])].replace('(Youtube:不良林)','')
+    
+def filter_proxies(tag:str,proxies:list):
+    res = []
+    for proxy in proxies:
+        if tag == 'google':
+            # 使用延迟低的节点 
+            if bool(re.search(r'香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|Korea|KR|kr',proxy)):
+                res.append(proxy)
+        elif tag == 'github':
+            # 使用延迟低的节点 
+            if bool(re.search(r'香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|Korea|KR|kr',proxy)):
+                res.append(proxy)
+        elif tag == 'openai':
+            # 使用美国节点 
+            if bool(re.search(r'美国|United States|US|us',proxy)):
+                res.append(proxy)
+        # 如果没有就缺省🎯 全球直连
+        if len(res) == 0:
+            res.append('🎯 全球直连')
+    return res
+
+def google_github_openai_ruleset():
+    google_ruleset = requests.get('https://raw.githubusercontent.com/sve1r/Rules-For-Quantumult-X/develop/Rules/Services/Google.list')
+    github_ruleset = requests.get('https://raw.githubusercontent.com/sve1r/Rules-For-Quantumult-X/develop/Rules/Services/Github.list')
+    openai_ruleset = requests.get('https://raw.githubusercontent.com/sve1r/Rules-For-Quantumult-X/develop/Rules/Services/OpenAI.list')
+
+    google_rules = google_ruleset.text.split('\n')
+    github_rules = github_ruleset.text.split('\n')
+    openai_rules = openai_ruleset.text.split('\n')
+    all_rules = google_rules+github_rules+openai_rules
+
+    final_rulesets = []
+    for all_rule in all_rules:
+        new_rule = all_rule.strip()
+        if new_rule == '' or new_rule.startswith('#'):
+            continue
+        rule_list = new_rule.split(',')
+        first = rule_list[0]
+        second = rule_list[1]
+        third = rule_list[2]
+        if first == 'host' or first == 'HOST':
+            if third == 'Google Domestic':
+                final_rulesets.append(','.join(['DOMAIN',second,'🎯 全球直连']))
+            else:
+                final_rulesets.append(','.join(['DOMAIN',second,third]))
+        elif first == 'host-suffix' or first == 'HOST-SUFFIX':
+            final_rulesets.append(','.join(['DOMAIN-SUFFIX',second,third]))
+        elif first == 'host-keyword' or first == 'HOST-KEYWORD':
+            final_rulesets.append(','.join(['DOMAIN-KEYWORD',second,third]))
+        elif first == 'ip-cidr' or first == 'IP-CIDR':
+            final_rulesets.append(','.join(['IP-CIDR',second,third]))
+    return final_rulesets
 
 def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     count = 1
@@ -122,7 +174,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
                 final_dict['socks-port'] = 10808 # type: ignore
                 final_dict['port'] = 10809 # type: ignore
             #   #自动选择 多久检测一次速度 自动切换 单位s(秒)
-                final_dict['proxy-groups'][1]['interval'] = 1800 # type: ignore
+                final_dict['proxy-groups'][1]['interval'] = 600 # type: ignore
                 # 剔除低延迟节点
                 if not bool(re.search(r'香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|Korea|KR|kr',final_dict['proxy-groups'][1]['proxies'][0])):
                     final_dict['proxy-groups'][1]['proxies'] = []
@@ -176,6 +228,48 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     if len(final_dict['proxy-groups'][1]['proxies'])==0:
         # 如果自动选择没用可用的节点 默认🎯 全球直连 防止clash客户端报错
         final_dict['proxy-groups'][1]['proxies'].append('🎯 全球直连')
+    proxies = []
+    for p in final_dict['proxies']:
+        proxies.append(p['name'])
+    proxy_groups:list = final_dict['proxy-groups']
+    # clash策略组详细配置请查看 https://stash.wiki/proxy-protocols/proxy-groups
+    # 添加自定义策略 高可用 Fallback
+    proxy_groups.insert(2,{
+        'name': '🤔 高可用',
+        'type': 'fallback',
+        'proxies': proxies
+    })
+    final_dict['proxy-groups'][0]['proxies'].insert(1,'🤔 高可用')
+    # 添加自定义策略  Google
+    proxy_groups.insert(3,{
+        'name': 'Google',
+        'type': 'fallback',
+        'proxies': filter_proxies('google',proxies)
+    })
+    # 添加自定义策略  Github
+    proxy_groups.insert(4,{
+        'name': 'Github',
+        'type': 'fallback',
+        'proxies': filter_proxies('github',proxies)
+    })
+
+    # 添加自定义策略  OpenAI
+    proxy_groups.insert(5,{
+        'name': 'OpenAI',
+        'type': 'fallback',
+        'proxies': filter_proxies('openai',proxies)
+    })
+
+    rules:list[str] = final_dict['rules']
+    # 添加自定义规则 在第一个`国外媒体`之前 添加自定义规则
+    flag = 0
+    for index,rule in enumerate(rules):
+        if rule.__contains__('国外媒体'):
+            # 找到插入位置
+            flag = index
+    rulesets = google_github_openai_ruleset()
+    for rule_index,ruleset in enumerate(rulesets):
+        rules.insert(flag+rule_index,ruleset)
     return final_dict
 
 
