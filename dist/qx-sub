@@ -1,1 +1,2 @@
-trojan = jp10.microsoft-orgwly.vip:80, password=c00e46fc-8caa-4de0-a0a3-58a0f3a453e2, over-tls=true, tls-host=, tls-verification=false, tag=[1] 🇯🇵 日本-1.58MB/s
+vmess = 172.247.148.85:53302, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[1] 🇺🇲 美国-1.93MB/s
+vmess = 23.225.33.171:56662, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[2] 🇺🇲 美国-1.47MB/s

@@ -5,38 +5,22 @@ mode: Rule
 log-level: info
 external-controller: 127.0.0.1:9090
 proxies:
-- name: '[1] 🇺🇲 美国-2.21MB/s'
-  server: 173.245.58.140
-  port: 8080
+- name: '[1] 🇺🇲 美国-1.93MB/s'
+  server: 172.247.148.85
+  port: 53302
   type: vmess
-  uuid: 9588cb0f-5102-4e66-d5fb-f96cba9acdda
-  alterId: 0
+  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+  alterId: 64
   cipher: auto
   tls: false
-  network: ws
-  ws-opts:
-    path: /qazxcv03
-    headers:
-      Host: tou.vtcss.top
-- name: '[2] 🇺🇲 美国-2.14MB/s'
-  server: 104.31.16.62
-  port: 443
+- name: '[2] 🇺🇲 美国-1.47MB/s'
+  server: 23.225.33.171
+  port: 56662
   type: vmess
-  uuid: 9aa6b5ad-c0fc-47f4-a837-f72179d7b662
-  alterId: 0
+  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+  alterId: 64
   cipher: auto
-  tls: true
-  network: ws
-  ws-opts:
-    path: /Lsv4s7nS0ErewnEN
-    headers:
-      Host: channel3.unlimiteddev.tk
-- name: '[3] 🇯🇵 日本-266.7KB/s'
-  server: 43.207.97.107
-  port: 443
-  type: ss
-  cipher: aes-256-cfb
-  password: amazonskr05
+  tls: false
 proxy-groups:
 - name: 🔰 节点选择
   type: select
@@ -44,51 +28,48 @@ proxy-groups:
   - ♻️ 自动选择
   - 🤔 高可用
   - 🎯 全球直连
-  - '[1] 🇺🇲 美国-2.21MB/s'
-  - '[2] 🇺🇲 美国-2.14MB/s'
-  - '[3] 🇯🇵 日本-266.7KB/s'
+  - '[1] 🇺🇲 美国-1.93MB/s'
+  - '[2] 🇺🇲 美国-1.47MB/s'
 - name: ♻️ 自动选择
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 600
   proxies:
-  - '[3] 🇯🇵 日本-266.7KB/s'
+  - 🎯 全球直连
 - name: 🤔 高可用
   type: fallback
   url: http://www.gstatic.com/generate_204
   interval: 43200
   proxies:
-  - '[1] 🇺🇲 美国-2.21MB/s'
-  - '[2] 🇺🇲 美国-2.14MB/s'
-  - '[3] 🇯🇵 日本-266.7KB/s'
+  - '[1] 🇺🇲 美国-1.93MB/s'
+  - '[2] 🇺🇲 美国-1.47MB/s'
 - name: Google
   type: fallback
   url: http://www.gstatic.com/generate_204
   interval: 43200
   proxies:
-  - '[3] 🇯🇵 日本-266.7KB/s'
+  - 🎯 全球直连
 - name: Github
   type: fallback
   url: http://www.gstatic.com/generate_204
   interval: 43200
   proxies:
-  - '[3] 🇯🇵 日本-266.7KB/s'
+  - 🎯 全球直连
 - name: OpenAI
   type: fallback
   url: http://www.gstatic.com/generate_204
   interval: 43200
   proxies:
-  - '[1] 🇺🇲 美国-2.21MB/s'
-  - '[2] 🇺🇲 美国-2.14MB/s'
+  - '[1] 🇺🇲 美国-1.93MB/s'
+  - '[2] 🇺🇲 美国-1.47MB/s'
 - name: 🌍 国外媒体
   type: select
   proxies:
   - 🔰 节点选择
   - ♻️ 自动选择
   - 🎯 全球直连
-  - '[1] 🇺🇲 美国-2.21MB/s'
-  - '[2] 🇺🇲 美国-2.14MB/s'
-  - '[3] 🇯🇵 日本-266.7KB/s'
+  - '[1] 🇺🇲 美国-1.93MB/s'
+  - '[2] 🇺🇲 美国-1.47MB/s'
 - name: 🌏 国内媒体
   type: select
   proxies:
@@ -99,26 +80,23 @@ proxy-groups:
   proxies:
   - 🎯 全球直连
   - 🔰 节点选择
-  - '[1] 🇺🇲 美国-2.21MB/s'
-  - '[2] 🇺🇲 美国-2.14MB/s'
-  - '[3] 🇯🇵 日本-266.7KB/s'
+  - '[1] 🇺🇲 美国-1.93MB/s'
+  - '[2] 🇺🇲 美国-1.47MB/s'
 - name: 📲 电报信息
   type: select
   proxies:
   - 🔰 节点选择
-  - '[1] 🇺🇲 美国-2.21MB/s'
+  - '[1] 🇺🇲 美国-1.93MB/s'
   - 🎯 全球直连
-  - '[2] 🇺🇲 美国-2.14MB/s'
-  - '[3] 🇯🇵 日本-266.7KB/s'
+  - '[2] 🇺🇲 美国-1.47MB/s'
 - name: 🍎 苹果服务
   type: select
   proxies:
   - 🎯 全球直连
   - 🔰 节点选择
   - ♻️ 自动选择
-  - '[1] 🇺🇲 美国-2.21MB/s'
-  - '[2] 🇺🇲 美国-2.14MB/s'
-  - '[3] 🇯🇵 日本-266.7KB/s'
+  - '[1] 🇺🇲 美国-1.93MB/s'
+  - '[2] 🇺🇲 美国-1.47MB/s'
 - name: 🎯 全球直连
   type: select
   proxies:
@@ -134,9 +112,8 @@ proxy-groups:
   - 🔰 节点选择
   - 🎯 全球直连
   - ♻️ 自动选择
-  - '[1] 🇺🇲 美国-2.21MB/s'
-  - '[2] 🇺🇲 美国-2.14MB/s'
-  - '[3] 🇯🇵 日本-266.7KB/s'
+  - '[1] 🇺🇲 美国-1.93MB/s'
+  - '[2] 🇺🇲 美国-1.47MB/s'
 rules:
 - IP-CIDR,192.168.0.0/16,🎯 全球直连,no-resolve
 - IP-CIDR,172.16.0.0/12,🎯 全球直连,no-resolve
