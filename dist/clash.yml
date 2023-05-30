@@ -5,13 +5,39 @@ mode: Rule
 log-level: info
 external-controller: 127.0.0.1:9090
 proxies:
-- name: '[1] 🇮🇳 印度-844.2KB/s'
+- name: '[1] 🇮🇳 印度-3.03MB/s'
   server: 152.70.74.66
   port: 443
   type: trojan
   password: d906afe5-7c3c-4ddc-aaa4-61c154a82e5e
   skip-cert-verify: true
-- name: '[2] 🇺🇲 美国-2.70MB/s'
+- name: '[2] 🇺🇲 美国-4.58MB/s'
+  server: 108.186.116.174
+  port: 55005
+  type: vmess
+  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+  alterId: 64
+  cipher: auto
+  tls: false
+- name: '[3] 🇰🇷 韩国-331.7KB/s'
+  server: 141.164.43.153
+  port: 80
+  type: vmess
+  uuid: 8afbd60f-aa52-49e6-8f37-9aca0b90f2c8
+  alterId: 0
+  cipher: auto
+  tls: false
+  network: ws
+  ws-opts:
+    path: /zingfast.vn
+- name: '[4] 🇺🇲 美国-3.48MB/s'
+  server: 163.123.192.156
+  port: 443
+  type: trojan
+  password: 1113a9fa-c6ee-4929-ae93-d29d024b1728
+  sni: download.xn--mes358a9urctx.com
+  skip-cert-verify: true
+- name: '[5] 🇺🇲 美国-4.22MB/s'
   server: 140.99.59.253
   port: 55512
   type: vmess
@@ -19,539 +45,72 @@ proxies:
   alterId: 64
   cipher: auto
   tls: false
-- name: '[3] 🇸🇬 新加坡-2.32MB/s'
-  server: 122.248.217.131
-  port: 443
-  type: ss
-  cipher: aes-256-cfb
-  password: amazonskr05
-- name: '[4] 🇺🇲 美国-3.38MB/s'
-  server: 163.123.192.156
-  port: 443
-  type: trojan
-  password: 1113a9fa-c6ee-4929-ae93-d29d024b1728
-  sni: download.xn--mes358a9urctx.com
-  skip-cert-verify: true
-- name: '[5] 🇺🇲 美国-1.58MB/s'
-  server: 216.52.183.243
-  port: 80
-  type: ss
-  cipher: aes-128-gcm
-  password: 83XvX4Vo%*3a
-  plugin: obfs
-  plugin-opts:
-    mode: http
-    host: ''
-- name: '[6] 🇺🇲 美国-3.43MB/s'
-  server: 163.123.192.154
-  port: 443
-  type: trojan
-  password: 1113a9fa-c6ee-4929-ae93-d29d024b1728
-  sni: download.xn--mes358a9urctx.com
-  skip-cert-verify: true
-- name: '[7] 🇺🇲 美国-4.19MB/s'
-  server: 23.224.171.67
-  port: 49813
+- name: '[6] 🇺🇲 美国-5.30MB/s'
+  server: 107.148.194.233
+  port: 55504
   type: vmess
   uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
   alterId: 64
   cipher: auto
   tls: false
-- name: '[8] 🇺🇲 美国-3.39MB/s'
-  server: 163.123.192.153
-  port: 443
-  type: trojan
-  password: 1113a9fa-c6ee-4929-ae93-d29d024b1728
-  sni: download.xn--mes358a9urctx.com
-  skip-cert-verify: true
-- name: '[9] 🇺🇲 美国-5.18MB/s'
-  server: 23.224.110.184
-  port: 443
-  type: vmess
-  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-  alterId: 64
-  cipher: auto
-  tls: true
-  network: ws
-  ws-opts:
-    path: /path/080712342310
-- name: '[10] 🇺🇲 美国-5.28MB/s'
-  server: 163.123.192.155
-  port: 443
-  type: trojan
-  password: 1113a9fa-c6ee-4929-ae93-d29d024b1728
-  sni: download.xn--mes358a9urctx.com
-  skip-cert-verify: true
-- name: '[11] 🇺🇲 美国-4.57MB/s'
-  server: 54.189.216.64
-  port: 443
-  type: ss
-  cipher: aes-256-cfb
-  password: amazonskr05
-- name: '[12] 🇮🇳 印度-2.23MB/s'
-  server: 152.70.74.66
-  port: 443
-  type: trojan
-  password: d906afe5-7c3c-4ddc-aaa4-61c154a82e5e
-  skip-cert-verify: true
-- name: '[13] (已存活10天)中转节点-10.96MB/s'
-  server: ntemp19.boom.skin
-  port: 24000
-  type: ssr
-  cipher: aes-256-cfb
-  password: Uk92CS
-  protocol: auth_aes128_sha1
-  obfs: http_simple
-  protocol-param: 23957:nZCp9Y
-  obfs-param: download.windowsupdate.com
-- name: '[14] 🇮🇳 印度-3.07MB/s'
-  server: 152.70.74.66
-  port: 443
-  type: trojan
-  password: d906afe5-7c3c-4ddc-aaa4-61c154a82e5e
-  skip-cert-verify: true
-- name: '[15] 🇸🇬 新加坡-216.9KB/s'
-  server: 202.79.171.155
-  port: 443
-  type: vmess
-  uuid: 7f37da61-c734-41b4-a8c2-eccfd6ca48f0
-  alterId: 64
-  cipher: auto
-  tls: true
-  network: ws
-  ws-opts:
-    path: /path/080712342310
-- name: '[16] 🇮🇳 印度-3.14MB/s'
-  server: 152.70.74.66
-  port: 443
-  type: trojan
-  password: d906afe5-7c3c-4ddc-aaa4-61c154a82e5e
-  skip-cert-verify: true
-- name: '[17] 🇺🇲 美国-5.58MB/s'
-  server: 107.167.29.229
-  port: 46321
-  type: vmess
-  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-  alterId: 64
-  cipher: auto
-  tls: false
-- name: '[18] 🇺🇲 美国-1.01MB/s'
-  server: cf-lt.sharecentre.online
-  port: 80
-  type: vmess
-  uuid: 2d5d8b9c-8ec4-4a37-b610-78e71e13eaef
-  alterId: 0
-  cipher: auto
-  tls: false
-  network: ws
-  ws-opts:
-    path: /shirker
-    headers:
-      Host: in.sharecentrepro.com
-- name: '[19] 🇮🇩 印度尼西亚-1.46MB/s'
-  server: 103.169.7.11
-  port: 80
-  type: trojan
-  password: c0d9da22-2569-4bed-a395-607d9e7ae687
-  sni: sciencedirect.com
-  skip-cert-verify: true
-- name: '[20] 中转节点-944.6KB/s'
-  server: free.themars.top
-  port: 32102
-  type: ss
-  cipher: chacha20-ietf-poly1305
-  password: b89b39c2-dc8d-4595-a4c5-54b4fbab3fc2
-- name: '[21] 🇬🇧 英国-2.91MB/s'
-  server: 83.142.225.20
-  port: 49920
-  type: vmess
-  uuid: 5267ca71-97e6-44c8-8fb5-9fe4afe0954e
-  alterId: 64
-  cipher: auto
-  tls: false
-- name: '[22] 🇬🇧 英国-3.70MB/s'
-  server: 83.142.225.20
-  port: 49920
-  type: vmess
-  uuid: 5267ca71-97e6-44c8-8fb5-9fe4afe0954e
-  alterId: 64
-  cipher: auto
-  tls: false
-- name: '[23] (已存活10天)中转节点-5.78MB/s'
-  server: opt23.boom.skin
-  port: 33000
-  type: ssr
-  cipher: aes-256-cfb
-  password: Uk92CS
-  protocol: auth_aes128_sha1
-  obfs: http_simple
-  protocol-param: 23957:nZCp9Y
-  obfs-param: download.windowsupdate.com
-- name: '[24] 🇳🇱 荷兰-2.18MB/s'
-  server: 154.85.1.2
-  port: 443
-  type: vmess
-  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-  alterId: 64
-  cipher: auto
-  tls: true
-  network: ws
-  ws-opts:
-    path: /path/1683543024453
-- name: '[25] 🇨🇳 台湾-13.46MB/s'
-  server: 103.177.33.180
-  port: 443
-  type: ss
-  cipher: chacha20-ietf-poly1305
-  password: 9e44e9ffe5c2
-  plugin: v2ray-plugin
-  plugin-opts:
-    mode: websocket
-    host: wtw1000mline004.chilines.club
-    path: /isaifqaagpi
-    tls: true
-    mux: true
-- name: '[26] 🇺🇲 美国-5.18MB/s'
-  server: 23.225.33.171
-  port: 56662
-  type: vmess
-  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-  alterId: 64
-  cipher: auto
-  tls: false
-- name: '[27] 🇺🇲 美国-5.19MB/s'
-  server: 23.224.110.184
-  port: 443
-  type: vmess
-  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-  alterId: 64
-  cipher: auto
-  tls: true
-  network: ws
-  ws-opts:
-    path: /path/080712342310
-- name: '[28] 🇺🇲 美国-3.03MB/s'
-  server: 163.123.192.153
-  port: 443
-  type: trojan
-  password: 1113a9fa-c6ee-4929-ae93-d29d024b1728
-  sni: download.xn--mes358a9urctx.com
-  skip-cert-verify: true
-- name: '[29] 🇺🇲 美国-3.23MB/s'
-  server: 23.224.171.67
-  port: 49813
-  type: vmess
-  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-  alterId: 64
-  cipher: auto
-  tls: false
-- name: '[30] 🇮🇩 印度尼西亚-1.27MB/s'
-  server: 103.169.7.11
-  port: 80
-  type: trojan
-  password: c0d9da22-2569-4bed-a395-607d9e7ae687
-  sni: sciencedirect.com
-  skip-cert-verify: true
-- name: '[31] 🇬🇧 英国-3.29MB/s'
-  server: 83.142.225.20
-  port: 49920
-  type: vmess
-  uuid: 5267ca71-97e6-44c8-8fb5-9fe4afe0954e
-  alterId: 64
-  cipher: auto
-  tls: false
-- name: '[32] 🇯🇵 日本-7.29MB/s'
-  server: azjp2.downloadvip.cfd
-  port: 443
-  type: trojan
-  password: f5a18240-423f-47a0-b9a3-5e647bcdf38f
-  sni: us4.xn--mes358a9urctx.com
-  skip-cert-verify: true
-- name: '[33] (已存活10天)中转节点-15.42MB/s'
-  server: jp10.boom.skin
-  port: 39000
-  type: ssr
-  cipher: aes-256-cfb
-  password: Uk92CS
-  protocol: auth_aes128_sha1
-  obfs: http_simple
-  protocol-param: 23957:nZCp9Y
-  obfs-param: download.windowsupdate.com
-- name: '[34] 🇯🇵 日本-9.16MB/s'
-  server: fscjp.fscloud123456789.com
-  port: 443
-  type: trojan
-  password: 858ad8e5-1566-46cd-a8d8-30d20a6a1b19
-  skip-cert-verify: true
-- name: '[35] 🇺🇲 美国-4.78MB/s'
-  server: 172.247.148.85
-  port: 53302
-  type: vmess
-  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-  alterId: 64
-  cipher: auto
-  tls: false
-- name: '[36] 未知国家-1.01MB/s'
-  server: cf-lt.sharecentre.online
-  port: 80
-  type: vmess
-  uuid: 2d5d8b9c-8ec4-4a37-b610-78e71e13eaef
-  alterId: 0
-  cipher: auto
-  tls: false
-  network: ws
-  ws-opts:
-    path: /shirker
-    headers:
-      Host: in.sharecentrepro.com
-- name: '[37] 🇺🇲 美国-1.59MB/s'
-  server: 216.52.183.243
-  port: 80
-  type: ss
-  cipher: aes-128-gcm
-  password: 83XvX4Vo%*3a
-  plugin: obfs
-  plugin-opts:
-    mode: http
-    host: ''
-- name: '[38] 🇺🇲 美国-2.72MB/s'
-  server: 74.121.191.98
-  port: 989
-  type: ss
-  cipher: aes-256-cfb
-  password: f8f7aCzcPKbsF8p3
-- name: '[39] 🇻🇳 越南-2.55MB/s'
-  server: 103.82.27.163
-  port: 80
-  type: vmess
-  uuid: 8afbd60f-aa52-49e6-8f37-9aca0b90f2c8
-  alterId: 0
-  cipher: auto
-  tls: false
-  network: ws
-  ws-opts:
-    path: /zingfast.vn
-- name: '[40] 🇺🇲 美国-5.18MB/s'
-  server: 163.123.192.155
-  port: 443
-  type: trojan
-  password: 1113a9fa-c6ee-4929-ae93-d29d024b1728
-  sni: download.xn--mes358a9urctx.com
-  skip-cert-verify: true
-- name: '[41] 🇺🇲 美国-4.67MB/s'
-  server: 23.224.110.184
-  port: 443
-  type: vmess
-  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-  alterId: 64
-  cipher: auto
-  tls: true
-  network: ws
-  ws-opts:
-    path: /path/080712342310
-- name: '[42] (已存活10天)中转节点-10.16MB/s'
-  server: n115.boom.skin
-  port: 30000
-  type: ssr
-  cipher: aes-256-cfb
-  password: Uk92CS
-  protocol: auth_aes128_sha1
-  obfs: http_simple
-  protocol-param: 23957:nZCp9Y
-  obfs-param: download.windowsupdate.com
-- name: '[43] 🇸🇬 新加坡-9.16MB/s'
-  server: fscjp.fscloud123456789.com
-  port: 443
-  type: trojan
-  password: 858ad8e5-1566-46cd-a8d8-30d20a6a1b19
-  skip-cert-verify: true
-- name: '[44] 🇺🇲 美国-3.44MB/s'
-  server: 163.123.192.154
-  port: 443
-  type: trojan
-  password: 1113a9fa-c6ee-4929-ae93-d29d024b1728
-  sni: download.xn--mes358a9urctx.com
-  skip-cert-verify: true
-- name: '[45] 🇯🇵 日本-10.71MB/s'
-  server: 20.243.66.93
-  port: 443
-  type: trojan
-  password: 9c88c39c-b9a7-4b6d-a27a-0fe8ddc4d25a
-  sni: jp1.xn--mes358a9urctx.com
-  skip-cert-verify: true
-- name: '[46] 🇮🇳 印度-906.9KB/s'
-  server: 152.70.74.66
-  port: 443
-  type: trojan
-  password: d906afe5-7c3c-4ddc-aaa4-61c154a82e5e
-  skip-cert-verify: true
-- name: '[47] 🇻🇳 越南-925.6KB/s'
-  server: 103.166.183.14
-  port: 80
-  type: vmess
-  uuid: 8afbd60f-aa52-49e6-8f37-9aca0b90f2c8
-  alterId: 0
-  cipher: auto
-  tls: false
-  network: ws
-  ws-opts:
-    path: /zingfast.vn
-- name: '[48] (已存活10天)中转节点-12.56MB/s'
-  server: nn3.boom.skin
-  port: 42000
-  type: ssr
-  cipher: aes-256-cfb
-  password: Uk92CS
-  protocol: auth_aes128_sha1
-  obfs: http_simple
-  protocol-param: 23957:nZCp9Y
-  obfs-param: download.windowsupdate.com
-- name: '[49] 🇨🇳 台湾-1.01MB/s'
-  server: tw2.microsoft-orgwly.vip
-  port: 80
-  type: trojan
-  password: fcf74125-99de-4df3-af94-552a0b1ee021
-  sni: tls.microsoft-orgwly.vip
-  skip-cert-verify: true
-- name: '[50] 🇨🇳 台湾-12.63MB/s'
-  server: 103.177.33.180
-  port: 443
-  type: ss
-  cipher: chacha20-ietf-poly1305
-  password: 9e44e9ffe5c2
-  plugin: v2ray-plugin
-  plugin-opts:
-    mode: websocket
-    host: wtw1000mline004.chilines.club
-    path: /isaifqaagpi
-    tls: true
-    mux: true
 proxy-groups:
 - name: 🔰 节点选择
   type: select
   proxies:
   - ♻️ 自动选择
+  - 🤔 高可用
   - 🎯 全球直连
-  - '[1] 🇮🇳 印度-844.2KB/s'
-  - '[2] 🇺🇲 美国-2.70MB/s'
-  - '[3] 🇸🇬 新加坡-2.32MB/s'
-  - '[4] 🇺🇲 美国-3.38MB/s'
-  - '[5] 🇺🇲 美国-1.58MB/s'
-  - '[6] 🇺🇲 美国-3.43MB/s'
-  - '[7] 🇺🇲 美国-4.19MB/s'
-  - '[8] 🇺🇲 美国-3.39MB/s'
-  - '[9] 🇺🇲 美国-5.18MB/s'
-  - '[10] 🇺🇲 美国-5.28MB/s'
-  - '[11] 🇺🇲 美国-4.57MB/s'
-  - '[12] 🇮🇳 印度-2.23MB/s'
-  - '[13] (已存活10天)中转节点-10.96MB/s'
-  - '[14] 🇮🇳 印度-3.07MB/s'
-  - '[15] 🇸🇬 新加坡-216.9KB/s'
-  - '[16] 🇮🇳 印度-3.14MB/s'
-  - '[17] 🇺🇲 美国-5.58MB/s'
-  - '[18] 🇺🇲 美国-1.01MB/s'
-  - '[19] 🇮🇩 印度尼西亚-1.46MB/s'
-  - '[20] 中转节点-944.6KB/s'
-  - '[21] 🇬🇧 英国-2.91MB/s'
-  - '[22] 🇬🇧 英国-3.70MB/s'
-  - '[23] (已存活10天)中转节点-5.78MB/s'
-  - '[24] 🇳🇱 荷兰-2.18MB/s'
-  - '[25] 🇨🇳 台湾-13.46MB/s'
-  - '[26] 🇺🇲 美国-5.18MB/s'
-  - '[27] 🇺🇲 美国-5.19MB/s'
-  - '[28] 🇺🇲 美国-3.03MB/s'
-  - '[29] 🇺🇲 美国-3.23MB/s'
-  - '[30] 🇮🇩 印度尼西亚-1.27MB/s'
-  - '[31] 🇬🇧 英国-3.29MB/s'
-  - '[32] 🇯🇵 日本-7.29MB/s'
-  - '[33] (已存活10天)中转节点-15.42MB/s'
-  - '[34] 🇯🇵 日本-9.16MB/s'
-  - '[35] 🇺🇲 美国-4.78MB/s'
-  - '[36] 未知国家-1.01MB/s'
-  - '[37] 🇺🇲 美国-1.59MB/s'
-  - '[38] 🇺🇲 美国-2.72MB/s'
-  - '[39] 🇻🇳 越南-2.55MB/s'
-  - '[40] 🇺🇲 美国-5.18MB/s'
-  - '[41] 🇺🇲 美国-4.67MB/s'
-  - '[42] (已存活10天)中转节点-10.16MB/s'
-  - '[43] 🇸🇬 新加坡-9.16MB/s'
-  - '[44] 🇺🇲 美国-3.44MB/s'
-  - '[45] 🇯🇵 日本-10.71MB/s'
-  - '[46] 🇮🇳 印度-906.9KB/s'
-  - '[47] 🇻🇳 越南-925.6KB/s'
-  - '[48] (已存活10天)中转节点-12.56MB/s'
-  - '[49] 🇨🇳 台湾-1.01MB/s'
-  - '[50] 🇨🇳 台湾-12.63MB/s'
+  - '[1] 🇮🇳 印度-3.03MB/s'
+  - '[2] 🇺🇲 美国-4.58MB/s'
+  - '[3] 🇰🇷 韩国-331.7KB/s'
+  - '[4] 🇺🇲 美国-3.48MB/s'
+  - '[5] 🇺🇲 美国-4.22MB/s'
+  - '[6] 🇺🇲 美国-5.30MB/s'
 - name: ♻️ 自动选择
   type: url-test
   url: http://www.gstatic.com/generate_204
-  interval: 1800
+  interval: 600
   proxies:
-  - '[3] 🇸🇬 新加坡-2.32MB/s'
-  - '[15] 🇸🇬 新加坡-216.9KB/s'
-  - '[25] 🇨🇳 台湾-13.46MB/s'
-  - '[32] 🇯🇵 日本-7.29MB/s'
-  - '[34] 🇯🇵 日本-9.16MB/s'
-  - '[43] 🇸🇬 新加坡-9.16MB/s'
-  - '[45] 🇯🇵 日本-10.71MB/s'
-  - '[49] 🇨🇳 台湾-1.01MB/s'
-  - '[50] 🇨🇳 台湾-12.63MB/s'
+  - '[3] 🇰🇷 韩国-331.7KB/s'
+- name: 🤔 高可用
+  type: fallback
+  proxies:
+  - '[1] 🇮🇳 印度-3.03MB/s'
+  - '[2] 🇺🇲 美国-4.58MB/s'
+  - '[3] 🇰🇷 韩国-331.7KB/s'
+  - '[4] 🇺🇲 美国-3.48MB/s'
+  - '[5] 🇺🇲 美国-4.22MB/s'
+  - '[6] 🇺🇲 美国-5.30MB/s'
+- name: Google
+  type: fallback
+  proxies:
+  - 🎯 全球直连
+  - '[3] 🇰🇷 韩国-331.7KB/s'
+- name: Github
+  type: fallback
+  proxies:
+  - 🎯 全球直连
+  - '[3] 🇰🇷 韩国-331.7KB/s'
+- name: OpenAI
+  type: fallback
+  proxies:
+  - 🎯 全球直连
+  - '[2] 🇺🇲 美国-4.58MB/s'
+  - '[4] 🇺🇲 美国-3.48MB/s'
+  - '[5] 🇺🇲 美国-4.22MB/s'
+  - '[6] 🇺🇲 美国-5.30MB/s'
 - name: 🌍 国外媒体
   type: select
   proxies:
   - 🔰 节点选择
   - ♻️ 自动选择
   - 🎯 全球直连
-  - '[1] 🇮🇳 印度-844.2KB/s'
-  - '[2] 🇺🇲 美国-2.70MB/s'
-  - '[3] 🇸🇬 新加坡-2.32MB/s'
-  - '[4] 🇺🇲 美国-3.38MB/s'
-  - '[5] 🇺🇲 美国-1.58MB/s'
-  - '[6] 🇺🇲 美国-3.43MB/s'
-  - '[7] 🇺🇲 美国-4.19MB/s'
-  - '[8] 🇺🇲 美国-3.39MB/s'
-  - '[9] 🇺🇲 美国-5.18MB/s'
-  - '[10] 🇺🇲 美国-5.28MB/s'
-  - '[11] 🇺🇲 美国-4.57MB/s'
-  - '[12] 🇮🇳 印度-2.23MB/s'
-  - '[13] (已存活10天)中转节点-10.96MB/s'
-  - '[14] 🇮🇳 印度-3.07MB/s'
-  - '[15] 🇸🇬 新加坡-216.9KB/s'
-  - '[16] 🇮🇳 印度-3.14MB/s'
-  - '[17] 🇺🇲 美国-5.58MB/s'
-  - '[18] 🇺🇲 美国-1.01MB/s'
-  - '[19] 🇮🇩 印度尼西亚-1.46MB/s'
-  - '[20] 中转节点-944.6KB/s'
-  - '[21] 🇬🇧 英国-2.91MB/s'
-  - '[22] 🇬🇧 英国-3.70MB/s'
-  - '[23] (已存活10天)中转节点-5.78MB/s'
-  - '[24] 🇳🇱 荷兰-2.18MB/s'
-  - '[25] 🇨🇳 台湾-13.46MB/s'
-  - '[26] 🇺🇲 美国-5.18MB/s'
-  - '[27] 🇺🇲 美国-5.19MB/s'
-  - '[28] 🇺🇲 美国-3.03MB/s'
-  - '[29] 🇺🇲 美国-3.23MB/s'
-  - '[30] 🇮🇩 印度尼西亚-1.27MB/s'
-  - '[31] 🇬🇧 英国-3.29MB/s'
-  - '[32] 🇯🇵 日本-7.29MB/s'
-  - '[33] (已存活10天)中转节点-15.42MB/s'
-  - '[34] 🇯🇵 日本-9.16MB/s'
-  - '[35] 🇺🇲 美国-4.78MB/s'
-  - '[36] 未知国家-1.01MB/s'
-  - '[37] 🇺🇲 美国-1.59MB/s'
-  - '[38] 🇺🇲 美国-2.72MB/s'
-  - '[39] 🇻🇳 越南-2.55MB/s'
-  - '[40] 🇺🇲 美国-5.18MB/s'
-  - '[41] 🇺🇲 美国-4.67MB/s'
-  - '[42] (已存活10天)中转节点-10.16MB/s'
-  - '[43] 🇸🇬 新加坡-9.16MB/s'
-  - '[44] 🇺🇲 美国-3.44MB/s'
-  - '[45] 🇯🇵 日本-10.71MB/s'
-  - '[46] 🇮🇳 印度-906.9KB/s'
-  - '[47] 🇻🇳 越南-925.6KB/s'
-  - '[48] (已存活10天)中转节点-12.56MB/s'
-  - '[49] 🇨🇳 台湾-1.01MB/s'
-  - '[50] 🇨🇳 台湾-12.63MB/s'
+  - '[1] 🇮🇳 印度-3.03MB/s'
+  - '[2] 🇺🇲 美国-4.58MB/s'
+  - '[3] 🇰🇷 韩国-331.7KB/s'
+  - '[4] 🇺🇲 美国-3.48MB/s'
+  - '[5] 🇺🇲 美国-4.22MB/s'
+  - '[6] 🇺🇲 美国-5.30MB/s'
 - name: 🌏 国内媒体
   type: select
   proxies:
@@ -562,167 +121,35 @@ proxy-groups:
   proxies:
   - 🎯 全球直连
   - 🔰 节点选择
-  - '[1] 🇮🇳 印度-844.2KB/s'
-  - '[2] 🇺🇲 美国-2.70MB/s'
-  - '[3] 🇸🇬 新加坡-2.32MB/s'
-  - '[4] 🇺🇲 美国-3.38MB/s'
-  - '[5] 🇺🇲 美国-1.58MB/s'
-  - '[6] 🇺🇲 美国-3.43MB/s'
-  - '[7] 🇺🇲 美国-4.19MB/s'
-  - '[8] 🇺🇲 美国-3.39MB/s'
-  - '[9] 🇺🇲 美国-5.18MB/s'
-  - '[10] 🇺🇲 美国-5.28MB/s'
-  - '[11] 🇺🇲 美国-4.57MB/s'
-  - '[12] 🇮🇳 印度-2.23MB/s'
-  - '[13] (已存活10天)中转节点-10.96MB/s'
-  - '[14] 🇮🇳 印度-3.07MB/s'
-  - '[15] 🇸🇬 新加坡-216.9KB/s'
-  - '[16] 🇮🇳 印度-3.14MB/s'
-  - '[17] 🇺🇲 美国-5.58MB/s'
-  - '[18] 🇺🇲 美国-1.01MB/s'
-  - '[19] 🇮🇩 印度尼西亚-1.46MB/s'
-  - '[20] 中转节点-944.6KB/s'
-  - '[21] 🇬🇧 英国-2.91MB/s'
-  - '[22] 🇬🇧 英国-3.70MB/s'
-  - '[23] (已存活10天)中转节点-5.78MB/s'
-  - '[24] 🇳🇱 荷兰-2.18MB/s'
-  - '[25] 🇨🇳 台湾-13.46MB/s'
-  - '[26] 🇺🇲 美国-5.18MB/s'
-  - '[27] 🇺🇲 美国-5.19MB/s'
-  - '[28] 🇺🇲 美国-3.03MB/s'
-  - '[29] 🇺🇲 美国-3.23MB/s'
-  - '[30] 🇮🇩 印度尼西亚-1.27MB/s'
-  - '[31] 🇬🇧 英国-3.29MB/s'
-  - '[32] 🇯🇵 日本-7.29MB/s'
-  - '[33] (已存活10天)中转节点-15.42MB/s'
-  - '[34] 🇯🇵 日本-9.16MB/s'
-  - '[35] 🇺🇲 美国-4.78MB/s'
-  - '[36] 未知国家-1.01MB/s'
-  - '[37] 🇺🇲 美国-1.59MB/s'
-  - '[38] 🇺🇲 美国-2.72MB/s'
-  - '[39] 🇻🇳 越南-2.55MB/s'
-  - '[40] 🇺🇲 美国-5.18MB/s'
-  - '[41] 🇺🇲 美国-4.67MB/s'
-  - '[42] (已存活10天)中转节点-10.16MB/s'
-  - '[43] 🇸🇬 新加坡-9.16MB/s'
-  - '[44] 🇺🇲 美国-3.44MB/s'
-  - '[45] 🇯🇵 日本-10.71MB/s'
-  - '[46] 🇮🇳 印度-906.9KB/s'
-  - '[47] 🇻🇳 越南-925.6KB/s'
-  - '[48] (已存活10天)中转节点-12.56MB/s'
-  - '[49] 🇨🇳 台湾-1.01MB/s'
-  - '[50] 🇨🇳 台湾-12.63MB/s'
+  - '[1] 🇮🇳 印度-3.03MB/s'
+  - '[2] 🇺🇲 美国-4.58MB/s'
+  - '[3] 🇰🇷 韩国-331.7KB/s'
+  - '[4] 🇺🇲 美国-3.48MB/s'
+  - '[5] 🇺🇲 美国-4.22MB/s'
+  - '[6] 🇺🇲 美国-5.30MB/s'
 - name: 📲 电报信息
   type: select
   proxies:
   - 🔰 节点选择
-  - '[1] 🇮🇳 印度-844.2KB/s'
+  - '[1] 🇮🇳 印度-3.03MB/s'
   - 🎯 全球直连
-  - '[2] 🇺🇲 美国-2.70MB/s'
-  - '[3] 🇸🇬 新加坡-2.32MB/s'
-  - '[4] 🇺🇲 美国-3.38MB/s'
-  - '[5] 🇺🇲 美国-1.58MB/s'
-  - '[6] 🇺🇲 美国-3.43MB/s'
-  - '[7] 🇺🇲 美国-4.19MB/s'
-  - '[8] 🇺🇲 美国-3.39MB/s'
-  - '[9] 🇺🇲 美国-5.18MB/s'
-  - '[10] 🇺🇲 美国-5.28MB/s'
-  - '[11] 🇺🇲 美国-4.57MB/s'
-  - '[12] 🇮🇳 印度-2.23MB/s'
-  - '[13] (已存活10天)中转节点-10.96MB/s'
-  - '[14] 🇮🇳 印度-3.07MB/s'
-  - '[15] 🇸🇬 新加坡-216.9KB/s'
-  - '[16] 🇮🇳 印度-3.14MB/s'
-  - '[17] 🇺🇲 美国-5.58MB/s'
-  - '[18] 🇺🇲 美国-1.01MB/s'
-  - '[19] 🇮🇩 印度尼西亚-1.46MB/s'
-  - '[20] 中转节点-944.6KB/s'
-  - '[21] 🇬🇧 英国-2.91MB/s'
-  - '[22] 🇬🇧 英国-3.70MB/s'
-  - '[23] (已存活10天)中转节点-5.78MB/s'
-  - '[24] 🇳🇱 荷兰-2.18MB/s'
-  - '[25] 🇨🇳 台湾-13.46MB/s'
-  - '[26] 🇺🇲 美国-5.18MB/s'
-  - '[27] 🇺🇲 美国-5.19MB/s'
-  - '[28] 🇺🇲 美国-3.03MB/s'
-  - '[29] 🇺🇲 美国-3.23MB/s'
-  - '[30] 🇮🇩 印度尼西亚-1.27MB/s'
-  - '[31] 🇬🇧 英国-3.29MB/s'
-  - '[32] 🇯🇵 日本-7.29MB/s'
-  - '[33] (已存活10天)中转节点-15.42MB/s'
-  - '[34] 🇯🇵 日本-9.16MB/s'
-  - '[35] 🇺🇲 美国-4.78MB/s'
-  - '[36] 未知国家-1.01MB/s'
-  - '[37] 🇺🇲 美国-1.59MB/s'
-  - '[38] 🇺🇲 美国-2.72MB/s'
-  - '[39] 🇻🇳 越南-2.55MB/s'
-  - '[40] 🇺🇲 美国-5.18MB/s'
-  - '[41] 🇺🇲 美国-4.67MB/s'
-  - '[42] (已存活10天)中转节点-10.16MB/s'
-  - '[43] 🇸🇬 新加坡-9.16MB/s'
-  - '[44] 🇺🇲 美国-3.44MB/s'
-  - '[45] 🇯🇵 日本-10.71MB/s'
-  - '[46] 🇮🇳 印度-906.9KB/s'
-  - '[47] 🇻🇳 越南-925.6KB/s'
-  - '[48] (已存活10天)中转节点-12.56MB/s'
-  - '[49] 🇨🇳 台湾-1.01MB/s'
-  - '[50] 🇨🇳 台湾-12.63MB/s'
+  - '[2] 🇺🇲 美国-4.58MB/s'
+  - '[3] 🇰🇷 韩国-331.7KB/s'
+  - '[4] 🇺🇲 美国-3.48MB/s'
+  - '[5] 🇺🇲 美国-4.22MB/s'
+  - '[6] 🇺🇲 美国-5.30MB/s'
 - name: 🍎 苹果服务
   type: select
   proxies:
   - 🎯 全球直连
   - 🔰 节点选择
   - ♻️ 自动选择
-  - '[1] 🇮🇳 印度-844.2KB/s'
-  - '[2] 🇺🇲 美国-2.70MB/s'
-  - '[3] 🇸🇬 新加坡-2.32MB/s'
-  - '[4] 🇺🇲 美国-3.38MB/s'
-  - '[5] 🇺🇲 美国-1.58MB/s'
-  - '[6] 🇺🇲 美国-3.43MB/s'
-  - '[7] 🇺🇲 美国-4.19MB/s'
-  - '[8] 🇺🇲 美国-3.39MB/s'
-  - '[9] 🇺🇲 美国-5.18MB/s'
-  - '[10] 🇺🇲 美国-5.28MB/s'
-  - '[11] 🇺🇲 美国-4.57MB/s'
-  - '[12] 🇮🇳 印度-2.23MB/s'
-  - '[13] (已存活10天)中转节点-10.96MB/s'
-  - '[14] 🇮🇳 印度-3.07MB/s'
-  - '[15] 🇸🇬 新加坡-216.9KB/s'
-  - '[16] 🇮🇳 印度-3.14MB/s'
-  - '[17] 🇺🇲 美国-5.58MB/s'
-  - '[18] 🇺🇲 美国-1.01MB/s'
-  - '[19] 🇮🇩 印度尼西亚-1.46MB/s'
-  - '[20] 中转节点-944.6KB/s'
-  - '[21] 🇬🇧 英国-2.91MB/s'
-  - '[22] 🇬🇧 英国-3.70MB/s'
-  - '[23] (已存活10天)中转节点-5.78MB/s'
-  - '[24] 🇳🇱 荷兰-2.18MB/s'
-  - '[25] 🇨🇳 台湾-13.46MB/s'
-  - '[26] 🇺🇲 美国-5.18MB/s'
-  - '[27] 🇺🇲 美国-5.19MB/s'
-  - '[28] 🇺🇲 美国-3.03MB/s'
-  - '[29] 🇺🇲 美国-3.23MB/s'
-  - '[30] 🇮🇩 印度尼西亚-1.27MB/s'
-  - '[31] 🇬🇧 英国-3.29MB/s'
-  - '[32] 🇯🇵 日本-7.29MB/s'
-  - '[33] (已存活10天)中转节点-15.42MB/s'
-  - '[34] 🇯🇵 日本-9.16MB/s'
-  - '[35] 🇺🇲 美国-4.78MB/s'
-  - '[36] 未知国家-1.01MB/s'
-  - '[37] 🇺🇲 美国-1.59MB/s'
-  - '[38] 🇺🇲 美国-2.72MB/s'
-  - '[39] 🇻🇳 越南-2.55MB/s'
-  - '[40] 🇺🇲 美国-5.18MB/s'
-  - '[41] 🇺🇲 美国-4.67MB/s'
-  - '[42] (已存活10天)中转节点-10.16MB/s'
-  - '[43] 🇸🇬 新加坡-9.16MB/s'
-  - '[44] 🇺🇲 美国-3.44MB/s'
-  - '[45] 🇯🇵 日本-10.71MB/s'
-  - '[46] 🇮🇳 印度-906.9KB/s'
-  - '[47] 🇻🇳 越南-925.6KB/s'
-  - '[48] (已存活10天)中转节点-12.56MB/s'
-  - '[49] 🇨🇳 台湾-1.01MB/s'
-  - '[50] 🇨🇳 台湾-12.63MB/s'
+  - '[1] 🇮🇳 印度-3.03MB/s'
+  - '[2] 🇺🇲 美国-4.58MB/s'
+  - '[3] 🇰🇷 韩国-331.7KB/s'
+  - '[4] 🇺🇲 美国-3.48MB/s'
+  - '[5] 🇺🇲 美国-4.22MB/s'
+  - '[6] 🇺🇲 美国-5.30MB/s'
 - name: 🎯 全球直连
   type: select
   proxies:
@@ -738,56 +165,12 @@ proxy-groups:
   - 🔰 节点选择
   - 🎯 全球直连
   - ♻️ 自动选择
-  - '[1] 🇮🇳 印度-844.2KB/s'
-  - '[2] 🇺🇲 美国-2.70MB/s'
-  - '[3] 🇸🇬 新加坡-2.32MB/s'
-  - '[4] 🇺🇲 美国-3.38MB/s'
-  - '[5] 🇺🇲 美国-1.58MB/s'
-  - '[6] 🇺🇲 美国-3.43MB/s'
-  - '[7] 🇺🇲 美国-4.19MB/s'
-  - '[8] 🇺🇲 美国-3.39MB/s'
-  - '[9] 🇺🇲 美国-5.18MB/s'
-  - '[10] 🇺🇲 美国-5.28MB/s'
-  - '[11] 🇺🇲 美国-4.57MB/s'
-  - '[12] 🇮🇳 印度-2.23MB/s'
-  - '[13] (已存活10天)中转节点-10.96MB/s'
-  - '[14] 🇮🇳 印度-3.07MB/s'
-  - '[15] 🇸🇬 新加坡-216.9KB/s'
-  - '[16] 🇮🇳 印度-3.14MB/s'
-  - '[17] 🇺🇲 美国-5.58MB/s'
-  - '[18] 🇺🇲 美国-1.01MB/s'
-  - '[19] 🇮🇩 印度尼西亚-1.46MB/s'
-  - '[20] 中转节点-944.6KB/s'
-  - '[21] 🇬🇧 英国-2.91MB/s'
-  - '[22] 🇬🇧 英国-3.70MB/s'
-  - '[23] (已存活10天)中转节点-5.78MB/s'
-  - '[24] 🇳🇱 荷兰-2.18MB/s'
-  - '[25] 🇨🇳 台湾-13.46MB/s'
-  - '[26] 🇺🇲 美国-5.18MB/s'
-  - '[27] 🇺🇲 美国-5.19MB/s'
-  - '[28] 🇺🇲 美国-3.03MB/s'
-  - '[29] 🇺🇲 美国-3.23MB/s'
-  - '[30] 🇮🇩 印度尼西亚-1.27MB/s'
-  - '[31] 🇬🇧 英国-3.29MB/s'
-  - '[32] 🇯🇵 日本-7.29MB/s'
-  - '[33] (已存活10天)中转节点-15.42MB/s'
-  - '[34] 🇯🇵 日本-9.16MB/s'
-  - '[35] 🇺🇲 美国-4.78MB/s'
-  - '[36] 未知国家-1.01MB/s'
-  - '[37] 🇺🇲 美国-1.59MB/s'
-  - '[38] 🇺🇲 美国-2.72MB/s'
-  - '[39] 🇻🇳 越南-2.55MB/s'
-  - '[40] 🇺🇲 美国-5.18MB/s'
-  - '[41] 🇺🇲 美国-4.67MB/s'
-  - '[42] (已存活10天)中转节点-10.16MB/s'
-  - '[43] 🇸🇬 新加坡-9.16MB/s'
-  - '[44] 🇺🇲 美国-3.44MB/s'
-  - '[45] 🇯🇵 日本-10.71MB/s'
-  - '[46] 🇮🇳 印度-906.9KB/s'
-  - '[47] 🇻🇳 越南-925.6KB/s'
-  - '[48] (已存活10天)中转节点-12.56MB/s'
-  - '[49] 🇨🇳 台湾-1.01MB/s'
-  - '[50] 🇨🇳 台湾-12.63MB/s'
+  - '[1] 🇮🇳 印度-3.03MB/s'
+  - '[2] 🇺🇲 美国-4.58MB/s'
+  - '[3] 🇰🇷 韩国-331.7KB/s'
+  - '[4] 🇺🇲 美国-3.48MB/s'
+  - '[5] 🇺🇲 美国-4.22MB/s'
+  - '[6] 🇺🇲 美国-5.30MB/s'
 rules:
 - DOMAIN-SUFFIX,local,🎯 全球直连
 - IP-CIDR,192.168.0.0/16,🎯 全球直连,no-resolve
@@ -10016,6 +9399,118 @@ rules:
 - DOMAIN-SUFFIX,yt.be,🌍 国外媒体
 - DOMAIN-SUFFIX,ytimg.com,🌍 国外媒体
 - DOMAIN,youtubei.googleapis.com,🌍 国外媒体
+- DOMAIN-KEYWORD,google,Google
+- DOMAIN-SUFFIX,265.com,Google
+- DOMAIN-SUFFIX,abc.xyz,Google
+- DOMAIN-SUFFIX,capitalg.com,Google
+- DOMAIN-SUFFIX,android.com,Google
+- DOMAIN-SUFFIX,androidify.com,Google
+- DOMAIN-KEYWORD,appspot,Google
+- DOMAIN-SUFFIX,chrome.com,Google
+- DOMAIN-SUFFIX,chromeexperiments.com,Google
+- DOMAIN-SUFFIX,chromestatus.com,Google
+- DOMAIN-SUFFIX,chromium.org,Google
+- DOMAIN-SUFFIX,whatbrowser.org,Google
+- DOMAIN-SUFFIX,autodraw.com,Google
+- DOMAIN-SUFFIX,deepmind.com,Google
+- DOMAIN-SUFFIX,tensorflow.org,Google
+- DOMAIN-SUFFIX,tfhub.dev,Google
+- DOMAIN-SUFFIX,googleapis.com,Google
+- DOMAIN-KEYWORD,blogspot,Google
+- DOMAIN-SUFFIX,blogger.com,Google
+- DOMAIN-SUFFIX,googleblog.com,Google
+- DOMAIN-SUFFIX,dialogflow.com,Google
+- DOMAIN-SUFFIX,gcp.gvt2.com,Google
+- DOMAIN-KEYWORD,googlesource,Google
+- DOMAIN-SUFFIX,godoc.org,Google
+- DOMAIN-SUFFIX,golang.org,Google
+- DOMAIN-SUFFIX,googlemashups.com,Google
+- DOMAIN-SUFFIX,gwtproject.org,Google
+- DOMAIN-SUFFIX,itasoftware.com,Google
+- DOMAIN-SUFFIX,pkg.go.dev,Google
+- DOMAIN-SUFFIX,shattered.io,Google
+- DOMAIN-SUFFIX,waveprotocol.org,Google
+- DOMAIN-SUFFIX,webmproject.org,Google
+- DOMAIN-SUFFIX,webrtc.org,Google
+- DOMAIN-SUFFIX,withgoogle.com,Google
+- DOMAIN-SUFFIX,madewithcode.com,Google
+- DOMAIN-SUFFIX,synergyse.com,Google
+- DOMAIN-KEYWORD,gmail,Google
+- DOMAIN-KEYWORD,recaptcha,Google
+- DOMAIN-KEYWORD,gstatic,Google
+- DOMAIN-SUFFIX,gmodules.com,Google
+- DOMAIN-SUFFIX,googleusercontent.com,Google
+- DOMAIN-SUFFIX,gvt0.com,Google
+- DOMAIN-SUFFIX,gvt1.com,Google
+- DOMAIN-SUFFIX,gvt3.com,Google
+- DOMAIN-SUFFIX,tiltbrush.com,Google
+- DOMAIN-SUFFIX,getmdl.io,Google
+- DOMAIN-SUFFIX,material.io,Google
+- DOMAIN-SUFFIX,certificate-transparency.org,Google
+- DOMAIN-SUFFIX,certificate-transparency.dev,Google
+- DOMAIN-SUFFIX,creativelab5.com,Google
+- DOMAIN-SUFFIX,debug.com,Google
+- DOMAIN-SUFFIX,gv.com,Google
+- DOMAIN-SUFFIX,polymer-project.org,Google
+- DOMAIN-SUFFIX,waymo.com,Google
+- DOMAIN-SUFFIX,widevine.com,Google
+- DOMAIN-SUFFIX,x.company,Google
+- IP-CIDR,173.194.0.0/16,Google
+- IP-CIDR,74.125.0.0/16,Google
+- DOMAIN,fonts.googleapis.com,🎯 全球直连
+- DOMAIN,fonts.gstatic.com,🎯 全球直连
+- DOMAIN,ocsp.pki.goog,🎯 全球直连
+- DOMAIN,crl.pki.goog,🎯 全球直连
+- DOMAIN,redirector.c.bigcache.googleapis.com,🎯 全球直连
+- DOMAIN,redirector.gvt1.com,🎯 全球直连
+- DOMAIN,safebrowsing.googleapis.com,🎯 全球直连
+- DOMAIN,safebrowsing-cache.google.com,🎯 全球直连
+- DOMAIN,translate.googleapis.com,🎯 全球直连
+- DOMAIN-SUFFIX,dl.google.com,Google Domestic
+- DOMAIN-SUFFIX,dl.l.google.com,Google Domestic
+- DOMAIN-SUFFIX,google.cn,Google Domestic
+- DOMAIN-SUFFIX,ssl.gstatic.com,Google Domestic
+- DOMAIN-SUFFIX,tools.google.com,Google Domestic
+- DOMAIN-SUFFIX,tools.l.google.com,Google Domestic
+- DOMAIN-SUFFIX,update.googleapis.com,Google Domestic
+- DOMAIN-KEYWORD,github,Github
+- DOMAIN-SUFFIX,github.blog,Github
+- DOMAIN-SUFFIX,github.com,Github
+- DOMAIN-SUFFIX,github.community,Github
+- DOMAIN-SUFFIX,githubstatus.com,Github
+- DOMAIN-SUFFIX,githubusercontent.com,Github
+- DOMAIN-SUFFIX,githubassets.com,Github
+- DOMAIN-SUFFIX,dependabot.com,Github
+- DOMAIN-SUFFIX,atom.io,Github
+- DOMAIN-SUFFIX,ghcr.io,Github
+- DOMAIN-SUFFIX,git.io,Github
+- DOMAIN-SUFFIX,github.io,Github
+- DOMAIN-SUFFIX,github.dev,Github
+- DOMAIN-SUFFIX,githubapp.com,Github
+- DOMAIN-SUFFIX,githubpreview.dev,Github
+- DOMAIN-SUFFIX,github-atom-io-herokuapp-com.freetls.fastly.net,Github
+- DOMAIN-SUFFIX,github-avatars.oss-cn-hongkong.aliyuncs.com,Github
+- DOMAIN-SUFFIX,github-cloud.s3.amazonaws.com,Github
+- DOMAIN-SUFFIX,thegithubshop.com,Github
+- DOMAIN-SUFFIX,githubuniverse.com,Github
+- DOMAIN-SUFFIX,githubnext.com,Github
+- DOMAIN-SUFFIX,githubhackathon.com,Github
+- DOMAIN-SUFFIX,myoctocat.com,Github
+- DOMAIN-SUFFIX,opensource.guide,Github
+- DOMAIN-SUFFIX,repo.new,Github
+- DOMAIN-SUFFIX,auth0.com,OpenAI
+- DOMAIN,challenges.cloudflare.com,OpenAI
+- DOMAIN-SUFFIX,ai.com,OpenAI
+- DOMAIN-SUFFIX,openai.com,OpenAI
+- DOMAIN-SUFFIX,sentry.io,OpenAI
+- DOMAIN-SUFFIX,intercom.io,OpenAI
+- DOMAIN-SUFFIX,identrust.com,OpenAI
+- DOMAIN-SUFFIX,chat.openai.com.cdn.cloudflare.net,OpenAI
+- DOMAIN-SUFFIX,openaiapi-site.azureedge.net,OpenAI
+- DOMAIN-SUFFIX,challenges.cloudflare.com,OpenAI
+- DOMAIN-SUFFIX,invoice.stripe.com,OpenAI
+- DOMAIN-SUFFIX,stripe.com,OpenAI
+- DOMAIN-SUFFIX,poe.com,OpenAI
 - DOMAIN,yt3.ggpht.com,🌍 国外媒体
 - DOMAIN-SUFFIX,t.me,📲 电报信息
 - DOMAIN-SUFFIX,tdesktop.com,📲 电报信息

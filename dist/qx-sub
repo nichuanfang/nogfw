@@ -1,50 +1,6 @@
-trojan = 152.70.74.66:443, password=d906afe5-7c3c-4ddc-aaa4-61c154a82e5e, over-tls=true, tls-host=, tls-verification=false, tag=[1] 🇮🇳 印度-844.2KB/s
-vmess = 140.99.59.253:55512, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[2] 🇺🇲 美国-2.70MB/s
-shadowsocks = 122.248.217.131:443, method=aes-256-cfb, password=amazonskr05, tag=[3] 🇸🇬 新加坡-2.32MB/s
-trojan = 163.123.192.156:443, password=1113a9fa-c6ee-4929-ae93-d29d024b1728, over-tls=true, tls-host=download.xn--mes358a9urctx.com, tls-verification=false, tag=[4] 🇺🇲 美国-3.38MB/s
-shadowsocks = 216.52.183.243:80, method=aes-128-gcm, password=83XvX4Vo%*3a, obfs=http, tag=[5] 🇺🇲 美国-1.58MB/s
-trojan = 163.123.192.154:443, password=1113a9fa-c6ee-4929-ae93-d29d024b1728, over-tls=true, tls-host=download.xn--mes358a9urctx.com, tls-verification=false, tag=[6] 🇺🇲 美国-3.43MB/s
-vmess = 23.224.171.67:49813, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[7] 🇺🇲 美国-4.19MB/s
-trojan = 163.123.192.153:443, password=1113a9fa-c6ee-4929-ae93-d29d024b1728, over-tls=true, tls-host=download.xn--mes358a9urctx.com, tls-verification=false, tag=[8] 🇺🇲 美国-3.39MB/s
-vmess = 23.224.110.184:443, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, obfs=wss, obfs-host=, obfs-uri=/path/080712342310, tag=[9] 🇺🇲 美国-5.18MB/s
-trojan = 163.123.192.155:443, password=1113a9fa-c6ee-4929-ae93-d29d024b1728, over-tls=true, tls-host=download.xn--mes358a9urctx.com, tls-verification=false, tag=[10] 🇺🇲 美国-5.28MB/s
-shadowsocks = 54.189.216.64:443, method=aes-256-cfb, password=amazonskr05, tag=[11] 🇺🇲 美国-4.57MB/s
-trojan = 152.70.74.66:443, password=d906afe5-7c3c-4ddc-aaa4-61c154a82e5e, over-tls=true, tls-host=, tls-verification=false, tag=[12] 🇮🇳 印度-2.23MB/s
-shadowsocks = ntemp19.boom.skin:24000, method=aes-256-cfb, password=Uk92CS, ssr-protocol=auth_aes128_sha1, ssr-protocol-param=23957:nZCp9Y, obfs=http_simple, obfs-host=download.windowsupdate.com, tag=[13] (已存活10天)中转节点-10.96MB/s
-trojan = 152.70.74.66:443, password=d906afe5-7c3c-4ddc-aaa4-61c154a82e5e, over-tls=true, tls-host=, tls-verification=false, tag=[14] 🇮🇳 印度-3.07MB/s
-vmess = 202.79.171.155:443, method=chacha20-ietf-poly1305, password=7f37da61-c734-41b4-a8c2-eccfd6ca48f0, aead=false, obfs=wss, obfs-host=, obfs-uri=/path/080712342310, tag=[15] 🇸🇬 新加坡-216.9KB/s
-trojan = 152.70.74.66:443, password=d906afe5-7c3c-4ddc-aaa4-61c154a82e5e, over-tls=true, tls-host=, tls-verification=false, tag=[16] 🇮🇳 印度-3.14MB/s
-vmess = 107.167.29.229:46321, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[17] 🇺🇲 美国-5.58MB/s
-vmess = cf-lt.sharecentre.online:80, method=chacha20-ietf-poly1305, password=2d5d8b9c-8ec4-4a37-b610-78e71e13eaef, aead=true, obfs=ws, obfs-host=in.sharecentrepro.com, obfs-uri=/shirker, tag=[18] 🇺🇲 美国-1.01MB/s
-trojan = 103.169.7.11:80, password=c0d9da22-2569-4bed-a395-607d9e7ae687, over-tls=true, tls-host=sciencedirect.com, tls-verification=false, tag=[19] 🇮🇩 印度尼西亚-1.46MB/s
-shadowsocks = free.themars.top:32102, method=chacha20-ietf-poly1305, password=b89b39c2-dc8d-4595-a4c5-54b4fbab3fc2, tag=[20] 中转节点-944.6KB/s
-vmess = 83.142.225.20:49920, method=chacha20-ietf-poly1305, password=5267ca71-97e6-44c8-8fb5-9fe4afe0954e, aead=false, tag=[21] 🇬🇧 英国-2.91MB/s
-vmess = 83.142.225.20:49920, method=chacha20-ietf-poly1305, password=5267ca71-97e6-44c8-8fb5-9fe4afe0954e, aead=false, tag=[22] 🇬🇧 英国-3.70MB/s
-shadowsocks = opt23.boom.skin:33000, method=aes-256-cfb, password=Uk92CS, ssr-protocol=auth_aes128_sha1, ssr-protocol-param=23957:nZCp9Y, obfs=http_simple, obfs-host=download.windowsupdate.com, tag=[23] (已存活10天)中转节点-5.78MB/s
-vmess = 154.85.1.2:443, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, obfs=wss, obfs-host=, obfs-uri=/path/1683543024453, tag=[24] 🇳🇱 荷兰-2.18MB/s
-shadowsocks = 103.177.33.180:443, method=chacha20-ietf-poly1305, password=9e44e9ffe5c2, obfs=wss, obfs-host=wtw1000mline004.chilines.club, obfs-uri=/isaifqaagpi, tag=[25] 🇨🇳 台湾-13.46MB/s
-vmess = 23.225.33.171:56662, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[26] 🇺🇲 美国-5.18MB/s
-vmess = 23.224.110.184:443, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, obfs=wss, obfs-host=, obfs-uri=/path/080712342310, tag=[27] 🇺🇲 美国-5.19MB/s
-trojan = 163.123.192.153:443, password=1113a9fa-c6ee-4929-ae93-d29d024b1728, over-tls=true, tls-host=download.xn--mes358a9urctx.com, tls-verification=false, tag=[28] 🇺🇲 美国-3.03MB/s
-vmess = 23.224.171.67:49813, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[29] 🇺🇲 美国-3.23MB/s
-trojan = 103.169.7.11:80, password=c0d9da22-2569-4bed-a395-607d9e7ae687, over-tls=true, tls-host=sciencedirect.com, tls-verification=false, tag=[30] 🇮🇩 印度尼西亚-1.27MB/s
-vmess = 83.142.225.20:49920, method=chacha20-ietf-poly1305, password=5267ca71-97e6-44c8-8fb5-9fe4afe0954e, aead=false, tag=[31] 🇬🇧 英国-3.29MB/s
-trojan = azjp2.downloadvip.cfd:443, password=f5a18240-423f-47a0-b9a3-5e647bcdf38f, over-tls=true, tls-host=us4.xn--mes358a9urctx.com, tls-verification=false, tag=[32] 🇯🇵 日本-7.29MB/s
-shadowsocks = jp10.boom.skin:39000, method=aes-256-cfb, password=Uk92CS, ssr-protocol=auth_aes128_sha1, ssr-protocol-param=23957:nZCp9Y, obfs=http_simple, obfs-host=download.windowsupdate.com, tag=[33] (已存活10天)中转节点-15.42MB/s
-trojan = fscjp.fscloud123456789.com:443, password=858ad8e5-1566-46cd-a8d8-30d20a6a1b19, over-tls=true, tls-host=, tls-verification=false, tag=[34] 🇯🇵 日本-9.16MB/s
-vmess = 172.247.148.85:53302, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[35] 🇺🇲 美国-4.78MB/s
-vmess = cf-lt.sharecentre.online:80, method=chacha20-ietf-poly1305, password=2d5d8b9c-8ec4-4a37-b610-78e71e13eaef, aead=true, obfs=ws, obfs-host=in.sharecentrepro.com, obfs-uri=/shirker, tag=[36] 未知国家-1.01MB/s
-shadowsocks = 216.52.183.243:80, method=aes-128-gcm, password=83XvX4Vo%*3a, obfs=http, tag=[37] 🇺🇲 美国-1.59MB/s
-shadowsocks = 74.121.191.98:989, method=aes-256-cfb, password=f8f7aCzcPKbsF8p3, tag=[38] 🇺🇲 美国-2.72MB/s
-vmess = 103.82.27.163:80, method=chacha20-ietf-poly1305, password=8afbd60f-aa52-49e6-8f37-9aca0b90f2c8, aead=true, obfs=ws, obfs-host=, obfs-uri=/zingfast.vn, tag=[39] 🇻🇳 越南-2.55MB/s
-trojan = 163.123.192.155:443, password=1113a9fa-c6ee-4929-ae93-d29d024b1728, over-tls=true, tls-host=download.xn--mes358a9urctx.com, tls-verification=false, tag=[40] 🇺🇲 美国-5.18MB/s
-vmess = 23.224.110.184:443, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, obfs=wss, obfs-host=, obfs-uri=/path/080712342310, tag=[41] 🇺🇲 美国-4.67MB/s
-shadowsocks = n115.boom.skin:30000, method=aes-256-cfb, password=Uk92CS, ssr-protocol=auth_aes128_sha1, ssr-protocol-param=23957:nZCp9Y, obfs=http_simple, obfs-host=download.windowsupdate.com, tag=[42] (已存活10天)中转节点-10.16MB/s
-trojan = fscjp.fscloud123456789.com:443, password=858ad8e5-1566-46cd-a8d8-30d20a6a1b19, over-tls=true, tls-host=, tls-verification=false, tag=[43] 🇸🇬 新加坡-9.16MB/s
-trojan = 163.123.192.154:443, password=1113a9fa-c6ee-4929-ae93-d29d024b1728, over-tls=true, tls-host=download.xn--mes358a9urctx.com, tls-verification=false, tag=[44] 🇺🇲 美国-3.44MB/s
-trojan = 20.243.66.93:443, password=9c88c39c-b9a7-4b6d-a27a-0fe8ddc4d25a, over-tls=true, tls-host=jp1.xn--mes358a9urctx.com, tls-verification=false, tag=[45] 🇯🇵 日本-10.71MB/s
-trojan = 152.70.74.66:443, password=d906afe5-7c3c-4ddc-aaa4-61c154a82e5e, over-tls=true, tls-host=, tls-verification=false, tag=[46] 🇮🇳 印度-906.9KB/s
-vmess = 103.166.183.14:80, method=chacha20-ietf-poly1305, password=8afbd60f-aa52-49e6-8f37-9aca0b90f2c8, aead=true, obfs=ws, obfs-host=, obfs-uri=/zingfast.vn, tag=[47] 🇻🇳 越南-925.6KB/s
-shadowsocks = nn3.boom.skin:42000, method=aes-256-cfb, password=Uk92CS, ssr-protocol=auth_aes128_sha1, ssr-protocol-param=23957:nZCp9Y, obfs=http_simple, obfs-host=download.windowsupdate.com, tag=[48] (已存活10天)中转节点-12.56MB/s
-trojan = tw2.microsoft-orgwly.vip:80, password=fcf74125-99de-4df3-af94-552a0b1ee021, over-tls=true, tls-host=tls.microsoft-orgwly.vip, tls-verification=false, tag=[49] 🇨🇳 台湾-1.01MB/s
-shadowsocks = 103.177.33.180:443, method=chacha20-ietf-poly1305, password=9e44e9ffe5c2, obfs=wss, obfs-host=wtw1000mline004.chilines.club, obfs-uri=/isaifqaagpi, tag=[50] 🇨🇳 台湾-12.63MB/s
+trojan = 152.70.74.66:443, password=d906afe5-7c3c-4ddc-aaa4-61c154a82e5e, over-tls=true, tls-host=, tls-verification=false, tag=[1] 🇮🇳 印度-3.03MB/s
+vmess = 108.186.116.174:55005, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[2] 🇺🇲 美国-4.58MB/s
+vmess = 141.164.43.153:80, method=chacha20-ietf-poly1305, password=8afbd60f-aa52-49e6-8f37-9aca0b90f2c8, aead=true, obfs=ws, obfs-host=, obfs-uri=/zingfast.vn, tag=[3] 🇰🇷 韩国-331.7KB/s
+trojan = 163.123.192.156:443, password=1113a9fa-c6ee-4929-ae93-d29d024b1728, over-tls=true, tls-host=download.xn--mes358a9urctx.com, tls-verification=false, tag=[4] 🇺🇲 美国-3.48MB/s
+vmess = 140.99.59.253:55512, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[5] 🇺🇲 美国-4.22MB/s
+vmess = 107.148.194.233:55504, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[6] 🇺🇲 美国-5.30MB/s
