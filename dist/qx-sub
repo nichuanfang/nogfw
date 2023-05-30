@@ -1,7 +1,4 @@
-shadowsocks = nf8.boom.skin:18000, method=aes-256-cfb, password=Uk92CS, ssr-protocol=auth_aes128_sha1, ssr-protocol-param=23957:nZCp9Y, obfs=http_simple, obfs-host=download.windowsupdate.com, tag=[1] (已存活10天)中转节点-13.97MB/s
-vmess = 198.2.208.189:443, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, obfs=wss, obfs-host=, obfs-uri=/path/1683715826870, tag=[2] 🇺🇲 美国-4.70MB/s
-shadowsocks = 216.52.183.243:80, method=aes-128-gcm, password=83XvX4Vo%*3a, obfs=http, tag=[3] 🇺🇲 美国-1.58MB/s
-vmess = 142.0.130.242:47988, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[4] 🇺🇲 美国-2.89MB/s
-vmess = 23.224.8.38:55332, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[5] 🇺🇲 美国-5.24MB/s
-shadowsocks = 103.177.33.180:443, method=chacha20-ietf-poly1305, password=9e44e9ffe5c2, obfs=wss, obfs-host=wtw1000mline004.chilines.club, obfs-uri=/isaifqaagpi, tag=[6] 🇨🇳 台湾-11.98MB/s
-vmess = 83.142.225.20:49920, method=chacha20-ietf-poly1305, password=5267ca71-97e6-44c8-8fb5-9fe4afe0954e, aead=false, tag=[7] 🇬🇧 英国-2.45MB/s
+vmess = 192.74.228.179:42857, method=chacha20-ietf-poly1305, password=051b844f-efe3-4847-92aa-66b5de0b6d4e, aead=false, tag=[1] 🇺🇲 美国-5.04MB/s
+vmess = 23.224.110.184:443, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, obfs=wss, obfs-host=, obfs-uri=/path/080712342310, tag=[2] 🇺🇲 美国-3.31MB/s
+trojan = 163.123.192.155:443, password=1113a9fa-c6ee-4929-ae93-d29d024b1728, over-tls=true, tls-host=download.xn--mes358a9urctx.com, tls-verification=false, tag=[3] 🇺🇲 美国-4.39MB/s
+vmess = 23.224.173.104:57183, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[4] 🇺🇲 美国-5.60MB/s
