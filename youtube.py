@@ -71,7 +71,17 @@ def craw(number:int,video_id:str,sleeptime:int):
                 if subitem == '[server_local]' and sub_res_list[index+1] not in ['','[filter_local]']:
                     # 有效qx订阅节点
                     # 添加到目标节点中
-                    all_nodes.append(sub_res_list[index+1])
+                    node = sub_res_list[index+1]
+                    new_node = None
+                    # 更改tag
+                    match = re.search(r'tag.+$',node)
+                    if match is not None:
+                        tag = match.group()
+                        new_tag = 'tag='+f'[{index+1}]'+tag.replace('(Youtube:不良林)','').split('=')[1]
+                        new_node = re.sub(r'tag.+$',new_tag,node)
+                    if new_node == None:
+                        continue
+                    all_nodes.append(new_node)
                     # 去重
                     all_nodes = list(set(all_nodes))
                     logging.info(f'==============================================================================当前节点池有: {len(all_nodes)}个节点')
