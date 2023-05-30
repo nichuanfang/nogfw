@@ -267,6 +267,13 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
         final_dict['proxy-groups'][1]['proxies'].append('🎯 全球直连')
     proxies = []
     for p in final_dict['proxies']:
+        # 按照测速结果排序 
+
+        # 获取测速结果
+        match = re.search(r'\d+.\d+',p['name'])
+        if match is not None:
+            logging.info(f'节点:{p["name"]}测速结果:{match.group()}')
+        
         proxies.append(p['name'])
     proxy_groups:list = final_dict['proxy-groups']
     # clash策略组详细配置请查看 https://stash.wiki/proxy-protocols/proxy-groups
@@ -371,7 +378,6 @@ if __name__ == '__main__':
                     image_factory=None,
                     mask_pattern=None)
         # 自适应大小
-        qr.best_fit(qr.version)
         qr.add_data('\n'.join(raw_list))
         img = qr.make_image()
         with open('dist/sub.jpg', 'wb') as qrc:
