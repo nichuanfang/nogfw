@@ -350,6 +350,16 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     rulesets = google_github_openai_ruleset()
     for rule_index,ruleset in enumerate(rulesets):
         rules.insert(flag+rule_index,ruleset)
+        if rule_index == len(rulesets)-1:
+            # ❤在国外媒体之前插入特殊规则
+            # ============================SPECIAL RULES BEFORE FOREIGN MEDIA===================================
+            before_foreign_special_rules = [
+                'DOMAIN-SUFFIX,docker.com,🌍 国外媒体'
+            ]
+            # ============================SPECIAL RULES BEFORE FOREIGN MEDIA===================================
+            for before_foreign_index,before_foreign_special_rule in enumerate(before_foreign_special_rules):
+                rules.insert(flag+rule_index+1+before_foreign_index,before_foreign_special_rule)
+
 
     logging.info(f'======================添加自定义规则: 🎯 全球直连==========================================')
     # 针对性直连
@@ -361,8 +371,16 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     for direct_rule in direct_rules:
         rules_.append(direct_rule)
 
-    # ❤补充特殊规则
-    rules_.append('DOMAIN-SUFFIX,segmentfault.com,🎯 全球直连')
+    # ❤在全球直连之前 补充特殊规则
+    # ================================SPECIAL RULES BEFORE DIRECT===========================================
+    before_direct_special_rules = [
+        'DOMAIN-SUFFIX,segmentfault.com,🎯 全球直连'
+    ]
+    # ================================SPECIAL RULES BEFORE DIRECT============================================
+    for before_direct_special_rule in before_direct_special_rules:
+        rules_.append(before_direct_special_rule)
+
+    # dockerhub 解析的dns 199.16.156.103无法访问
     final_dict['rules'] = rules_
 
     # 添加自定义dns
