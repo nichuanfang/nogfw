@@ -23,9 +23,9 @@ dns:
     ipcidr:
       - 240.0.0.0/4
 proxies:
-  - {name: "[1] 美国-8.37MB/s", server: kr.stablize.top, port: 443, type: trojan, password: a6950ca9-4504-411a-a656-bee29a4739eb, skip-cert-verify: true}
-  - {name: "[2] 美国-5.07MB/s", server: 198.2.196.50, port: 54434, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
-  - {name: "[3] 新加坡-4.33MB/s", server: dejs.stablize.top, port: 443, type: trojan, password: cf1df355-e505-44a5-9c80-3fe732de1c71, skip-cert-verify: true}
+  - {name: "[1] 美国-5.97MB/s", server: 38.26.191.98, port: 49920, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
+  - {name: "[2] 美国-310.2KB/s", server: cf-lt.sharecentre.online, port: 80, type: vmess, uuid: 2d5d8b9c-8ec4-4a37-b610-78e71e13eaef, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /shirker, headers: {Host: nl.sharecentrepro.com}}}
+  - {name: "[3] 韩国-153.6KB/s", server: 43.201.254.164, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05}
 proxy-groups:
   - name: 🔰 节点选择
     type: select
@@ -40,25 +40,25 @@ proxy-groups:
       - 🇰🇷 Korea
       - 🌐 Other
       - 🎯 全球直连
-      - "[1] 美国-8.37MB/s"
-      - "[2] 美国-5.07MB/s"
-      - "[3] 新加坡-4.33MB/s"
+      - "[1] 美国-5.97MB/s"
+      - "[2] 美国-310.2KB/s"
+      - "[3] 韩国-153.6KB/s"
   - name: 🤔 高可用
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 1800
     tolerance: 100
     proxies:
-      - "[1] 美国-8.37MB/s"
-      - "[2] 美国-5.07MB/s"
-      - "[3] 新加坡-4.33MB/s"
+      - "[1] 美国-5.97MB/s"
+      - "[2] 美国-310.2KB/s"
+      - "[3] 韩国-153.6KB/s"
   - name: ♻️ 低延迟
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 600
     tolerance: 100
     proxies:
-      - "[3] 新加坡-4.33MB/s"
+      - "[3] 韩国-153.6KB/s"
   - name: 🌍 国外媒体
     type: select
     proxies:
@@ -73,9 +73,9 @@ proxy-groups:
       - 🇰🇷 Korea
       - 🌐 Other
       - 🎯 全球直连
-      - "[1] 美国-8.37MB/s"
-      - "[2] 美国-5.07MB/s"
-      - "[3] 新加坡-4.33MB/s"
+      - "[1] 美国-5.97MB/s"
+      - "[2] 美国-310.2KB/s"
+      - "[3] 韩国-153.6KB/s"
   - name: 🌏 国内媒体
     type: select
     proxies:
@@ -117,9 +117,9 @@ proxy-groups:
       - 🇰🇷 Korea
       - 🌐 Other
       - 🎯 全球直连
-      - "[1] 美国-8.37MB/s"
-      - "[2] 美国-5.07MB/s"
-      - "[3] 新加坡-4.33MB/s"
+      - "[1] 美国-5.97MB/s"
+      - "[2] 美国-310.2KB/s"
+      - "[3] 韩国-153.6KB/s"
   - name: 🍎 苹果服务
     type: select
     proxies:
@@ -134,17 +134,17 @@ proxy-groups:
       - 🎯 全球直连
       - 🤔 高可用
       - ♻️ 低延迟
-      - "[1] 美国-8.37MB/s"
-      - "[2] 美国-5.07MB/s"
-      - "[3] 新加坡-4.33MB/s"
+      - "[1] 美国-5.97MB/s"
+      - "[2] 美国-310.2KB/s"
+      - "[3] 韩国-153.6KB/s"
   - name: Ⓜ️ 微软服务
     type: select
     proxies:
       - 🎯 全球直连
       - 🔰 节点选择
-      - "[1] 美国-8.37MB/s"
-      - "[2] 美国-5.07MB/s"
-      - "[3] 新加坡-4.33MB/s"
+      - "[1] 美国-5.97MB/s"
+      - "[2] 美国-310.2KB/s"
+      - "[3] 韩国-153.6KB/s"
   - name: 🇭🇰 Hong Kong
     type: fallback
     url: http://www.gstatic.com/generate_204
@@ -158,7 +158,7 @@ proxy-groups:
     interval: 1800
     tolerance: 100
     proxies:
-      - "[3] 新加坡-4.33MB/s"
+      - DIRECT
   - name: 🇹🇼 Taiwan
     type: fallback
     url: http://www.gstatic.com/generate_204
@@ -172,8 +172,8 @@ proxy-groups:
     interval: 1800
     tolerance: 100
     proxies:
-      - "[1] 美国-8.37MB/s"
-      - "[2] 美国-5.07MB/s"
+      - "[1] 美国-5.97MB/s"
+      - "[2] 美国-310.2KB/s"
   - name: 🇯🇵 Japan
     type: fallback
     url: http://www.gstatic.com/generate_204
@@ -187,7 +187,7 @@ proxy-groups:
     interval: 1800
     tolerance: 100
     proxies:
-      - DIRECT
+      - "[3] 韩国-153.6KB/s"
   - name: 🌐 Other
     type: select
     proxies:
@@ -215,9 +215,9 @@ proxy-groups:
       - 🇯🇵 Japan
       - 🇰🇷 Korea
       - 🌐 Other
-      - "[1] 美国-8.37MB/s"
-      - "[2] 美国-5.07MB/s"
-      - "[3] 新加坡-4.33MB/s"
+      - "[1] 美国-5.97MB/s"
+      - "[2] 美国-310.2KB/s"
+      - "[3] 韩国-153.6KB/s"
 rules:
  - DOMAIN-SUFFIX,local,🎯 全球直连
  - IP-CIDR,192.168.0.0/16,🎯 全球直连,no-resolve
