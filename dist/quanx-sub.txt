@@ -1,0 +1,3 @@
+vmess = 38.26.191.98:49920, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[1] 美国-5.97MB/s
+vmess = cf-lt.sharecentre.online:80, method=chacha20-ietf-poly1305, password=2d5d8b9c-8ec4-4a37-b610-78e71e13eaef, aead=true, obfs=ws, obfs-host=nl.sharecentrepro.com, obfs-uri=/shirker, tag=[2] 美国-310.2KB/s
+shadowsocks = 43.201.254.164:443, method=aes-256-cfb, password=amazonskr05, tag=[3] 韩国-153.6KB/s
