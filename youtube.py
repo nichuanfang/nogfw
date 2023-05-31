@@ -50,7 +50,7 @@ logging.basicConfig(level=logging.INFO)
 def craw(number:int,video_id:str,sleeptime:int):
     raw_list = []
     logging.info(f'===========================================================================开始获取节点信息...')
-    # 默认130
+    # 默认165
     for craw_index in range(number):
         logging.info(f'=====================================开始第{craw_index+1}/{number}轮抓取======================================================')
         # 隔一段时间获取二维码
@@ -425,7 +425,7 @@ if __name__ == '__main__':
         CARW_NUMBER = 5
         NEED_SAVE = False
     elif ENV == 'prod':
-        CARW_NUMBER = 150
+        CARW_NUMBER = 165
         NEED_SAVE = True
     else:
         CARW_NUMBER = 5
