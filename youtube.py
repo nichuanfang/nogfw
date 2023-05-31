@@ -360,7 +360,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
             for before_foreign_index,before_foreign_special_rule in enumerate(before_foreign_special_rules):
                 rules.insert(flag+rule_index+1+before_foreign_index,before_foreign_special_rule)
 
-    rules.remove('- MATCH,,🐟 漏网之鱼,dns-failed')
+    rules.remove('MATCH,,🐟 漏网之鱼,dns-failed')
     logging.info(f'======================添加自定义规则: 🎯 全球直连==========================================')
 
     # 针对性直连
