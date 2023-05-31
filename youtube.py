@@ -370,7 +370,6 @@ if __name__ == '__main__':
     else:
         CARW_NUMBER = 5
         NEED_SAVE = False
-
     # sys.argv[1]): CRAW_NUMBER 抓取次数
     all_nodes = craw(CARW_NUMBER,'qmRkvKo-KbQ',10)
     # 对节点按照测速结果 从快到慢降速排序
@@ -427,9 +426,10 @@ if __name__ == '__main__':
                     image_factory=None,
                     mask_pattern=None)
         # 自适应大小
+        qr.add_data('\n'.join(raw_list))
+        img = qr.make_image()
+        # 临时测试
         if not NEED_SAVE:
-            qr.add_data('\n'.join(raw_list))
-            img = qr.make_image()
             with open('dist/sub.jpg', 'wb') as qrc:
                 img.save(qrc)
             # 调整分辨率
@@ -439,8 +439,8 @@ if __name__ == '__main__':
     
     try:
         clash_dict = generate_clash_config(raw_list,{})
-        with open('dist/clash.yml', 'w+',encoding='utf-8') as file:
-            if NEED_SAVE:
+        if NEED_SAVE:
+            with open('dist/clash.yml', 'w+',encoding='utf-8') as file:
                 file.write(yaml.dump(clash_dict, allow_unicode=True,default_flow_style=False,sort_keys=False))
     except Exception as e:
         logging.error(f'================================clash文件生成失败!:{e}==========================================')
