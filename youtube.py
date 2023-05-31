@@ -28,8 +28,8 @@ nodes = ['trojan://a6950ca9-4504-411a-a656-bee29a4739eb@kr.stablize.top:443?allo
          'vmess://eyJ2IjoiMiIsInBzIjoi576O5Zu9LTMuOTlNQi9zKFlvdXR1YmU65LiN6Imv5p6XKSIsImFkZCI6ImNkbi14anA0LmNxanNsLnh5eiIsInBvcnQiOiI0NDMiLCJ0eXBlIjoibm9uZSIsImlkIjoiZDE1NWE1MzktYzNmZi00NDMwLWIzODktZmUzY2U0YTgxOTAwIiwiYWlkIjoiMCIsIm5ldCI6IndzIiwicGF0aCI6Ii8iLCJob3N0IjoiY2RuLXhqcDQuY3Fqc2wueHl6IiwidGxzIjoidGxzIn0=',
          'vmess://eyJ2IjoiMiIsInBzIjoi576O5Zu9LTMuODZNQi9zKFlvdXR1YmU65LiN6Imv5p6XKSIsImFkZCI6IjQ1LjEzNi4yMzUuMTMiLCJwb3J0IjoiNDQzIiwidHlwZSI6Im5vbmUiLCJpZCI6IjQxODA0OGFmLWEyOTMtNGI5OS05YjBjLTk4Y2EzNTgwZGQyNCIsImFpZCI6IjY0IiwibmV0Ijoid3MiLCJwYXRoIjoiL3BhdGgvMTY4NDgyOTg5NzM4MCIsImhvc3QiOiIiLCJ0bHMiOiJ0bHMifQ==']
 
-converter.add_quanx(nodes)
-# converter.add_clash(nodes,converter.add_quanx(nodes,converter.add_mixed(nodes)))
+# converter.add_quanx(nodes)
+converter.add_clash(nodes,converter.add_quanx(nodes,converter.add_mixed(nodes)))
 
 # windows下需要先下载模型文件  https://blog.csdn.net/Loliykon/article/details/114334699
 reader = easyocr.Reader(['ch_sim','en'],model_storage_directory='ocr_models')
