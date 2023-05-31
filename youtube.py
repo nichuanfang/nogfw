@@ -360,32 +360,38 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
             for before_foreign_index,before_foreign_special_rule in enumerate(before_foreign_special_rules):
                 rules.insert(flag+rule_index+1+before_foreign_index,before_foreign_special_rule)
 
-
+    rules.remove('- MATCH,,🐟 漏网之鱼,dns-failed')
     logging.info(f'======================添加自定义规则: 🎯 全球直连==========================================')
+
     # 针对性直连
     rules_ = []
     for index_,value in enumerate(rules):
         if not value.__contains__('全球直连'):
             rules_.append(rules[index_])
-    direct_rules = direct_rulesets()
-    for direct_rule in direct_rules:
-        rules_.append(direct_rule)
-
+    
     # ❤在全球直连之前 补充特殊规则
     # ================================SPECIAL RULES BEFORE DIRECT===========================================
     before_direct_special_rules = [
         'DOMAIN-SUFFIX,segmentfault.com,🎯 全球直连'
     ]
     # ================================SPECIAL RULES BEFORE DIRECT============================================
+
     for before_direct_special_rule in before_direct_special_rules:
         rules_.append(before_direct_special_rule)
 
-    # dockerhub 解析的dns 199.16.156.103无法访问
+    direct_rules = direct_rulesets()
+    for direct_rule in direct_rules:
+        rules_.append(direct_rule)
+
+
+    # 将- MATCH,,🐟 漏网之鱼,dns-failed 移到最后面
+    rules_.append('- MATCH,,🐟 漏网之鱼,dns-failed')
+
     final_dict['rules'] = rules_
 
     # 添加自定义dns
     dns = {
-        'enable': 'true',
+        'enable': True,
         'listen': '0.0.0.0:53',
         'default-nameserver': [
             '223.5.5.5',
@@ -399,7 +405,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
             'https://1.1.1.1/dns-query'
         ],
         'fallback-filter': {
-            'geoip': 'true',
+            'geoip': True,
             'geoip-code': 'CN',
             'ipcidr': [
                 '240.0.0.0/4'
@@ -408,7 +414,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     }
     # 实验性功能 忽略 DNS 解析失败，默认值为 true
     experimental = {
-        'ignore-resolve-fail': 'true'
+        'ignore-resolve-fail': True
     }
 
     # 指定位置插入dns配置
