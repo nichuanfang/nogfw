@@ -23,9 +23,9 @@ from collections import OrderedDict
 import easyocr
 from subconverter import converter
 
-data = ['vmess://eyJhZGQiOiIxMDcuMTQ4LjUuNzgiLCJ2IjoiMiIsInBzIjoiXzIyIiwicG9ydCI6NTAwMDIsImlkIjoiNDE4MDQ4YWYtYTI5My00Yjk5LTliMGMtOThjYTM1ODBkZDI0IiwiYWlkIjoiNjQiLCJuZXQiOiIiLCJ0eXBlIjoiIiwiaG9zdCI6IiIsInBhdGgiOiIiLCJ0bHMiOiIifQ==',
-         'vmess://eyJhZGQiOiIxODUuMTMzLjQwLjE5MiIsInYiOiIyIiwicHMiOiJfMjMiLCJwb3J0IjozNTA1OSwiaWQiOiI4ZDc4YzJhOC1hY2FhLTQ2N2QtOTIzNC1kMjYwNjYyNDUwNmQiLCJhaWQiOiI2NCIsIm5ldCI6IiIsInR5cGUiOiIiLCJob3N0IjoiIiwicGF0aCI6IiIsInRscyI6IiJ9',
-         'vmess://eyJhZGQiOiIxODUuNDAuODYuMTk1IiwidiI6IjIiLCJwcyI6Il8yNCIsInBvcnQiOjUwMDAyLCJpZCI6IjQxODA0OGFmLWEyOTMtNGI5OS05YjBjLTk4Y2EzNTgwZGQyNCIsImFpZCI6IjY0IiwibmV0IjoiIiwidHlwZSI6IiIsImhvc3QiOiIiLCJwYXRoIjoiIiwidGxzIjoiIn0=',
+data = ['vmess://eyJhZGQiOiIxMDcuMTQ4LjUuNzgiLCJ2IjoiMiIsInBzIjoiXzIyIiwicG9ydCI6NTAwMDIsImlkIjoiNDE4MDQ4YWYtYTI5My00Yjk5LTliMGMtOThjYTM1ODBkZDI0IiwiYWlkIjoiNjQiLCJuZXQiOiIiLCJ0eXBlIjoiIiwiaG9zdCI6IiIsInBhdGgiOiIiLCJ0bHMiOiIifQ==#_111',
+         'vmess://eyJhZGQiOiIxODUuMTMzLjQwLjE5MiIsInYiOiIyIiwicHMiOiJfMjMiLCJwb3J0IjozNTA1OSwiaWQiOiI4ZDc4YzJhOC1hY2FhLTQ2N2QtOTIzNC1kMjYwNjYyNDUwNmQiLCJhaWQiOiI2NCIsIm5ldCI6IiIsInR5cGUiOiIiLCJob3N0IjoiIiwicGF0aCI6IiIsInRscyI6IiJ9#_222',
+         'vmess://eyJhZGQiOiIxODUuNDAuODYuMTk1IiwidiI6IjIiLCJwcyI6Il8yNCIsInBvcnQiOjUwMDAyLCJpZCI6IjQxODA0OGFmLWEyOTMtNGI5OS05YjBjLTk4Y2EzNTgwZGQyNCIsImFpZCI6IjY0IiwibmV0IjoiIiwidHlwZSI6IiIsImhvc3QiOiIiLCJwYXRoIjoiIiwidGxzIjoiIn0=#_333',
          'trojan://60454f67-7e28-4ddd-855f-e8216dfedf5a@awshk1.gsjc.cfd:443?sni=4-193-105-141.nhost.00cdn.com#_32',
          'trojan://bc2a1eb1-a706-4ee5-95a6-732a6c324142@hk5.cnamazon.sbs:443#_33']
 
