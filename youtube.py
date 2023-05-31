@@ -425,7 +425,7 @@ if __name__ == '__main__':
         CARW_NUMBER = 5
         NEED_SAVE = False
     elif ENV == 'prod':
-        CARW_NUMBER = 5
+        CARW_NUMBER = 150
         NEED_SAVE = True
     else:
         CARW_NUMBER = 5
