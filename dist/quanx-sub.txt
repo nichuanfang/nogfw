@@ -11,19 +11,19 @@ server=1.0.0.1
 server=8.8.8.8
 
 [policy]
-static=🔰 节点选择, ♻️ 自动选择, 🎯 全球直连, [1] 中转节点-6.05MB/s, [2] 美国-2.13MB/s, [3] 荷兰-1.89MB/s, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Proxy.png
-url-latency-benchmark=♻️ 自动选择, [1] 中转节点-6.05MB/s, [2] 美国-2.13MB/s, [3] 荷兰-1.89MB/s, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Auto.png
-static=🎥 NETFLIX, 🔰 节点选择, ♻️ 自动选择, 🎯 全球直连, [1] 中转节点-6.05MB/s, [2] 美国-2.13MB/s, [3] 荷兰-1.89MB/s
+static=🔰 节点选择, ♻️ 自动选择, 🎯 全球直连, [1] 以色列-3.23MB/s, [2] 日本-1.48MB/s, [3] 美国-1.46MB/s, [4] 法国-848.5KB/s, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Proxy.png
+url-latency-benchmark=♻️ 自动选择, [1] 以色列-3.23MB/s, [2] 日本-1.48MB/s, [3] 美国-1.46MB/s, [4] 法国-848.5KB/s, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Auto.png
+static=🎥 NETFLIX, 🔰 节点选择, ♻️ 自动选择, 🎯 全球直连, [1] 以色列-3.23MB/s, [2] 日本-1.48MB/s, [3] 美国-1.46MB/s, [4] 法国-848.5KB/s
 static=⛔️ 广告拦截, 🛑 全球拦截, 🎯 全球直连, 🔰 节点选择
 static=🚫 运营劫持, 🛑 全球拦截, 🎯 全球直连, 🔰 节点选择
-static=🌍 国外媒体, 🔰 节点选择, ♻️ 自动选择, 🎯 全球直连, [1] 中转节点-6.05MB/s, [2] 美国-2.13MB/s, [3] 荷兰-1.89MB/s, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/GlobalMedia.png
+static=🌍 国外媒体, 🔰 节点选择, ♻️ 自动选择, 🎯 全球直连, [1] 以色列-3.23MB/s, [2] 日本-1.48MB/s, [3] 美国-1.46MB/s, [4] 法国-848.5KB/s, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/GlobalMedia.png
 static=🌏 国内媒体, 🎯 全球直连, 🔰 节点选择, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/DomesticMedia.png
-static=Ⓜ️ 微软服务, 🎯 全球直连, 🔰 节点选择, [1] 中转节点-6.05MB/s, [2] 美国-2.13MB/s, [3] 荷兰-1.89MB/s, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Microsoft.png
-static=📲 电报信息, 🔰 节点选择, 🎯 全球直连, [1] 中转节点-6.05MB/s, [2] 美国-2.13MB/s, [3] 荷兰-1.89MB/s, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Telegram.png
-static=🍎 苹果服务, 🔰 节点选择, 🎯 全球直连, ♻️ 自动选择, [1] 中转节点-6.05MB/s, [2] 美国-2.13MB/s, [3] 荷兰-1.89MB/s, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Apple.png
+static=Ⓜ️ 微软服务, 🎯 全球直连, 🔰 节点选择, [1] 以色列-3.23MB/s, [2] 日本-1.48MB/s, [3] 美国-1.46MB/s, [4] 法国-848.5KB/s, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Microsoft.png
+static=📲 电报信息, 🔰 节点选择, 🎯 全球直连, [1] 以色列-3.23MB/s, [2] 日本-1.48MB/s, [3] 美国-1.46MB/s, [4] 法国-848.5KB/s, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Telegram.png
+static=🍎 苹果服务, 🔰 节点选择, 🎯 全球直连, ♻️ 自动选择, [1] 以色列-3.23MB/s, [2] 日本-1.48MB/s, [3] 美国-1.46MB/s, [4] 法国-848.5KB/s, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Apple.png
 static=🎯 全球直连, DIRECT, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Direct.png
 static=🛑 全球拦截, REJECT, DIRECT, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Advertising.png
-static=🐟 漏网之鱼, 🔰 节点选择, 🎯 全球直连, ♻️ 自动选择, [1] 中转节点-6.05MB/s, [2] 美国-2.13MB/s, [3] 荷兰-1.89MB/s, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Final.png
+static=🐟 漏网之鱼, 🔰 节点选择, 🎯 全球直连, ♻️ 自动选择, [1] 以色列-3.23MB/s, [2] 日本-1.48MB/s, [3] 美国-1.46MB/s, [4] 法国-848.5KB/s, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Final.png
 
 [server_remote]
 
@@ -32,9 +32,10 @@ static=🐟 漏网之鱼, 🔰 节点选择, 🎯 全球直连, ♻️ 自动选
 [rewrite_remote]
 
 [server_local]
-trojan = iplc-enter-tw-xe.fib-sys.xyz:11451, password=11a4e5be-3c87-37d2-aac8-00b85ef0fcdc, over-tls=true, tls-host=, tls13=false, fast-open=false, udp-relay=true, tls-verification=false, tag=[1] 中转节点-6.05MB/s
-vmess = hkdsubv.114514782.xyz:2082, method=chacha20-ietf-poly1305, password=0ee79445-85a0-38fe-be38-58035ad10530, aead=true, obfs=ws, obfs-host=hkdsubv.114514782.xyz, obfs-uri=/sdubfc, fast-open=false, udp-relay=true, tag=[2] 美国-2.13MB/s
-vmess = 206.189.98.76:8080, method=chacha20-ietf-poly1305, password=85c3ff6a-bb5c-4615-97fe-ac75bbce7c66, aead=true, obfs=ws, obfs-host=, obfs-uri=/telegram:UCIRANIR, fast-open=false, udp-relay=true, tag=[3] 荷兰-1.89MB/s
+trojan = us1.chuqiangtou.net:4003, password=TJCfE7Mx2YcA8kX8zg, over-tls=true, tls-host=us1.chuqiangtou.net, tls13=false, fast-open=false, udp-relay=true, tls-verification=false, tag=[1] 以色列-3.23MB/s
+shadowsocks = 54.199.48.90:443, method=aes-256-cfb, password=amazonskr05, fast-open=false, udp-relay=true, tag=[2] 日本-1.48MB/s
+vmess = hkdsubv.114514782.xyz:2082, method=chacha20-ietf-poly1305, password=0ee79445-85a0-38fe-be38-58035ad10530, aead=true, obfs=ws, obfs-host=hkdsubv.114514782.xyz, obfs-uri=/sdubfc, fast-open=false, udp-relay=true, tag=[3] 美国-1.46MB/s
+shadowsocks = 145.239.6.202:4444, method=aes-256-gcm, password=pKEW8JPByTVTLtM, fast-open=false, udp-relay=true, tag=[4] 法国-848.5KB/s
 
 [filter_local]
 DOMAIN-SUFFIX,local,🎯 全球直连

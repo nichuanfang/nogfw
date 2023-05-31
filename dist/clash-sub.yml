@@ -5,35 +5,39 @@ mode: Rule
 log-level: info
 external-controller: :9090
 proxies:
-  - {name: "[1] 中转节点-6.05MB/s", server: iplc-enter-tw-xe.fib-sys.xyz, port: 11451, type: trojan, password: 11a4e5be-3c87-37d2-aac8-00b85ef0fcdc, skip-cert-verify: true, udp: true}
-  - {name: "[2] 美国-2.13MB/s", server: hkdsubv.114514782.xyz, port: 2082, type: vmess, uuid: 0ee79445-85a0-38fe-be38-58035ad10530, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /sdubfc, headers: {Host: hkdsubv.114514782.xyz}}, udp: true}
-  - {name: "[3] 荷兰-1.89MB/s", server: 206.189.98.76, port: 8080, type: vmess, uuid: 85c3ff6a-bb5c-4615-97fe-ac75bbce7c66, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /telegram:UCIRANIR}, udp: true}
+  - {name: "[1] 以色列-3.23MB/s", server: us1.chuqiangtou.net, port: 4003, type: trojan, password: TJCfE7Mx2YcA8kX8zg, sni: us1.chuqiangtou.net, skip-cert-verify: true, udp: true}
+  - {name: "[2] 日本-1.48MB/s", server: 54.199.48.90, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05, udp: true}
+  - {name: "[3] 美国-1.46MB/s", server: hkdsubv.114514782.xyz, port: 2082, type: vmess, uuid: 0ee79445-85a0-38fe-be38-58035ad10530, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /sdubfc, headers: {Host: hkdsubv.114514782.xyz}}, udp: true}
+  - {name: "[4] 法国-848.5KB/s", server: 145.239.6.202, port: 4444, type: ss, cipher: aes-256-gcm, password: pKEW8JPByTVTLtM, udp: true}
 proxy-groups:
   - name: 🔰 节点选择
     type: select
     proxies:
       - ♻️ 自动选择
       - 🎯 全球直连
-      - "[1] 中转节点-6.05MB/s"
-      - "[2] 美国-2.13MB/s"
-      - "[3] 荷兰-1.89MB/s"
+      - "[1] 以色列-3.23MB/s"
+      - "[2] 日本-1.48MB/s"
+      - "[3] 美国-1.46MB/s"
+      - "[4] 法国-848.5KB/s"
   - name: ♻️ 自动选择
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 300
     proxies:
-      - "[1] 中转节点-6.05MB/s"
-      - "[2] 美国-2.13MB/s"
-      - "[3] 荷兰-1.89MB/s"
+      - "[1] 以色列-3.23MB/s"
+      - "[2] 日本-1.48MB/s"
+      - "[3] 美国-1.46MB/s"
+      - "[4] 法国-848.5KB/s"
   - name: 🎥 NETFLIX
     type: select
     proxies:
       - 🔰 节点选择
       - ♻️ 自动选择
       - 🎯 全球直连
-      - "[1] 中转节点-6.05MB/s"
-      - "[2] 美国-2.13MB/s"
-      - "[3] 荷兰-1.89MB/s"
+      - "[1] 以色列-3.23MB/s"
+      - "[2] 日本-1.48MB/s"
+      - "[3] 美国-1.46MB/s"
+      - "[4] 法国-848.5KB/s"
   - name: ⛔️ 广告拦截
     type: select
     proxies:
@@ -52,9 +56,10 @@ proxy-groups:
       - 🔰 节点选择
       - ♻️ 自动选择
       - 🎯 全球直连
-      - "[1] 中转节点-6.05MB/s"
-      - "[2] 美国-2.13MB/s"
-      - "[3] 荷兰-1.89MB/s"
+      - "[1] 以色列-3.23MB/s"
+      - "[2] 日本-1.48MB/s"
+      - "[3] 美国-1.46MB/s"
+      - "[4] 法国-848.5KB/s"
   - name: 🌏 国内媒体
     type: select
     proxies:
@@ -65,26 +70,29 @@ proxy-groups:
     proxies:
       - 🎯 全球直连
       - 🔰 节点选择
-      - "[1] 中转节点-6.05MB/s"
-      - "[2] 美国-2.13MB/s"
-      - "[3] 荷兰-1.89MB/s"
+      - "[1] 以色列-3.23MB/s"
+      - "[2] 日本-1.48MB/s"
+      - "[3] 美国-1.46MB/s"
+      - "[4] 法国-848.5KB/s"
   - name: 📲 电报信息
     type: select
     proxies:
       - 🔰 节点选择
       - 🎯 全球直连
-      - "[1] 中转节点-6.05MB/s"
-      - "[2] 美国-2.13MB/s"
-      - "[3] 荷兰-1.89MB/s"
+      - "[1] 以色列-3.23MB/s"
+      - "[2] 日本-1.48MB/s"
+      - "[3] 美国-1.46MB/s"
+      - "[4] 法国-848.5KB/s"
   - name: 🍎 苹果服务
     type: select
     proxies:
       - 🔰 节点选择
       - 🎯 全球直连
       - ♻️ 自动选择
-      - "[1] 中转节点-6.05MB/s"
-      - "[2] 美国-2.13MB/s"
-      - "[3] 荷兰-1.89MB/s"
+      - "[1] 以色列-3.23MB/s"
+      - "[2] 日本-1.48MB/s"
+      - "[3] 美国-1.46MB/s"
+      - "[4] 法国-848.5KB/s"
   - name: 🎯 全球直连
     type: select
     proxies:
@@ -100,9 +108,10 @@ proxy-groups:
       - 🔰 节点选择
       - 🎯 全球直连
       - ♻️ 自动选择
-      - "[1] 中转节点-6.05MB/s"
-      - "[2] 美国-2.13MB/s"
-      - "[3] 荷兰-1.89MB/s"
+      - "[1] 以色列-3.23MB/s"
+      - "[2] 日本-1.48MB/s"
+      - "[3] 美国-1.46MB/s"
+      - "[4] 法国-848.5KB/s"
 rules:
  - DOMAIN-SUFFIX,local,🎯 全球直连
  - IP-CIDR,192.168.0.0/16,🎯 全球直连,no-resolve
