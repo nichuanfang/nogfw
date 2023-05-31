@@ -20,6 +20,15 @@ from PIL import Image
 from qrcode import constants
 # 图像识别
 import easyocr
+
+a = ['PROCESS-NAME,fdm,🎯 全球直连', 'PROCESS-NAME,NetTransport,🎯 全球直连', 'PROCESS-NAME,Transmission,🎯 全球直连', 'PROCESS-NAME,WebTorrent,🎯 全球直连', 'PROCESS-NAME,DownloadService,🎯 全球直连', 'DOMAIN-KEYWORD,aria2,🎯 全球直连', 'DOMAIN-KEYWORD,yunpan,🎯 全球直连', 'DOMAIN-KEYWORD,XLLiveUD,🎯 全球直连', 'MATCH,,🐟 漏网之鱼,dns-failed']
+b = []
+for index,value in enumerate(a):
+	if not value.__contains__('全球直连'):
+		b.append(a[index])
+
+pass
+
 # windows下需要先下载模型文件  https://blog.csdn.net/Loliykon/article/details/114334699
 reader = easyocr.Reader(['ch_sim','en'],model_storage_directory='ocr_models')
 
@@ -342,16 +351,15 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     logging.info(f'======================添加自定义规则: 🎯 全球直连==========================================')
     # 针对性直连
     
-    for rule_ in rules:
-        if rule_.__contains__('全球直连'):
-            try:
-                rules.remove(rule_)
-            except:
-                continue
-    logging.info(f'==========================================================添加自定义直连之前的rules: {rules}')
+    rules_ = []
+    for index_,value in enumerate(rules):
+        if not value.__contains__('全球直连'):
+            rules_.append(rules[index_])
     direct_rules = direct_rulesets()
     for direct_rule in direct_rules:
-        rules.append(direct_rule)
+        rules_.append(direct_rule)
+    final_dict['rules'] = rules_
+    logging.info(f'添加直连之后的rules:{rules_}')
     return final_dict
 
 
