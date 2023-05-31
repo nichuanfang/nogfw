@@ -448,7 +448,7 @@ if __name__ == '__main__':
     # 生成mixed订阅
     logging.info(f'=========================================================================生成mixed配置文件...')
     if NEED_SAVE:
-        generate_ini = converter.add_clash(raw_list,generate_ini)
+        generate_ini = converter.add_mixed(raw_list,generate_ini)
     logging.info(f'=========================================================================mixed配置文件已生成!')
 
     logging.info(f'=========================================================================生成的generate_ini:{generate_ini}')
