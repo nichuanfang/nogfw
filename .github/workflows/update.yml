@@ -62,7 +62,7 @@ jobs:
         run: |
           chmod +x ./subconverter/subconverter
           ./subconverter/subconverter -g
-          
+          python ./subconverter/handle_qx.py
 
       - name: Commit & Push changes
         uses: actions-js/push@master
