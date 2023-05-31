@@ -1,8 +1,8 @@
 # 处理generate.ini文件
 import re
 
-# qx的正则
-qx_pattern = r'{qx}'
+# quanx的正则
+quanx_pattern = r'{quanx}'
 # clash的正则
 clash_pattern = r'{clash}'
 # mixed的正则
@@ -19,7 +19,7 @@ def add_quanx(nodes:list[str]):
         nodes (list[str]): 节点
     """   
     url = '|'.join(nodes)
-    generate_ini = re.sub(qx_pattern,f'{url}',generate_template_ini)
+    generate_ini = re.sub(quanx_pattern,f'{url}',generate_template_ini)
     open('subconverter/generate.ini','w+',encoding='utf-8').write(generate_ini)
 
 def add_clash(nodes:list[str]):
