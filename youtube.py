@@ -341,12 +341,14 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
 
     logging.info(f'======================添加自定义规则: 🎯 全球直连==========================================')
     # 针对性直连
+    
     for rule_ in rules:
         if rule_.__contains__('全球直连'):
             try:
                 rules.remove(rule_)
             except:
                 continue
+    logging.info(f'==========================================================添加自定义直连之前的rules: {rules}')
     direct_rules = direct_rulesets()
     for direct_rule in direct_rules:
         rules.append(direct_rule)
@@ -354,8 +356,23 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
 
 
 if __name__ == '__main__':
+    # 环境
+    try:
+        ENV = sys.argv[1]
+    except:
+        ENV = 'dev'
+    if ENV == 'dev':
+        CARW_NUMBER = 5
+        NEED_SAVE = False
+    elif ENV == 'prod':
+        CARW_NUMBER = 150
+        NEED_SAVE = True
+    else:
+        CARW_NUMBER = 5
+        NEED_SAVE = False
+
     # sys.argv[1]): CRAW_NUMBER 抓取次数
-    all_nodes = craw(int(sys.argv[1]),'qmRkvKo-KbQ',10)
+    all_nodes = craw(CARW_NUMBER,'qmRkvKo-KbQ',10)
     # 对节点按照测速结果 从快到慢降速排序
     def qx_sort(node):
         # 获取测速结果
@@ -382,7 +399,8 @@ if __name__ == '__main__':
         taged_nodes.append(new_node)
     
     # 生成qx专用订阅
-    open('dist/qx-sub','w+').write('\n'.join(taged_nodes))
+    if NEED_SAVE:
+        open('dist/qx-sub','w+').write('\n'.join(taged_nodes))
 
     # 生成clash配置文件
     logging.info(f'=========================================================================生成clash配置文件...')
@@ -396,7 +414,8 @@ if __name__ == '__main__':
     # 解码为 utf-8 字符串
     try:
         # 生成通用订阅
-        open('dist/sub', 'w+',encoding='utf-8').write(encoder.decode('utf-8'))
+        if NEED_SAVE:
+            open('dist/sub', 'w+',encoding='utf-8').write(encoder.decode('utf-8'))
     except Exception as e:
         logging.error(f'================================通用订阅生成失败!:{e}==========================================')
 
@@ -408,19 +427,21 @@ if __name__ == '__main__':
                     image_factory=None,
                     mask_pattern=None)
         # 自适应大小
-        qr.add_data('\n'.join(raw_list))
-        img = qr.make_image()
-        with open('dist/sub.jpg', 'wb') as qrc:
-            img.save(qrc)
-        # 调整分辨率
-        resize('dist/sub.jpg')
+        if not NEED_SAVE:
+            qr.add_data('\n'.join(raw_list))
+            img = qr.make_image()
+            with open('dist/sub.jpg', 'wb') as qrc:
+                img.save(qrc)
+            # 调整分辨率
+            resize('dist/sub.jpg')
     except Exception as e:
         logging.error(f'================================二维码生成失败!:{e}==========================================')
     
     try:
         clash_dict = generate_clash_config(raw_list,{})
         with open('dist/clash.yml', 'w+',encoding='utf-8') as file:
-            file.write(yaml.dump(clash_dict, allow_unicode=True,default_flow_style=False,sort_keys=False))
+            if NEED_SAVE:
+                file.write(yaml.dump(clash_dict, allow_unicode=True,default_flow_style=False,sort_keys=False))
     except Exception as e:
         logging.error(f'================================clash文件生成失败!:{e}==========================================')
 
