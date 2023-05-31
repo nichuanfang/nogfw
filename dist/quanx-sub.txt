@@ -11,16 +11,26 @@ server=1.0.0.1
 server=8.8.8.8
 
 [policy]
-static=🔰 节点选择, ♻️ 自动选择, 🎯 全球直连, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Proxy.png
-static=♻️ 自动选择, direct, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Auto.png
-static=🌍 国外媒体, 🔰 节点选择, ♻️ 自动选择, 🎯 全球直连, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/GlobalMedia.png
+static=🔰 节点选择, 🤔 高可用, ♻️ 低延迟, 🇭🇰 Hong Kong, 🇸🇬 Singapore, 🇹🇼 Taiwan, 🇺🇸 United States, 🇯🇵 Japan, 🇰🇷 Korea, 🌐 Other, 🎯 全球直连, [1] 美国-3.99MB/s, [2] 美国-3.86MB/s, [3] 新加坡-3.45MB/s, [4] 美国-287.7KB/s, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Proxy.png
+available=🤔 高可用, [1] 美国-3.99MB/s, [2] 美国-3.86MB/s, [3] 新加坡-3.45MB/s, [4] 美国-287.7KB/s
+static=♻️ 低延迟, [3] 新加坡-3.45MB/s
+static=🌍 国外媒体, 🔰 节点选择, 🤔 高可用, ♻️ 低延迟, 🇭🇰 Hong Kong, 🇸🇬 Singapore, 🇹🇼 Taiwan, 🇺🇸 United States, 🇯🇵 Japan, 🇰🇷 Korea, 🌐 Other, 🎯 全球直连, [1] 美国-3.99MB/s, [2] 美国-3.86MB/s, [3] 新加坡-3.45MB/s, [4] 美国-287.7KB/s, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/GlobalMedia.png
 static=🌏 国内媒体, 🎯 全球直连, 🔰 节点选择, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/DomesticMedia.png
-static=Ⓜ️ 微软服务, 🎯 全球直连, 🔰 节点选择, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Microsoft.png
-static=📲 电报信息, 🔰 节点选择, 🎯 全球直连, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Telegram.png
-static=🍎 苹果服务, 🔰 节点选择, 🎯 全球直连, ♻️ 自动选择, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Apple.png
+static=🏳️‍🌈 Google, 🤔 高可用, ♻️ 低延迟, 🇭🇰 Hong Kong, 🇸🇬 Singapore, 🇹🇼 Taiwan, 🇺🇸 United States, 🇯🇵 Japan, 🇰🇷 Korea, 🌐 Other
+static=😄 Github, 🤔 高可用, ♻️ 低延迟, 🇭🇰 Hong Kong, 🇸🇬 Singapore, 🇹🇼 Taiwan, 🇺🇸 United States, 🇯🇵 Japan, 🇰🇷 Korea, 🌐 Other
+static=📲 电报信息, 🔰 节点选择, 🇭🇰 Hong Kong, 🇸🇬 Singapore, 🇹🇼 Taiwan, 🇺🇸 United States, 🇯🇵 Japan, 🇰🇷 Korea, 🌐 Other, 🎯 全球直连, [1] 美国-3.99MB/s, [2] 美国-3.86MB/s, [3] 新加坡-3.45MB/s, [4] 美国-287.7KB/s, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Telegram.png
+static=🍎 苹果服务, 🔰 节点选择, 🇭🇰 Hong Kong, 🇸🇬 Singapore, 🇹🇼 Taiwan, 🇺🇸 United States, 🇯🇵 Japan, 🇰🇷 Korea, 🌐 Other, 🎯 全球直连, 🤔 高可用, ♻️ 低延迟, [1] 美国-3.99MB/s, [2] 美国-3.86MB/s, [3] 新加坡-3.45MB/s, [4] 美国-287.7KB/s, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Apple.png
+static=Ⓜ️ 微软服务, 🎯 全球直连, 🔰 节点选择, [1] 美国-3.99MB/s, [2] 美国-3.86MB/s, [3] 新加坡-3.45MB/s, [4] 美国-287.7KB/s, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Microsoft.png
+static=🇭🇰 Hong Kong, direct
+static=🇸🇬 Singapore, [3] 新加坡-3.45MB/s
+static=🇹🇼 Taiwan, direct
+available=🇺🇸 United States, [1] 美国-3.99MB/s, [2] 美国-3.86MB/s, [4] 美国-287.7KB/s
+static=🇯🇵 Japan, direct
+static=🇰🇷 Korea, direct
+static=🌐 Other, direct
 static=🎯 全球直连, DIRECT, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Direct.png
 static=🛑 全球拦截, REJECT, DIRECT, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Advertising.png
-static=🐟 漏网之鱼, 🔰 节点选择, 🎯 全球直连, ♻️ 自动选择, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Final.png
+static=🐟 漏网之鱼, 🔰 节点选择, 🎯 全球直连, 🤔 高可用, ♻️ 低延迟, 🇭🇰 Hong Kong, 🇸🇬 Singapore, 🇹🇼 Taiwan, 🇺🇸 United States, 🇯🇵 Japan, 🇰🇷 Korea, 🌐 Other, [1] 美国-3.99MB/s, [2] 美国-3.86MB/s, [3] 新加坡-3.45MB/s, [4] 美国-287.7KB/s, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Final.png
 
 [server_remote]
 
@@ -29,6 +39,10 @@ static=🐟 漏网之鱼, 🔰 节点选择, 🎯 全球直连, ♻️ 自动选
 [rewrite_remote]
 
 [server_local]
+vmess = cdn-xjp4.cqjsl.xyz:443, method=chacha20-ietf-poly1305, password=d155a539-c3ff-4430-b389-fe3ce4a81900, aead=true, obfs=wss, obfs-host=cdn-xjp4.cqjsl.xyz, obfs-uri=/, tag=[1] 美国-3.99MB/s
+vmess = 45.136.235.13:443, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, obfs=wss, obfs-host=, obfs-uri=/path/1684829897380, tag=[2] 美国-3.86MB/s
+shadowsocks = 13.228.168.158:443, method=aes-256-cfb, password=amazonskr05, tag=[3] 新加坡-3.45MB/s
+trojan = kr.stablize.top:443, password=a6950ca9-4504-411a-a656-bee29a4739eb, over-tls=true, tls-host=, tls-verification=false, tag=[4] 美国-287.7KB/s
 
 [filter_local]
 DOMAIN-SUFFIX,local,🎯 全球直连
@@ -9026,6 +9040,36 @@ DOMAIN-SUFFIX,yihuifu.cn,🛑 全球拦截
 DOMAIN-SUFFIX,yuanchengxiezuo.com,🛑 全球拦截
 DOMAIN-SUFFIX,zbrushcn.com,🛑 全球拦截
 DOMAIN-SUFFIX,zhzzx.com,🛑 全球拦截
+DOMAIN-KEYWORD,gmail,🏳️‍🌈 Google
+DOMAIN-KEYWORD,google,🏳️‍🌈 Google
+DOMAIN-SUFFIX,1e100.net,🏳️‍🌈 Google
+DOMAIN-SUFFIX,2mdn.net,🏳️‍🌈 Google
+DOMAIN-SUFFIX,app-measurement.net,🏳️‍🌈 Google
+DOMAIN-SUFFIX,g.co,🏳️‍🌈 Google
+DOMAIN-SUFFIX,ggpht.com,🏳️‍🌈 Google
+DOMAIN-SUFFIX,goo.gl,🏳️‍🌈 Google
+DOMAIN-SUFFIX,googleapis.cn,🏳️‍🌈 Google
+DOMAIN-SUFFIX,googleapis.com,🏳️‍🌈 Google
+DOMAIN-SUFFIX,gstatic.cn,🏳️‍🌈 Google
+DOMAIN-SUFFIX,gstatic.com,🏳️‍🌈 Google
+DOMAIN-SUFFIX,gvt0.com,🏳️‍🌈 Google
+DOMAIN-SUFFIX,gvt1.com,🏳️‍🌈 Google
+DOMAIN-SUFFIX,gvt2.com,🏳️‍🌈 Google
+DOMAIN-SUFFIX,gvt3.com,🏳️‍🌈 Google
+DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🏳️‍🌈 Google
+DOMAIN-SUFFIX,youtu.be,🏳️‍🌈 Google
+DOMAIN-SUFFIX,youtube-nocookie.com,🏳️‍🌈 Google
+DOMAIN-SUFFIX,youtube.com,🏳️‍🌈 Google
+DOMAIN-SUFFIX,yt.be,🏳️‍🌈 Google
+DOMAIN-SUFFIX,ytimg.com,🏳️‍🌈 Google
+IP-CIDR,74.125.0.0/16,🏳️‍🌈 Google,no-resolve
+IP-CIDR,173.194.0.0/16,🏳️‍🌈 Google,no-resolve
+DOMAIN-KEYWORD,github,😄 Github
+DOMAIN-SUFFIX,github.com,😄 Github
+DOMAIN-SUFFIX,github.io,😄 Github
+DOMAIN-SUFFIX,githubapp.com,😄 Github
+DOMAIN-SUFFIX,githubassets.com,😄 Github
+DOMAIN-SUFFIX,githubusercontent.com,😄 Github
 DOMAIN-SUFFIX,jtvnw.net,🌍 国外媒体
 DOMAIN-SUFFIX,ttvnw.net,🌍 国外媒体
 DOMAIN-SUFFIX,twitch.tv,🌍 国外媒体
