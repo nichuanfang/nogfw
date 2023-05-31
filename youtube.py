@@ -23,13 +23,13 @@ from collections import OrderedDict
 import easyocr
 from subconverter import converter
 
-quanx = ['vmess://eyJhZGQiOiIxMDcuMTQ4LjUuNzgiLCJ2IjoiMiIsInBzIjoiXzIyIiwicG9ydCI6NTAwMDIsImlkIjoiNDE4MDQ4YWYtYTI5My00Yjk5LTliMGMtOThjYTM1ODBkZDI0IiwiYWlkIjoiNjQiLCJuZXQiOiIiLCJ0eXBlIjoiIiwiaG9zdCI6IiIsInBhdGgiOiIiLCJ0bHMiOiIifQ==',
+data = ['vmess://eyJhZGQiOiIxMDcuMTQ4LjUuNzgiLCJ2IjoiMiIsInBzIjoiXzIyIiwicG9ydCI6NTAwMDIsImlkIjoiNDE4MDQ4YWYtYTI5My00Yjk5LTliMGMtOThjYTM1ODBkZDI0IiwiYWlkIjoiNjQiLCJuZXQiOiIiLCJ0eXBlIjoiIiwiaG9zdCI6IiIsInBhdGgiOiIiLCJ0bHMiOiIifQ==',
          'vmess://eyJhZGQiOiIxODUuMTMzLjQwLjE5MiIsInYiOiIyIiwicHMiOiJfMjMiLCJwb3J0IjozNTA1OSwiaWQiOiI4ZDc4YzJhOC1hY2FhLTQ2N2QtOTIzNC1kMjYwNjYyNDUwNmQiLCJhaWQiOiI2NCIsIm5ldCI6IiIsInR5cGUiOiIiLCJob3N0IjoiIiwicGF0aCI6IiIsInRscyI6IiJ9',
          'vmess://eyJhZGQiOiIxODUuNDAuODYuMTk1IiwidiI6IjIiLCJwcyI6Il8yNCIsInBvcnQiOjUwMDAyLCJpZCI6IjQxODA0OGFmLWEyOTMtNGI5OS05YjBjLTk4Y2EzNTgwZGQyNCIsImFpZCI6IjY0IiwibmV0IjoiIiwidHlwZSI6IiIsImhvc3QiOiIiLCJwYXRoIjoiIiwidGxzIjoiIn0=',
          'trojan://60454f67-7e28-4ddd-855f-e8216dfedf5a@awshk1.gsjc.cfd:443?sni=4-193-105-141.nhost.00cdn.com#_32',
          'trojan://bc2a1eb1-a706-4ee5-95a6-732a6c324142@hk5.cnamazon.sbs:443#_33']
 
-converter.add_quanx(quanx)
+converter.add_clash(data,converter.add_quanx(data,converter.add_mixed(data)))
 
 # windows下需要先下载模型文件  https://blog.csdn.net/Loliykon/article/details/114334699
 reader = easyocr.Reader(['ch_sim','en'],model_storage_directory='ocr_models')
