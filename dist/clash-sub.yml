@@ -48,7 +48,7 @@ proxy-groups:
   - name: 🤔 高可用
     type: fallback
     url: http://www.gstatic.com/generate_204
-    interval: 43200
+    interval: 1800
     tolerance: 100
     proxies:
       - "[1] 美国-3.99MB/s"
@@ -58,7 +58,7 @@ proxy-groups:
   - name: ♻️ 低延迟
     type: url-test
     url: http://www.gstatic.com/generate_204
-    interval: 300
+    interval: 600
     tolerance: 100
     proxies:
       - "[3] 新加坡-3.45MB/s"
@@ -155,28 +155,28 @@ proxy-groups:
   - name: 🇭🇰 Hong Kong
     type: fallback
     url: http://www.gstatic.com/generate_204
-    interval: 43200
+    interval: 1800
     tolerance: 100
     proxies:
       - DIRECT
   - name: 🇸🇬 Singapore
     type: fallback
     url: http://www.gstatic.com/generate_204
-    interval: 43200
+    interval: 1800
     tolerance: 100
     proxies:
       - "[3] 新加坡-3.45MB/s"
   - name: 🇹🇼 Taiwan
     type: fallback
     url: http://www.gstatic.com/generate_204
-    interval: 43200
+    interval: 1800
     tolerance: 100
     proxies:
       - DIRECT
   - name: 🇺🇸 United States
     type: fallback
     url: http://www.gstatic.com/generate_204
-    interval: 43200
+    interval: 1800
     tolerance: 100
     proxies:
       - "[1] 美国-3.99MB/s"
@@ -185,14 +185,14 @@ proxy-groups:
   - name: 🇯🇵 Japan
     type: fallback
     url: http://www.gstatic.com/generate_204
-    interval: 43200
+    interval: 1800
     tolerance: 100
     proxies:
       - DIRECT
   - name: 🇰🇷 Korea
     type: fallback
     url: http://www.gstatic.com/generate_204
-    interval: 43200
+    interval: 1800
     tolerance: 100
     proxies:
       - DIRECT
