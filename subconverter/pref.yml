@@ -75,7 +75,7 @@ surge_external_proxy:
   resolve_hostname: true
 
 emojis:
-  add_emoji: true
+  add_emoji: false
   remove_old_emoji: true
   rules:
     #  - {match: "(流量|时间|应急)", emoji: "🏳️‍🌈"}
