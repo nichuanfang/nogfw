@@ -1,8 +1,59 @@
-shadowsocks = nkb.boom.skin:21000, method=aes-256-cfb, password=Uk92CS, tag=[1] (已存活12天)中转节点-11.06MB/s
-trojan = fscsg.fscloud123456789.com:443, password=c6c74465-9600-4462-933c-bd0b2494f188, over-tls=true, tls-host=, tls-verification=false, tag=[2] 日本-10.96MB/s
-trojan = aujs.stablize.top:443, password=03604138-c4b4-481a-bc82-52a41189415a, over-tls=true, tls-host=, tls-verification=false, tag=[3] 新加坡-7.52MB/s
-vmess = cdn-xjp3.cqjsl.xyz:443, method=chacha20-ietf-poly1305, password=85c27619-fd14-4893-a56e-05944326c6f9, aead=true, obfs=wss, obfs-host=cdn-xjp3.cqjsl.xyz, obfs-uri=/, tag=[4] 美国-4.46MB/s
-trojan = ukjs.stablize.top:443, password=cf1df355-e505-44a5-9c80-3fe732de1c71, over-tls=true, tls-host=, tls-verification=false, tag=[5] 新加坡-4.18MB/s
-vmess = 43.154.122.126:53410, method=chacha20-ietf-poly1305, password=82adc998-88ab-4c87-8b86-5bc39e80f5b2, aead=false, obfs=wss, obfs-host=, obfs-uri=/hk1/getData, tag=[6] 香港-3.67MB/s
-trojan = microsoft-hk02.syjd.xyz:443, password=51eebef7-beaa-417b-9584-2794d10377c9, over-tls=true, tls-host=microsoft-hk02.syjd.xyz, tls-verification=false, tag=[7] 香港-3.46MB/s
-vmess = 172.66.43.240:443, method=chacha20-ietf-poly1305, password=12612e87-8003-44a8-b4e8-ec4a325e9016, aead=true, obfs=wss, obfs-host=z.zorro.tk, obfs-uri=/ou, tag=[8] 美国-2.01MB/s
+trojan = fscjp.fscloud123456789.com:443, password=2c7cccd3-8de4-4f47-8fd6-b787e42ca4a2, over-tls=true, tls-host=, tls-verification=false, tag=[1] 日本-19.15MB/s
+trojan = fscjp.fscloud123456789.com:443, password=ce2c94f4-4de3-4704-a1f7-bc8b52df17b4, over-tls=true, tls-host=, tls-verification=false, tag=[2] 日本-13.89MB/s
+shadowsocks = free.themars.top:32102, method=chacha20-ietf-poly1305, password=b89b39c2-dc8d-4595-a4c5-54b4fbab3fc2, tag=[3] 中转节点-10.48MB/s
+shadowsocks = nf1.boom.skin:11000, method=aes-256-cfb, password=Uk92CS, tag=[4] (已存活12天)中转节点-10.29MB/s
+shadowsocks = jp17.boom.skin:39700, method=aes-256-cfb, password=Uk92CS, tag=[5] (已存活12天)中转节点-10.13MB/s
+shadowsocks = jp4.boom.skin:33000, method=aes-256-cfb, password=Uk92CS, tag=[6] (已存活12天)中转节点-10.04MB/s
+shadowsocks = opt19.boom.skin:29000, method=aes-256-cfb, password=Uk92CS, tag=[7] (已存活12天)中转节点-9.78MB/s
+shadowsocks = jp3.boom.skin:32000, method=aes-256-cfb, password=Uk92CS, tag=[8] (已存活12天)中转节点-9.46MB/s
+trojan = us1.chuqiangtou.net:4003, password=TJCfE7Mx2YcA8kX8zg, over-tls=true, tls-host=us1.chuqiangtou.net, tls-verification=false, tag=[9] 以色列-5.74MB/s
+trojan = tempest-us.aikun.online:443, password=0d234e81-52f2-44a7-8bcc-b9e737c3830f, over-tls=true, tls-host=, tls-verification=false, tag=[10] 新西兰-5.60MB/s
+vmess = 172.66.46.15:443, method=chacha20-ietf-poly1305, password=12612e87-8003-44a8-b4e8-ec4a325e9016, aead=true, obfs=wss, obfs-host=z.zorro.tk, obfs-uri=/ou, tag=[11] 美国-5.25MB/s
+shadowsocks = 43.207.97.107:443, method=aes-256-cfb, password=amazonskr05, tag=[12] 日本-5.10MB/s
+vmess = 104.16.45.208:2052, method=chacha20-ietf-poly1305, password=0227edc4-8735-4370-ac42-4e8147920f0b, aead=true, obfs=ws, obfs-host=tou.vtcss.top, obfs-uri=/qwer10, tag=[13] 未知国家-5.09MB/s
+vmess = 107.148.195.25:42014, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[14] 美国-5.00MB/s
+vmess = 198.2.208.189:443, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, obfs=wss, obfs-host=www.62317155.xyz, obfs-uri=/path/1683715826870, tag=[15] 美国-4.94MB/s
+vmess = 142.0.130.242:47988, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[16] 美国-4.79MB/s
+vmess = scaleway.696960.xyz:443, method=chacha20-ietf-poly1305, password=e357cd63-f1a5-4c8e-c42e-26da11207fee, aead=true, obfs=wss, obfs-host=scaleway.696960.xyz, obfs-uri=/root/, tag=[17] 美国-4.57MB/s
+vmess = scaleway.696960.xyz:443, method=chacha20-ietf-poly1305, password=e357cd63-f1a5-4c8e-c42e-26da11207fee, aead=true, obfs=wss, obfs-host=scaleway.696960.xyz, obfs-uri=/root/, tag=[18] 未知国家-4.57MB/s
+vmess = 172.247.148.85:53302, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[19] 美国-4.53MB/s
+vmess = cdn-xjp3.cqjsl.xyz:443, method=chacha20-ietf-poly1305, password=85c27619-fd14-4893-a56e-05944326c6f9, aead=true, obfs=wss, obfs-host=cdn-xjp3.cqjsl.xyz, obfs-uri=/, tag=[20] 美国-4.46MB/s
+trojan = ukjs.stablize.top:443, password=cf1df355-e505-44a5-9c80-3fe732de1c71, over-tls=true, tls-host=, tls-verification=false, tag=[21] 新加坡-4.23MB/s
+trojan = ukjs.stablize.top:443, password=cf1df355-e505-44a5-9c80-3fe732de1c71, over-tls=true, tls-host=, tls-verification=false, tag=[22] 新加坡-4.18MB/s
+trojan = ukjs.stablize.top:443, password=cf1df355-e505-44a5-9c80-3fe732de1c71, over-tls=true, tls-host=, tls-verification=false, tag=[23] 美国-4.18MB/s
+shadowsocks = 173.255.241.181:2052, method=chacha20-ietf-poly1305, password=1196c1f1-ac69-4d3f-bbbb-722517323170, tag=[24] 美国-3.90MB/s
+vmess = 142.4.104.195:56002, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[25] 美国-3.77MB/s
+vmess = 104.27.40.80:2052, method=chacha20-ietf-poly1305, password=0227edc4-8735-4370-ac42-4e8147920f0b, aead=true, obfs=ws, obfs-host=tou.vtcss.top, obfs-uri=/qwer10, tag=[26] 美国-3.74MB/s
+vmess = 43.154.122.126:53410, method=chacha20-ietf-poly1305, password=82adc998-88ab-4c87-8b86-5bc39e80f5b2, aead=false, obfs=wss, obfs-host=, obfs-uri=/hk1/getData, tag=[27] 香港-3.67MB/s
+vmess = 141.101.114.121:2052, method=chacha20-ietf-poly1305, password=0227edc4-8735-4370-ac42-4e8147920f0b, aead=true, obfs=ws, obfs-host=tou.vtcss.top, obfs-uri=/qwer10, tag=[28] 未知国家-3.65MB/s
+trojan = fscus.fscloud123456789.com:443, password=ce2c94f4-4de3-4704-a1f7-bc8b52df17b4, over-tls=true, tls-host=, tls-verification=false, tag=[29] 日本-3.59MB/s
+vmess = 156.225.67.55:443, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, obfs=wss, obfs-host=, obfs-uri=/path/1684316790433, tag=[30] 美国-3.59MB/s
+vmess = 141.101.114.121:2052, method=chacha20-ietf-poly1305, password=0227edc4-8735-4370-ac42-4e8147920f0b, aead=true, obfs=ws, obfs-host=tou.vtcss.top, obfs-uri=/qwer10, tag=[31] 未知国家-3.55MB/s
+trojan = microsoft-hk02.syjd.xyz:443, password=51eebef7-beaa-417b-9584-2794d10377c9, over-tls=true, tls-host=microsoft-hk02.syjd.xyz, tls-verification=false, tag=[32] 香港-3.46MB/s
+vmess = dallas.starsea.vip:443, method=chacha20-ietf-poly1305, password=c5e52b78-c01b-4884-baad-01cd2a74fce3, aead=true, obfs=wss, obfs-host=dallas.starsea.vip, obfs-uri=/, tag=[33] 美国-3.40MB/s
+vmess = 156.225.67.20:443, method=chacha20-ietf-poly1305, password=a7fa8f14-4fb6-4280-9005-d6bbe99c5da9, aead=false, obfs=wss, obfs-host=, obfs-uri=/path/1684405930831, tag=[34] 美国-3.35MB/s
+vmess = 156.225.67.39:443, method=chacha20-ietf-poly1305, password=de491802-233e-47f2-8c6c-d19bcf5bd56b, aead=false, obfs=wss, obfs-host=, obfs-uri=/path/1685439562518, tag=[35] 美国-3.26MB/s
+trojan = 152.70.74.66:443, password=d906afe5-7c3c-4ddc-aaa4-61c154a82e5e, over-tls=true, tls-host=, tls-verification=false, tag=[36] 印度-3.02MB/s
+shadowsocks = 172.99.188.99:5004, method=aes-256-gcm, password=g5MeD6Ft3CWlJId, tag=[37] 荷兰-2.59MB/s
+vmess = 192.74.231.172:49202, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[38] 美国-2.33MB/s
+vmess = 142.4.97.77:44942, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[39] 美国-2.27MB/s
+shadowsocks = 172.99.188.99:5003, method=aes-256-gcm, password=g5MeD6Ft3CWlJId, tag=[40] 荷兰-2.23MB/s
+shadowsocks = 172.99.188.99:5001, method=aes-256-gcm, password=Y6R9pAtvxxzmGC, tag=[41] 荷兰-2.18MB/s
+vmess = 172.66.43.240:443, method=chacha20-ietf-poly1305, password=12612e87-8003-44a8-b4e8-ec4a325e9016, aead=true, obfs=wss, obfs-host=z.zorro.tk, obfs-uri=/ou, tag=[42] 美国-2.01MB/s
+trojan = bgptw3.cnamazon.sbs:443, password=14fc8b10-6475-4649-b343-e12b7c3ee93f, over-tls=true, tls-host=, tls-verification=false, tag=[43] 新加坡-1.82MB/s
+vmess = cf.yxjnode.com:80, method=chacha20-ietf-poly1305, password=09c1d32d-4458-4ebf-b36d-4dd732bae3aa, aead=true, obfs=ws, obfs-host=buyvm2.yxjnode.com, obfs-uri=/yxzbp, tag=[44] 未知国家-1.63MB/s
+vmess = cf.yxjnode.com:80, method=chacha20-ietf-poly1305, password=09c1d32d-4458-4ebf-b36d-4dd732bae3aa, aead=true, obfs=ws, obfs-host=buyvm2.yxjnode.com, obfs-uri=/yxzbp, tag=[45] 美国-1.63MB/s
+trojan = 103.169.7.11:80, password=c0d9da22-2569-4bed-a395-607d9e7ae687, over-tls=true, tls-host=sciencedirect.com, tls-verification=false, tag=[46] 印度尼西亚-1.59MB/s
+shadowsocks = 216.52.183.243:80, method=aes-128-gcm, password=83XvX4Vo%*3a, obfs=http, tag=[47] 美国-1.53MB/s
+vmess = cf.yxjnode.com:80, method=chacha20-ietf-poly1305, password=09c1d32d-4458-4ebf-b36d-4dd732bae3aa, aead=true, obfs=ws, obfs-host=dp4.yxjnode.com, obfs-uri=/yxzbp, tag=[48] 未知国家-1.45MB/s
+vmess = cf.yxjnode.com:80, method=chacha20-ietf-poly1305, password=09c1d32d-4458-4ebf-b36d-4dd732bae3aa, aead=true, obfs=ws, obfs-host=dp4.yxjnode.com, obfs-uri=/yxzbp, tag=[49] 美国-1.45MB/s
+shadowsocks = en2.vfun.icu:443, method=aes-256-cfb, password=vyunme, tag=[50] 中转节点-1.42MB/s
+vmess = 47.243.241.157:80, method=chacha20-ietf-poly1305, password=37c008ba-e297-469e-aff6-4e08baf8d3b1, aead=true, obfs=ws, obfs-host=hk.freeiq.cf, obfs-uri=/, tag=[51] 香港-1.10MB/s
+vmess = 156.227.6.7:43692, method=chacha20-ietf-poly1305, password=d3b43b85-1b50-4cb5-9738-8d65bae2c95d, aead=true, tag=[52] 香港-975.2KB/s
+vmess = 104.24.57.207:2052, method=chacha20-ietf-poly1305, password=0227edc4-8735-4370-ac42-4e8147920f0b, aead=true, obfs=ws, obfs-host=tou.vtcss.top, obfs-uri=/qwer10, tag=[53] 美国-958.8KB/s
+vmess = cf-lt.sharecentre.online:80, method=chacha20-ietf-poly1305, password=2d5d8b9c-8ec4-4a37-b610-78e71e13eaef, aead=true, obfs=ws, obfs-host=lv3.sharecentrepro.org, obfs-uri=/shirker, tag=[54] 美国-622.4KB/s
+trojan = fscsg.fscloud123456789.com:443, password=2c7cccd3-8de4-4f47-8fd6-b787e42ca4a2, over-tls=true, tls-host=, tls-verification=false, tag=[55] 日本-608.0KB/s
+vmess = 47.243.241.157:80, method=chacha20-ietf-poly1305, password=37c008ba-e297-469e-aff6-4e08baf8d3b1, aead=true, obfs=ws, obfs-host=hk.freeiq.cf, obfs-uri=/, tag=[56] 香港-426.3KB/s
+shadowsocks = 14.29.124.168:24001, method=aes-128-cfb, password=QazEdcTgb159@$*, tag=[57] 中转节点-359.8KB/s
+shadowsocks = 14.29.124.168:24003, method=aes-128-cfb, password=QazEdcTgb159@$*, tag=[58] 中转节点-348.4KB/s
+shadowsocks = 172.99.188.99:8888, method=aes-256-gcm, password=Y6R9pAtvxxzmGC, tag=[59] 荷兰-346.0KB/s
