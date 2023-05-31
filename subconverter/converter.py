@@ -30,40 +30,53 @@ def get_tag(node:str):
     # ss
     if node.strip().startswith('ss'):
         logging.info(f'开始处理ss节点:{node}')
+        if len(node.split('#')) <2:
+            return f'ss-{node}'
         urlencoded_node = node.split('#')[1]
         # url解码
         return parse.unquote(urlencoded_node)
     # trojan
     elif node.strip().startswith('trojan'):
         logging.info(f'开始处理trojan节点:{node}')
+        if len(node.split('#')) <2:
+            return f'trojan-{node}'
         urlencoded_node = node.split('#')[1]
         return parse.unquote(urlencoded_node)
     # vmess
     elif node.strip().startswith('vmess'):
         logging.info(f'开始处理vmess节点:{node}')
         # 先对vmess协议后面base64解码 转为json 其中的ps字段即为tag
+        if len(node.split('//')) <2:
+            return f'vmess-{node}'
         b64encoded_node = node.split('//')[1]
         b64decoded_node = base64.b64decode(b64encoded_node).decode('utf-8')
         json_node = json.loads(b64decoded_node)
         return json_node['ps']
     else:
-        return ''
+        logging.info(f'未知协议节点:{node}')
+        return 'none'
 
 def tag(node:str,new_tag):
     # 给节点替换新的tag
      # ss
     if node.strip().startswith('ss'):
+        if new_tag.__contains__('ss-'):
+            return node
         logging.info(f'开始给ss节点:{node}打tag')
         urlencoded_node = node.split('#')[1]
         # url解码
         return node.split('#')[0]+'#'+ parse.quote(new_tag)
     # trojan
     elif node.strip().startswith('trojan'):
+        if new_tag.__contains__('trojan-'):
+            return node
         logging.info(f'开始给trojan节点:{node}打tag')
         urlencoded_node = node.split('#')[1]
         return node.split('#')[0]+'#'+ parse.quote(new_tag)
     # vmess
     elif node.strip().startswith('vmess'):
+        if new_tag.__contains__('vmess-'):
+            return node
         logging.info(f'开始给vmess节点:{node}打tag')
         # 先对vmess协议后面base64解码 转为json 其中的ps字段即为tag
         b64encoded_node = node.split('//')[1]

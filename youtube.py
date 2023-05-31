@@ -422,13 +422,13 @@ if __name__ == '__main__':
     except:
         ENV = 'dev'
     if ENV == 'dev':
-        CARW_NUMBER = 5
+        CARW_NUMBER = 10
         NEED_SAVE = False
     elif ENV == 'prod':
         CARW_NUMBER = 165
         NEED_SAVE = True
     else:
-        CARW_NUMBER = 5
+        CARW_NUMBER = 10
         NEED_SAVE = False
     # sys.argv[1]): CRAW_NUMBER 抓取次数
     raw_list = craw(CARW_NUMBER,'qmRkvKo-KbQ',10)
