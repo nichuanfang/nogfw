@@ -469,6 +469,8 @@ if __name__ == '__main__':
     # 生成qx专用订阅
     if NEED_SAVE:
         open('dist/qx-sub','w+').write('\n'.join(taged_nodes))
+    else:
+        logging.info(f'===================================================生成的qx配置文件:{taged_nodes}')
 
     # 生成clash配置文件
     logging.info(f'=========================================================================生成clash配置文件...')
@@ -484,6 +486,8 @@ if __name__ == '__main__':
         # 生成通用订阅
         if NEED_SAVE:
             open('dist/sub', 'w+',encoding='utf-8').write(encoder.decode('utf-8'))
+        else:
+            logging.info(f'==================================================生成的通用订阅:{encoder.decode("utf-8")}')
     except Exception as e:
         logging.error(f'================================通用订阅生成失败!:{e}==========================================')
 
@@ -510,6 +514,8 @@ if __name__ == '__main__':
         if NEED_SAVE:
             with open('dist/clash.yml', 'w+',encoding='utf-8') as file:
                 file.write(yaml.dump(clash_dict, allow_unicode=True,default_flow_style=False,sort_keys=False))
+        else:
+            logging.info(f'=================================================生成的clash配置文件:{clash_dict}')
     except Exception as e:
         logging.error(f'================================clash文件生成失败!:{e}==========================================')
 
