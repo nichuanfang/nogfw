@@ -8,8 +8,8 @@ import base64
 quanx_pattern = r'{quanx}'
 # clash的正则
 clash_pattern = r'{clash}'
-# mixed的正则
-mixed_pattern = r'{mixed}'
+# v2ray的正则
+v2ray_pattern = r'{v2ray}'
 
 def sort_func(proxy):
         # 获取测速结果
@@ -97,7 +97,7 @@ def add_quanx(nodes:list[str],template:str = generate_template_ini):
     url = '|'.join(handle_nodes(nodes))
     generate_ini = re.sub(quanx_pattern,f'{url}',template)
     with open('subconverter/generate.ini','w+',encoding='utf-8') as f:
-        f.write(generate_ini) 
+        f.write(generate_ini)
     return generate_ini
         
 
@@ -113,14 +113,14 @@ def add_clash(nodes:list[str],template:str = generate_template_ini):
         f.write(generate_ini)
     return generate_ini
 
-def add_mixed(nodes:list[str],template:str = generate_template_ini):
-    """添加mixed节点 小火箭可用 base64加密
+def add_v2ray(nodes:list[str],template:str = generate_template_ini):
+    """添加v2ray节点
 
     Args:
         nodes (list[str]): 节点
     """    
     url = '|'.join(handle_nodes(nodes))
-    generate_ini = re.sub(mixed_pattern,f'{url}',template)
+    generate_ini = re.sub(v2ray_pattern,f'{url}',template)
     with open('subconverter/generate.ini','w+',encoding='utf-8') as f:
         f.write(generate_ini)
     return generate_ini
