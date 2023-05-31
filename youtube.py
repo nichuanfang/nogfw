@@ -350,7 +350,6 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
 
     logging.info(f'======================添加自定义规则: 🎯 全球直连==========================================')
     # 针对性直连
-    
     rules_ = []
     for index_,value in enumerate(rules):
         if not value.__contains__('全球直连'):
@@ -359,7 +358,6 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     for direct_rule in direct_rules:
         rules_.append(direct_rule)
     final_dict['rules'] = rules_
-    logging.info(f'添加直连之后的rules:{rules_}')
     return final_dict
 
 
@@ -436,8 +434,7 @@ if __name__ == '__main__':
         # 自适应大小
         qr.add_data('\n'.join(raw_list))
         img = qr.make_image()
-        # 临时测试
-        if not NEED_SAVE:
+        if NEED_SAVE:
             with open('dist/sub.jpg', 'wb') as qrc:
                 img.save(qrc)
             # 调整分辨率
