@@ -83,11 +83,3 @@ jobs:
           gist_id: ${{ secrets.CLASH_SUBSCRIBE_ID }}
           file_path: dist/clash-sub.yml
           file_type: text
-
-      - name: Deploy mixed-sub
-        uses: exuanbo/actions-deploy-gist@v1.1.4
-        with:
-          token: ${{ secrets.GH_TOKEN }}
-          gist_id: ${{ secrets.MIXED_SUBSCRIBE_ID }}
-          file_path: dist/mixed-sub.txt
-          file_type: text
