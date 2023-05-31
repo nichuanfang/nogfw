@@ -24,7 +24,7 @@ jobs:
       - name: Deploy to Gist
         uses: exuanbo/actions-deploy-gist@v1.1.4
         with:
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GH_GIST_TOKEN }}
           gist_id: ${{ secrets.QX_SUBSCRIBE_ID }}
           file_path: dist/qx-sub
           file_type: text
