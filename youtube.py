@@ -417,14 +417,14 @@ if __name__ == '__main__':
 
     # 生成通用订阅二维码
     try:
-        qr = qrcode.QRCode(version=40
+        qr = qrcode.QRCode(version=None
                     ,error_correction=constants.ERROR_CORRECT_M,
-                    box_size=15, border=4,
-                    image_factory=None,
-                    mask_pattern=None)
+                    box_size=10, 
+                    border=4)
         # 自适应大小
-        qr.add_data('\n'.join(raw_list))
-        img = qr.make_image()
+        qr.add_data('https://ghproxy.net/https://raw.githubusercontent.com/nichuanfang/nogfw/main/dist/sub')
+        qr.make(fit=True)
+        img = qr.make_image(fill_color="black", back_color="white")
         if NEED_SAVE:
             with open('dist/sub.jpg', 'wb') as qrc:
                 img.save(qrc)
