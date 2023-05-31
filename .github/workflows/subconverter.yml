@@ -21,6 +21,9 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
+      
+      
+      
       - name: Deploy to Gist
         uses: exuanbo/actions-deploy-gist@v1.1.4
         with:
