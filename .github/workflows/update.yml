@@ -62,6 +62,7 @@ jobs:
         run: |
           chmod +x ./subconverter/subconverter
           ./subconverter/subconverter -g
+          
 
       - name: Commit & Push changes
         uses: actions-js/push@master

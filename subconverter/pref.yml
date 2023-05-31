@@ -16,7 +16,7 @@ common:
   surfboard_rule_base: base/all_base.tpl
   mellow_rule_base: base/all_base.tpl
   quan_rule_base: base/all_base.tpl
-  quanx_rule_base: base/quanx.conf
+  quanx_rule_base: base/all_base.tpl
   loon_rule_base: base/all_base.tpl
   sssub_rule_base: base/all_base.tpl
   proxy_config: SYSTEM
