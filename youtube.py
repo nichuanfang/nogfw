@@ -385,7 +385,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
 
 
     # 将- MATCH,,🐟 漏网之鱼,dns-failed 移到最后面
-    rules_.append('- MATCH,,🐟 漏网之鱼,dns-failed')
+    rules_.append('MATCH,,🐟 漏网之鱼,dns-failed')
 
     final_dict['rules'] = rules_
 
