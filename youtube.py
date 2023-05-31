@@ -18,6 +18,7 @@ import re
 import qrcode
 from PIL import Image
 from qrcode import constants
+from collections import OrderedDict
 # 图像识别
 import easyocr
 # windows下需要先下载模型文件  https://blog.csdn.net/Loliykon/article/details/114334699
@@ -148,14 +149,14 @@ def direct_rulesets():
         third = rule_list[2]
         if first == 'host' or first == 'HOST':
             if third == 'DIRECT' or third == 'direct':
-                final_rulesets.append(','.join(['DOMAIN',second,'🎯 全球直连']))
+                final_rulesets.append(','.join(['DOMAIN',second, '🎯 全球直连']))
 
         elif first == 'host-suffix' or first == 'HOST-SUFFIX':
             if third == 'DIRECT' or third == 'direct':
-                final_rulesets.append(','.join(['DOMAIN-SUFFIX','🎯 全球直连']))
+                final_rulesets.append(','.join(['DOMAIN-SUFFIX',second, '🎯 全球直连']))
 
         elif first == 'host-keyword' or first == 'HOST-KEYWORD':
-            final_rulesets.append(','.join(['DOMAIN-KEYWORD',second,'🎯 全球直连']))
+            final_rulesets.append(','.join(['DOMAIN-KEYWORD',second, '🎯 全球直连']))
 
         elif first == 'ip-cidr' or first == 'IP-CIDR':
             final_rulesets.append(','.join(['IP-CIDR',second,'🎯 全球直连']))
@@ -193,14 +194,25 @@ def google_github_openai_ruleset():
                 final_rulesets.append(','.join(['DOMAIN',second,third]))
         elif first == 'host-suffix' or first == 'HOST-SUFFIX':
             if third == 'Google Domestic':
-                final_rulesets.append(','.join(['DOMAIN-SUFFIX','🎯 全球直连']))
+                final_rulesets.append(','.join(['DOMAIN-SUFFIX',second, '🎯 全球直连']))
             else:
-                final_rulesets.append(','.join(['DOMAIN-SUFFIX',second,third]))
+                final_rulesets.append(','.join(['DOMAIN-SUFFIX',second, third]))
         elif first == 'host-keyword' or first == 'HOST-KEYWORD':
-            final_rulesets.append(','.join(['DOMAIN-KEYWORD',second,third]))
+            final_rulesets.append(','.join(['DOMAIN-KEYWORD',second, third]))
         elif first == 'ip-cidr' or first == 'IP-CIDR':
-            final_rulesets.append(','.join(['IP-CIDR',second,third]))
+            final_rulesets.append(','.join(['IP-CIDR',second, third]))
     return final_rulesets
+
+def modify_dict(source_dict, new_key, old_key, value):
+    """
+    处理字典source_dict 在old_key之前插入new_key:value键值对 返回一个新的字典
+    """
+    new_dict = OrderedDict()
+    for k, v in source_dict.items():
+        if k == old_key:
+            new_dict[new_key] = value
+        new_dict[k] = v
+    return dict(new_dict)
 
 def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     count = 1
@@ -348,7 +360,36 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     direct_rules = direct_rulesets()
     for direct_rule in direct_rules:
         rules_.append(direct_rule)
+
+    # ❤补充特殊规则
+    rules_.append('DOMAIN-SUFFIX,segmentfault.com,🎯 全球直连')
     final_dict['rules'] = rules_
+
+    # 添加自定义dns
+    dns = {
+        'enable': 'true',
+        'listen': '0.0.0.0:53',
+        'default-nameserver': [
+            '223.5.5.5',
+            '233.6.6.6'
+        ],
+        'nameserver': [
+            'https://dns.alidns.com/dns-query'
+        ],
+        'fallback': [
+            '8.8.4.4',
+            'https://1.1.1.1/dns-query'
+        ],
+        'fallback-filter': {
+            'geoip': 'true',
+            'geoip-code': 'CN',
+            'ipcidr': [
+                '240.0.0.0/4'
+            ]
+        }
+    }
+    # 指定位置插入dns配置
+    final_dict = modify_dict(final_dict,'dns','proxies',dns)
     return final_dict
 
 
