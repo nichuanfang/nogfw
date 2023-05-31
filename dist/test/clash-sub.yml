@@ -4,25 +4,62 @@ allow-lan: true
 mode: Rule
 log-level: info
 external-controller: :9090
-proxies: ~
+proxies:
+  - {name: "[1] 美国-3.99MB/s", server: cdn-xjp4.cqjsl.xyz, port: 443, type: vmess, uuid: d155a539-c3ff-4430-b389-fe3ce4a81900, alterId: 0, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: cdn-xjp4.cqjsl.xyz}}, udp: true}
+  - {name: "[2] 美国-3.86MB/s", server: 45.136.235.13, port: 443, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-opts: {path: /path/1684829897380}, udp: true}
+  - {name: "[3] 新加坡-3.45MB/s", server: 13.228.168.158, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05, udp: true}
+  - {name: "[4] 美国-287.7KB/s", server: kr.stablize.top, port: 443, type: trojan, password: a6950ca9-4504-411a-a656-bee29a4739eb, skip-cert-verify: true, udp: true}
 proxy-groups:
   - name: 🔰 节点选择
     type: select
     proxies:
       - ♻️ 自动选择
       - 🎯 全球直连
+      - "[1] 美国-3.99MB/s"
+      - "[2] 美国-3.86MB/s"
+      - "[3] 新加坡-3.45MB/s"
+      - "[4] 美国-287.7KB/s"
   - name: ♻️ 自动选择
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 300
     proxies:
-      - DIRECT
+      - "[1] 美国-3.99MB/s"
+      - "[2] 美国-3.86MB/s"
+      - "[3] 新加坡-3.45MB/s"
+      - "[4] 美国-287.7KB/s"
+  - name: 🎥 NETFLIX
+    type: select
+    proxies:
+      - 🔰 节点选择
+      - ♻️ 自动选择
+      - 🎯 全球直连
+      - "[1] 美国-3.99MB/s"
+      - "[2] 美国-3.86MB/s"
+      - "[3] 新加坡-3.45MB/s"
+      - "[4] 美国-287.7KB/s"
+  - name: ⛔️ 广告拦截
+    type: select
+    proxies:
+      - 🛑 全球拦截
+      - 🎯 全球直连
+      - 🔰 节点选择
+  - name: 🚫 运营劫持
+    type: select
+    proxies:
+      - 🛑 全球拦截
+      - 🎯 全球直连
+      - 🔰 节点选择
   - name: 🌍 国外媒体
     type: select
     proxies:
       - 🔰 节点选择
       - ♻️ 自动选择
       - 🎯 全球直连
+      - "[1] 美国-3.99MB/s"
+      - "[2] 美国-3.86MB/s"
+      - "[3] 新加坡-3.45MB/s"
+      - "[4] 美国-287.7KB/s"
   - name: 🌏 国内媒体
     type: select
     proxies:
@@ -33,17 +70,29 @@ proxy-groups:
     proxies:
       - 🎯 全球直连
       - 🔰 节点选择
+      - "[1] 美国-3.99MB/s"
+      - "[2] 美国-3.86MB/s"
+      - "[3] 新加坡-3.45MB/s"
+      - "[4] 美国-287.7KB/s"
   - name: 📲 电报信息
     type: select
     proxies:
       - 🔰 节点选择
       - 🎯 全球直连
+      - "[1] 美国-3.99MB/s"
+      - "[2] 美国-3.86MB/s"
+      - "[3] 新加坡-3.45MB/s"
+      - "[4] 美国-287.7KB/s"
   - name: 🍎 苹果服务
     type: select
     proxies:
       - 🔰 节点选择
       - 🎯 全球直连
       - ♻️ 自动选择
+      - "[1] 美国-3.99MB/s"
+      - "[2] 美国-3.86MB/s"
+      - "[3] 新加坡-3.45MB/s"
+      - "[4] 美国-287.7KB/s"
   - name: 🎯 全球直连
     type: select
     proxies:
@@ -59,6 +108,10 @@ proxy-groups:
       - 🔰 节点选择
       - 🎯 全球直连
       - ♻️ 自动选择
+      - "[1] 美国-3.99MB/s"
+      - "[2] 美国-3.86MB/s"
+      - "[3] 新加坡-3.45MB/s"
+      - "[4] 美国-287.7KB/s"
 rules:
  - DOMAIN-SUFFIX,local,🎯 全球直连
  - IP-CIDR,192.168.0.0/16,🎯 全球直连,no-resolve
@@ -9051,6 +9104,37 @@ rules:
  - DOMAIN-SUFFIX,yuanchengxiezuo.com,🛑 全球拦截
  - DOMAIN-SUFFIX,zbrushcn.com,🛑 全球拦截
  - DOMAIN-SUFFIX,zhzzx.com,🛑 全球拦截
+ - DOMAIN-SUFFIX,netflix.com,🎥 NETFLIX
+ - DOMAIN-SUFFIX,netflix.net,🎥 NETFLIX
+ - DOMAIN-SUFFIX,nflxext.com,🎥 NETFLIX
+ - DOMAIN-SUFFIX,nflximg.com,🎥 NETFLIX
+ - DOMAIN-SUFFIX,nflximg.net,🎥 NETFLIX
+ - DOMAIN-SUFFIX,nflxso.net,🎥 NETFLIX
+ - DOMAIN-SUFFIX,nflxvideo.net,🎥 NETFLIX
+ - DOMAIN-SUFFIX,netflixdnstest0.com,🎥 NETFLIX
+ - DOMAIN-SUFFIX,netflixdnstest1.com,🎥 NETFLIX
+ - DOMAIN-SUFFIX,netflixdnstest2.com,🎥 NETFLIX
+ - DOMAIN-SUFFIX,netflixdnstest3.com,🎥 NETFLIX
+ - DOMAIN-SUFFIX,netflixdnstest4.com,🎥 NETFLIX
+ - DOMAIN-SUFFIX,netflixdnstest5.com,🎥 NETFLIX
+ - DOMAIN-SUFFIX,netflixdnstest6.com,🎥 NETFLIX
+ - DOMAIN-SUFFIX,netflixdnstest7.com,🎥 NETFLIX
+ - DOMAIN-SUFFIX,netflixdnstest8.com,🎥 NETFLIX
+ - DOMAIN-SUFFIX,netflixdnstest9.com,🎥 NETFLIX
+ - DOMAIN-KEYWORD,dualstack.apiproxy-,🎥 NETFLIX
+ - DOMAIN-KEYWORD,dualstack.ichnaea-web-,🎥 NETFLIX
+ - IP-CIDR,23.246.0.0/18,🎥 NETFLIX,no-resolve
+ - IP-CIDR,37.77.184.0/21,🎥 NETFLIX,no-resolve
+ - IP-CIDR,45.57.0.0/17,🎥 NETFLIX,no-resolve
+ - IP-CIDR,64.120.128.0/17,🎥 NETFLIX,no-resolve
+ - IP-CIDR,66.197.128.0/17,🎥 NETFLIX,no-resolve
+ - IP-CIDR,108.175.32.0/20,🎥 NETFLIX,no-resolve
+ - IP-CIDR,192.173.64.0/18,🎥 NETFLIX,no-resolve
+ - IP-CIDR,198.38.96.0/19,🎥 NETFLIX,no-resolve
+ - IP-CIDR,198.45.48.0/20,🎥 NETFLIX,no-resolve
+ - IP-CIDR,34.210.42.111/32,🎥 NETFLIX,no-resolve
+ - IP-CIDR,52.89.124.203/32,🎥 NETFLIX,no-resolve
+ - IP-CIDR,54.148.37.5/32,🎥 NETFLIX,no-resolve
  - DOMAIN-SUFFIX,jtvnw.net,🌍 国外媒体
  - DOMAIN-SUFFIX,ttvnw.net,🌍 国外媒体
  - DOMAIN-SUFFIX,twitch.tv,🌍 国外媒体
