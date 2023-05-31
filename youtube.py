@@ -417,19 +417,14 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
 
 if __name__ == '__main__':
     # 环境
-    try:
-        ENV = sys.argv[1]
-    except:
-        ENV = 'dev'
-    if ENV == 'dev':
-        CARW_NUMBER = 10
-        NEED_SAVE = False
-    elif ENV == 'prod':
-        CARW_NUMBER = 165
+    CARW_NUMBER = int(sys.argv[1])
+    if sys.argv[2] in ['true','TRUE','1','True']:
         NEED_SAVE = True
-    else:
-        CARW_NUMBER = 10
+    elif sys.argv[2] in ['false','FALSE','0','False']:
         NEED_SAVE = False
+    else:
+        NEED_SAVE = False
+    NEED_SAVE = sys.argv[2]
     # sys.argv[1]): CRAW_NUMBER 抓取次数
     raw_list = craw(CARW_NUMBER,'qmRkvKo-KbQ',10)
     

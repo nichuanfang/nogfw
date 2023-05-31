@@ -54,9 +54,10 @@ jobs:
       - name: update proxy
         continue-on-error: true
         env:
-          ENV: ${{ vars.ENV }}
+          CRAW_NUMBER: ${{ vars.CRAW_NUMBER }}
+          NEED_SAVE: ${{ vars.NEED_SAVE }}
         run: |
-          python youtube.py $ENV
+          python youtube.py $CRAW_NUMBER $NEED_SAVE
 
       - name: execute subconverter
         run: |
