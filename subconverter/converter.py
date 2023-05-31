@@ -57,9 +57,7 @@ def sort_func(proxy):
         return 0.0
 
 def get_tag(node:str):
-    type = node.split(':')[0]
-    if len(type) < 2:
-        raise RuntimeError(f'节点:{node}不包含:')
+    type = node.split('://')[0]
     # 获取节点的原始标签
     # ss
     if type == 'ss':
@@ -92,7 +90,7 @@ def get_tag(node:str):
         return 'none'
 
 def tag(node:str,new_tag):
-    type = node.split(':')[0]
+    type = node.split('://')[0]
     # 给节点替换新的tag
      # ss
     if type == 'ss':

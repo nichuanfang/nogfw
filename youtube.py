@@ -55,12 +55,7 @@ def craw(number:int,video_id:str,sleeptime:int):
         logging.info(f'=====================================开始第{craw_index+1}/{number}轮抓取======================================================')
         # 隔一段时间获取二维码
         subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
-        while True:
-            if not os.path.exists('dist/last.jpg'):
-                logging.info(f'==========================================================等待截图生成...======================================================')
-                sleep(1)
-            else:
-                break
+        sleep(1)
         try:
             logging.info(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
             # 处理生成的二维码 生成节点信息
