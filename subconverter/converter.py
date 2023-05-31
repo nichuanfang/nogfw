@@ -1,6 +1,8 @@
 # 处理generate.ini文件
 import re
 from urllib import request, parse
+import requests,base64,json,urllib
+from urllib import parse
 import json
 import base64
 import logging
@@ -16,6 +18,35 @@ clash_pattern = r'{clash}'
 # v2ray的正则
 v2ray_pattern = r'{v2ray}'
 
+def decode_base64(data, decode_utf8=True):
+    missing_padding = 4 - len(data) % 4
+    if missing_padding:
+        data += '='* missing_padding
+    if decode_utf8:
+        return base64.urlsafe_b64decode(data.encode('ascii')).decode("utf-8")
+    else:
+        return base64.urlsafe_b64decode(data.encode('ascii'))
+
+def encode_base64(data):
+    return base64.urlsafe_b64encode(data.encode("utf-8")).decode("utf-8")
+
+def get_remarks(ssrConfig):
+    param = parse.parse_qs(parse.urlsplit(ssrConfig).query)
+    remarks_base64 =  param['remarks'][0].replace('-', '+').replace('_', '/')
+    remarks = decode_base64(remarks_base64, False)
+    return parse.quote(remarks)
+
+def convert_ssr2ss(ssrConfig):
+    ssConfig = "ss://"
+    networkConfig = ssrConfig.split('/?')[0].split(':')
+    serverIP = networkConfig[0]
+    serverPort = networkConfig[1]
+    encryption = networkConfig[3]
+    passwd = decode_base64(networkConfig[5])
+    remarks = get_remarks(ssrConfig)
+    ssConfig += encode_base64(encryption + ":" + passwd) + "@" + serverIP + ":" + serverPort + "/#" + remarks
+    return ssConfig
+
 def sort_func(proxy):
         # 获取测速结果
         match = re.search(r'\d+.\d+',proxy.split('-')[-1])
@@ -26,28 +57,32 @@ def sort_func(proxy):
         return 0.0
 
 def get_tag(node:str):
+    type = node.split(':')[0]
+    if len(type) < 2:
+        raise RuntimeError(f'节点:{node}不包含:')
     # 获取节点的原始标签
     # ss
-    if node.strip().startswith('ss'):
+    if type == 'ss':
         logging.info(f'开始处理ss节点:{node}')
-        if len(node.split('#')) <2:
-            return f'ss-{node}'
         urlencoded_node = node.split('#')[1]
         # url解码
         return parse.unquote(urlencoded_node)
+    if type == 'ssr':
+        logging.info(f'开始处理ssr节点:{node}')
+        b64encoded_node = node.split('//')[1]
+        sconfig = decode_base64(b64encoded_node)
+        # ss链接
+        ss_node = convert_ssr2ss(sconfig)
+        return (parse.unquote(ss_node.split('#')[1]),ss_node)
     # trojan
-    elif node.strip().startswith('trojan'):
+    elif type == 'trojan':
         logging.info(f'开始处理trojan节点:{node}')
-        if len(node.split('#')) <2:
-            return f'trojan-{node}'
         urlencoded_node = node.split('#')[1]
         return parse.unquote(urlencoded_node)
     # vmess
-    elif node.strip().startswith('vmess'):
+    elif type == 'vmess':
         logging.info(f'开始处理vmess节点:{node}')
         # 先对vmess协议后面base64解码 转为json 其中的ps字段即为tag
-        if len(node.split('//')) <2:
-            return f'vmess-{node}'
         b64encoded_node = node.split('//')[1]
         b64decoded_node = base64.b64decode(b64encoded_node).decode('utf-8')
         json_node = json.loads(b64decoded_node)
@@ -57,26 +92,28 @@ def get_tag(node:str):
         return 'none'
 
 def tag(node:str,new_tag):
+    type = node.split(':')[0]
     # 给节点替换新的tag
      # ss
-    if node.strip().startswith('ss'):
-        if new_tag.__contains__('ss-'):
-            return node
+    if type == 'ss':
         logging.info(f'开始给ss节点:{node}打tag')
         urlencoded_node = node.split('#')[1]
         # url解码
         return node.split('#')[0]+'#'+ parse.quote(new_tag)
+    if type == 'ssr':
+        logging.info(f'开始给ssr节点:{node}打tag')
+        b64encoded_node = node.split('//')[1]
+        sconfig = decode_base64(b64encoded_node)
+        # ss链接
+        urlencoded_node = convert_ssr2ss(sconfig).split('#')[1]
+        return parse.unquote(urlencoded_node)
     # trojan
-    elif node.strip().startswith('trojan'):
-        if new_tag.__contains__('trojan-'):
-            return node
+    elif type == 'trojan':
         logging.info(f'开始给trojan节点:{node}打tag')
         urlencoded_node = node.split('#')[1]
         return node.split('#')[0]+'#'+ parse.quote(new_tag)
     # vmess
-    elif node.strip().startswith('vmess'):
-        if new_tag.__contains__('vmess-'):
-            return node
+    elif type == 'vmess':
         logging.info(f'开始给vmess节点:{node}打tag')
         # 先对vmess协议后面base64解码 转为json 其中的ps字段即为tag
         b64encoded_node = node.split('//')[1]
@@ -96,7 +133,11 @@ def handle_nodes(nodes:list[str]):
     tag_node_dict:dict[str,str] = {}
 
     for node in nodes:
-        tag_node_dict[get_tag(node)] = node
+        get_tag_res = get_tag(node)
+        if type(get_tag_res) == tuple:
+            tag_node_dict[get_tag_res[0]] = get_tag_res[1] # type: ignore
+        else:
+            tag_node_dict[get_tag(node)] = node # type: ignore
 
     sorted_tag_node_keys = sorted(tag_node_dict,key=sort_func,reverse=True)
     new_nodes = []

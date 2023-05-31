@@ -23,12 +23,12 @@ from collections import OrderedDict
 import easyocr
 from subconverter import converter
 
-# nodes = ['trojan://a6950ca9-4504-411a-a656-bee29a4739eb@kr.stablize.top:443?allowInsecure=1#%E7%BE%8E%E5%9B%BD-287.7KB%2Fs%28Youtube%3A%E4%B8%8D%E8%89%AF%E6%9E%97%29',
-#          'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDU@13.228.168.158:443#%E6%96%B0%E5%8A%A0%E5%9D%A1-3.45MB%2Fs%28Youtube%3A%E4%B8%8D%E8%89%AF%E6%9E%97%29',
-#          'vmess://eyJ2IjoiMiIsInBzIjoi576O5Zu9LTMuOTlNQi9zKFlvdXR1YmU65LiN6Imv5p6XKSIsImFkZCI6ImNkbi14anA0LmNxanNsLnh5eiIsInBvcnQiOiI0NDMiLCJ0eXBlIjoibm9uZSIsImlkIjoiZDE1NWE1MzktYzNmZi00NDMwLWIzODktZmUzY2U0YTgxOTAwIiwiYWlkIjoiMCIsIm5ldCI6IndzIiwicGF0aCI6Ii8iLCJob3N0IjoiY2RuLXhqcDQuY3Fqc2wueHl6IiwidGxzIjoidGxzIn0=',
-#          'vmess://eyJ2IjoiMiIsInBzIjoi576O5Zu9LTMuODZNQi9zKFlvdXR1YmU65LiN6Imv5p6XKSIsImFkZCI6IjQ1LjEzNi4yMzUuMTMiLCJwb3J0IjoiNDQzIiwidHlwZSI6Im5vbmUiLCJpZCI6IjQxODA0OGFmLWEyOTMtNGI5OS05YjBjLTk4Y2EzNTgwZGQyNCIsImFpZCI6IjY0IiwibmV0Ijoid3MiLCJwYXRoIjoiL3BhdGgvMTY4NDgyOTg5NzM4MCIsImhvc3QiOiIiLCJ0bHMiOiJ0bHMifQ==']
+nodes = ['trojan://a6950ca9-4504-411a-a656-bee29a4739eb@kr.stablize.top:443?allowInsecure=1#%E7%BE%8E%E5%9B%BD-287.7KB%2Fs%28Youtube%3A%E4%B8%8D%E8%89%AF%E6%9E%97%29',
+         'ssr://b3B0MjMuYm9vbS5za2luOjMzMDAwOmF1dGhfYWVzMTI4X3NoYTE6YWVzLTI1Ni1jZmI6aHR0cF9zaW1wbGU6VldzNU1rTlQvP2dyb3VwPVUxTlNVSEp2ZG1sa1pYSSZyZW1hcmtzPUtPVzNzdVd0bU9hMHV6RXk1YVNwS2VTNHJlaTlyT2lLZ3VlQ3VTMDVMamt4VFVJdmN5aFpiM1YwZFdKbE91UzRqZWlKci1hZWx5ayZvYmZzcGFyYW09Wkc5M2JteHZZV1F1ZDJsdVpHOTNjM1Z3WkdGMFpTNWpiMjAmcHJvdG9wYXJhbT1Nak01TlRjNmJscERjRGxa',
+         'vmess://eyJ2IjoiMiIsInBzIjoi576O5Zu9LTMuOTlNQi9zKFlvdXR1YmU65LiN6Imv5p6XKSIsImFkZCI6ImNkbi14anA0LmNxanNsLnh5eiIsInBvcnQiOiI0NDMiLCJ0eXBlIjoibm9uZSIsImlkIjoiZDE1NWE1MzktYzNmZi00NDMwLWIzODktZmUzY2U0YTgxOTAwIiwiYWlkIjoiMCIsIm5ldCI6IndzIiwicGF0aCI6Ii8iLCJob3N0IjoiY2RuLXhqcDQuY3Fqc2wueHl6IiwidGxzIjoidGxzIn0=',
+         'vmess://eyJ2IjoiMiIsInBzIjoi576O5Zu9LTMuODZNQi9zKFlvdXR1YmU65LiN6Imv5p6XKSIsImFkZCI6IjQ1LjEzNi4yMzUuMTMiLCJwb3J0IjoiNDQzIiwidHlwZSI6Im5vbmUiLCJpZCI6IjQxODA0OGFmLWEyOTMtNGI5OS05YjBjLTk4Y2EzNTgwZGQyNCIsImFpZCI6IjY0IiwibmV0Ijoid3MiLCJwYXRoIjoiL3BhdGgvMTY4NDgyOTg5NzM4MCIsImhvc3QiOiIiLCJ0bHMiOiJ0bHMifQ==']
 
-# converter.add_quanx(nodes)
+converter.add_quanx(nodes) # type: ignore
 # converter.add_clash(nodes,converter.add_quanx(nodes,converter.add_v2ray(nodes)))
 
 # windows下需要先下载模型文件  https://blog.csdn.net/Loliykon/article/details/114334699
