@@ -29,8 +29,7 @@ nodes = ['trojan://a6950ca9-4504-411a-a656-bee29a4739eb@kr.stablize.top:443?allo
          'vmess://eyJ2IjoiMiIsInBzIjoi576O5Zu9LTMuODZNQi9zKFlvdXR1YmU65LiN6Imv5p6XKSIsImFkZCI6IjQ1LjEzNi4yMzUuMTMiLCJwb3J0IjoiNDQzIiwidHlwZSI6Im5vbmUiLCJpZCI6IjQxODA0OGFmLWEyOTMtNGI5OS05YjBjLTk4Y2EzNTgwZGQyNCIsImFpZCI6IjY0IiwibmV0Ijoid3MiLCJwYXRoIjoiL3BhdGgvMTY4NDgyOTg5NzM4MCIsImhvc3QiOiIiLCJ0bHMiOiJ0bHMifQ==']
 
 # converter.add_quanx(nodes)
-# converter.add_clash(nodes,converter.add_quanx(nodes,converter.add_mixed(nodes)))
-converter.add_v2ray(nodes)
+# converter.add_clash(nodes,converter.add_quanx(nodes,converter.add_v2ray(nodes)))
 
 # windows下需要先下载模型文件  https://blog.csdn.net/Loliykon/article/details/114334699
 reader = easyocr.Reader(['ch_sim','en'],model_storage_directory='ocr_models')
@@ -461,7 +460,7 @@ if __name__ == '__main__':
                     box_size=10, 
                     border=4)
         # 自适应大小
-        qr.add_data('https://ghproxy.net/https://raw.githubusercontent.com/nichuanfang/nogfw/main/dist/mixed-sub.txt')
+        qr.add_data('https://ghproxy.net/https://raw.githubusercontent.com/nichuanfang/nogfw/main/dist/v2ray-sub.txt')
         qr.make(fit=True)
         img = qr.make_image(fill_color="black", back_color="white")
         if NEED_SAVE:

@@ -16,7 +16,7 @@ common:
   surfboard_rule_base: base/all_base.tpl
   mellow_rule_base: base/all_base.tpl
   quan_rule_base: base/all_base.tpl
-  quanx_rule_base: base/all_base.tpl
+  quanx_rule_base: base/quanx.conf
   loon_rule_base: base/all_base.tpl
   sssub_rule_base: base/all_base.tpl
   proxy_config: SYSTEM
@@ -110,8 +110,8 @@ proxy_groups:
 template:
   template_path: ''
   globals:
-    - { key: clash.http_port, value: 7890 }
-    - { key: clash.socks_port, value: 7891 }
+    - { key: clash.http_port, value: 10809 }
+    - { key: clash.socks_port, value: 10808 }
     - { key: clash.allow_lan, value: true }
     - { key: clash.log_level, value: info }
 

@@ -4,6 +4,8 @@
 🛑 全球拦截,rules/NobyDa/Surge/AdRule.list
 🛑 全球拦截,rules/DivineEngine/Surge/Ruleset/Guard/Hijacking.list
 ;🎥 NETFLIX,rules/DivineEngine/Surge/Ruleset/StreamingMedia/Video/Netflix.list
+🏳️‍🌈 Google,rules/ACL4SSR/Clash/Ruleset/Google.list
+😄 Github,rules/ACL4SSR/Clash/Ruleset/Github.list
 🌍 国外媒体,rules/DivineEngine/Surge/Ruleset/StreamingMedia/Streaming.list
 🌏 国内媒体,rules/lhie1/Surge/Surge 3/Provider/Media/Bilibili.list
 🌏 国内媒体,rules/lhie1/Surge/Surge 3/Provider/Media/iQiyi.list
