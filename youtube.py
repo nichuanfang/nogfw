@@ -396,7 +396,7 @@ def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
     # 指定位置插入dns配置
     final_dict = modify_dict(final_dict,'dns','proxies',dns)
     # 插入实验性功能
-    final_dict = modify_dict(final_dict,'experimental','proxies',experimental)
+    final_dict = modify_dict(final_dict,'experimental','dns',experimental)
     return final_dict
 
 
