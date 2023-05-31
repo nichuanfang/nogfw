@@ -31,14 +31,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-ocr
 
-      # - name: install ocr dependencies
-      #   if: steps.cache-ocr-models.outputs.cache-hit != 'true'
-      #   run: |
-      #     cd ocr_models
-      #     sudo wget https://github.com/JaidedAI/EasyOCR/releases/download/pre-v1.1.6/craft_mlt_25k.zip
-      #     sudo wget https://github.com/JaidedAI/EasyOCR/releases/download/pre-v1.1.6/chinese.zip
-      #     sudo wget https://github.com/JaidedAI/EasyOCR/releases/download/pre-v1.1.6/chinese_sim.zip
-
       # 最佳实践 yt-dlp+ffmpeg
       - name: Setup yt-dlp
         uses: AnimMouse/setup-yt-dlp@v1
@@ -66,7 +58,36 @@ jobs:
         run: |
           python youtube.py $ENV
 
+      - name: execute subconverter
+        run: |
+          chmod +x ./subconverter/subconverter
+          ./subconverter/subconverter -g
+
       - name: Commit & Push changes
         uses: actions-js/push@master
         with:
           github_token: ${{ secrets.GH_TOKEN }}
+
+      - name: Deploy quanx-sub
+        uses: exuanbo/actions-deploy-gist@v1.1.4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          gist_id: ${{ secrets.QX_SUBSCRIBE_ID }}
+          file_path: dist/quanx-sub.txt
+          file_type: text
+
+      - name: Deploy clash-sub
+        uses: exuanbo/actions-deploy-gist@v1.1.4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          gist_id: ${{ secrets.CLASH_SUBSCRIBE_ID }}
+          file_path: dist/clash-sub.yml
+          file_type: text
+
+      - name: Deploy mixed-sub
+        uses: exuanbo/actions-deploy-gist@v1.1.4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          gist_id: ${{ secrets.MIXED_SUBSCRIBE_ID }}
+          file_path: dist/mixed-sub.txt
+          file_type: text

@@ -23,13 +23,13 @@ from collections import OrderedDict
 import easyocr
 from subconverter import converter
 
-nodes = ['trojan://a6950ca9-4504-411a-a656-bee29a4739eb@kr.stablize.top:443?allowInsecure=1#%E7%BE%8E%E5%9B%BD-287.7KB%2Fs%28Youtube%3A%E4%B8%8D%E8%89%AF%E6%9E%97%29',
-         'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDU@13.228.168.158:443#%E6%96%B0%E5%8A%A0%E5%9D%A1-3.45MB%2Fs%28Youtube%3A%E4%B8%8D%E8%89%AF%E6%9E%97%29',
-         'vmess://eyJ2IjoiMiIsInBzIjoi576O5Zu9LTMuOTlNQi9zKFlvdXR1YmU65LiN6Imv5p6XKSIsImFkZCI6ImNkbi14anA0LmNxanNsLnh5eiIsInBvcnQiOiI0NDMiLCJ0eXBlIjoibm9uZSIsImlkIjoiZDE1NWE1MzktYzNmZi00NDMwLWIzODktZmUzY2U0YTgxOTAwIiwiYWlkIjoiMCIsIm5ldCI6IndzIiwicGF0aCI6Ii8iLCJob3N0IjoiY2RuLXhqcDQuY3Fqc2wueHl6IiwidGxzIjoidGxzIn0=',
-         'vmess://eyJ2IjoiMiIsInBzIjoi576O5Zu9LTMuODZNQi9zKFlvdXR1YmU65LiN6Imv5p6XKSIsImFkZCI6IjQ1LjEzNi4yMzUuMTMiLCJwb3J0IjoiNDQzIiwidHlwZSI6Im5vbmUiLCJpZCI6IjQxODA0OGFmLWEyOTMtNGI5OS05YjBjLTk4Y2EzNTgwZGQyNCIsImFpZCI6IjY0IiwibmV0Ijoid3MiLCJwYXRoIjoiL3BhdGgvMTY4NDgyOTg5NzM4MCIsImhvc3QiOiIiLCJ0bHMiOiJ0bHMifQ==']
+# nodes = ['trojan://a6950ca9-4504-411a-a656-bee29a4739eb@kr.stablize.top:443?allowInsecure=1#%E7%BE%8E%E5%9B%BD-287.7KB%2Fs%28Youtube%3A%E4%B8%8D%E8%89%AF%E6%9E%97%29',
+#          'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDU@13.228.168.158:443#%E6%96%B0%E5%8A%A0%E5%9D%A1-3.45MB%2Fs%28Youtube%3A%E4%B8%8D%E8%89%AF%E6%9E%97%29',
+#          'vmess://eyJ2IjoiMiIsInBzIjoi576O5Zu9LTMuOTlNQi9zKFlvdXR1YmU65LiN6Imv5p6XKSIsImFkZCI6ImNkbi14anA0LmNxanNsLnh5eiIsInBvcnQiOiI0NDMiLCJ0eXBlIjoibm9uZSIsImlkIjoiZDE1NWE1MzktYzNmZi00NDMwLWIzODktZmUzY2U0YTgxOTAwIiwiYWlkIjoiMCIsIm5ldCI6IndzIiwicGF0aCI6Ii8iLCJob3N0IjoiY2RuLXhqcDQuY3Fqc2wueHl6IiwidGxzIjoidGxzIn0=',
+#          'vmess://eyJ2IjoiMiIsInBzIjoi576O5Zu9LTMuODZNQi9zKFlvdXR1YmU65LiN6Imv5p6XKSIsImFkZCI6IjQ1LjEzNi4yMzUuMTMiLCJwb3J0IjoiNDQzIiwidHlwZSI6Im5vbmUiLCJpZCI6IjQxODA0OGFmLWEyOTMtNGI5OS05YjBjLTk4Y2EzNTgwZGQyNCIsImFpZCI6IjY0IiwibmV0Ijoid3MiLCJwYXRoIjoiL3BhdGgvMTY4NDgyOTg5NzM4MCIsImhvc3QiOiIiLCJ0bHMiOiJ0bHMifQ==']
 
 # converter.add_quanx(nodes)
-converter.add_clash(nodes,converter.add_quanx(nodes,converter.add_mixed(nodes)))
+# converter.add_clash(nodes,converter.add_quanx(nodes,converter.add_mixed(nodes)))
 
 # windows下需要先下载模型文件  https://blog.csdn.net/Loliykon/article/details/114334699
 reader = easyocr.Reader(['ch_sim','en'],model_storage_directory='ocr_models')
@@ -46,13 +46,10 @@ def qr_recognize(file_path:str):
     return data
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
-raw_list = []
 logging.basicConfig(level=logging.INFO)
 def craw(number:int,video_id:str,sleeptime:int):
-    # 未去重 打好标签的节点列表
-    all_nodes = []
+    raw_list = []
     logging.info(f'===========================================================================开始获取节点信息...')
-    count = 1
     # 默认130
     for craw_index in range(number):
         logging.info(f'=====================================开始第{craw_index+1}/{number}轮抓取======================================================')
@@ -69,34 +66,18 @@ def craw(number:int,video_id:str,sleeptime:int):
             # 处理生成的二维码 生成节点信息
             data:str = qr_recognize(f'dist/last.jpg')
             raw_list.append(data)
-            logging.info(f'===============================================================================raw_data: {data}')
+            logging.info(f'==================================================================raw_data: {data}')
             ocr_result = reader.readtext('dist/last.jpg')
             # additional handling to ocr result... 
             logging.info(f'===============================================================================OCR: {ocr_result}')
+
+            raw_list = copy.deepcopy(sorted(set(raw_list),key=raw_list.index))
+            logging.info(f'=========================已抓取数据源: {len(raw_list)}个')
         except Exception as err:
-            data = ''
-            all_nodes = []
             logging.error(f'==============================={err}==============================================')
-        sub_res = requests.get(f'https://sub.xeton.dev/sub?target=quanx&url={parse.quote(data)}&insert=false')
-        sub_res_list: list[str] = sub_res.text.split('\n')
-        for index,subitem in enumerate(sub_res_list):
-            try:
-                if subitem == '[server_local]' and sub_res_list[index+1] not in ['','[filter_local]']:
-                    # 有效qx订阅节点
-                    # 添加到目标节点中
-                    all_nodes.append(sub_res_list[index+1])
-                    # 节点去重 利用字典去重
-                    all_nodes = list(dict.fromkeys(all_nodes))
-                    logging.info(f'==============================================================================当前节点池有: {len(all_nodes)}个节点')
-                    logging.info(f'')
-                    logging.info(f'')
-                    logging.info(f'')
-                    logging.info(f'')
-            except:
-                continue
         if craw_index != number-1:
             sleep(sleeptime)
-    return all_nodes
+    return raw_list
 
 def resize(file):
     im = Image.open(file)
@@ -444,62 +425,33 @@ if __name__ == '__main__':
         CARW_NUMBER = 5
         NEED_SAVE = False
     elif ENV == 'prod':
-        CARW_NUMBER = 150
+        CARW_NUMBER = 5
         NEED_SAVE = True
     else:
         CARW_NUMBER = 5
         NEED_SAVE = False
     # sys.argv[1]): CRAW_NUMBER 抓取次数
-    all_nodes = craw(CARW_NUMBER,'qmRkvKo-KbQ',10)
-    # 对节点按照测速结果 从快到慢降速排序
-    def qx_sort(node):
-        # 获取测速结果
-        match = re.search(r'\d+.\d+',node.split('-')[-1])
-        if match is not None:
-            if node.split('-')[-1].lower().__contains__('mb'):
-                return float(match.group())*1000
-            return float(match.group())
-        return 0.0
-    all_nodes.sort(key=qx_sort,reverse=True) # type: ignore
-    # sorted_nodes = sort_nodes(all_nodes)
-    taged_nodes = []
-    # 节点更改tag
-    for index,node in enumerate(all_nodes):
-        new_node = None
-        # 更改tag
-        match = re.search(r'tag.+$',node)
-        if match is not None:
-            tag = match.group()
-            new_tag = 'tag='+f'[{index+1}] '+tag.replace('(Youtube:不良林)','').split('=')[1]
-            new_node = re.sub(r'tag.+$',new_tag,node)
-        if new_node == None:
-            continue
-        taged_nodes.append(new_node)
+    raw_list = craw(CARW_NUMBER,'qmRkvKo-KbQ',10)
     
     # 生成qx专用订阅
+    logging.info(f'=========================================================================生成qx配置文件...')
+    generate_ini = converter.generate_template_ini
     if NEED_SAVE:
-        open('dist/qx-sub','w+').write('\n'.join(taged_nodes))
-    else:
-        logging.info(f'===================================================生成的qx配置文件:{taged_nodes}')
-
+        generate_ini = converter.add_quanx(raw_list,generate_ini)
+    logging.info(f'=========================================================================qx配置文件已生成!')
     # 生成clash配置文件
     logging.info(f'=========================================================================生成clash配置文件...')
+    if NEED_SAVE:
+        generate_ini = converter.add_clash(raw_list,generate_ini)
+    logging.info(f'=========================================================================clash配置文件已生成!')
 
-    # raw_list = ['vmess://eyJ2IjoiMiIsInBzIjoi576O5Zu9LTUuNjNNQi9zKFlvdXR1YmU65LiN6Imv5p6XKSIsImFkZCI6IjIzLjIyNC4xMTAuMTg0IiwicG9ydCI6IjQ0MyIsInR5cGUiOiJub25lIiwiaWQiOiI0MTgwNDhhZi1hMjkzLTRiOTktOWIwYy05OGNhMzU4MGRkMjQiLCJhaWQiOiI2NCIsIm5ldCI6IndzIiwicGF0aCI6Ii9wYXRoLzA4MDcxMjM0MjMxMCIsImhvc3QiOiIiLCJ0bHMiOiJ0bHMifQ==','vmess://eyJ2IjoiMiIsInBzIjoi576O5Zu9LTQuMzlNQi9zKFlvdXR1YmU65LiN6Imv5p6XKSIsImFkZCI6IjE5OC4yLjE5Ni40OSIsInBvcnQiOiI1NDQzNCIsInR5cGUiOiJub25lIiwiaWQiOiI0MTgwNDhhZi1hMjkzLTRiOTktOWIwYy05OGNhMzU4MGRkMjQiLCJhaWQiOiI2NCIsIm5ldCI6InRjcCIsInBhdGgiOiIvIiwiaG9zdCI6IiIsInRscyI6IiJ9']
+    # 生成mixed订阅
+    logging.info(f'=========================================================================生成mixed配置文件...')
+    if NEED_SAVE:
+        generate_ini = converter.add_clash(raw_list,generate_ini)
+    logging.info(f'=========================================================================mixed配置文件已生成!')
 
-    # raw数据去重
-    raw_list = copy.deepcopy(sorted(set(raw_list),key=raw_list.index))
-    # base64加密
-    encoder = base64.b64encode(('\n'.join(raw_list)).encode("utf-8"))
-    # 解码为 utf-8 字符串
-    try:
-        # 生成通用订阅
-        if NEED_SAVE:
-            open('dist/sub', 'w+',encoding='utf-8').write(encoder.decode('utf-8'))
-        else:
-            logging.info(f'==================================================生成的通用订阅:{encoder.decode("utf-8")}')
-    except Exception as e:
-        logging.error(f'================================通用订阅生成失败!:{e}==========================================')
+    logging.info(f'=========================================================================生成的generate_ini:{generate_ini}')
 
     # 生成通用订阅二维码
     try:
@@ -508,7 +460,7 @@ if __name__ == '__main__':
                     box_size=10, 
                     border=4)
         # 自适应大小
-        qr.add_data('https://ghproxy.net/https://raw.githubusercontent.com/nichuanfang/nogfw/main/dist/sub')
+        qr.add_data('https://ghproxy.net/https://raw.githubusercontent.com/nichuanfang/nogfw/main/dist/mixed-sub.txt')
         qr.make(fit=True)
         img = qr.make_image(fill_color="black", back_color="white")
         if NEED_SAVE:
@@ -519,17 +471,6 @@ if __name__ == '__main__':
     except Exception as e:
         logging.error(f'================================二维码生成失败!:{e}==========================================')
     
-    try:
-        clash_dict = generate_clash_config(raw_list,{})
-        if NEED_SAVE:
-            with open('dist/clash.yml', 'w+',encoding='utf-8') as file:
-                file.write(yaml.dump(clash_dict, allow_unicode=True,default_flow_style=False,sort_keys=False))
-        else:
-            logging.info(f'=================================================生成的clash配置文件:{clash_dict}')
-    except Exception as e:
-        logging.error(f'================================clash文件生成失败!:{e}==========================================')
-
-    logging.info(f'=========================================================================clash配置文件已生成!')
     logging.info(f'')
     logging.info(f'')
     logging.info(f'')
