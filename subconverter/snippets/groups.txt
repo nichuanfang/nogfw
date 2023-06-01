@@ -1,4 +1,4 @@
-🔰 节点选择`fallback`[]🤔 高可用`[]♻️ 低延迟`[]🎯 全球直连
+🔰 节点选择`fallback`[]🤔 高可用`[]♻️ 低延迟`[]🎯 全球直连`http://cp.cloudflare.com/generate_204`600,2,100
 🤔 高可用`fallback`.*`http://cp.cloudflare.com/generate_204`600,2,100
 ♻️ 低延迟`url-test`(香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|Korea|KR|kr)`http://cp.cloudflare.com/generate_204`600,2,100
 ;🎥 NETFLIX`select`[]🔰 节点选择`[]♻️ 低延迟`[]🎯 全球直连`.*
