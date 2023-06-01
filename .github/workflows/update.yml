@@ -32,43 +32,38 @@ jobs:
             ${{ runner.os }}-ocr
 
       # 最佳实践 yt-dlp+ffmpeg
-      - name: Setup yt-dlp
-        uses: AnimMouse/setup-yt-dlp@v1
-        with:
-          with-ffmpeg: true
+      # - name: Setup yt-dlp
+      #   uses: AnimMouse/setup-yt-dlp@v1
+      #   with:
+      #     with-ffmpeg: true
 
-      - name: 设置python环境(v3.11)
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-          cache: 'pip'
+      # - name: 设置python环境(v3.11)
+      #   uses: actions/setup-python@v4
+      #   with:
+      #     python-version: '3.11'
+      #     cache: 'pip'
 
-      - name: 安装pip依赖(清华大学镜像源)
-        run: pip install -r requirements.txt
+      # - name: 安装pip依赖(清华大学镜像源)
+      #   run: pip install -r requirements.txt
 
       - name: pull
         run: |
           git checkout .
           git pull --allow-unrelated-histories
 
-      - name: update proxy
-        continue-on-error: true
-        env:
-          CRAW_NUMBER: ${{ vars.CRAW_NUMBER }}
-          NEED_SAVE: ${{ vars.NEED_SAVE }}
-        run: |
-          python youtube.py $CRAW_NUMBER $NEED_SAVE
+      # - name: update proxy
+      #   continue-on-error: true
+      #   env:
+      #     CRAW_NUMBER: ${{ vars.CRAW_NUMBER }}
+      #     NEED_SAVE: ${{ vars.NEED_SAVE }}
+      #   run: |
+      #     python youtube.py $CRAW_NUMBER $NEED_SAVE
 
       - name: execute subconverter
         run: |
           chmod +x ./subconverter/subconverter
           ./subconverter/subconverter -g
           python ./subconverter/handle_qx.py
-
-      - name: Commit & Push changes
-        uses: actions-js/push@master
-        with:
-          github_token: ${{ secrets.GH_TOKEN }}
 
       - name: Deploy quanx-sub
         uses: exuanbo/actions-deploy-gist@v1.1.4
@@ -93,3 +88,24 @@ jobs:
           gist_id: ${{ secrets.V2RAY_SUBSCRIBE_ID }}
           file_path: dist/v2ray-sub.txt
           file_type: text
+
+      - name: Deploy dist to server
+        uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+        continue-on-error: true
+        with:
+          host: ${{ secrets.HOST }}
+          user: ${{ secrets.USER }}
+          pass: ${{ secrets.PASS }}
+          port: ${{ secrets.PORT }}
+          connect_timeout: 10s
+          scp: |
+            './dist/quanx-sub.txt' => /root/code/docker/dockerfile_work/xray/config/qx
+            './dist/clash-sub.yml' => /root/code/docker/dockerfile_work/xray/config/clash
+          last_ssh: |
+            systemctl restart nginx
+
+      # avoid public subscribe url
+      # - name: Commit & Push changes
+      #   uses: actions-js/push@master
+      #   with:
+      #     github_token: ${{ secrets.GH_TOKEN }}
