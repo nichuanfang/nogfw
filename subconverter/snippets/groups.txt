@@ -11,12 +11,12 @@
 📲 电报信息`select`[]🔰 节点选择`[]🇭🇰 Hong Kong`[]🇸🇬 Singapore`[]🇹🇼 Taiwan`[]🇺🇸 United States`[]🇯🇵 Japan`[]🇰🇷 Korea`[]🌐 Other`[]🎯 全球直连`.*
 🍎 苹果服务`select`[]🔰 节点选择`[]🇭🇰 Hong Kong`[]🇸🇬 Singapore`[]🇹🇼 Taiwan`[]🇺🇸 United States`[]🇯🇵 Japan`[]🇰🇷 Korea`[]🌐 Other`[]🎯 全球直连`[]🤔 高可用`[]♻️ 低延迟`.*
 Ⓜ️ 微软服务`select`[]🎯 全球直连`[]🔰 节点选择`.*
-🇭🇰 Hong Kong`select`(香港|Hong Kong|HK|hk)`http://www.gstatic.com/generate_204`1800,5,100
-🇸🇬 Singapore`select`(新加坡|Singapore|SG|sg)`http://www.gstatic.com/generate_204`1800,5,100
-🇹🇼 Taiwan`select`(台湾|Taiwan|TW|tw|台北)`http://www.gstatic.com/generate_204`1800,5,100
-🇺🇸 United States`select`(美国|United States|US|us)`http://www.gstatic.com/generate_204`1800,5,100
-🇯🇵 Japan`select`(日本|Japan|JP|jp)`http://www.gstatic.com/generate_204`1800,5,100
-🇰🇷 Korea`select`(韩国|Korea|KR|kr)`http://www.gstatic.com/generate_204`1800,5,100
+🇭🇰 Hong Kong`select`(香港|Hong Kong|HK|hk)`http://www.gstatic.com/generate_204`1800,2,100
+🇸🇬 Singapore`select`(新加坡|Singapore|SG|sg)`http://www.gstatic.com/generate_204`1800,2,100
+🇹🇼 Taiwan`select`(台湾|Taiwan|TW|tw|台北)`http://www.gstatic.com/generate_204`1800,2,100
+🇺🇸 United States`select`(美国|United States|US|us)`http://www.gstatic.com/generate_204`1800,2,100
+🇯🇵 Japan`select`(日本|Japan|JP|jp)`http://www.gstatic.com/generate_204`1800,2,100
+🇰🇷 Korea`select`(韩国|Korea|KR|kr)`http://www.gstatic.com/generate_204`1800,2,100
 🌐 Other`select`(印度|巴西|阿根廷|英国|澳门|土耳其|挪威|瑞士|俄罗斯|瑞典|爱尔兰|法国|菲律宾|越南|泰国|印度尼西亚|德国|英国|荷兰|乌克兰)
 🎯 全球直连`select`[]DIRECT
 🛑 全球拦截`select`[]REJECT`[]DIRECT
