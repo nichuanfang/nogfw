@@ -14,9 +14,14 @@ dns:
     - tls://1.0.0.1:853
     - tls://dns.google:853
 proxies:
-  - {name: "[1] 美国-4.59MB/s", server: 142.4.126.77, port: 31002, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
-  - {name: "[2] 美国-4.38MB/s", server: 140.99.129.243, port: 48901, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
-  - {name: "[3] 印度尼西亚-1.37MB/s", server: 103.169.7.11, port: 80, type: trojan, password: c0d9da22-2569-4bed-a395-607d9e7ae687, sni: sciencedirect.com, skip-cert-verify: true}
+  - {name: "[1] (已存活12天)中转节点-12.98MB/s", server: nn13.boom.skin, port: 52000, type: ss, cipher: aes-256-cfb, password: Uk92CS}
+  - {name: "[2] 以色列-4.93MB/s", server: us1.chuqiangtou.net, port: 4003, type: trojan, password: TJCfE7Mx2YcA8kX8zg, sni: us1.chuqiangtou.net, skip-cert-verify: true}
+  - {name: "[3] 未知国家-3.49MB/s", server: cf-lt.sharecentre.online, port: 80, type: vmess, uuid: 2d5d8b9c-8ec4-4a37-b610-78e71e13eaef, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /shirker, headers: {Host: lv1.sharecentrepro.org}}}
+  - {name: "[4] 印度-1.45MB/s", server: 152.70.74.66, port: 443, type: trojan, password: d906afe5-7c3c-4ddc-aaa4-61c154a82e5e, skip-cert-verify: true}
+  - {name: "[5] 新加坡-2.69MB/s", server: sg-am3.eqsunshine.com, port: 32001, type: ss, cipher: aes-256-cfb, password: 3g0dHlKME}
+  - {name: "[6] 美国-4.64MB/s", server: jpnewacs.114514782.xyz, port: 2052, type: vmess, uuid: 2c896971-1905-3e7f-bbbe-1725ccfdd9d3, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /vvfdgtrh, headers: {Host: jpnewacs.114514782.xyz}}}
+  - {name: "[7] 美国-3.49MB/s", server: cf-lt.sharecentre.online, port: 80, type: vmess, uuid: 2d5d8b9c-8ec4-4a37-b610-78e71e13eaef, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /shirker, headers: {Host: lv1.sharecentrepro.org}}}
+  - {name: "[8] 美国-3.02MB/s", server: 45.12.112.122, port: 54774, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
 proxy-groups:
   - name: 🔰 节点选择
     type: select
@@ -31,25 +36,35 @@ proxy-groups:
       - 🇰🇷 Korea
       - 🌐 Other
       - 🎯 全球直连
-      - "[1] 美国-4.59MB/s"
-      - "[2] 美国-4.38MB/s"
-      - "[3] 印度尼西亚-1.37MB/s"
+      - "[1] (已存活12天)中转节点-12.98MB/s"
+      - "[2] 以色列-4.93MB/s"
+      - "[3] 未知国家-3.49MB/s"
+      - "[4] 印度-1.45MB/s"
+      - "[5] 新加坡-2.69MB/s"
+      - "[6] 美国-4.64MB/s"
+      - "[7] 美国-3.49MB/s"
+      - "[8] 美国-3.02MB/s"
   - name: 🤔 高可用
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 1800
     tolerance: 100
     proxies:
-      - "[1] 美国-4.59MB/s"
-      - "[2] 美国-4.38MB/s"
-      - "[3] 印度尼西亚-1.37MB/s"
+      - "[1] (已存活12天)中转节点-12.98MB/s"
+      - "[2] 以色列-4.93MB/s"
+      - "[3] 未知国家-3.49MB/s"
+      - "[4] 印度-1.45MB/s"
+      - "[5] 新加坡-2.69MB/s"
+      - "[6] 美国-4.64MB/s"
+      - "[7] 美国-3.49MB/s"
+      - "[8] 美国-3.02MB/s"
   - name: ♻️ 低延迟
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 600
     tolerance: 100
     proxies:
-      - DIRECT
+      - "[5] 新加坡-2.69MB/s"
   - name: 🌍 国外媒体
     type: select
     proxies:
@@ -64,9 +79,14 @@ proxy-groups:
       - 🇰🇷 Korea
       - 🌐 Other
       - 🎯 全球直连
-      - "[1] 美国-4.59MB/s"
-      - "[2] 美国-4.38MB/s"
-      - "[3] 印度尼西亚-1.37MB/s"
+      - "[1] (已存活12天)中转节点-12.98MB/s"
+      - "[2] 以色列-4.93MB/s"
+      - "[3] 未知国家-3.49MB/s"
+      - "[4] 印度-1.45MB/s"
+      - "[5] 新加坡-2.69MB/s"
+      - "[6] 美国-4.64MB/s"
+      - "[7] 美国-3.49MB/s"
+      - "[8] 美国-3.02MB/s"
   - name: 🌏 国内媒体
     type: select
     proxies:
@@ -108,9 +128,14 @@ proxy-groups:
       - 🇰🇷 Korea
       - 🌐 Other
       - 🎯 全球直连
-      - "[1] 美国-4.59MB/s"
-      - "[2] 美国-4.38MB/s"
-      - "[3] 印度尼西亚-1.37MB/s"
+      - "[1] (已存活12天)中转节点-12.98MB/s"
+      - "[2] 以色列-4.93MB/s"
+      - "[3] 未知国家-3.49MB/s"
+      - "[4] 印度-1.45MB/s"
+      - "[5] 新加坡-2.69MB/s"
+      - "[6] 美国-4.64MB/s"
+      - "[7] 美国-3.49MB/s"
+      - "[8] 美国-3.02MB/s"
   - name: 🍎 苹果服务
     type: select
     proxies:
@@ -125,17 +150,27 @@ proxy-groups:
       - 🎯 全球直连
       - 🤔 高可用
       - ♻️ 低延迟
-      - "[1] 美国-4.59MB/s"
-      - "[2] 美国-4.38MB/s"
-      - "[3] 印度尼西亚-1.37MB/s"
+      - "[1] (已存活12天)中转节点-12.98MB/s"
+      - "[2] 以色列-4.93MB/s"
+      - "[3] 未知国家-3.49MB/s"
+      - "[4] 印度-1.45MB/s"
+      - "[5] 新加坡-2.69MB/s"
+      - "[6] 美国-4.64MB/s"
+      - "[7] 美国-3.49MB/s"
+      - "[8] 美国-3.02MB/s"
   - name: Ⓜ️ 微软服务
     type: select
     proxies:
       - 🎯 全球直连
       - 🔰 节点选择
-      - "[1] 美国-4.59MB/s"
-      - "[2] 美国-4.38MB/s"
-      - "[3] 印度尼西亚-1.37MB/s"
+      - "[1] (已存活12天)中转节点-12.98MB/s"
+      - "[2] 以色列-4.93MB/s"
+      - "[3] 未知国家-3.49MB/s"
+      - "[4] 印度-1.45MB/s"
+      - "[5] 新加坡-2.69MB/s"
+      - "[6] 美国-4.64MB/s"
+      - "[7] 美国-3.49MB/s"
+      - "[8] 美国-3.02MB/s"
   - name: 🇭🇰 Hong Kong
     type: fallback
     url: http://www.gstatic.com/generate_204
@@ -149,7 +184,7 @@ proxy-groups:
     interval: 1800
     tolerance: 100
     proxies:
-      - DIRECT
+      - "[5] 新加坡-2.69MB/s"
   - name: 🇹🇼 Taiwan
     type: fallback
     url: http://www.gstatic.com/generate_204
@@ -163,8 +198,9 @@ proxy-groups:
     interval: 1800
     tolerance: 100
     proxies:
-      - "[1] 美国-4.59MB/s"
-      - "[2] 美国-4.38MB/s"
+      - "[6] 美国-4.64MB/s"
+      - "[7] 美国-3.49MB/s"
+      - "[8] 美国-3.02MB/s"
   - name: 🇯🇵 Japan
     type: fallback
     url: http://www.gstatic.com/generate_204
@@ -182,7 +218,7 @@ proxy-groups:
   - name: 🌐 Other
     type: select
     proxies:
-      - "[3] 印度尼西亚-1.37MB/s"
+      - "[4] 印度-1.45MB/s"
   - name: 🎯 全球直连
     type: select
     proxies:
@@ -206,9 +242,14 @@ proxy-groups:
       - 🇯🇵 Japan
       - 🇰🇷 Korea
       - 🌐 Other
-      - "[1] 美国-4.59MB/s"
-      - "[2] 美国-4.38MB/s"
-      - "[3] 印度尼西亚-1.37MB/s"
+      - "[1] (已存活12天)中转节点-12.98MB/s"
+      - "[2] 以色列-4.93MB/s"
+      - "[3] 未知国家-3.49MB/s"
+      - "[4] 印度-1.45MB/s"
+      - "[5] 新加坡-2.69MB/s"
+      - "[6] 美国-4.64MB/s"
+      - "[7] 美国-3.49MB/s"
+      - "[8] 美国-3.02MB/s"
 rules:
  - DOMAIN-SUFFIX,local,🎯 全球直连
  - IP-CIDR,192.168.0.0/16,🎯 全球直连,no-resolve
