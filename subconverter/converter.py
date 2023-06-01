@@ -22,19 +22,19 @@ v2ray_pattern = r'{v2ray}'
 # 根据直线距离打分 目标地点到中国上海的直线距离 
 area_scores = {
     # 1227km
-    '🇭🇰': 1.227,
+    '🇭🇰': 1/1.227,
     # 3797km
-    '🇸🇬': 3.797,
+    '🇸🇬': 1/3.797,
     # 684km
-    '🇹🇼': 0.684,
+    '🇹🇼': 1/0.684,
     # 1621km
-    '🇯🇵': 1.621,
+    '🇯🇵': 1/1.621,
     # 834
-    '🇰🇷': 0.834,
+    '🇰🇷': 1/0.834,
     # 10373km
-    '🇺🇸': 10.373,
+    '🇺🇸': 1/10.373,
     # default
-    'other': 1.0
+    'other': 1/1.0
 }
 
 def get_area_score(proxy):
@@ -110,6 +110,10 @@ def sort_func(proxy):
         alive_res = re.findall(r"\d+",alive_str)
         if len(alive_res) != 0 :
             alive_score = float(alive_res[0])
+    delay_score = 1.0
+    delay_match = re.search(r'中转节点',proxy)
+    if delay_match is not None:
+        delay_score = 1.5
     # 2. 地区在指定低延迟地区的 优先级加分
     area_score = get_area_score(proxy)
     # 3. 测速结果越快的 加分
@@ -120,12 +124,13 @@ def sort_func(proxy):
             speed_score =  float(match.group())/1000
         else:
             speed_score =  float(match.group())
-    final_score = alive_score*area_score*speed_score
+    final_score = alive_score*delay_score*area_score*speed_score
     logging.info(f'============================================================节点得分统计====================================================================')
     logging.info(f'')
     logging.info(f'')
     logging.info(f'------------------------------------------------------------节点:{proxy}总得分:{final_score}')
     logging.info(f'----------------------------------------------------------------节点:{proxy}存活天数得分:{alive_score}')
+    logging.info(f'----------------------------------------------------------------节点:{proxy}中转节点得分:{delay_score}')
     logging.info(f'----------------------------------------------------------------节点:{proxy}地区得分:{area_score}')
     logging.info(f'----------------------------------------------------------------节点:{proxy}测速结果得分:{speed_score}')
     logging.info(f'')
