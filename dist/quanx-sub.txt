@@ -1,4 +1,3 @@
-vmess = 45.12.144.80:47127, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[1] 美国-828.1KB/s
-shadowsocks = nmc.boom.skin:22000, method=aes-256-cfb, password=Uk92CS, tag=[2] (已存活12天)中转节点-8.97MB/s
-trojan = us3.chuqiangtou.net:4003, password=TJCfE7Mx2YcA8kX8zg, over-tls=true, tls-host=, tls-verification=false, tag=[3] 以色列-5.21MB/s
-shadowsocks = free.themars.top:32102, method=chacha20-ietf-poly1305, password=b89b39c2-dc8d-4595-a4c5-54b4fbab3fc2, tag=[4] 中转节点-2.71MB/s
+vmess = 142.4.126.77:31002, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[1] 美国-4.59MB/s
+vmess = 140.99.129.243:48901, method=chacha20-ietf-poly1305, password=418048af-a293-4b99-9b0c-98ca3580dd24, aead=false, tag=[2] 美国-4.38MB/s
+trojan = 103.169.7.11:80, password=c0d9da22-2569-4bed-a395-607d9e7ae687, over-tls=true, tls-host=sciencedirect.com, tls-verification=false, tag=[3] 印度尼西亚-1.37MB/s

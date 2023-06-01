@@ -14,10 +14,9 @@ dns:
     - tls://1.0.0.1:853
     - tls://dns.google:853
 proxies:
-  - {name: "[1] 美国-828.1KB/s", server: 45.12.144.80, port: 47127, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
-  - {name: "[2] (已存活12天)中转节点-8.97MB/s", server: nmc.boom.skin, port: 22000, type: ss, cipher: aes-256-cfb, password: Uk92CS}
-  - {name: "[3] 以色列-5.21MB/s", server: us3.chuqiangtou.net, port: 4003, type: trojan, password: TJCfE7Mx2YcA8kX8zg, skip-cert-verify: true}
-  - {name: "[4] 中转节点-2.71MB/s", server: free.themars.top, port: 32102, type: ss, cipher: chacha20-ietf-poly1305, password: b89b39c2-dc8d-4595-a4c5-54b4fbab3fc2}
+  - {name: "[1] 美国-4.59MB/s", server: 142.4.126.77, port: 31002, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
+  - {name: "[2] 美国-4.38MB/s", server: 140.99.129.243, port: 48901, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
+  - {name: "[3] 印度尼西亚-1.37MB/s", server: 103.169.7.11, port: 80, type: trojan, password: c0d9da22-2569-4bed-a395-607d9e7ae687, sni: sciencedirect.com, skip-cert-verify: true}
 proxy-groups:
   - name: 🔰 节点选择
     type: select
@@ -32,20 +31,18 @@ proxy-groups:
       - 🇰🇷 Korea
       - 🌐 Other
       - 🎯 全球直连
-      - "[1] 美国-828.1KB/s"
-      - "[2] (已存活12天)中转节点-8.97MB/s"
-      - "[3] 以色列-5.21MB/s"
-      - "[4] 中转节点-2.71MB/s"
+      - "[1] 美国-4.59MB/s"
+      - "[2] 美国-4.38MB/s"
+      - "[3] 印度尼西亚-1.37MB/s"
   - name: 🤔 高可用
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 1800
     tolerance: 100
     proxies:
-      - "[1] 美国-828.1KB/s"
-      - "[2] (已存活12天)中转节点-8.97MB/s"
-      - "[3] 以色列-5.21MB/s"
-      - "[4] 中转节点-2.71MB/s"
+      - "[1] 美国-4.59MB/s"
+      - "[2] 美国-4.38MB/s"
+      - "[3] 印度尼西亚-1.37MB/s"
   - name: ♻️ 低延迟
     type: url-test
     url: http://www.gstatic.com/generate_204
@@ -67,10 +64,9 @@ proxy-groups:
       - 🇰🇷 Korea
       - 🌐 Other
       - 🎯 全球直连
-      - "[1] 美国-828.1KB/s"
-      - "[2] (已存活12天)中转节点-8.97MB/s"
-      - "[3] 以色列-5.21MB/s"
-      - "[4] 中转节点-2.71MB/s"
+      - "[1] 美国-4.59MB/s"
+      - "[2] 美国-4.38MB/s"
+      - "[3] 印度尼西亚-1.37MB/s"
   - name: 🌏 国内媒体
     type: select
     proxies:
@@ -112,10 +108,9 @@ proxy-groups:
       - 🇰🇷 Korea
       - 🌐 Other
       - 🎯 全球直连
-      - "[1] 美国-828.1KB/s"
-      - "[2] (已存活12天)中转节点-8.97MB/s"
-      - "[3] 以色列-5.21MB/s"
-      - "[4] 中转节点-2.71MB/s"
+      - "[1] 美国-4.59MB/s"
+      - "[2] 美国-4.38MB/s"
+      - "[3] 印度尼西亚-1.37MB/s"
   - name: 🍎 苹果服务
     type: select
     proxies:
@@ -130,19 +125,17 @@ proxy-groups:
       - 🎯 全球直连
       - 🤔 高可用
       - ♻️ 低延迟
-      - "[1] 美国-828.1KB/s"
-      - "[2] (已存活12天)中转节点-8.97MB/s"
-      - "[3] 以色列-5.21MB/s"
-      - "[4] 中转节点-2.71MB/s"
+      - "[1] 美国-4.59MB/s"
+      - "[2] 美国-4.38MB/s"
+      - "[3] 印度尼西亚-1.37MB/s"
   - name: Ⓜ️ 微软服务
     type: select
     proxies:
       - 🎯 全球直连
       - 🔰 节点选择
-      - "[1] 美国-828.1KB/s"
-      - "[2] (已存活12天)中转节点-8.97MB/s"
-      - "[3] 以色列-5.21MB/s"
-      - "[4] 中转节点-2.71MB/s"
+      - "[1] 美国-4.59MB/s"
+      - "[2] 美国-4.38MB/s"
+      - "[3] 印度尼西亚-1.37MB/s"
   - name: 🇭🇰 Hong Kong
     type: fallback
     url: http://www.gstatic.com/generate_204
@@ -170,7 +163,8 @@ proxy-groups:
     interval: 1800
     tolerance: 100
     proxies:
-      - "[1] 美国-828.1KB/s"
+      - "[1] 美国-4.59MB/s"
+      - "[2] 美国-4.38MB/s"
   - name: 🇯🇵 Japan
     type: fallback
     url: http://www.gstatic.com/generate_204
@@ -188,7 +182,7 @@ proxy-groups:
   - name: 🌐 Other
     type: select
     proxies:
-      - DIRECT
+      - "[3] 印度尼西亚-1.37MB/s"
   - name: 🎯 全球直连
     type: select
     proxies:
@@ -212,10 +206,9 @@ proxy-groups:
       - 🇯🇵 Japan
       - 🇰🇷 Korea
       - 🌐 Other
-      - "[1] 美国-828.1KB/s"
-      - "[2] (已存活12天)中转节点-8.97MB/s"
-      - "[3] 以色列-5.21MB/s"
-      - "[4] 中转节点-2.71MB/s"
+      - "[1] 美国-4.59MB/s"
+      - "[2] 美国-4.38MB/s"
+      - "[3] 印度尼西亚-1.37MB/s"
 rules:
  - DOMAIN-SUFFIX,local,🎯 全球直连
  - IP-CIDR,192.168.0.0/16,🎯 全球直连,no-resolve
