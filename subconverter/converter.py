@@ -18,6 +18,49 @@ clash_pattern = r'{clash}'
 # v2ray的正则
 v2ray_pattern = r'{v2ray}'
 
+# 地区分数 用于节点排序 key为常见地区代号 value为分数 
+# 根据直线距离打分 目标地点到中国上海的直线距离 
+area_scores = {
+    # 1227km
+    '🇭🇰': 1.227,
+    # 3797km
+    '🇸🇬': 3.797,
+    # 684km
+    '🇹🇼': 0.684,
+    # 1621km
+    '🇯🇵': 1.621,
+    # 834
+    '🇰🇷': 0.834,
+    # 10373km
+    '🇺🇸': 10.373,
+    # default
+    'other': 5.0
+}
+
+def get_area_score(proxy):
+    """获取节点地区分数
+
+    Args:
+        proxy (_type_): 节点名称
+
+    Returns:
+        _type_: 得分
+    """    
+    if re.search('(香港|Hong Kong|HK|hk)',proxy):
+        return area_scores['🇭🇰']
+    elif re.search('(日本|Japan|JP|jp)',proxy):
+        return area_scores['🇯🇵']
+    elif re.search('(韩国|Korea|KR|kr)',proxy):
+        return area_scores['🇰🇷']
+    elif re.search('(新加坡|Singapore|SG|sg)',proxy):
+        return area_scores['🇸🇬']
+    elif re.search('(台湾|Taiwan|TW|tw|台北)',proxy):
+        return area_scores['🇹🇼']
+    elif re.search('(美国|United States|US|us)',proxy):
+        return area_scores['🇺🇸']
+    else:
+        return area_scores['other']
+
 def decode_base64(data, decode_utf8=True):
     missing_padding = 4 - len(data) % 4
     if missing_padding:
@@ -48,13 +91,46 @@ def convert_ssr2ss(ssrConfig):
     return ssConfig
 
 def sort_func(proxy):
-        # 获取测速结果
-        match = re.search(r'\d+.\d+',proxy.split('-')[-1])
-        if match is not None:
-            if proxy.split('-')[-1].lower().__contains__('mb'):
-                return float(match.group())*1000
-            return float(match.group())
-        return 0.0
+    """节点得分系统 评估节点质量 结合高可用模式 实现节点优选
+
+    Args:
+        proxy (_type_): 节点名称
+
+    Returns:
+        _type_: 节点名称
+    """    
+    final_score = 0.0
+    # 1. 根据标注已存活且存活天数来加分 默认为1分(看作存活一天)
+    alive_score = 1.0
+    # example: [3] (已存活12天)中转节点-13.06MB/s
+    alive_match = re.search(r'(已存活(\d*)天)',proxy)
+    if alive_match is not None:
+        # 提取数字
+        alive_str = alive_match.group()
+        alive_res = re.findall(r"\d+",alive_str)
+        if len(alive_res) != 0 :
+            alive_score = float(alive_res[0])
+    # 2. 地区在指定低延迟地区的 优先级加分
+    area_score = get_area_score(proxy)
+    # 3. 测速结果越快的 加分
+    speed_score = 1.0
+    match = re.search(r'\d+.\d+',proxy.split('-')[-1])
+    if match is not None:
+        if proxy.split('-')[-1].lower().__contains__('kb'):
+            speed_score =  float(match.group())/1000
+        speed_score =  float(match.group())
+    final_score = alive_score*area_score*speed_score
+    logging.info(f'============================================================节点得分统计====================================================================')
+    logging.info(f'')
+    logging.info(f'')
+    logging.info(f'------------------------------------------------------------节点:{proxy}总得分:{final_score}')
+    logging.info(f'----------------------------------------------------------------节点:{proxy}存活天数得分:{alive_score}')
+    logging.info(f'----------------------------------------------------------------节点:{proxy}地区得分:{area_score}')
+    logging.info(f'----------------------------------------------------------------节点:{proxy}测速结果得分:{speed_score}')
+    logging.info(f'')
+    logging.info(f'')
+    logging.info(f'============================================================节点得分统计====================================================================')
+    return final_score
 
 def get_tag(node:str):
     type = node.split('://')[0]
@@ -156,7 +232,7 @@ def add_quanx(nodes:list[str],template:str = generate_template_ini):
     Args:
         nodes (list[str]): 节点
     """   
-    url = '|'.join(handle_nodes(nodes))
+    url = '|'.join(handle_nodes(nodes))[:-1]
     generate_ini = re.sub(quanx_pattern,f'{url}',template)
     with open('subconverter/generate.ini','w+',encoding='utf-8') as f:
         f.write(generate_ini)
@@ -169,7 +245,7 @@ def add_clash(nodes:list[str],template:str = generate_template_ini):
     Args:
         nodes (list[str]): 节点
     """    
-    url = '|'.join(handle_nodes(nodes))
+    url = '|'.join(handle_nodes(nodes))[:-1]
     generate_ini = re.sub(clash_pattern,f'{url}',template)
     with open('subconverter/generate.ini','w+',encoding='utf-8') as f:
         f.write(generate_ini)
@@ -181,7 +257,7 @@ def add_v2ray(nodes:list[str],template:str = generate_template_ini):
     Args:
         nodes (list[str]): 节点
     """    
-    url = '|'.join(handle_nodes(nodes))
+    url = '|'.join(handle_nodes(nodes))[:-1]
     generate_ini = re.sub(v2ray_pattern,f'{url}',template)
     with open('subconverter/generate.ini','w+',encoding='utf-8') as f:
         f.write(generate_ini)

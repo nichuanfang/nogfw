@@ -239,7 +239,6 @@ proxy-groups:
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 600
-    tolerance: 100
     proxies:
       - "[1] 台湾-13.38MB/s"
       - "[2] 台湾-13.29MB/s"
