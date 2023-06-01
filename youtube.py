@@ -436,22 +436,22 @@ if __name__ == '__main__':
     logging.info(f'=========================================================================生成的generate_ini:{generate_ini}')
 
     # 生成通用订阅二维码
-    try:
-        qr = qrcode.QRCode(version=None
-                    ,error_correction=constants.ERROR_CORRECT_M,
-                    box_size=10, 
-                    border=4)
-        # 自适应大小
-        qr.add_data('https://ghproxy.net/https://raw.githubusercontent.com/nichuanfang/nogfw/main/dist/v2ray-sub.txt')
-        qr.make(fit=True)
-        img = qr.make_image(fill_color="black", back_color="white")
-        if NEED_SAVE:
-            with open('dist/sub.jpg', 'wb') as qrc:
-                img.save(qrc)
-            # 调整分辨率
-            resize('dist/sub.jpg')
-    except Exception as e:
-        logging.error(f'================================二维码生成失败!:{e}==========================================')
+    # try:
+    #     qr = qrcode.QRCode(version=None
+    #                 ,error_correction=constants.ERROR_CORRECT_M,
+    #                 box_size=10, 
+    #                 border=4)
+    #     # 自适应大小
+    #     qr.add_data('https://ghproxy.net/https://raw.githubusercontent.com/nichuanfang/nogfw/main/dist/v2ray-sub.txt')
+    #     qr.make(fit=True)
+    #     img = qr.make_image(fill_color="black", back_color="white")
+    #     if NEED_SAVE:
+    #         with open('dist/sub.jpg', 'wb') as qrc:
+    #             img.save(qrc)
+    #         # 调整分辨率
+    #         resize('dist/sub.jpg')
+    # except Exception as e:
+    #     logging.error(f'================================二维码生成失败!:{e}==========================================')
     
     logging.info(f'')
     logging.info(f'')
