@@ -34,7 +34,7 @@ area_scores = {
     # 10373km
     '🇺🇸': 10.373,
     # default
-    'other': 5.0
+    'other': 1.0
 }
 
 def get_area_score(proxy):
