@@ -3,17 +3,21 @@
 🎯 全球直连,rules/DivineEngine/Surge/Ruleset/Unbreak.list
 🛑 全球拦截,rules/NobyDa/Surge/AdRule.list
 🛑 全球拦截,rules/DivineEngine/Surge/Ruleset/Guard/Hijacking.list
-;🎥 NETFLIX,rules/DivineEngine/Surge/Ruleset/StreamingMedia/Video/Netflix.list
 🏳️‍🌈 Google,rules/ACL4SSR/Clash/Ruleset/Google.list
+🎯 全球直连,rules/ACL4SSR/Clash/Ruleset/GoogleCN.list
 😄 Github,rules/ACL4SSR/Clash/Ruleset/Github.list
+🌍 国外媒体,rules/ACL4SSR/Clash/Ruleset/Youtube.list
+🌍 国外媒体,rules/ACL4SSR/Clash/Ruleset/Spotify.list
+🌍 国外媒体,rules/ACL4SSR/Clash/Ruleset/SoundCloud.list
+🌍 国外媒体,rules/ACL4SSR/Clash/Ruleset/Sony.list
+🌍 国外媒体,rules/ACL4SSR/Clash/Ruleset/Reddit.list
+🌍 国外媒体,rules/ACL4SSR/Clash/Ruleset/Facebook.list
+🌍 国外媒体,rules/ACL4SSR/Clash/Ruleset/Pornhub.list
+🌍 国外媒体,rules/ACL4SSR/Clash/Ruleset/Porn.list
+🎥 NETFLIX,rules/DivineEngine/Surge/Ruleset/StreamingMedia/Video/Netflix.list
+📲 电报信息,rules/DivineEngine/Surge/Ruleset/Extra/Telegram/Telegram.list
 🌍 国外媒体,rules/DivineEngine/Surge/Ruleset/StreamingMedia/Streaming.list
 🌏 国内媒体,rules/lhie1/Surge/Surge 3/Provider/Media/Bilibili.list
-🌏 国内媒体,rules/lhie1/Surge/Surge 3/Provider/Media/iQiyi.list
-🌏 国内媒体,rules/lhie1/Surge/Surge 3/Provider/Media/Letv.list
-🌏 国内媒体,rules/lhie1/Surge/Surge 3/Provider/Media/MOO.list
-🌏 国内媒体,rules/lhie1/Surge/Surge 3/Provider/Media/Tencent Video.list
-🌏 国内媒体,rules/lhie1/Surge/Surge 3/Provider/Media/Youku.list
-📲 电报信息,rules/DivineEngine/Surge/Ruleset/Extra/Telegram/Telegram.list
 🔰 节点选择,rules/DivineEngine/Surge/Ruleset/Global.list
 🍎 苹果服务,rules/DivineEngine/Surge/Ruleset/Extra/Apple/Apple.list
 🎯 全球直连,rules/DivineEngine/Surge/Ruleset/China.list
