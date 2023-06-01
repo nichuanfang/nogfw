@@ -118,7 +118,8 @@ def sort_func(proxy):
     if match is not None:
         if proxy.split('-')[-1].lower().__contains__('kb'):
             speed_score =  float(match.group())/1000
-        speed_score =  float(match.group())
+        else:
+            speed_score =  float(match.group())
     final_score = alive_score*area_score*speed_score
     logging.info(f'============================================================节点得分统计====================================================================')
     logging.info(f'')
