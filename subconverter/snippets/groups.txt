@@ -1,5 +1,5 @@
 🔰 节点选择`select`[]♻️ 低延迟`[]🤔 高可用`[]🎯 全球直连
-♻️ 低延迟`url-test`(香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|朝鲜|Korea|KR|KP|kr|kp|印度|India|IN|in|俄罗斯|Russia|RU|ru|越南|Vietnam|VN|vn|缅甸|Myanmar|MM|mm|巴基斯坦|PK|Pakistan|pk)`http://cp.cloudflare.com/generate_204`600,2,80
+♻️ 低延迟`url-test`(香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|朝鲜|Korea|KR|KP|kr|kp|印度|India|IN|in|俄罗斯|Russia|RU|ru|越南|Vietnam|VN|vn|缅甸|Myanmar|MM|mm|巴基斯坦|PK|Pakistan|pk)`http://cp.cloudflare.com/generate_204`180,2,80
 🤔 高可用`fallback`.*`http://cp.cloudflare.com/generate_204`600,2,80
 ;⛔️ 广告拦截`select`[]🛑 全球拦截`[]🎯 全球直连`[]🔰 节点选择
 ;🚫 运营劫持`select`[]🛑 全球拦截`[]🎯 全球直连`[]🔰 节点选择
