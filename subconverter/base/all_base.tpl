@@ -1,29 +1,20 @@
 {% if request.target == "clash" or request.target == "clashr" %}
 
-port: {{ default(global.clash.http_port, "7890") }}
-socks-port: {{ default(global.clash.socks_port, "7891") }}
+mixed-port: {{ default(global.clash.mixed_port, "10809") }}
 allow-lan: {{ default(global.clash.allow_lan, "true") }}
 mode: Rule
 log-level: {{ default(global.clash.log_level, "info") }}
 external-controller: :9090
-experimental:
-  ignore-resolve-fail: True
 dns:
-  enable: True
-  listen: 0.0.0.0:53
-  default-nameserver:
-  - 223.5.5.5
-  - 233.6.6.6
+  enabled: true
   nameserver:
-  - https://dns.alidns.com/dns-query
+    - 119.29.29.29
+    - 223.5.5.5
   fallback:
-  - 8.8.4.4
-  - https://1.1.1.1/dns-query
-  fallback-filter:
-    geoip: True
-    geoip-code: CN
-    ipcidr:
-    - 240.0.0.0/4
+    - 8.8.8.8
+    - 8.8.4.4
+    - tls://1.0.0.1:853
+    - tls://dns.google:853
 {% if local.clash.new_field_name == "true" %}
 proxies: ~
 proxy-groups: ~
