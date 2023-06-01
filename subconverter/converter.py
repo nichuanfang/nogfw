@@ -103,6 +103,8 @@ def sort_func(proxy):
         _type_: 节点名称
     """    
     final_score = 0.0
+    if proxy == 'none':
+        return final_score
     # 1. 根据标注已存活且存活天数来加分 默认为1分(看作存活一天)
     alive_score = 1.0
     # example: [3] (已存活12天)中转节点-13.06MB/s
