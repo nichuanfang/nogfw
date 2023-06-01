@@ -8,13 +8,10 @@ external-controller: :9090
 dns:
   enabled: true
   nameserver:
-    - 119.29.29.29
     - 223.5.5.5
+    - 223.6.6.6
   fallback:
-    - 8.8.8.8
     - 8.8.4.4
-    - tls://1.0.0.1:853
-    - tls://dns.google:853
 {% if local.clash.new_field_name == "true" %}
 proxies: ~
 proxy-groups: ~
