@@ -35,8 +35,22 @@ area_scores = {
     '🇰🇷': 1/0.834,
     # 美国 10373km
     '🇺🇸': 1/10.373,
-    # 印度
-    '🇮🇳': 1.0,
+    # 印度 2984km
+    '🇮🇳': 1/29.84,
+    # 英国 7779km
+    '🇬🇧': 1/77.79,
+    # 澳大利亚 7474km
+    '🇦🇺': 1/74.74,
+    # 英属维尔京群岛 7779km
+    '🇻🇬': 1/77.79,
+    # 荷兰 7486km
+    '🇳🇱': 1/74.86,
+    # 乌克兰 5947km
+    '🇺🇦': 1/59.47,
+    # 以色列 6319km
+    '🇮🇱': 1/63.19,
+    # 印度尼西亚 5193km
+    '🇮🇩': 1/51.93,
     # default 15000km
     'other': 1/15.0
 }
@@ -62,6 +76,22 @@ def get_area_score(proxy):
         return area_scores['🇹🇼']
     elif re.search('(美国|United States|US|us)',proxy):
         return area_scores['🇺🇸']
+    elif re.search('(印度|India|IN|in)',proxy):
+        return area_scores['🇮🇳']
+    elif re.search('(英国|England|GB|gb)',proxy):
+        return area_scores['🇬🇧']
+    elif re.search('(澳大利亚|Australia|AU|au)',proxy):
+        return area_scores['🇦🇺']
+    elif re.search('(英属维尔京群岛|VG|vg)',proxy):
+        return area_scores['🇻🇬']
+    elif re.search('(荷兰|Holland|NL|nl)',proxy):
+        return area_scores['🇳🇱']
+    elif re.search('(乌克兰|Ukraine|UA|ua)',proxy):
+        return area_scores['🇺🇦']
+    elif re.search('(以色列|Israel|IL|il)',proxy):
+        return area_scores['🇮🇱']
+    elif re.search('(印度尼西亚|Indonesia|ID|id)',proxy):
+        return area_scores['🇮🇩']
     elif re.search('(中转节点)',proxy):
         return area_scores['🇨🇳']
     else:
