@@ -104,8 +104,16 @@ jobs:
           last_ssh: |
             systemctl restart nginx
 
-      # avoid public subscribe url
+      #  avoid public subscribe url . (if need public, please open this config!)
+      #  when from public to private , need two steps to hold your privacy:
+      #   step1: Note the following configuration
+      #   step2: Delete ./dist/{product_file} and git commit
+
+      # ----------------------❤ public config--------------------------
+
       # - name: Commit & Push changes
       #   uses: actions-js/push@master
       #   with:
       #     github_token: ${{ secrets.GH_TOKEN }}
+
+      # ----------------------❤ public config--------------------------
