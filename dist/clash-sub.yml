@@ -1,87 +1,86 @@
-port: 10809
-socks-port: 10808
+mixed-port: 10809
 allow-lan: true
 mode: Rule
 log-level: info
 external-controller: :9090
-experimental:
-  ignore-resolve-fail: True
 dns:
-  enable: True
-  listen: 0.0.0.0:53
-  default-nameserver:
-    - 223.5.5.5
-    - 233.6.6.6
+  enabled: true
   nameserver:
-    - https://dns.alidns.com/dns-query
+    - 119.29.29.29
+    - 223.5.5.5
   fallback:
+    - 8.8.8.8
     - 8.8.4.4
-    - https://1.1.1.1/dns-query
-  fallback-filter:
-    geoip: True
-    geoip-code: CN
-    ipcidr:
-      - 240.0.0.0/4
+    - tls://1.0.0.1:853
+    - tls://dns.google:853
 proxies:
-  - {name: "[1] 日本-19.15MB/s", server: fscjp.fscloud123456789.com, port: 443, type: trojan, password: 2c7cccd3-8de4-4f47-8fd6-b787e42ca4a2, skip-cert-verify: true}
-  - {name: "[2] 日本-13.89MB/s", server: fscjp.fscloud123456789.com, port: 443, type: trojan, password: ce2c94f4-4de3-4704-a1f7-bc8b52df17b4, skip-cert-verify: true}
-  - {name: "[3] 中转节点-10.48MB/s", server: free.themars.top, port: 32102, type: ss, cipher: chacha20-ietf-poly1305, password: b89b39c2-dc8d-4595-a4c5-54b4fbab3fc2}
-  - {name: "[4] (已存活12天)中转节点-10.29MB/s", server: nf1.boom.skin, port: 11000, type: ss, cipher: aes-256-cfb, password: Uk92CS}
-  - {name: "[5] (已存活12天)中转节点-10.13MB/s", server: jp17.boom.skin, port: 39700, type: ss, cipher: aes-256-cfb, password: Uk92CS}
-  - {name: "[6] (已存活12天)中转节点-10.04MB/s", server: jp4.boom.skin, port: 33000, type: ss, cipher: aes-256-cfb, password: Uk92CS}
-  - {name: "[7] (已存活12天)中转节点-9.78MB/s", server: opt19.boom.skin, port: 29000, type: ss, cipher: aes-256-cfb, password: Uk92CS}
-  - {name: "[8] (已存活12天)中转节点-9.46MB/s", server: jp3.boom.skin, port: 32000, type: ss, cipher: aes-256-cfb, password: Uk92CS}
-  - {name: "[9] 以色列-5.74MB/s", server: us1.chuqiangtou.net, port: 4003, type: trojan, password: TJCfE7Mx2YcA8kX8zg, sni: us1.chuqiangtou.net, skip-cert-verify: true}
-  - {name: "[10] 新西兰-5.60MB/s", server: tempest-us.aikun.online, port: 443, type: trojan, password: 0d234e81-52f2-44a7-8bcc-b9e737c3830f, skip-cert-verify: true}
-  - {name: "[11] 美国-5.25MB/s", server: 172.66.46.15, port: 443, type: vmess, uuid: 12612e87-8003-44a8-b4e8-ec4a325e9016, alterId: 0, cipher: auto, tls: true, network: ws, ws-opts: {path: /ou, headers: {Host: z.zorro.tk}}}
-  - {name: "[12] 日本-5.10MB/s", server: 43.207.97.107, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05}
-  - {name: "[13] 未知国家-5.09MB/s", server: 104.16.45.208, port: 2052, type: vmess, uuid: 0227edc4-8735-4370-ac42-4e8147920f0b, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /qwer10, headers: {Host: tou.vtcss.top}}}
-  - {name: "[14] 美国-5.00MB/s", server: 107.148.195.25, port: 42014, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
-  - {name: "[15] 美国-4.94MB/s", server: 198.2.208.189, port: 443, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: true, network: ws, ws-opts: {path: /path/1683715826870, headers: {Host: www.62317155.xyz}}}
-  - {name: "[16] 美国-4.79MB/s", server: 142.0.130.242, port: 47988, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
-  - {name: "[17] 美国-4.57MB/s", server: scaleway.696960.xyz, port: 443, type: vmess, uuid: e357cd63-f1a5-4c8e-c42e-26da11207fee, alterId: 0, cipher: auto, tls: true, network: ws, ws-opts: {path: /root/, headers: {Host: scaleway.696960.xyz}}}
-  - {name: "[18] 未知国家-4.57MB/s", server: scaleway.696960.xyz, port: 443, type: vmess, uuid: e357cd63-f1a5-4c8e-c42e-26da11207fee, alterId: 0, cipher: auto, tls: true, network: ws, ws-opts: {path: /root/, headers: {Host: scaleway.696960.xyz}}}
-  - {name: "[19] 美国-4.53MB/s", server: 172.247.148.85, port: 53302, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
-  - {name: "[20] 美国-4.46MB/s", server: cdn-xjp3.cqjsl.xyz, port: 443, type: vmess, uuid: 85c27619-fd14-4893-a56e-05944326c6f9, alterId: 0, cipher: auto, tls: true, network: ws, ws-opts: {path: /, headers: {Host: cdn-xjp3.cqjsl.xyz}}}
-  - {name: "[21] 新加坡-4.23MB/s", server: ukjs.stablize.top, port: 443, type: trojan, password: cf1df355-e505-44a5-9c80-3fe732de1c71, skip-cert-verify: true}
-  - {name: "[22] 新加坡-4.18MB/s", server: ukjs.stablize.top, port: 443, type: trojan, password: cf1df355-e505-44a5-9c80-3fe732de1c71, skip-cert-verify: true}
-  - {name: "[23] 美国-4.18MB/s", server: ukjs.stablize.top, port: 443, type: trojan, password: cf1df355-e505-44a5-9c80-3fe732de1c71, skip-cert-verify: true}
-  - {name: "[24] 美国-3.90MB/s", server: 173.255.241.181, port: 2052, type: ss, cipher: chacha20-ietf-poly1305, password: 1196c1f1-ac69-4d3f-bbbb-722517323170}
-  - {name: "[25] 美国-3.77MB/s", server: 142.4.104.195, port: 56002, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
-  - {name: "[26] 美国-3.74MB/s", server: 104.27.40.80, port: 2052, type: vmess, uuid: 0227edc4-8735-4370-ac42-4e8147920f0b, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /qwer10, headers: {Host: tou.vtcss.top}}}
-  - {name: "[27] 香港-3.67MB/s", server: 43.154.122.126, port: 53410, type: vmess, uuid: 82adc998-88ab-4c87-8b86-5bc39e80f5b2, alterId: 64, cipher: auto, tls: true, network: ws, ws-opts: {path: /hk1/getData}}
-  - {name: "[28] 未知国家-3.65MB/s", server: 141.101.114.121, port: 2052, type: vmess, uuid: 0227edc4-8735-4370-ac42-4e8147920f0b, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /qwer10, headers: {Host: tou.vtcss.top}}}
-  - {name: "[29] 日本-3.59MB/s", server: fscus.fscloud123456789.com, port: 443, type: trojan, password: ce2c94f4-4de3-4704-a1f7-bc8b52df17b4, skip-cert-verify: true}
-  - {name: "[30] 美国-3.59MB/s", server: 156.225.67.55, port: 443, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: true, network: ws, ws-opts: {path: /path/1684316790433}}
-  - {name: "[31] 未知国家-3.55MB/s", server: 141.101.114.121, port: 2052, type: vmess, uuid: 0227edc4-8735-4370-ac42-4e8147920f0b, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /qwer10, headers: {Host: tou.vtcss.top}}}
-  - {name: "[32] 香港-3.46MB/s", server: microsoft-hk02.syjd.xyz, port: 443, type: trojan, password: 51eebef7-beaa-417b-9584-2794d10377c9, sni: microsoft-hk02.syjd.xyz, skip-cert-verify: true}
-  - {name: "[33] 美国-3.40MB/s", server: dallas.starsea.vip, port: 443, type: vmess, uuid: c5e52b78-c01b-4884-baad-01cd2a74fce3, alterId: 0, cipher: auto, tls: true, network: ws, ws-opts: {path: /, headers: {Host: dallas.starsea.vip}}}
-  - {name: "[34] 美国-3.35MB/s", server: 156.225.67.20, port: 443, type: vmess, uuid: a7fa8f14-4fb6-4280-9005-d6bbe99c5da9, alterId: 64, cipher: auto, tls: true, network: ws, ws-opts: {path: /path/1684405930831}}
-  - {name: "[35] 美国-3.26MB/s", server: 156.225.67.39, port: 443, type: vmess, uuid: de491802-233e-47f2-8c6c-d19bcf5bd56b, alterId: 64, cipher: auto, tls: true, network: ws, ws-opts: {path: /path/1685439562518}}
-  - {name: "[36] 印度-3.02MB/s", server: 152.70.74.66, port: 443, type: trojan, password: d906afe5-7c3c-4ddc-aaa4-61c154a82e5e, skip-cert-verify: true}
-  - {name: "[37] 荷兰-2.59MB/s", server: 172.99.188.99, port: 5004, type: ss, cipher: aes-256-gcm, password: g5MeD6Ft3CWlJId}
-  - {name: "[38] 美国-2.33MB/s", server: 192.74.231.172, port: 49202, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
-  - {name: "[39] 美国-2.27MB/s", server: 142.4.97.77, port: 44942, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
-  - {name: "[40] 荷兰-2.23MB/s", server: 172.99.188.99, port: 5003, type: ss, cipher: aes-256-gcm, password: g5MeD6Ft3CWlJId}
-  - {name: "[41] 荷兰-2.18MB/s", server: 172.99.188.99, port: 5001, type: ss, cipher: aes-256-gcm, password: Y6R9pAtvxxzmGC}
-  - {name: "[42] 美国-2.01MB/s", server: 172.66.43.240, port: 443, type: vmess, uuid: 12612e87-8003-44a8-b4e8-ec4a325e9016, alterId: 0, cipher: auto, tls: true, network: ws, ws-opts: {path: /ou, headers: {Host: z.zorro.tk}}}
-  - {name: "[43] 新加坡-1.82MB/s", server: bgptw3.cnamazon.sbs, port: 443, type: trojan, password: 14fc8b10-6475-4649-b343-e12b7c3ee93f, skip-cert-verify: true}
-  - {name: "[44] 未知国家-1.63MB/s", server: cf.yxjnode.com, port: 80, type: vmess, uuid: 09c1d32d-4458-4ebf-b36d-4dd732bae3aa, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /yxzbp, headers: {Host: buyvm2.yxjnode.com}}}
-  - {name: "[45] 美国-1.63MB/s", server: cf.yxjnode.com, port: 80, type: vmess, uuid: 09c1d32d-4458-4ebf-b36d-4dd732bae3aa, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /yxzbp, headers: {Host: buyvm2.yxjnode.com}}}
-  - {name: "[46] 印度尼西亚-1.59MB/s", server: 103.169.7.11, port: 80, type: trojan, password: c0d9da22-2569-4bed-a395-607d9e7ae687, sni: sciencedirect.com, skip-cert-verify: true}
-  - {name: "[47] 美国-1.53MB/s", server: 216.52.183.243, port: 80, type: ss, cipher: aes-128-gcm, password: 83XvX4Vo%*3a, plugin: obfs, plugin-opts: {mode: http, host: ""}}
-  - {name: "[48] 未知国家-1.45MB/s", server: cf.yxjnode.com, port: 80, type: vmess, uuid: 09c1d32d-4458-4ebf-b36d-4dd732bae3aa, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /yxzbp, headers: {Host: dp4.yxjnode.com}}}
-  - {name: "[49] 美国-1.45MB/s", server: cf.yxjnode.com, port: 80, type: vmess, uuid: 09c1d32d-4458-4ebf-b36d-4dd732bae3aa, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /yxzbp, headers: {Host: dp4.yxjnode.com}}}
-  - {name: "[50] 中转节点-1.42MB/s", server: en2.vfun.icu, port: 443, type: ss, cipher: aes-256-cfb, password: vyunme}
-  - {name: "[51] 香港-1.10MB/s", server: 47.243.241.157, port: 80, type: vmess, uuid: 37c008ba-e297-469e-aff6-4e08baf8d3b1, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /, headers: {Host: hk.freeiq.cf}}}
-  - {name: "[52] 香港-975.2KB/s", server: 156.227.6.7, port: 43692, type: vmess, uuid: d3b43b85-1b50-4cb5-9738-8d65bae2c95d, alterId: 0, cipher: auto, tls: false}
-  - {name: "[53] 美国-958.8KB/s", server: 104.24.57.207, port: 2052, type: vmess, uuid: 0227edc4-8735-4370-ac42-4e8147920f0b, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /qwer10, headers: {Host: tou.vtcss.top}}}
-  - {name: "[54] 美国-622.4KB/s", server: cf-lt.sharecentre.online, port: 80, type: vmess, uuid: 2d5d8b9c-8ec4-4a37-b610-78e71e13eaef, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /shirker, headers: {Host: lv3.sharecentrepro.org}}}
-  - {name: "[55] 日本-608.0KB/s", server: fscsg.fscloud123456789.com, port: 443, type: trojan, password: 2c7cccd3-8de4-4f47-8fd6-b787e42ca4a2, skip-cert-verify: true}
-  - {name: "[56] 香港-426.3KB/s", server: 47.243.241.157, port: 80, type: vmess, uuid: 37c008ba-e297-469e-aff6-4e08baf8d3b1, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /, headers: {Host: hk.freeiq.cf}}}
-  - {name: "[57] 中转节点-359.8KB/s", server: 14.29.124.168, port: 24001, type: ss, cipher: aes-128-cfb, password: QazEdcTgb159@$*}
-  - {name: "[58] 中转节点-348.4KB/s", server: 14.29.124.168, port: 24003, type: ss, cipher: aes-128-cfb, password: QazEdcTgb159@$*}
-  - {name: "[59] 荷兰-346.0KB/s", server: 172.99.188.99, port: 8888, type: ss, cipher: aes-256-gcm, password: Y6R9pAtvxxzmGC}
+  - {name: "[1] 台湾-13.38MB/s", server: 103.177.33.180, port: 443, type: ss, cipher: chacha20-ietf-poly1305, password: 9e44e9ffe5c2, plugin: v2ray-plugin, plugin-opts: {mode: websocket, host: wtw1000mline004.chilines.club, path: /isaifqaagpi, tls: true, mux: true}}
+  - {name: "[2] 台湾-13.29MB/s", server: 103.177.33.180, port: 443, type: ss, cipher: chacha20-ietf-poly1305, password: 9e44e9ffe5c2, plugin: v2ray-plugin, plugin-opts: {mode: websocket, host: wtw1000mline004.chilines.club, path: /isaifqaagpi, tls: true, mux: true}}
+  - {name: "[3] (已存活12天)中转节点-13.06MB/s", server: jp8.boom.skin, port: 37000, type: ss, cipher: aes-256-cfb, password: Uk92CS}
+  - {name: "[4] (已存活12天)中转节点-12.50MB/s", server: nf3.boom.skin, port: 13000, type: ss, cipher: aes-256-cfb, password: Uk92CS}
+  - {name: "[5] 香港-12.50MB/s", server: hkhe02.bcloudv.cyou, port: 20897, type: trojan, password: 10f87a8e-a6f6-319d-a895-8310d326ecce, skip-cert-verify: true}
+  - {name: "[6] (已存活12天)中转节点-11.82MB/s", server: jp3.boom.skin, port: 32000, type: ss, cipher: aes-256-cfb, password: Uk92CS}
+  - {name: "[7] (已存活12天)中转节点-11.73MB/s", server: jp4.boom.skin, port: 33000, type: ss, cipher: aes-256-cfb, password: Uk92CS}
+  - {name: "[8] (已存活12天)中转节点-10.91MB/s", server: nmc.boom.skin, port: 22000, type: ss, cipher: aes-256-cfb, password: Uk92CS}
+  - {name: "[9] (已存活12天)中转节点-9.31MB/s", server: opt23.boom.skin, port: 33000, type: ss, cipher: aes-256-cfb, password: Uk92CS}
+  - {name: "[10] 中转节点-7.02MB/s", server: m3u8.cm.xfltd.cc, port: 27762, type: ss, cipher: chacha20-ietf-poly1305, password: 64549f6b-caaf-4e16-81ca-f6788655fd3b}
+  - {name: "[11] 美国-6.55MB/s", server: kr.stablize.top, port: 443, type: trojan, password: a6950ca9-4504-411a-a656-bee29a4739eb, skip-cert-verify: true}
+  - {name: "[12] 中转节点-6.42MB/s", server: iplc-enter-tw-xe.fib-sys.xyz, port: 11451, type: trojan, password: 11a4e5be-3c87-37d2-aac8-00b85ef0fcdc, skip-cert-verify: true}
+  - {name: "[13] 美国-5.98MB/s", server: armus.114514782.xyz, port: 2052, type: vmess, uuid: 14a8ba38-8918-3de1-bc93-9fc87777da30, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /miao, headers: {Host: armus.114514782.xyz}}}
+  - {name: "[14] 卢森堡-5.98MB/s", server: armus.114514782.xyz, port: 2052, type: vmess, uuid: 14a8ba38-8918-3de1-bc93-9fc87777da30, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /miao, headers: {Host: armus.114514782.xyz}}}
+  - {name: "[15] 乌克兰-5.98MB/s", server: armus.114514782.xyz, port: 2052, type: vmess, uuid: 14a8ba38-8918-3de1-bc93-9fc87777da30, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /miao, headers: {Host: armus.114514782.xyz}}}
+  - {name: "[16] 中转节点-5.85MB/s", server: 120.226.50.76, port: 45070, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
+  - {name: "[17] 以色列-5.35MB/s", server: us1.chuqiangtou.net, port: 4003, type: trojan, password: TJCfE7Mx2YcA8kX8zg, sni: us1.chuqiangtou.net, skip-cert-verify: true}
+  - {name: "[18] 日本-5.32MB/s", server: 43.207.97.107, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05}
+  - {name: "[19] 美国-5.22MB/s", server: 142.0.132.35, port: 443, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: true, network: ws, ws-opts: {path: /path/1685361567761}}
+  - {name: "[20] 英国-5.19MB/s", server: usblog.114514782.xyz, port: 2052, type: vmess, uuid: 4fd5b235-f59c-3f9d-b91f-f2cd50ff2d3b, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /mtryjhiaogrs, headers: {Host: usblog.114514782.xyz}}}
+  - {name: "[21] 巴西-5.19MB/s", server: usblog.114514782.xyz, port: 2052, type: vmess, uuid: 4fd5b235-f59c-3f9d-b91f-f2cd50ff2d3b, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /mtryjhiaogrs, headers: {Host: usblog.114514782.xyz}}}
+  - {name: "[22] 以色列-5.16MB/s", server: us3.chuqiangtou.net, port: 4003, type: trojan, password: TJCfE7Mx2YcA8kX8zg, skip-cert-verify: true}
+  - {name: "[23] (已存活12天)中转节点-5.10MB/s", server: ntemp18.boom.skin, port: 23000, type: ss, cipher: aes-256-cfb, password: Uk92CS}
+  - {name: "[24] 美国-5.05MB/s", server: hkdsubv.114514782.xyz, port: 2082, type: vmess, uuid: 0ee79445-85a0-38fe-be38-58035ad10530, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /sdubfc, headers: {Host: hkdsubv.114514782.xyz}}}
+  - {name: "[25] 美国-4.92MB/s", server: 45.12.112.122, port: 54774, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
+  - {name: "[26] 美国-4.79MB/s", server: 140.99.66.117, port: 54402, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
+  - {name: "[27] 以色列-4.77MB/s", server: us1.chuqiangtou.net, port: 4003, type: trojan, password: TJCfE7Mx2YcA8kX8zg, skip-cert-verify: true}
+  - {name: "[28] 美国-4.76MB/s", server: 54.189.216.64, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05}
+  - {name: "[29] 日本-4.72MB/s", server: jp-am48-6.eqnode.net, port: 8081, type: ss, cipher: aes-256-cfb, password: eAokbaDN6}
+  - {name: "[30] 日本-4.66MB/s", server: jp-am48-6.eqnode.net, port: 8081, type: ss, cipher: aes-256-cfb, password: eAokbaDN6}
+  - {name: "[31] 日本-4.54MB/s", server: jp-am48-6.eqnode.net, port: 8081, type: ss, cipher: aes-256-cfb, password: eAokbaDN6}
+  - {name: "[32] 美国-4.39MB/s", server: 139.28.234.221, port: 443, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: true, network: ws, ws-opts: {path: /path/1684994761011}}
+  - {name: "[33] 美国-4.24MB/s", server: 172.247.148.85, port: 53302, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
+  - {name: "[34] 美国-4.18MB/s", server: 192.74.242.138, port: 44667, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
+  - {name: "[35] 未知国家-4.12MB/s", server: 198.41.217.242, port: 8080, type: vmess, uuid: d7cf7b64-bf1c-46bd-cf39-90a31393843b, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /qwer, headers: {Host: uyaa.vtcss.top}}}
+  - {name: "[36] 美国-3.80MB/s", server: 140.99.66.117, port: 54402, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
+  - {name: "[37] 美国-3.71MB/s", server: dejs.stablize.top, port: 443, type: trojan, password: cf1df355-e505-44a5-9c80-3fe732de1c71, skip-cert-verify: true}
+  - {name: "[38] 中转节点-3.64MB/s", server: free.themars.top, port: 32102, type: ss, cipher: chacha20-ietf-poly1305, password: b89b39c2-dc8d-4595-a4c5-54b4fbab3fc2}
+  - {name: "[39] 美国-3.35MB/s", server: 140.99.59.253, port: 55512, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
+  - {name: "[40] 美国-3.24MB/s", server: 38.26.191.98, port: 49920, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
+  - {name: "[41] 印度-3.16MB/s", server: 152.70.74.66, port: 443, type: trojan, password: d906afe5-7c3c-4ddc-aaa4-61c154a82e5e, skip-cert-verify: true}
+  - {name: "[42] 美国-3.12MB/s", server: 142.4.97.77, port: 44942, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
+  - {name: "[43] 日本-2.89MB/s", server: 43.207.97.107, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05}
+  - {name: "[44] 荷兰-2.59MB/s", server: 172.99.188.99, port: 5003, type: ss, cipher: aes-256-gcm, password: g5MeD6Ft3CWlJId}
+  - {name: "[45] 美国-2.45MB/s", server: 45.12.112.122, port: 54774, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
+  - {name: "[46] 美国-2.33MB/s", server: 104.25.29.187, port: 8080, type: vmess, uuid: d7cf7b64-bf1c-46bd-cf39-90a31393843b, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /qwer, headers: {Host: uyaa.vtcss.top}}}
+  - {name: "[47] 美国-2.21MB/s", server: 140.99.57.36, port: 443, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: true, network: ws, ws-opts: {path: /path/1685530089600, headers: {Host: www.44945510.xyz}}}
+  - {name: "[48] 新加坡-1.98MB/s", server: sg-am3.eqsunshine.com, port: 32001, type: ss, cipher: aes-256-cfb, password: 3g0dHlKME}
+  - {name: "[49] 韩国-1.55MB/s", server: 43.201.34.16, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05}
+  - {name: "[50] 印度尼西亚-1.38MB/s", server: 103.169.7.11, port: 80, type: trojan, password: c0d9da22-2569-4bed-a395-607d9e7ae687, sni: sciencedirect.com, skip-cert-verify: true}
+  - {name: "[51] 日本-1.33MB/s", server: jp04-vm0.entry.srthdw.art, port: 446, type: vmess, uuid: c4b2e7ea-1a0e-316f-8e28-0717cc087534, alterId: 0, cipher: auto, tls: false}
+  - {name: "[52] 韩国-1.32MB/s", server: 43.201.251.42, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05}
+  - {name: "[53] 香港-1.31MB/s", server: roygcphk.xmsl.us, port: 10000, type: vmess, uuid: 885e3917-be7c-464e-a512-f09fba28b60a, alterId: 0, cipher: auto, tls: false}
+  - {name: "[54] 美国-1.30MB/s", server: 156.225.67.39, port: 443, type: vmess, uuid: de491802-233e-47f2-8c6c-d19bcf5bd56b, alterId: 64, cipher: auto, tls: true, network: ws, ws-opts: {path: /path/1685439562518}}
+  - {name: "[55] 美国-1.03MB/s", server: 142.4.104.195, port: 56002, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false}
+  - {name: "[56] 香港-803.7KB/s", server: hk4.af49c4e4c2ee.sanfen004.me, port: 443, type: vmess, uuid: 1f5c74ca-5058-44b6-9d87-0fbbbf3bd23e, alterId: 0, cipher: auto, tls: true, network: ws, ws-opts: {path: /zh-cn, headers: {Host: www.microsoft.com}}}
+  - {name: "[57] 香港-768.6KB/s", server: sg2.downloadvip.cfd, port: 443, type: trojan, password: 67d5db83-212e-4900-83ff-05e86a129656, sni: download.xn--mes358a9urctx.com, skip-cert-verify: true}
+  - {name: "[58] 韩国-572.1KB/s", server: 43.201.254.164, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05}
+  - {name: "[59] 未知国家-559.9KB/s", server: cf-lt.sharecentre.online, port: 80, type: vmess, uuid: 2d5d8b9c-8ec4-4a37-b610-78e71e13eaef, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /shirker, headers: {Host: in.sharecentrepro.com}}}
+  - {name: "[60] 美国-556.4KB/s", server: cf.yxjnode.com, port: 80, type: vmess, uuid: 09c1d32d-4458-4ebf-b36d-4dd732bae3aa, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /yxzbp, headers: {Host: buyvm1.yxjnode.com}}}
+  - {name: "[61] 未知国家-475.7KB/s", server: cf-lt.sharecentre.online, port: 80, type: vmess, uuid: 2d5d8b9c-8ec4-4a37-b610-78e71e13eaef, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /shirker, headers: {Host: uk1.scproxy.top}}}
+  - {name: "[62] 美国-470.7KB/s", server: jp.stablize.top, port: 443, type: trojan, password: 1c88378c-b699-425f-8654-dade64e115b7, skip-cert-verify: true}
+  - {name: "[63] 未知国家-383.6KB/s", server: v2ray.online, port: 443, type: vmess, uuid: 00BBF5B8-173E-6818-9927-5AD1AA073C7D, alterId: 0, cipher: auto, tls: true, network: ws, ws-opts: {path: /speedtest, headers: {Host: Kansas.v2ray.online}}}
+  - {name: "[64] 美国-355.6KB/s", server: 172.66.46.15, port: 443, type: vmess, uuid: 12612e87-8003-44a8-b4e8-ec4a325e9016, alterId: 0, cipher: auto, tls: true, network: ws, ws-opts: {path: /ou, headers: {Host: z.zorro.tk}}}
+  - {name: "[65] 中转节点-352.1KB/s", server: 14.29.124.168, port: 24003, type: ss, cipher: aes-128-cfb, password: QazEdcTgb159@$*}
+  - {name: "[66] 未知国家-325.7KB/s", server: 198.41.203.57, port: 2095, type: vmess, uuid: 67597b31-fba2-42ba-b3df-b7264d346235, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /tg@hkaa0, headers: {Host: jp.wyhkaa0.ga}}}
+  - {name: "[67] 中转节点-317.3KB/s", server: 14.29.124.168, port: 24001, type: ss, cipher: aes-128-cfb, password: QazEdcTgb159@$*}
 proxy-groups:
   - name: 🔰 节点选择
     type: select
@@ -96,149 +95,168 @@ proxy-groups:
       - 🇰🇷 Korea
       - 🌐 Other
       - 🎯 全球直连
-      - "[1] 日本-19.15MB/s"
-      - "[2] 日本-13.89MB/s"
-      - "[3] 中转节点-10.48MB/s"
-      - "[4] (已存活12天)中转节点-10.29MB/s"
-      - "[5] (已存活12天)中转节点-10.13MB/s"
-      - "[6] (已存活12天)中转节点-10.04MB/s"
-      - "[7] (已存活12天)中转节点-9.78MB/s"
-      - "[8] (已存活12天)中转节点-9.46MB/s"
-      - "[9] 以色列-5.74MB/s"
-      - "[10] 新西兰-5.60MB/s"
-      - "[11] 美国-5.25MB/s"
-      - "[12] 日本-5.10MB/s"
-      - "[13] 未知国家-5.09MB/s"
-      - "[14] 美国-5.00MB/s"
-      - "[15] 美国-4.94MB/s"
-      - "[16] 美国-4.79MB/s"
-      - "[17] 美国-4.57MB/s"
-      - "[18] 未知国家-4.57MB/s"
-      - "[19] 美国-4.53MB/s"
-      - "[20] 美国-4.46MB/s"
-      - "[21] 新加坡-4.23MB/s"
-      - "[22] 新加坡-4.18MB/s"
-      - "[23] 美国-4.18MB/s"
-      - "[24] 美国-3.90MB/s"
-      - "[25] 美国-3.77MB/s"
-      - "[26] 美国-3.74MB/s"
-      - "[27] 香港-3.67MB/s"
-      - "[28] 未知国家-3.65MB/s"
-      - "[29] 日本-3.59MB/s"
-      - "[30] 美国-3.59MB/s"
-      - "[31] 未知国家-3.55MB/s"
-      - "[32] 香港-3.46MB/s"
-      - "[33] 美国-3.40MB/s"
-      - "[34] 美国-3.35MB/s"
-      - "[35] 美国-3.26MB/s"
-      - "[36] 印度-3.02MB/s"
-      - "[37] 荷兰-2.59MB/s"
-      - "[38] 美国-2.33MB/s"
-      - "[39] 美国-2.27MB/s"
-      - "[40] 荷兰-2.23MB/s"
-      - "[41] 荷兰-2.18MB/s"
-      - "[42] 美国-2.01MB/s"
-      - "[43] 新加坡-1.82MB/s"
-      - "[44] 未知国家-1.63MB/s"
-      - "[45] 美国-1.63MB/s"
-      - "[46] 印度尼西亚-1.59MB/s"
-      - "[47] 美国-1.53MB/s"
-      - "[48] 未知国家-1.45MB/s"
-      - "[49] 美国-1.45MB/s"
-      - "[50] 中转节点-1.42MB/s"
-      - "[51] 香港-1.10MB/s"
-      - "[52] 香港-975.2KB/s"
-      - "[53] 美国-958.8KB/s"
-      - "[54] 美国-622.4KB/s"
-      - "[55] 日本-608.0KB/s"
-      - "[56] 香港-426.3KB/s"
-      - "[57] 中转节点-359.8KB/s"
-      - "[58] 中转节点-348.4KB/s"
-      - "[59] 荷兰-346.0KB/s"
+      - "[1] 台湾-13.38MB/s"
+      - "[2] 台湾-13.29MB/s"
+      - "[3] (已存活12天)中转节点-13.06MB/s"
+      - "[4] (已存活12天)中转节点-12.50MB/s"
+      - "[5] 香港-12.50MB/s"
+      - "[6] (已存活12天)中转节点-11.82MB/s"
+      - "[7] (已存活12天)中转节点-11.73MB/s"
+      - "[8] (已存活12天)中转节点-10.91MB/s"
+      - "[9] (已存活12天)中转节点-9.31MB/s"
+      - "[10] 中转节点-7.02MB/s"
+      - "[11] 美国-6.55MB/s"
+      - "[12] 中转节点-6.42MB/s"
+      - "[13] 美国-5.98MB/s"
+      - "[14] 卢森堡-5.98MB/s"
+      - "[15] 乌克兰-5.98MB/s"
+      - "[16] 中转节点-5.85MB/s"
+      - "[17] 以色列-5.35MB/s"
+      - "[18] 日本-5.32MB/s"
+      - "[19] 美国-5.22MB/s"
+      - "[20] 英国-5.19MB/s"
+      - "[21] 巴西-5.19MB/s"
+      - "[22] 以色列-5.16MB/s"
+      - "[23] (已存活12天)中转节点-5.10MB/s"
+      - "[24] 美国-5.05MB/s"
+      - "[25] 美国-4.92MB/s"
+      - "[26] 美国-4.79MB/s"
+      - "[27] 以色列-4.77MB/s"
+      - "[28] 美国-4.76MB/s"
+      - "[29] 日本-4.72MB/s"
+      - "[30] 日本-4.66MB/s"
+      - "[31] 日本-4.54MB/s"
+      - "[32] 美国-4.39MB/s"
+      - "[33] 美国-4.24MB/s"
+      - "[34] 美国-4.18MB/s"
+      - "[35] 未知国家-4.12MB/s"
+      - "[36] 美国-3.80MB/s"
+      - "[37] 美国-3.71MB/s"
+      - "[38] 中转节点-3.64MB/s"
+      - "[39] 美国-3.35MB/s"
+      - "[40] 美国-3.24MB/s"
+      - "[41] 印度-3.16MB/s"
+      - "[42] 美国-3.12MB/s"
+      - "[43] 日本-2.89MB/s"
+      - "[44] 荷兰-2.59MB/s"
+      - "[45] 美国-2.45MB/s"
+      - "[46] 美国-2.33MB/s"
+      - "[47] 美国-2.21MB/s"
+      - "[48] 新加坡-1.98MB/s"
+      - "[49] 韩国-1.55MB/s"
+      - "[50] 印度尼西亚-1.38MB/s"
+      - "[51] 日本-1.33MB/s"
+      - "[52] 韩国-1.32MB/s"
+      - "[53] 香港-1.31MB/s"
+      - "[54] 美国-1.30MB/s"
+      - "[55] 美国-1.03MB/s"
+      - "[56] 香港-803.7KB/s"
+      - "[57] 香港-768.6KB/s"
+      - "[58] 韩国-572.1KB/s"
+      - "[59] 未知国家-559.9KB/s"
+      - "[60] 美国-556.4KB/s"
+      - "[61] 未知国家-475.7KB/s"
+      - "[62] 美国-470.7KB/s"
+      - "[63] 未知国家-383.6KB/s"
+      - "[64] 美国-355.6KB/s"
+      - "[65] 中转节点-352.1KB/s"
+      - "[66] 未知国家-325.7KB/s"
+      - "[67] 中转节点-317.3KB/s"
   - name: 🤔 高可用
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 1800
     tolerance: 100
     proxies:
-      - "[1] 日本-19.15MB/s"
-      - "[2] 日本-13.89MB/s"
-      - "[3] 中转节点-10.48MB/s"
-      - "[4] (已存活12天)中转节点-10.29MB/s"
-      - "[5] (已存活12天)中转节点-10.13MB/s"
-      - "[6] (已存活12天)中转节点-10.04MB/s"
-      - "[7] (已存活12天)中转节点-9.78MB/s"
-      - "[8] (已存活12天)中转节点-9.46MB/s"
-      - "[9] 以色列-5.74MB/s"
-      - "[10] 新西兰-5.60MB/s"
-      - "[11] 美国-5.25MB/s"
-      - "[12] 日本-5.10MB/s"
-      - "[13] 未知国家-5.09MB/s"
-      - "[14] 美国-5.00MB/s"
-      - "[15] 美国-4.94MB/s"
-      - "[16] 美国-4.79MB/s"
-      - "[17] 美国-4.57MB/s"
-      - "[18] 未知国家-4.57MB/s"
-      - "[19] 美国-4.53MB/s"
-      - "[20] 美国-4.46MB/s"
-      - "[21] 新加坡-4.23MB/s"
-      - "[22] 新加坡-4.18MB/s"
-      - "[23] 美国-4.18MB/s"
-      - "[24] 美国-3.90MB/s"
-      - "[25] 美国-3.77MB/s"
-      - "[26] 美国-3.74MB/s"
-      - "[27] 香港-3.67MB/s"
-      - "[28] 未知国家-3.65MB/s"
-      - "[29] 日本-3.59MB/s"
-      - "[30] 美国-3.59MB/s"
-      - "[31] 未知国家-3.55MB/s"
-      - "[32] 香港-3.46MB/s"
-      - "[33] 美国-3.40MB/s"
-      - "[34] 美国-3.35MB/s"
-      - "[35] 美国-3.26MB/s"
-      - "[36] 印度-3.02MB/s"
-      - "[37] 荷兰-2.59MB/s"
-      - "[38] 美国-2.33MB/s"
-      - "[39] 美国-2.27MB/s"
-      - "[40] 荷兰-2.23MB/s"
-      - "[41] 荷兰-2.18MB/s"
-      - "[42] 美国-2.01MB/s"
-      - "[43] 新加坡-1.82MB/s"
-      - "[44] 未知国家-1.63MB/s"
-      - "[45] 美国-1.63MB/s"
-      - "[46] 印度尼西亚-1.59MB/s"
-      - "[47] 美国-1.53MB/s"
-      - "[48] 未知国家-1.45MB/s"
-      - "[49] 美国-1.45MB/s"
-      - "[50] 中转节点-1.42MB/s"
-      - "[51] 香港-1.10MB/s"
-      - "[52] 香港-975.2KB/s"
-      - "[53] 美国-958.8KB/s"
-      - "[54] 美国-622.4KB/s"
-      - "[55] 日本-608.0KB/s"
-      - "[56] 香港-426.3KB/s"
-      - "[57] 中转节点-359.8KB/s"
-      - "[58] 中转节点-348.4KB/s"
-      - "[59] 荷兰-346.0KB/s"
+      - "[1] 台湾-13.38MB/s"
+      - "[2] 台湾-13.29MB/s"
+      - "[3] (已存活12天)中转节点-13.06MB/s"
+      - "[4] (已存活12天)中转节点-12.50MB/s"
+      - "[5] 香港-12.50MB/s"
+      - "[6] (已存活12天)中转节点-11.82MB/s"
+      - "[7] (已存活12天)中转节点-11.73MB/s"
+      - "[8] (已存活12天)中转节点-10.91MB/s"
+      - "[9] (已存活12天)中转节点-9.31MB/s"
+      - "[10] 中转节点-7.02MB/s"
+      - "[11] 美国-6.55MB/s"
+      - "[12] 中转节点-6.42MB/s"
+      - "[13] 美国-5.98MB/s"
+      - "[14] 卢森堡-5.98MB/s"
+      - "[15] 乌克兰-5.98MB/s"
+      - "[16] 中转节点-5.85MB/s"
+      - "[17] 以色列-5.35MB/s"
+      - "[18] 日本-5.32MB/s"
+      - "[19] 美国-5.22MB/s"
+      - "[20] 英国-5.19MB/s"
+      - "[21] 巴西-5.19MB/s"
+      - "[22] 以色列-5.16MB/s"
+      - "[23] (已存活12天)中转节点-5.10MB/s"
+      - "[24] 美国-5.05MB/s"
+      - "[25] 美国-4.92MB/s"
+      - "[26] 美国-4.79MB/s"
+      - "[27] 以色列-4.77MB/s"
+      - "[28] 美国-4.76MB/s"
+      - "[29] 日本-4.72MB/s"
+      - "[30] 日本-4.66MB/s"
+      - "[31] 日本-4.54MB/s"
+      - "[32] 美国-4.39MB/s"
+      - "[33] 美国-4.24MB/s"
+      - "[34] 美国-4.18MB/s"
+      - "[35] 未知国家-4.12MB/s"
+      - "[36] 美国-3.80MB/s"
+      - "[37] 美国-3.71MB/s"
+      - "[38] 中转节点-3.64MB/s"
+      - "[39] 美国-3.35MB/s"
+      - "[40] 美国-3.24MB/s"
+      - "[41] 印度-3.16MB/s"
+      - "[42] 美国-3.12MB/s"
+      - "[43] 日本-2.89MB/s"
+      - "[44] 荷兰-2.59MB/s"
+      - "[45] 美国-2.45MB/s"
+      - "[46] 美国-2.33MB/s"
+      - "[47] 美国-2.21MB/s"
+      - "[48] 新加坡-1.98MB/s"
+      - "[49] 韩国-1.55MB/s"
+      - "[50] 印度尼西亚-1.38MB/s"
+      - "[51] 日本-1.33MB/s"
+      - "[52] 韩国-1.32MB/s"
+      - "[53] 香港-1.31MB/s"
+      - "[54] 美国-1.30MB/s"
+      - "[55] 美国-1.03MB/s"
+      - "[56] 香港-803.7KB/s"
+      - "[57] 香港-768.6KB/s"
+      - "[58] 韩国-572.1KB/s"
+      - "[59] 未知国家-559.9KB/s"
+      - "[60] 美国-556.4KB/s"
+      - "[61] 未知国家-475.7KB/s"
+      - "[62] 美国-470.7KB/s"
+      - "[63] 未知国家-383.6KB/s"
+      - "[64] 美国-355.6KB/s"
+      - "[65] 中转节点-352.1KB/s"
+      - "[66] 未知国家-325.7KB/s"
+      - "[67] 中转节点-317.3KB/s"
   - name: ♻️ 低延迟
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 600
     tolerance: 100
     proxies:
-      - "[1] 日本-19.15MB/s"
-      - "[2] 日本-13.89MB/s"
-      - "[12] 日本-5.10MB/s"
-      - "[21] 新加坡-4.23MB/s"
-      - "[22] 新加坡-4.18MB/s"
-      - "[27] 香港-3.67MB/s"
-      - "[29] 日本-3.59MB/s"
-      - "[32] 香港-3.46MB/s"
-      - "[43] 新加坡-1.82MB/s"
-      - "[51] 香港-1.10MB/s"
-      - "[52] 香港-975.2KB/s"
-      - "[55] 日本-608.0KB/s"
-      - "[56] 香港-426.3KB/s"
+      - "[1] 台湾-13.38MB/s"
+      - "[2] 台湾-13.29MB/s"
+      - "[5] 香港-12.50MB/s"
+      - "[18] 日本-5.32MB/s"
+      - "[29] 日本-4.72MB/s"
+      - "[30] 日本-4.66MB/s"
+      - "[31] 日本-4.54MB/s"
+      - "[43] 日本-2.89MB/s"
+      - "[48] 新加坡-1.98MB/s"
+      - "[49] 韩国-1.55MB/s"
+      - "[51] 日本-1.33MB/s"
+      - "[52] 韩国-1.32MB/s"
+      - "[53] 香港-1.31MB/s"
+      - "[56] 香港-803.7KB/s"
+      - "[57] 香港-768.6KB/s"
+      - "[58] 韩国-572.1KB/s"
   - name: 🌍 国外媒体
     type: select
     proxies:
@@ -253,74 +271,83 @@ proxy-groups:
       - 🇰🇷 Korea
       - 🌐 Other
       - 🎯 全球直连
-      - "[1] 日本-19.15MB/s"
-      - "[2] 日本-13.89MB/s"
-      - "[3] 中转节点-10.48MB/s"
-      - "[4] (已存活12天)中转节点-10.29MB/s"
-      - "[5] (已存活12天)中转节点-10.13MB/s"
-      - "[6] (已存活12天)中转节点-10.04MB/s"
-      - "[7] (已存活12天)中转节点-9.78MB/s"
-      - "[8] (已存活12天)中转节点-9.46MB/s"
-      - "[9] 以色列-5.74MB/s"
-      - "[10] 新西兰-5.60MB/s"
-      - "[11] 美国-5.25MB/s"
-      - "[12] 日本-5.10MB/s"
-      - "[13] 未知国家-5.09MB/s"
-      - "[14] 美国-5.00MB/s"
-      - "[15] 美国-4.94MB/s"
-      - "[16] 美国-4.79MB/s"
-      - "[17] 美国-4.57MB/s"
-      - "[18] 未知国家-4.57MB/s"
-      - "[19] 美国-4.53MB/s"
-      - "[20] 美国-4.46MB/s"
-      - "[21] 新加坡-4.23MB/s"
-      - "[22] 新加坡-4.18MB/s"
-      - "[23] 美国-4.18MB/s"
-      - "[24] 美国-3.90MB/s"
-      - "[25] 美国-3.77MB/s"
-      - "[26] 美国-3.74MB/s"
-      - "[27] 香港-3.67MB/s"
-      - "[28] 未知国家-3.65MB/s"
-      - "[29] 日本-3.59MB/s"
-      - "[30] 美国-3.59MB/s"
-      - "[31] 未知国家-3.55MB/s"
-      - "[32] 香港-3.46MB/s"
-      - "[33] 美国-3.40MB/s"
-      - "[34] 美国-3.35MB/s"
-      - "[35] 美国-3.26MB/s"
-      - "[36] 印度-3.02MB/s"
-      - "[37] 荷兰-2.59MB/s"
-      - "[38] 美国-2.33MB/s"
-      - "[39] 美国-2.27MB/s"
-      - "[40] 荷兰-2.23MB/s"
-      - "[41] 荷兰-2.18MB/s"
-      - "[42] 美国-2.01MB/s"
-      - "[43] 新加坡-1.82MB/s"
-      - "[44] 未知国家-1.63MB/s"
-      - "[45] 美国-1.63MB/s"
-      - "[46] 印度尼西亚-1.59MB/s"
-      - "[47] 美国-1.53MB/s"
-      - "[48] 未知国家-1.45MB/s"
-      - "[49] 美国-1.45MB/s"
-      - "[50] 中转节点-1.42MB/s"
-      - "[51] 香港-1.10MB/s"
-      - "[52] 香港-975.2KB/s"
-      - "[53] 美国-958.8KB/s"
-      - "[54] 美国-622.4KB/s"
-      - "[55] 日本-608.0KB/s"
-      - "[56] 香港-426.3KB/s"
-      - "[57] 中转节点-359.8KB/s"
-      - "[58] 中转节点-348.4KB/s"
-      - "[59] 荷兰-346.0KB/s"
+      - "[1] 台湾-13.38MB/s"
+      - "[2] 台湾-13.29MB/s"
+      - "[3] (已存活12天)中转节点-13.06MB/s"
+      - "[4] (已存活12天)中转节点-12.50MB/s"
+      - "[5] 香港-12.50MB/s"
+      - "[6] (已存活12天)中转节点-11.82MB/s"
+      - "[7] (已存活12天)中转节点-11.73MB/s"
+      - "[8] (已存活12天)中转节点-10.91MB/s"
+      - "[9] (已存活12天)中转节点-9.31MB/s"
+      - "[10] 中转节点-7.02MB/s"
+      - "[11] 美国-6.55MB/s"
+      - "[12] 中转节点-6.42MB/s"
+      - "[13] 美国-5.98MB/s"
+      - "[14] 卢森堡-5.98MB/s"
+      - "[15] 乌克兰-5.98MB/s"
+      - "[16] 中转节点-5.85MB/s"
+      - "[17] 以色列-5.35MB/s"
+      - "[18] 日本-5.32MB/s"
+      - "[19] 美国-5.22MB/s"
+      - "[20] 英国-5.19MB/s"
+      - "[21] 巴西-5.19MB/s"
+      - "[22] 以色列-5.16MB/s"
+      - "[23] (已存活12天)中转节点-5.10MB/s"
+      - "[24] 美国-5.05MB/s"
+      - "[25] 美国-4.92MB/s"
+      - "[26] 美国-4.79MB/s"
+      - "[27] 以色列-4.77MB/s"
+      - "[28] 美国-4.76MB/s"
+      - "[29] 日本-4.72MB/s"
+      - "[30] 日本-4.66MB/s"
+      - "[31] 日本-4.54MB/s"
+      - "[32] 美国-4.39MB/s"
+      - "[33] 美国-4.24MB/s"
+      - "[34] 美国-4.18MB/s"
+      - "[35] 未知国家-4.12MB/s"
+      - "[36] 美国-3.80MB/s"
+      - "[37] 美国-3.71MB/s"
+      - "[38] 中转节点-3.64MB/s"
+      - "[39] 美国-3.35MB/s"
+      - "[40] 美国-3.24MB/s"
+      - "[41] 印度-3.16MB/s"
+      - "[42] 美国-3.12MB/s"
+      - "[43] 日本-2.89MB/s"
+      - "[44] 荷兰-2.59MB/s"
+      - "[45] 美国-2.45MB/s"
+      - "[46] 美国-2.33MB/s"
+      - "[47] 美国-2.21MB/s"
+      - "[48] 新加坡-1.98MB/s"
+      - "[49] 韩国-1.55MB/s"
+      - "[50] 印度尼西亚-1.38MB/s"
+      - "[51] 日本-1.33MB/s"
+      - "[52] 韩国-1.32MB/s"
+      - "[53] 香港-1.31MB/s"
+      - "[54] 美国-1.30MB/s"
+      - "[55] 美国-1.03MB/s"
+      - "[56] 香港-803.7KB/s"
+      - "[57] 香港-768.6KB/s"
+      - "[58] 韩国-572.1KB/s"
+      - "[59] 未知国家-559.9KB/s"
+      - "[60] 美国-556.4KB/s"
+      - "[61] 未知国家-475.7KB/s"
+      - "[62] 美国-470.7KB/s"
+      - "[63] 未知国家-383.6KB/s"
+      - "[64] 美国-355.6KB/s"
+      - "[65] 中转节点-352.1KB/s"
+      - "[66] 未知国家-325.7KB/s"
+      - "[67] 中转节点-317.3KB/s"
   - name: 🌏 国内媒体
     type: select
     proxies:
       - 🎯 全球直连
-      - "[27] 香港-3.67MB/s"
-      - "[32] 香港-3.46MB/s"
-      - "[51] 香港-1.10MB/s"
-      - "[52] 香港-975.2KB/s"
-      - "[56] 香港-426.3KB/s"
+      - "[1] 台湾-13.38MB/s"
+      - "[2] 台湾-13.29MB/s"
+      - "[5] 香港-12.50MB/s"
+      - "[53] 香港-1.31MB/s"
+      - "[56] 香港-803.7KB/s"
+      - "[57] 香港-768.6KB/s"
       - 🔰 节点选择
   - name: 🏳️‍🌈 Google
     type: select
@@ -358,65 +385,73 @@ proxy-groups:
       - 🇰🇷 Korea
       - 🌐 Other
       - 🎯 全球直连
-      - "[1] 日本-19.15MB/s"
-      - "[2] 日本-13.89MB/s"
-      - "[3] 中转节点-10.48MB/s"
-      - "[4] (已存活12天)中转节点-10.29MB/s"
-      - "[5] (已存活12天)中转节点-10.13MB/s"
-      - "[6] (已存活12天)中转节点-10.04MB/s"
-      - "[7] (已存活12天)中转节点-9.78MB/s"
-      - "[8] (已存活12天)中转节点-9.46MB/s"
-      - "[9] 以色列-5.74MB/s"
-      - "[10] 新西兰-5.60MB/s"
-      - "[11] 美国-5.25MB/s"
-      - "[12] 日本-5.10MB/s"
-      - "[13] 未知国家-5.09MB/s"
-      - "[14] 美国-5.00MB/s"
-      - "[15] 美国-4.94MB/s"
-      - "[16] 美国-4.79MB/s"
-      - "[17] 美国-4.57MB/s"
-      - "[18] 未知国家-4.57MB/s"
-      - "[19] 美国-4.53MB/s"
-      - "[20] 美国-4.46MB/s"
-      - "[21] 新加坡-4.23MB/s"
-      - "[22] 新加坡-4.18MB/s"
-      - "[23] 美国-4.18MB/s"
-      - "[24] 美国-3.90MB/s"
-      - "[25] 美国-3.77MB/s"
-      - "[26] 美国-3.74MB/s"
-      - "[27] 香港-3.67MB/s"
-      - "[28] 未知国家-3.65MB/s"
-      - "[29] 日本-3.59MB/s"
-      - "[30] 美国-3.59MB/s"
-      - "[31] 未知国家-3.55MB/s"
-      - "[32] 香港-3.46MB/s"
-      - "[33] 美国-3.40MB/s"
-      - "[34] 美国-3.35MB/s"
-      - "[35] 美国-3.26MB/s"
-      - "[36] 印度-3.02MB/s"
-      - "[37] 荷兰-2.59MB/s"
-      - "[38] 美国-2.33MB/s"
-      - "[39] 美国-2.27MB/s"
-      - "[40] 荷兰-2.23MB/s"
-      - "[41] 荷兰-2.18MB/s"
-      - "[42] 美国-2.01MB/s"
-      - "[43] 新加坡-1.82MB/s"
-      - "[44] 未知国家-1.63MB/s"
-      - "[45] 美国-1.63MB/s"
-      - "[46] 印度尼西亚-1.59MB/s"
-      - "[47] 美国-1.53MB/s"
-      - "[48] 未知国家-1.45MB/s"
-      - "[49] 美国-1.45MB/s"
-      - "[50] 中转节点-1.42MB/s"
-      - "[51] 香港-1.10MB/s"
-      - "[52] 香港-975.2KB/s"
-      - "[53] 美国-958.8KB/s"
-      - "[54] 美国-622.4KB/s"
-      - "[55] 日本-608.0KB/s"
-      - "[56] 香港-426.3KB/s"
-      - "[57] 中转节点-359.8KB/s"
-      - "[58] 中转节点-348.4KB/s"
-      - "[59] 荷兰-346.0KB/s"
+      - "[1] 台湾-13.38MB/s"
+      - "[2] 台湾-13.29MB/s"
+      - "[3] (已存活12天)中转节点-13.06MB/s"
+      - "[4] (已存活12天)中转节点-12.50MB/s"
+      - "[5] 香港-12.50MB/s"
+      - "[6] (已存活12天)中转节点-11.82MB/s"
+      - "[7] (已存活12天)中转节点-11.73MB/s"
+      - "[8] (已存活12天)中转节点-10.91MB/s"
+      - "[9] (已存活12天)中转节点-9.31MB/s"
+      - "[10] 中转节点-7.02MB/s"
+      - "[11] 美国-6.55MB/s"
+      - "[12] 中转节点-6.42MB/s"
+      - "[13] 美国-5.98MB/s"
+      - "[14] 卢森堡-5.98MB/s"
+      - "[15] 乌克兰-5.98MB/s"
+      - "[16] 中转节点-5.85MB/s"
+      - "[17] 以色列-5.35MB/s"
+      - "[18] 日本-5.32MB/s"
+      - "[19] 美国-5.22MB/s"
+      - "[20] 英国-5.19MB/s"
+      - "[21] 巴西-5.19MB/s"
+      - "[22] 以色列-5.16MB/s"
+      - "[23] (已存活12天)中转节点-5.10MB/s"
+      - "[24] 美国-5.05MB/s"
+      - "[25] 美国-4.92MB/s"
+      - "[26] 美国-4.79MB/s"
+      - "[27] 以色列-4.77MB/s"
+      - "[28] 美国-4.76MB/s"
+      - "[29] 日本-4.72MB/s"
+      - "[30] 日本-4.66MB/s"
+      - "[31] 日本-4.54MB/s"
+      - "[32] 美国-4.39MB/s"
+      - "[33] 美国-4.24MB/s"
+      - "[34] 美国-4.18MB/s"
+      - "[35] 未知国家-4.12MB/s"
+      - "[36] 美国-3.80MB/s"
+      - "[37] 美国-3.71MB/s"
+      - "[38] 中转节点-3.64MB/s"
+      - "[39] 美国-3.35MB/s"
+      - "[40] 美国-3.24MB/s"
+      - "[41] 印度-3.16MB/s"
+      - "[42] 美国-3.12MB/s"
+      - "[43] 日本-2.89MB/s"
+      - "[44] 荷兰-2.59MB/s"
+      - "[45] 美国-2.45MB/s"
+      - "[46] 美国-2.33MB/s"
+      - "[47] 美国-2.21MB/s"
+      - "[48] 新加坡-1.98MB/s"
+      - "[49] 韩国-1.55MB/s"
+      - "[50] 印度尼西亚-1.38MB/s"
+      - "[51] 日本-1.33MB/s"
+      - "[52] 韩国-1.32MB/s"
+      - "[53] 香港-1.31MB/s"
+      - "[54] 美国-1.30MB/s"
+      - "[55] 美国-1.03MB/s"
+      - "[56] 香港-803.7KB/s"
+      - "[57] 香港-768.6KB/s"
+      - "[58] 韩国-572.1KB/s"
+      - "[59] 未知国家-559.9KB/s"
+      - "[60] 美国-556.4KB/s"
+      - "[61] 未知国家-475.7KB/s"
+      - "[62] 美国-470.7KB/s"
+      - "[63] 未知国家-383.6KB/s"
+      - "[64] 美国-355.6KB/s"
+      - "[65] 中转节点-352.1KB/s"
+      - "[66] 未知国家-325.7KB/s"
+      - "[67] 中转节点-317.3KB/s"
   - name: 🍎 苹果服务
     type: select
     proxies:
@@ -431,212 +466,229 @@ proxy-groups:
       - 🎯 全球直连
       - 🤔 高可用
       - ♻️ 低延迟
-      - "[1] 日本-19.15MB/s"
-      - "[2] 日本-13.89MB/s"
-      - "[3] 中转节点-10.48MB/s"
-      - "[4] (已存活12天)中转节点-10.29MB/s"
-      - "[5] (已存活12天)中转节点-10.13MB/s"
-      - "[6] (已存活12天)中转节点-10.04MB/s"
-      - "[7] (已存活12天)中转节点-9.78MB/s"
-      - "[8] (已存活12天)中转节点-9.46MB/s"
-      - "[9] 以色列-5.74MB/s"
-      - "[10] 新西兰-5.60MB/s"
-      - "[11] 美国-5.25MB/s"
-      - "[12] 日本-5.10MB/s"
-      - "[13] 未知国家-5.09MB/s"
-      - "[14] 美国-5.00MB/s"
-      - "[15] 美国-4.94MB/s"
-      - "[16] 美国-4.79MB/s"
-      - "[17] 美国-4.57MB/s"
-      - "[18] 未知国家-4.57MB/s"
-      - "[19] 美国-4.53MB/s"
-      - "[20] 美国-4.46MB/s"
-      - "[21] 新加坡-4.23MB/s"
-      - "[22] 新加坡-4.18MB/s"
-      - "[23] 美国-4.18MB/s"
-      - "[24] 美国-3.90MB/s"
-      - "[25] 美国-3.77MB/s"
-      - "[26] 美国-3.74MB/s"
-      - "[27] 香港-3.67MB/s"
-      - "[28] 未知国家-3.65MB/s"
-      - "[29] 日本-3.59MB/s"
-      - "[30] 美国-3.59MB/s"
-      - "[31] 未知国家-3.55MB/s"
-      - "[32] 香港-3.46MB/s"
-      - "[33] 美国-3.40MB/s"
-      - "[34] 美国-3.35MB/s"
-      - "[35] 美国-3.26MB/s"
-      - "[36] 印度-3.02MB/s"
-      - "[37] 荷兰-2.59MB/s"
-      - "[38] 美国-2.33MB/s"
-      - "[39] 美国-2.27MB/s"
-      - "[40] 荷兰-2.23MB/s"
-      - "[41] 荷兰-2.18MB/s"
-      - "[42] 美国-2.01MB/s"
-      - "[43] 新加坡-1.82MB/s"
-      - "[44] 未知国家-1.63MB/s"
-      - "[45] 美国-1.63MB/s"
-      - "[46] 印度尼西亚-1.59MB/s"
-      - "[47] 美国-1.53MB/s"
-      - "[48] 未知国家-1.45MB/s"
-      - "[49] 美国-1.45MB/s"
-      - "[50] 中转节点-1.42MB/s"
-      - "[51] 香港-1.10MB/s"
-      - "[52] 香港-975.2KB/s"
-      - "[53] 美国-958.8KB/s"
-      - "[54] 美国-622.4KB/s"
-      - "[55] 日本-608.0KB/s"
-      - "[56] 香港-426.3KB/s"
-      - "[57] 中转节点-359.8KB/s"
-      - "[58] 中转节点-348.4KB/s"
-      - "[59] 荷兰-346.0KB/s"
+      - "[1] 台湾-13.38MB/s"
+      - "[2] 台湾-13.29MB/s"
+      - "[3] (已存活12天)中转节点-13.06MB/s"
+      - "[4] (已存活12天)中转节点-12.50MB/s"
+      - "[5] 香港-12.50MB/s"
+      - "[6] (已存活12天)中转节点-11.82MB/s"
+      - "[7] (已存活12天)中转节点-11.73MB/s"
+      - "[8] (已存活12天)中转节点-10.91MB/s"
+      - "[9] (已存活12天)中转节点-9.31MB/s"
+      - "[10] 中转节点-7.02MB/s"
+      - "[11] 美国-6.55MB/s"
+      - "[12] 中转节点-6.42MB/s"
+      - "[13] 美国-5.98MB/s"
+      - "[14] 卢森堡-5.98MB/s"
+      - "[15] 乌克兰-5.98MB/s"
+      - "[16] 中转节点-5.85MB/s"
+      - "[17] 以色列-5.35MB/s"
+      - "[18] 日本-5.32MB/s"
+      - "[19] 美国-5.22MB/s"
+      - "[20] 英国-5.19MB/s"
+      - "[21] 巴西-5.19MB/s"
+      - "[22] 以色列-5.16MB/s"
+      - "[23] (已存活12天)中转节点-5.10MB/s"
+      - "[24] 美国-5.05MB/s"
+      - "[25] 美国-4.92MB/s"
+      - "[26] 美国-4.79MB/s"
+      - "[27] 以色列-4.77MB/s"
+      - "[28] 美国-4.76MB/s"
+      - "[29] 日本-4.72MB/s"
+      - "[30] 日本-4.66MB/s"
+      - "[31] 日本-4.54MB/s"
+      - "[32] 美国-4.39MB/s"
+      - "[33] 美国-4.24MB/s"
+      - "[34] 美国-4.18MB/s"
+      - "[35] 未知国家-4.12MB/s"
+      - "[36] 美国-3.80MB/s"
+      - "[37] 美国-3.71MB/s"
+      - "[38] 中转节点-3.64MB/s"
+      - "[39] 美国-3.35MB/s"
+      - "[40] 美国-3.24MB/s"
+      - "[41] 印度-3.16MB/s"
+      - "[42] 美国-3.12MB/s"
+      - "[43] 日本-2.89MB/s"
+      - "[44] 荷兰-2.59MB/s"
+      - "[45] 美国-2.45MB/s"
+      - "[46] 美国-2.33MB/s"
+      - "[47] 美国-2.21MB/s"
+      - "[48] 新加坡-1.98MB/s"
+      - "[49] 韩国-1.55MB/s"
+      - "[50] 印度尼西亚-1.38MB/s"
+      - "[51] 日本-1.33MB/s"
+      - "[52] 韩国-1.32MB/s"
+      - "[53] 香港-1.31MB/s"
+      - "[54] 美国-1.30MB/s"
+      - "[55] 美国-1.03MB/s"
+      - "[56] 香港-803.7KB/s"
+      - "[57] 香港-768.6KB/s"
+      - "[58] 韩国-572.1KB/s"
+      - "[59] 未知国家-559.9KB/s"
+      - "[60] 美国-556.4KB/s"
+      - "[61] 未知国家-475.7KB/s"
+      - "[62] 美国-470.7KB/s"
+      - "[63] 未知国家-383.6KB/s"
+      - "[64] 美国-355.6KB/s"
+      - "[65] 中转节点-352.1KB/s"
+      - "[66] 未知国家-325.7KB/s"
+      - "[67] 中转节点-317.3KB/s"
   - name: Ⓜ️ 微软服务
     type: select
     proxies:
       - 🎯 全球直连
       - 🔰 节点选择
-      - "[1] 日本-19.15MB/s"
-      - "[2] 日本-13.89MB/s"
-      - "[3] 中转节点-10.48MB/s"
-      - "[4] (已存活12天)中转节点-10.29MB/s"
-      - "[5] (已存活12天)中转节点-10.13MB/s"
-      - "[6] (已存活12天)中转节点-10.04MB/s"
-      - "[7] (已存活12天)中转节点-9.78MB/s"
-      - "[8] (已存活12天)中转节点-9.46MB/s"
-      - "[9] 以色列-5.74MB/s"
-      - "[10] 新西兰-5.60MB/s"
-      - "[11] 美国-5.25MB/s"
-      - "[12] 日本-5.10MB/s"
-      - "[13] 未知国家-5.09MB/s"
-      - "[14] 美国-5.00MB/s"
-      - "[15] 美国-4.94MB/s"
-      - "[16] 美国-4.79MB/s"
-      - "[17] 美国-4.57MB/s"
-      - "[18] 未知国家-4.57MB/s"
-      - "[19] 美国-4.53MB/s"
-      - "[20] 美国-4.46MB/s"
-      - "[21] 新加坡-4.23MB/s"
-      - "[22] 新加坡-4.18MB/s"
-      - "[23] 美国-4.18MB/s"
-      - "[24] 美国-3.90MB/s"
-      - "[25] 美国-3.77MB/s"
-      - "[26] 美国-3.74MB/s"
-      - "[27] 香港-3.67MB/s"
-      - "[28] 未知国家-3.65MB/s"
-      - "[29] 日本-3.59MB/s"
-      - "[30] 美国-3.59MB/s"
-      - "[31] 未知国家-3.55MB/s"
-      - "[32] 香港-3.46MB/s"
-      - "[33] 美国-3.40MB/s"
-      - "[34] 美国-3.35MB/s"
-      - "[35] 美国-3.26MB/s"
-      - "[36] 印度-3.02MB/s"
-      - "[37] 荷兰-2.59MB/s"
-      - "[38] 美国-2.33MB/s"
-      - "[39] 美国-2.27MB/s"
-      - "[40] 荷兰-2.23MB/s"
-      - "[41] 荷兰-2.18MB/s"
-      - "[42] 美国-2.01MB/s"
-      - "[43] 新加坡-1.82MB/s"
-      - "[44] 未知国家-1.63MB/s"
-      - "[45] 美国-1.63MB/s"
-      - "[46] 印度尼西亚-1.59MB/s"
-      - "[47] 美国-1.53MB/s"
-      - "[48] 未知国家-1.45MB/s"
-      - "[49] 美国-1.45MB/s"
-      - "[50] 中转节点-1.42MB/s"
-      - "[51] 香港-1.10MB/s"
-      - "[52] 香港-975.2KB/s"
-      - "[53] 美国-958.8KB/s"
-      - "[54] 美国-622.4KB/s"
-      - "[55] 日本-608.0KB/s"
-      - "[56] 香港-426.3KB/s"
-      - "[57] 中转节点-359.8KB/s"
-      - "[58] 中转节点-348.4KB/s"
-      - "[59] 荷兰-346.0KB/s"
+      - "[1] 台湾-13.38MB/s"
+      - "[2] 台湾-13.29MB/s"
+      - "[3] (已存活12天)中转节点-13.06MB/s"
+      - "[4] (已存活12天)中转节点-12.50MB/s"
+      - "[5] 香港-12.50MB/s"
+      - "[6] (已存活12天)中转节点-11.82MB/s"
+      - "[7] (已存活12天)中转节点-11.73MB/s"
+      - "[8] (已存活12天)中转节点-10.91MB/s"
+      - "[9] (已存活12天)中转节点-9.31MB/s"
+      - "[10] 中转节点-7.02MB/s"
+      - "[11] 美国-6.55MB/s"
+      - "[12] 中转节点-6.42MB/s"
+      - "[13] 美国-5.98MB/s"
+      - "[14] 卢森堡-5.98MB/s"
+      - "[15] 乌克兰-5.98MB/s"
+      - "[16] 中转节点-5.85MB/s"
+      - "[17] 以色列-5.35MB/s"
+      - "[18] 日本-5.32MB/s"
+      - "[19] 美国-5.22MB/s"
+      - "[20] 英国-5.19MB/s"
+      - "[21] 巴西-5.19MB/s"
+      - "[22] 以色列-5.16MB/s"
+      - "[23] (已存活12天)中转节点-5.10MB/s"
+      - "[24] 美国-5.05MB/s"
+      - "[25] 美国-4.92MB/s"
+      - "[26] 美国-4.79MB/s"
+      - "[27] 以色列-4.77MB/s"
+      - "[28] 美国-4.76MB/s"
+      - "[29] 日本-4.72MB/s"
+      - "[30] 日本-4.66MB/s"
+      - "[31] 日本-4.54MB/s"
+      - "[32] 美国-4.39MB/s"
+      - "[33] 美国-4.24MB/s"
+      - "[34] 美国-4.18MB/s"
+      - "[35] 未知国家-4.12MB/s"
+      - "[36] 美国-3.80MB/s"
+      - "[37] 美国-3.71MB/s"
+      - "[38] 中转节点-3.64MB/s"
+      - "[39] 美国-3.35MB/s"
+      - "[40] 美国-3.24MB/s"
+      - "[41] 印度-3.16MB/s"
+      - "[42] 美国-3.12MB/s"
+      - "[43] 日本-2.89MB/s"
+      - "[44] 荷兰-2.59MB/s"
+      - "[45] 美国-2.45MB/s"
+      - "[46] 美国-2.33MB/s"
+      - "[47] 美国-2.21MB/s"
+      - "[48] 新加坡-1.98MB/s"
+      - "[49] 韩国-1.55MB/s"
+      - "[50] 印度尼西亚-1.38MB/s"
+      - "[51] 日本-1.33MB/s"
+      - "[52] 韩国-1.32MB/s"
+      - "[53] 香港-1.31MB/s"
+      - "[54] 美国-1.30MB/s"
+      - "[55] 美国-1.03MB/s"
+      - "[56] 香港-803.7KB/s"
+      - "[57] 香港-768.6KB/s"
+      - "[58] 韩国-572.1KB/s"
+      - "[59] 未知国家-559.9KB/s"
+      - "[60] 美国-556.4KB/s"
+      - "[61] 未知国家-475.7KB/s"
+      - "[62] 美国-470.7KB/s"
+      - "[63] 未知国家-383.6KB/s"
+      - "[64] 美国-355.6KB/s"
+      - "[65] 中转节点-352.1KB/s"
+      - "[66] 未知国家-325.7KB/s"
+      - "[67] 中转节点-317.3KB/s"
   - name: 🇭🇰 Hong Kong
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 1800
     tolerance: 100
     proxies:
-      - "[27] 香港-3.67MB/s"
-      - "[32] 香港-3.46MB/s"
-      - "[51] 香港-1.10MB/s"
-      - "[52] 香港-975.2KB/s"
-      - "[56] 香港-426.3KB/s"
+      - "[5] 香港-12.50MB/s"
+      - "[53] 香港-1.31MB/s"
+      - "[56] 香港-803.7KB/s"
+      - "[57] 香港-768.6KB/s"
   - name: 🇸🇬 Singapore
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 1800
     tolerance: 100
     proxies:
-      - "[21] 新加坡-4.23MB/s"
-      - "[22] 新加坡-4.18MB/s"
-      - "[43] 新加坡-1.82MB/s"
+      - "[48] 新加坡-1.98MB/s"
   - name: 🇹🇼 Taiwan
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 1800
     tolerance: 100
     proxies:
-      - DIRECT
+      - "[1] 台湾-13.38MB/s"
+      - "[2] 台湾-13.29MB/s"
   - name: 🇺🇸 United States
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 1800
     tolerance: 100
     proxies:
-      - "[11] 美国-5.25MB/s"
-      - "[14] 美国-5.00MB/s"
-      - "[15] 美国-4.94MB/s"
-      - "[16] 美国-4.79MB/s"
-      - "[17] 美国-4.57MB/s"
-      - "[19] 美国-4.53MB/s"
-      - "[20] 美国-4.46MB/s"
-      - "[23] 美国-4.18MB/s"
-      - "[24] 美国-3.90MB/s"
-      - "[25] 美国-3.77MB/s"
-      - "[26] 美国-3.74MB/s"
-      - "[30] 美国-3.59MB/s"
-      - "[33] 美国-3.40MB/s"
-      - "[34] 美国-3.35MB/s"
-      - "[35] 美国-3.26MB/s"
-      - "[38] 美国-2.33MB/s"
-      - "[39] 美国-2.27MB/s"
-      - "[42] 美国-2.01MB/s"
-      - "[45] 美国-1.63MB/s"
-      - "[47] 美国-1.53MB/s"
-      - "[49] 美国-1.45MB/s"
-      - "[53] 美国-958.8KB/s"
-      - "[54] 美国-622.4KB/s"
+      - "[11] 美国-6.55MB/s"
+      - "[13] 美国-5.98MB/s"
+      - "[19] 美国-5.22MB/s"
+      - "[24] 美国-5.05MB/s"
+      - "[25] 美国-4.92MB/s"
+      - "[26] 美国-4.79MB/s"
+      - "[28] 美国-4.76MB/s"
+      - "[32] 美国-4.39MB/s"
+      - "[33] 美国-4.24MB/s"
+      - "[34] 美国-4.18MB/s"
+      - "[36] 美国-3.80MB/s"
+      - "[37] 美国-3.71MB/s"
+      - "[39] 美国-3.35MB/s"
+      - "[40] 美国-3.24MB/s"
+      - "[42] 美国-3.12MB/s"
+      - "[45] 美国-2.45MB/s"
+      - "[46] 美国-2.33MB/s"
+      - "[47] 美国-2.21MB/s"
+      - "[54] 美国-1.30MB/s"
+      - "[55] 美国-1.03MB/s"
+      - "[60] 美国-556.4KB/s"
+      - "[62] 美国-470.7KB/s"
+      - "[64] 美国-355.6KB/s"
   - name: 🇯🇵 Japan
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 1800
     tolerance: 100
     proxies:
-      - "[1] 日本-19.15MB/s"
-      - "[2] 日本-13.89MB/s"
-      - "[12] 日本-5.10MB/s"
-      - "[29] 日本-3.59MB/s"
-      - "[55] 日本-608.0KB/s"
+      - "[18] 日本-5.32MB/s"
+      - "[29] 日本-4.72MB/s"
+      - "[30] 日本-4.66MB/s"
+      - "[31] 日本-4.54MB/s"
+      - "[43] 日本-2.89MB/s"
+      - "[51] 日本-1.33MB/s"
   - name: 🇰🇷 Korea
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 1800
     tolerance: 100
     proxies:
-      - DIRECT
+      - "[49] 韩国-1.55MB/s"
+      - "[52] 韩国-1.32MB/s"
+      - "[58] 韩国-572.1KB/s"
   - name: 🌐 Other
     type: select
     proxies:
-      - "[36] 印度-3.02MB/s"
-      - "[37] 荷兰-2.59MB/s"
-      - "[40] 荷兰-2.23MB/s"
-      - "[41] 荷兰-2.18MB/s"
-      - "[46] 印度尼西亚-1.59MB/s"
-      - "[59] 荷兰-346.0KB/s"
+      - "[15] 乌克兰-5.98MB/s"
+      - "[20] 英国-5.19MB/s"
+      - "[21] 巴西-5.19MB/s"
+      - "[41] 印度-3.16MB/s"
+      - "[44] 荷兰-2.59MB/s"
+      - "[50] 印度尼西亚-1.38MB/s"
   - name: 🎯 全球直连
     type: select
     proxies:
@@ -660,65 +712,73 @@ proxy-groups:
       - 🇯🇵 Japan
       - 🇰🇷 Korea
       - 🌐 Other
-      - "[1] 日本-19.15MB/s"
-      - "[2] 日本-13.89MB/s"
-      - "[3] 中转节点-10.48MB/s"
-      - "[4] (已存活12天)中转节点-10.29MB/s"
-      - "[5] (已存活12天)中转节点-10.13MB/s"
-      - "[6] (已存活12天)中转节点-10.04MB/s"
-      - "[7] (已存活12天)中转节点-9.78MB/s"
-      - "[8] (已存活12天)中转节点-9.46MB/s"
-      - "[9] 以色列-5.74MB/s"
-      - "[10] 新西兰-5.60MB/s"
-      - "[11] 美国-5.25MB/s"
-      - "[12] 日本-5.10MB/s"
-      - "[13] 未知国家-5.09MB/s"
-      - "[14] 美国-5.00MB/s"
-      - "[15] 美国-4.94MB/s"
-      - "[16] 美国-4.79MB/s"
-      - "[17] 美国-4.57MB/s"
-      - "[18] 未知国家-4.57MB/s"
-      - "[19] 美国-4.53MB/s"
-      - "[20] 美国-4.46MB/s"
-      - "[21] 新加坡-4.23MB/s"
-      - "[22] 新加坡-4.18MB/s"
-      - "[23] 美国-4.18MB/s"
-      - "[24] 美国-3.90MB/s"
-      - "[25] 美国-3.77MB/s"
-      - "[26] 美国-3.74MB/s"
-      - "[27] 香港-3.67MB/s"
-      - "[28] 未知国家-3.65MB/s"
-      - "[29] 日本-3.59MB/s"
-      - "[30] 美国-3.59MB/s"
-      - "[31] 未知国家-3.55MB/s"
-      - "[32] 香港-3.46MB/s"
-      - "[33] 美国-3.40MB/s"
-      - "[34] 美国-3.35MB/s"
-      - "[35] 美国-3.26MB/s"
-      - "[36] 印度-3.02MB/s"
-      - "[37] 荷兰-2.59MB/s"
-      - "[38] 美国-2.33MB/s"
-      - "[39] 美国-2.27MB/s"
-      - "[40] 荷兰-2.23MB/s"
-      - "[41] 荷兰-2.18MB/s"
-      - "[42] 美国-2.01MB/s"
-      - "[43] 新加坡-1.82MB/s"
-      - "[44] 未知国家-1.63MB/s"
-      - "[45] 美国-1.63MB/s"
-      - "[46] 印度尼西亚-1.59MB/s"
-      - "[47] 美国-1.53MB/s"
-      - "[48] 未知国家-1.45MB/s"
-      - "[49] 美国-1.45MB/s"
-      - "[50] 中转节点-1.42MB/s"
-      - "[51] 香港-1.10MB/s"
-      - "[52] 香港-975.2KB/s"
-      - "[53] 美国-958.8KB/s"
-      - "[54] 美国-622.4KB/s"
-      - "[55] 日本-608.0KB/s"
-      - "[56] 香港-426.3KB/s"
-      - "[57] 中转节点-359.8KB/s"
-      - "[58] 中转节点-348.4KB/s"
-      - "[59] 荷兰-346.0KB/s"
+      - "[1] 台湾-13.38MB/s"
+      - "[2] 台湾-13.29MB/s"
+      - "[3] (已存活12天)中转节点-13.06MB/s"
+      - "[4] (已存活12天)中转节点-12.50MB/s"
+      - "[5] 香港-12.50MB/s"
+      - "[6] (已存活12天)中转节点-11.82MB/s"
+      - "[7] (已存活12天)中转节点-11.73MB/s"
+      - "[8] (已存活12天)中转节点-10.91MB/s"
+      - "[9] (已存活12天)中转节点-9.31MB/s"
+      - "[10] 中转节点-7.02MB/s"
+      - "[11] 美国-6.55MB/s"
+      - "[12] 中转节点-6.42MB/s"
+      - "[13] 美国-5.98MB/s"
+      - "[14] 卢森堡-5.98MB/s"
+      - "[15] 乌克兰-5.98MB/s"
+      - "[16] 中转节点-5.85MB/s"
+      - "[17] 以色列-5.35MB/s"
+      - "[18] 日本-5.32MB/s"
+      - "[19] 美国-5.22MB/s"
+      - "[20] 英国-5.19MB/s"
+      - "[21] 巴西-5.19MB/s"
+      - "[22] 以色列-5.16MB/s"
+      - "[23] (已存活12天)中转节点-5.10MB/s"
+      - "[24] 美国-5.05MB/s"
+      - "[25] 美国-4.92MB/s"
+      - "[26] 美国-4.79MB/s"
+      - "[27] 以色列-4.77MB/s"
+      - "[28] 美国-4.76MB/s"
+      - "[29] 日本-4.72MB/s"
+      - "[30] 日本-4.66MB/s"
+      - "[31] 日本-4.54MB/s"
+      - "[32] 美国-4.39MB/s"
+      - "[33] 美国-4.24MB/s"
+      - "[34] 美国-4.18MB/s"
+      - "[35] 未知国家-4.12MB/s"
+      - "[36] 美国-3.80MB/s"
+      - "[37] 美国-3.71MB/s"
+      - "[38] 中转节点-3.64MB/s"
+      - "[39] 美国-3.35MB/s"
+      - "[40] 美国-3.24MB/s"
+      - "[41] 印度-3.16MB/s"
+      - "[42] 美国-3.12MB/s"
+      - "[43] 日本-2.89MB/s"
+      - "[44] 荷兰-2.59MB/s"
+      - "[45] 美国-2.45MB/s"
+      - "[46] 美国-2.33MB/s"
+      - "[47] 美国-2.21MB/s"
+      - "[48] 新加坡-1.98MB/s"
+      - "[49] 韩国-1.55MB/s"
+      - "[50] 印度尼西亚-1.38MB/s"
+      - "[51] 日本-1.33MB/s"
+      - "[52] 韩国-1.32MB/s"
+      - "[53] 香港-1.31MB/s"
+      - "[54] 美国-1.30MB/s"
+      - "[55] 美国-1.03MB/s"
+      - "[56] 香港-803.7KB/s"
+      - "[57] 香港-768.6KB/s"
+      - "[58] 韩国-572.1KB/s"
+      - "[59] 未知国家-559.9KB/s"
+      - "[60] 美国-556.4KB/s"
+      - "[61] 未知国家-475.7KB/s"
+      - "[62] 美国-470.7KB/s"
+      - "[63] 未知国家-383.6KB/s"
+      - "[64] 美国-355.6KB/s"
+      - "[65] 中转节点-352.1KB/s"
+      - "[66] 未知国家-325.7KB/s"
+      - "[67] 中转节点-317.3KB/s"
 rules:
  - DOMAIN-SUFFIX,local,🎯 全球直连
  - IP-CIDR,192.168.0.0/16,🎯 全球直连,no-resolve
