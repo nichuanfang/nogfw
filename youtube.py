@@ -1,5 +1,6 @@
 #!/usr/local/bin/python
 # coding=utf-8
+from math import inf
 from my_global import local
 from my_global import logging
 from channel import bulianglin
@@ -86,31 +87,31 @@ if __name__ == '__main__':
                                   }  
                               }
                             ,CRAW_SLEEP_SECONDS)
+        # 有新的订阅才更新
+        logging.info(f'==================================================总数据源:{len(raw_list)}个')
+        if not len(raw_list)==0:
+            # 生成qx专用订阅
+            generate_ini = converter.generate_template_ini
+            logging.info(f'=========================================================================生成qx配置文件...')
+            generate_ini = converter.add_quanx(raw_list,generate_ini)
+            logging.info(f'=========================================================================qx配置文件已生成!')
+            # 生成clash配置文件
+            logging.info(f'=========================================================================生成clash配置文件...')
+            generate_ini = converter.add_clash(raw_list,generate_ini)
+            logging.info(f'=========================================================================clash配置文件已生成!')
+
+            # 生成v2ray订阅
+            logging.info(f'=========================================================================生成v2ray配置文件...')
+            generate_ini = converter.add_v2ray(raw_list,generate_ini)
+            logging.info(f'=========================================================================v2ray配置文件已生成!')
+
+            # 随机生成一个文件 保持仓库处于活跃
+            open('dist/dist-version','w+').write(''.join(random.sample('abcdefghigklmnopqrstuvwxyz1234567890',20)))
+            logging.info(f'')
+            logging.info(f'')
+            logging.info(f'')
+            logging.info(f'')
+            logging.info(f'=========================================================================节点更新完成!')
     except Exception as e:
         raw_list = []
         logging.info(f'爬取yt频道出错:{e}')
-
-    # 有新的订阅才更新
-    if not len(raw_list)==0:
-        # 生成qx专用订阅
-        generate_ini = converter.generate_template_ini
-        logging.info(f'=========================================================================生成qx配置文件...')
-        generate_ini = converter.add_quanx(raw_list,generate_ini)
-        logging.info(f'=========================================================================qx配置文件已生成!')
-        # 生成clash配置文件
-        logging.info(f'=========================================================================生成clash配置文件...')
-        generate_ini = converter.add_clash(raw_list,generate_ini)
-        logging.info(f'=========================================================================clash配置文件已生成!')
-
-        # 生成v2ray订阅
-        logging.info(f'=========================================================================生成v2ray配置文件...')
-        generate_ini = converter.add_v2ray(raw_list,generate_ini)
-        logging.info(f'=========================================================================v2ray配置文件已生成!')
-
-        # 随机生成一个文件 保持仓库处于活跃
-        open('dist/dist-version','w+').write(''.join(random.sample('abcdefghigklmnopqrstuvwxyz1234567890',20)))
-        logging.info(f'')
-        logging.info(f'')
-        logging.info(f'')
-        logging.info(f'')
-        logging.info(f'=========================================================================节点更新完成!')
