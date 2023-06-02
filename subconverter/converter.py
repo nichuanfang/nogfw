@@ -126,6 +126,16 @@ def convert_ssr2ss(ssrConfig):
     ssConfig += encode_base64(encryption + ":" + passwd) + "@" + serverIP + ":" + serverPort + "/#" + remarks
     return ssConfig
 
+def proxy_speed(proxy:str):
+    match = re.search(r'\d+.\d+',proxy.split('-')[-1])
+    if match is not None:
+        if proxy.split('-')[-1].lower().__contains__('kb'):
+            return  float(match.group())/1000
+        else:
+            return  float(match.group())
+    else:
+        return 0.0
+
 def sort_func(proxy):
     """节点得分系统 评估节点质量 结合高可用模式 实现节点优选
 
@@ -150,8 +160,8 @@ def sort_func(proxy):
             alive_score = float(alive_res[0])
     # 2. 地区在指定低延迟地区的 优先级加分
     area_score = get_area_score(proxy)
-    # 3. 测速结果越快的 加分
-    speed_score = 1.0
+    # 3. 测速结果越快的 加分 单位 MB/s
+    speed_score = 1.0 if proxy_speed(proxy)==0.0 else proxy_speed(proxy)
     match = re.search(r'\d+.\d+',proxy.split('-')[-1])
     if match is not None:
         if proxy.split('-')[-1].lower().__contains__('kb'):
@@ -259,6 +269,10 @@ def handle_nodes(nodes:list[str]):
     # 节点重排序
     for index,sorted_tag_node_key in enumerate(sorted_tag_node_keys):
         sorted_tag_node = tag_node_dict[sorted_tag_node_key]
+        # 过滤速度低于4.8Mbps的节点(即速度低于600KB/S的节点)
+        speed = proxy_speed(sorted_tag_node_key)
+        if speed*8 < 4.8:
+            continue
         # 处理节点 去除特殊标识(例如: youtube不良林) 添加标签 [序号]
         new_nodes.append(tag(sorted_tag_node,f'[{index+1}] '+sorted_tag_node_key.replace('(Youtube:不良林)','')))
 
