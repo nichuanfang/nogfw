@@ -94,25 +94,21 @@ if __name__ == '__main__':
     if not len(raw_list)==0:
         # 生成qx专用订阅
         generate_ini = converter.generate_template_ini
-        if NEED_SAVE:
-            logging.info(f'=========================================================================生成qx配置文件...')
-            generate_ini = converter.add_quanx(raw_list,generate_ini)
-            logging.info(f'=========================================================================qx配置文件已生成!')
+        logging.info(f'=========================================================================生成qx配置文件...')
+        generate_ini = converter.add_quanx(raw_list,generate_ini)
+        logging.info(f'=========================================================================qx配置文件已生成!')
         # 生成clash配置文件
-        if NEED_SAVE:
-            logging.info(f'=========================================================================生成clash配置文件...')
-            generate_ini = converter.add_clash(raw_list,generate_ini)
-            logging.info(f'=========================================================================clash配置文件已生成!')
+        logging.info(f'=========================================================================生成clash配置文件...')
+        generate_ini = converter.add_clash(raw_list,generate_ini)
+        logging.info(f'=========================================================================clash配置文件已生成!')
 
         # 生成v2ray订阅
-        if NEED_SAVE:
-            logging.info(f'=========================================================================生成v2ray配置文件...')
-            generate_ini = converter.add_v2ray(raw_list,generate_ini)
-            logging.info(f'=========================================================================v2ray配置文件已生成!')
+        logging.info(f'=========================================================================生成v2ray配置文件...')
+        generate_ini = converter.add_v2ray(raw_list,generate_ini)
+        logging.info(f'=========================================================================v2ray配置文件已生成!')
 
         # 随机生成一个文件 保持仓库处于活跃
-        if NEED_SAVE:
-            open('dist/random','w+').write(''.join(random.sample('abcdefghigklmnopqrstuvwxyz1234567890',20)))
+        open('dist/random','w+').write(''.join(random.sample('abcdefghigklmnopqrstuvwxyz1234567890',20)))
         logging.info(f'')
         logging.info(f'')
         logging.info(f'')
