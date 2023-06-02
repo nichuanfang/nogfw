@@ -78,15 +78,15 @@ if __name__ == '__main__':
         raw_list = batch_craw(CARW_NUMBER, # type: ignore
                               {
                                 #   不良林
-                                #   'bulianglin': {
-                                #       'channel_id': f'{BULIANGLIN_CHANEL_ID}',
-                                #       'func': bulianglin.bulianglin_func
-                                #   },
+                                  'bulianglin': {
+                                      'channel_id': f'{BULIANGLIN_CHANEL_ID}',
+                                      'func': bulianglin.bulianglin_func
+                                  },
                                 #   长风
-                                  'changfeng': {
-                                     'channel_id':  f'{CHANGFENG_CHANNEL_ID}',
-                                     'func': changfeng.changfeng_func
-                                  }  
+                                #   'changfeng': {
+                                #      'channel_id':  f'{CHANGFENG_CHANNEL_ID}',
+                                #      'func': changfeng.changfeng_func
+                                #   }  
                               }
                             ,CRAW_SLEEP_SECONDS)
         # 有新的订阅才更新
