@@ -246,8 +246,8 @@ def handle_nodes(nodes:list[str]):
 
     for node in nodes:
         # 去除ss和ssr节点
-        # if node.startswith('ss://') or node.startswith('ssr://'):
-        #     continue
+        if node.startswith('ss://') or node.startswith('ssr://'):
+            continue
         get_tag_res = get_tag(node)
         if type(get_tag_res) == tuple:
             tag_node_dict[get_tag_res[0]] = get_tag_res[1] # type: ignore
