@@ -88,7 +88,6 @@ jobs:
           chmod +x ./subconverter/subconverter
           ./subconverter/subconverter -g
           python ./subconverter/handle_qx.py
-          rm -f ./subconverter/generate.ini
 
       - name: logging dist
         env:

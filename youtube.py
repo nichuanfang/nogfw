@@ -108,7 +108,7 @@ if __name__ == '__main__':
         logging.info(f'=========================================================================v2ray配置文件已生成!')
 
         # 随机生成一个文件 保持仓库处于活跃
-        open('dist/random','w+').write(''.join(random.sample('abcdefghigklmnopqrstuvwxyz1234567890',20)))
+        open('dist/dist-version','w+').write(''.join(random.sample('abcdefghigklmnopqrstuvwxyz1234567890',20)))
         logging.info(f'')
         logging.info(f'')
         logging.info(f'')
