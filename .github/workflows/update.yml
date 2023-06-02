@@ -49,6 +49,7 @@ jobs:
       - run: |
           chromedriver --version
           which chromedriver
+          ln -fs /usr/local/bin/chromedriver /opt/chromedriver/chromedriver
 
       # 最佳实践 yt-dlp+ffmpeg
       - name: Setup yt-dlp
