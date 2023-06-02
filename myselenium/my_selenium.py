@@ -26,7 +26,7 @@ google_chrome_ua:list = UserAgent().data_browsers['chrome']
 firefox_chrome_ua = UserAgent().data_browsers['firefox']
 
 
-def get_driver(type:str='google'):
+def get_driver(type:str='google',headless:bool = True):
   """获取驱动 默认获取谷歌驱动
 
   Args:
@@ -37,8 +37,8 @@ def get_driver(type:str='google'):
     # 谷歌驱动设置
     options = webdriver.ChromeOptions()
     options.add_argument('--no-sandbox')
-    # 不用打开界面 无头浏览器
-    if not local:
+    # 默认无头模式
+    if headless:
       options.add_argument('--headless')
     options.add_argument("--window-size=1920x1080")
     options.add_argument('--disable-dev-shm-usage')
@@ -80,8 +80,8 @@ def get_driver(type:str='google'):
     ua = random.choice(firefox_chrome_ua)
     options = webdriver.FirefoxOptions()
     options.add_argument('--no-sandbox')
-    # 不用打开界面 无头浏览器
-    if not local:
+    # 默认无头浏览器
+    if headless:
       options.add_argument('--headless')
     options.add_argument('--disable-gpu')
     options.add_argument("--window-size=1920x1080")

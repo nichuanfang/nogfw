@@ -2,19 +2,18 @@
 from my_global import logging
 from my_global import local
 from my_global import reader
-from my_global import qr_recognize
 import copy
 import datetime
 import subprocess
 from time import sleep
-import pyperclip
+from selenium.webdriver.common.keys import Keys
 from datetime import datetime
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from myselenium import my_selenium
 from subconverter.converter import get_tag
 from subconverter.converter import tag
-from subconverter.converter import sort_func
+import platform
 
 def changfeng_func(channel_id:str):
     """长风的频道处理逻辑
@@ -47,13 +46,13 @@ def changfeng_func(channel_id:str):
         except Exception as e:
             logging.error(f'==============================================长风密码获取失败: {e}!!')    
             raise Exception(f'密码获取失败!:{e}')
-        if free_node_secret and len(free_node_secret) == 6:
+        if free_node_secret and len(free_node_secret) > 0:
             logging.info(f'==============================================长风密码获取成功!')    
         else:
             logging.error(f'==============================================长风密码获取失败!!')    
             raise Exception('密码获取失败!')
         # 2. 访问目标网站
-        driver = my_selenium.get_driver()
+        driver = my_selenium.get_driver(headless=True)
         driver.get('https://v2rayse.com/free-node')
         sleep(5)
         # 3. 获取密码输入框 输入密码
@@ -81,19 +80,34 @@ def changfeng_func(channel_id:str):
         except Exception as e:
             logging.error(f'点击全选失败: {e}')
             raise e
-        # 6. 点击复制
+        # 5. 点击复制
         try:
-            copy_ele = driver.find_element(By.XPATH,r'//*[@id="app"]/div[1]/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[2]/div/div/div/span[3]/span')
-            copy_ele.click()
+            cp_all_ele = driver.find_element(By.XPATH,r'//*[@id="app"]/div[1]/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[2]/div/div/div/span[3]/span')
+            cp_all_ele.click()
             sleep(2)
         except Exception as e:
-            logging.error(f'点击复制失败: {e}')
+            logging.error(f'点击复制: {e}')
             raise e
-        sub = pyperclip.paste()
-        if not sub:
-            logging.error('粘贴板内容为空!订阅获取失败')
-            raise Exception('粘贴板内容为空!订阅获取失败')
-        raw_list = sub.split('\r\n')
+        
+        # 获取粘贴板内容 
+        # `````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
+        ele = driver.find_element(By.XPATH, f'//*[@id="wl-edit"]')
+        ac = ActionChains(driver)  # 模拟键盘操作
+        ac.move_to_element(ele).click().perform()
+        if platform.system().lower() == 'windows': # type: ignore
+            ac.key_down(Keys.CONTROL).send_keys('v').perform()
+        elif platform.system().lower() == 'linux': # type: ignore
+            ac.key_down(Keys.CONTROL).key_down(Keys.SHIFT).send_keys('v').perform()
+        elif platform.system().lower() == 'macOS':  # type: ignore
+            ac.key_down(Keys.COMMAND).send_keys('v').perform()
+        clipbord_content = driver.find_element(By.XPATH, f'//*[@id="wl-edit"]').get_attribute("value")  # 获取输入框内容
+        if clipbord_content == '':
+            logging.error(f'===================================粘贴板内容获取失败!')
+        else:
+            logging.info(f'===================================已获取粘贴板内容:{clipbord_content}!')
+        
+        # # ``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
+
 
         # 控制分页
         try:
@@ -111,6 +125,30 @@ def changfeng_func(channel_id:str):
         except Exception as e:  
             logging.error('控制分页失败')
             raise Exception('控制分页失败')
+        
+        # 6. 获取节点
+        try:
+            total = int(driver.find_element(By.XPATH,f'//*[@id="app"]/div[1]/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[3]/div[2]/div[2]').text.split('共')[1])
+            for index in range(total):
+                # 节点速度 
+                speed = driver.find_element(By.XPATH,rf'//*[@id="app"]/div[1]/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[3]/div[1]/table/tbody/tr[{index+1}]/td[4]').text
+                # 获取二维码元素
+                qr_ele = driver.find_element(By.XPATH,rf'//*[@id="app"]/div[1]/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[3]/div[1]/table/tbody/tr[{index+1}]/td[8]/span[1]/button')
+                # 模拟点击
+                ActionChains(driver).move_to_element(qr_ele).click(qr_ele)
+                # qr_ele.click()
+                sleep(10000)
+                # 截图
+                pass
+                # 图片二维码识别
+                # 提取订阅信息
+
+
+        except Exception as e:
+            logging.error(f'获取节点: {e}')
+            raise e
+
+
         # 获取节点速度
         try:
             for index,proxy in enumerate(raw_list): # type: ignore

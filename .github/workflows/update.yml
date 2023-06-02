@@ -51,10 +51,6 @@ jobs:
           which chromedriver
           mkdir -p /opt/chromedriver/
           sudo ln -fs /usr/local/bin/chromedriver /opt/chromedriver/chromedriver
-          sudo apt-get install xsel -y
-          sudo apt-get install xclip -y
-          pip install itkdb-gtk
-          pip install PyQt6
 
       # 最佳实践 yt-dlp+ffmpeg
       - name: Setup yt-dlp
