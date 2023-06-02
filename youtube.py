@@ -27,14 +27,18 @@ def batch_craw(number:int,channels:dict[str,dict],sleeptime:int):
         func = channel_handler['func']
         # 执行对应的操作
         if youtuber == 'bulianglin':
-            if func(channel_id,number,sleeptime) == None or len(func(channel_id,number,sleeptime)) == 0:
+            res = func(channel_id,number,sleeptime)
+            logging.info(f'=========================================bulianglin频道的结果: {res}')
+            if res or len(res) == 0:
                 continue
-            raw_list = raw_list + func(channel_id,number,sleeptime)
+            raw_list = raw_list + res
         elif youtuber == 'changfeng':
+            res = func(channel_id)
+            logging.info(f'=========================================changeng频道的结果: {res}')
             # changfeng需要OCR模块
-            if func(channel_id) == None or len(func(channel_id)) == 0:
+            if res == None or len(res) == 0:
                 continue
-            raw_list = raw_list + func(channel_id)
+            raw_list = raw_list + res
     return raw_list
 
 if __name__ == '__main__':

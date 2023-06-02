@@ -147,6 +147,7 @@ def changfeng_func(channel_id:str):
         # 节点排序
 
         logging.info(f'=========================已抓取数据源: {len(result)}个')
+        return result
     except Exception as err:
         logging.error(f'==============================={err}==============================================')
 
