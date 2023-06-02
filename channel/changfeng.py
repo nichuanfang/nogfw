@@ -103,52 +103,30 @@ def changfeng_func(channel_id:str):
         clipbord_content = driver.find_element(By.XPATH, f'//*[@id="wl-edit"]').get_attribute("value")  # 获取输入框内容
         if clipbord_content == '':
             logging.error(f'===================================粘贴板内容获取失败!')
+            raise Exception(f'===================================粘贴板内容获取失败!')
         else:
             logging.info(f'===================================已获取粘贴板内容:{clipbord_content}!')
-        
+        raw_list = clipbord_content.split('\n')
         # # ``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
-
 
         # 控制分页
         try:
-            page_ele = driver.find_element(By.XPATH,r'//*[@id="app"]/div[1]/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[3]/div[2]/div[1]/div/div/div/div[1]/div[2]/div/i')
+            driver.execute_script('window.scrollBy(0,-5000)')
+            page_ele = driver.find_element(By.XPATH,r'/html/body/div/div/div/div/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[3]/div[2]/div[1]/div/div/div/div[1]/div[2]/div/i')
             page_ele.click()
             sleep(2)
         except Exception as e:
-            logging.error('控制分页失败')
-            raise Exception('控制分页失败')
+            logging.error(f'控制分页失败:{e}')
+            raise Exception(f'控制分页失败: {e}')
         # 全选
         try:
             all_page_ele = driver.find_element(By.XPATH,r'/html/body/div/div/div/div[2]/div/div[4]/div/div')
             all_page_ele.click()
             sleep(2)
         except Exception as e:  
-            logging.error('控制分页失败')
-            raise Exception('控制分页失败')
+            logging.error('控制下拉框全部失败')
+            raise Exception('控制下拉框全部失败')
         
-        # 6. 获取节点
-        try:
-            total = int(driver.find_element(By.XPATH,f'//*[@id="app"]/div[1]/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[3]/div[2]/div[2]').text.split('共')[1])
-            for index in range(total):
-                # 节点速度 
-                speed = driver.find_element(By.XPATH,rf'//*[@id="app"]/div[1]/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[3]/div[1]/table/tbody/tr[{index+1}]/td[4]').text
-                # 获取二维码元素
-                qr_ele = driver.find_element(By.XPATH,rf'//*[@id="app"]/div[1]/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[3]/div[1]/table/tbody/tr[{index+1}]/td[8]/span[1]/button')
-                # 模拟点击
-                ActionChains(driver).move_to_element(qr_ele).click(qr_ele)
-                # qr_ele.click()
-                sleep(10000)
-                # 截图
-                pass
-                # 图片二维码识别
-                # 提取订阅信息
-
-
-        except Exception as e:
-            logging.error(f'获取节点: {e}')
-            raise e
-
-
         # 获取节点速度
         try:
             for index,proxy in enumerate(raw_list): # type: ignore

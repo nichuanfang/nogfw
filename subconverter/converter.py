@@ -206,7 +206,7 @@ def get_tag(node:str):
         logging.info(f'开始处理vmess节点:{node}')
         # 先对vmess协议后面base64解码 转为json 其中的ps字段即为tag
         b64encoded_node = node.split('//')[1]
-        b64decoded_node = base64.b64decode(b64encoded_node).decode('utf-8')
+        b64decoded_node = base64.b64decode(b64encoded_node).decode('utf-8') # type: ignore
         json_node = json.loads(b64decoded_node)
         return json_node['ps']
     else:
