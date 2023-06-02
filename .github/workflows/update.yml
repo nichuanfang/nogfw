@@ -31,6 +31,25 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-ocr
 
+      - name: install Chrome
+        uses: browser-actions/setup-chrome@v1
+        # with:
+        #   chrome-version: beta
+
+      - run: |
+          chrome --version
+          which chrome
+
+      - name: install chromedriver
+        uses: nanasess/setup-chromedriver@v2
+        # with:
+        # Optional: do not specify to match Chrome's version
+        # chromedriver-version: '88.0.4324.96'
+
+      - run: |
+          chromedriver --version
+          which chromedriver
+
       # 最佳实践 yt-dlp+ffmpeg
       - name: Setup yt-dlp
         uses: AnimMouse/setup-yt-dlp@v1
@@ -55,9 +74,12 @@ jobs:
         continue-on-error: true
         env:
           CRAW_NUMBER: ${{ vars.CRAW_NUMBER }}
+          CRAW_SLEEP_SECONDS: ${{ vars.CRAW_SLEEP_SECONDS }}
           NEED_SAVE: ${{ vars.NEED_SAVE }}
+          BULIANGLIN_CHANNEL_ID: ${{ vars.BULIANGLIN_CHANNEL_ID }}
+          CHANGFENG_CHANNEL_ID: ${{ vars.CHANGFENG_CHANNEL_ID }}
         run: |
-          python youtube.py $CRAW_NUMBER $NEED_SAVE
+          python youtube.py $CRAW_NUMBER $CRAW_SLEEP_SECONDS $NEED_SAVE $BULIANGLIN_CHANNEL_ID $CHANGFENG_CHANNEL_ID
 
       - name: execute subconverter
         run: |
@@ -66,8 +88,29 @@ jobs:
           python ./subconverter/handle_qx.py
           rm -f ./subconverter/generate.ini
 
+      - name: logging dist
+        env:
+          NEED_SAVE: ${{ vars.NEED_SAVE }}
+        # 不需要更新则打印日志
+        if: env.NEED_SAVE != 'true'
+        run: |
+          echo '=====================圈x配置: ======================================'
+          cat ./dist/quanx-sub.txt
+          echo '===================================================================='
+          echo '===================================================================='
+          echo '=====================clash配置: ====================================='
+          cat ./dist/clash-sub.yml
+          echo '===================================================================='
+          echo '===================================================================='
+          echo '=====================v2ray配置: ====================================='
+          cat ./dist/v2ray-sub.txt
+
       - name: Deploy quanx-sub
         uses: exuanbo/actions-deploy-gist@v1.1.4
+        env:
+          NEED_SAVE: ${{ vars.NEED_SAVE }}
+        # 需要更新则部署订阅
+        if: env.NEED_SAVE == 'true'
         with:
           token: ${{ secrets.GH_TOKEN }}
           gist_id: ${{ secrets.QX_SUBSCRIBE_ID }}
@@ -76,6 +119,10 @@ jobs:
 
       - name: Deploy clash-sub
         uses: exuanbo/actions-deploy-gist@v1.1.4
+        env:
+          NEED_SAVE: ${{ vars.NEED_SAVE }}
+        # 需要更新则部署订阅
+        if: env.NEED_SAVE == 'true'
         with:
           token: ${{ secrets.GH_TOKEN }}
           gist_id: ${{ secrets.CLASH_SUBSCRIBE_ID }}
@@ -83,6 +130,10 @@ jobs:
           file_type: text
 
       - name: Deploy v2ray-sub
+        env:
+          NEED_SAVE: ${{ vars.NEED_SAVE }}
+        # 需要更新则部署订阅
+        if: env.NEED_SAVE == 'true'
         uses: exuanbo/actions-deploy-gist@v1.1.4
         with:
           token: ${{ secrets.GH_TOKEN }}
@@ -90,31 +141,15 @@ jobs:
           file_path: dist/v2ray-sub.txt
           file_type: text
 
-      - name: Deploy dist to server
-        uses: cross-the-world/ssh-scp-ssh-pipelines@latest
-        continue-on-error: true
+      - name: keep alive
+        uses: Smart-Transportation/push@v1.3
+        env:
+          NEED_SAVE: ${{ vars.NEED_SAVE }}
+        # 需要更新则触发保活
+        if: env.NEED_SAVE == 'true'
         with:
-          host: ${{ secrets.HOST }}
-          user: ${{ secrets.USER }}
-          pass: ${{ secrets.PASS }}
-          port: ${{ secrets.PORT }}
-          connect_timeout: 10s
-          scp: |
-            './dist/quanx-sub.txt' => /root/code/docker/dockerfile_work/xray/config/qx
-            './dist/clash-sub.yml' => /root/code/docker/dockerfile_work/xray/config/clash
-          last_ssh: |
-            systemctl restart nginx
-
-      #  avoid public subscribe url . (if need public, please open this config!)
-      #  when from public to private , need two steps to hold your privacy:
-      #   step1: Note the following configuration
-      #   step2: Delete ./dist/{product_file} and git commit
-
-      # ----------------------❤ public config--------------------------
-
-      # - name: Commit & Push changes
-      #   uses: actions-js/push@master
-      #   with:
-      #     github_token: ${{ secrets.GH_TOKEN }}
-
-      # ----------------------❤ public config--------------------------
+          github_token: ${{ secrets.GH_TOKEN }}
+          branch: 'main'
+          author_email: 'f18326186224@gmail.com'
+          author_name: 'nichuanfang'
+          message: '🐳 chore: keep action alive'

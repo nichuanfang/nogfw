@@ -3,7 +3,11 @@
 geckodriver.log
 page_source
 myselenium/__pycache__/*.pyc
-dist/last.jpg
+dist/bulianglin.jpg
+dist/changfeng.jpg
+/dist/v2ray-sub.txt
+/dist/clash-sub.yml
+/dist/quanx-sub.txt
 ocr_module/*.zip
 ocr_models/craft_mlt_25k.pth
 ocr_models/zh_sim_g2.pth

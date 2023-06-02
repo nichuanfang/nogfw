@@ -1,460 +1,120 @@
 #!/usr/local/bin/python
 # coding=utf-8
-from time import sleep
-import cv2
-import requests
-import logging
-import io
-from urllib import request, parse
+from my_global import local
+from my_global import logging
+from channel import bulianglin
+from channel import changfeng
 import sys
-import subprocess
-from datetime import datetime
-import os
-import base64
-import json
-import yaml
-import copy
-import re
-import qrcode
-from PIL import Image
-from qrcode import constants
-from collections import OrderedDict
-# 图像识别
-import easyocr
+import random
 from subconverter import converter
 
-# windows下需要先下载模型文件  https://blog.csdn.net/Loliykon/article/details/114334699
-reader = easyocr.Reader(['ch_sim','en'],model_storage_directory='ocr_models')
+def batch_craw(number:int,channels:dict[str,dict],sleeptime:int):
+    """批量爬取频道的订阅
 
-LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
-DATE_FORMAT = "%m/%d/%Y %H:%M:%S %p"
-logging.basicConfig(level=logging.INFO, format=LOG_FORMAT, datefmt=DATE_FORMAT)
+    Args:
+        number (int): 爬取次数
+        channels (dict): 爬取的频道列表
+        sleeptime (int): 每次爬取后的休眠时间 单位:秒(s)
 
-def qr_recognize(file_path:str):
-    qrcode_filename = file_path
-    qrcode_image = cv2.imread(qrcode_filename)
-    qrCodeDetector = cv2.QRCodeDetector()
-    data, bbox, straight_qrcode = qrCodeDetector.detectAndDecode(qrcode_image)
-    return data
-
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
-logging.basicConfig(level=logging.INFO)
-def craw(number:int,video_id:str,sleeptime:int):
+    Returns:
+        _type_: _description_
+    """    
     raw_list = []
-    logging.info(f'===========================================================================开始获取节点信息...')
-    # 默认165
-    for craw_index in range(number):
-        logging.info(f'=====================================开始第{craw_index+1}/{number}轮抓取======================================================')
-        # 隔一段时间获取二维码
-        subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {video_id} | head -n 1)" -vframes 1 dist/last.jpg',shell=True)
-        sleep(1)
-        try:
-            logging.info(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
-            # 处理生成的二维码 生成节点信息
-            data:str = qr_recognize(f'dist/last.jpg')
-            raw_list.append(data)
-            logging.info(f'==================================================================raw_data: {data}')
-            ocr_result = reader.readtext('dist/last.jpg')
-            # additional handling to ocr result... 
-            logging.info(f'===============================================================================OCR: {ocr_result}')
-
-            raw_list = copy.deepcopy(sorted(set(raw_list),key=raw_list.index))
-            logging.info(f'=========================已抓取数据源: {len(raw_list)}个')
-        except Exception as err:
-            logging.error(f'==============================={err}==============================================')
-        if craw_index != number-1:
-            sleep(sleeptime)
+    for youtuber in channels:
+        channel_handler = channels[youtuber]
+        channel_id = channel_handler['channel_id']
+        func = channel_handler['func']
+        # 执行对应的操作
+        if youtuber == 'bulianglin':
+            if func(channel_id,number,sleeptime) == None or len(func(channel_id,number,sleeptime)) == 0:
+                continue
+            raw_list = raw_list + func(channel_id,number,sleeptime)
+        elif youtuber == 'changfeng':
+            # changfeng需要OCR模块
+            if func(channel_id) == None or len(func(channel_id)) == 0:
+                continue
+            raw_list = raw_list + func(channel_id)
     return raw_list
 
-def resize(file):
-    im = Image.open(file)
-    reim=im.resize((640, 640))#宽*高
-
-    reim.save(file,dpi=(300.0,300.0)) ##200.0,200.0分别为想要设定的dpi值
-
-def get_group_proxy_index(proxies:list):
-    for index,proxy in enumerate(proxies):
-        if proxy not in ['🔰 节点选择','♻️ 自动选择','🎯 全球直连']:
-            return index
-    return -1
-
-def handle_group_proxy(final_dict,count,index):
-    final_dict['proxy-groups'][index]['proxies'][get_group_proxy_index(final_dict['proxy-groups'][index]['proxies'])] = f'[{count}] '+final_dict['proxy-groups'][index] \
-                    ['proxies'][get_group_proxy_index(final_dict['proxy-groups'][index]['proxies'])].replace('(Youtube:不良林)','')
-    
-def filter_proxies(tag:str,proxies:list[str]):
-    res = []
-    for proxy in proxies:
-        if tag == 'google':
-            # 使用延迟低的节点 
-            if bool(re.search(r'香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|Korea|KR|kr',proxy)):
-                res.append(proxy)
-        elif tag == 'github':
-            # 使用延迟低的节点 
-            if bool(re.search(r'香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|Korea|KR|kr',proxy)):
-                res.append(proxy)
-        elif tag == 'openai':
-            # 使用美国节点 
-            if bool(re.search(r'美国|United States|US|us',proxy)):
-                res.append(proxy)
-    # 如果没有就缺省🎯 全球直连
-    if len(res) == 0:
-        res.append('🎯 全球直连')
-    return res
-
-def direct_rulesets():
-    unbreak_ruleset = requests.get('https://cdn.jsdelivr.net/gh/sve1r/Rules-For-Quantumult-X@develop/Rules/Services/Unbreak.list')
-    china_ruleset = requests.get('https://raw.githubusercontent.com/sve1r/Rules-For-Quantumult-X/develop/Rules/Region/China.list')
-    china_ip_ruleset = requests.get('https://raw.githubusercontent.com/sve1r/Rules-For-Quantumult-X/develop/Rules/Region/ChinaIP.list')
-
-    unbreak_rules = unbreak_ruleset.text.split('\n')
-    china_rules = china_ruleset.text.split('\n')
-    china_ip_rules = china_ip_ruleset.text.split('\n')
-    all_rules = unbreak_rules+china_rules+china_ip_rules
-    final_rulesets = []
-    for all_rule in all_rules:
-        new_rule = all_rule.strip()
-        if new_rule == '' or new_rule.startswith('#'):
-            continue
-        try:
-            rule_list = new_rule.split(',')
-        except:
-            continue
-        if len(rule_list) < 3:
-            continue
-        first = rule_list[0]
-        second = rule_list[1]
-        third = rule_list[2]
-        if first == 'host' or first == 'HOST':
-            if third == 'DIRECT' or third == 'direct':
-                final_rulesets.append(','.join(['DOMAIN',second, '🎯 全球直连']))
-
-        elif first == 'host-suffix' or first == 'HOST-SUFFIX':
-            if third == 'DIRECT' or third == 'direct':
-                final_rulesets.append(','.join(['DOMAIN-SUFFIX',second, '🎯 全球直连']))
-
-        elif first == 'host-keyword' or first == 'HOST-KEYWORD':
-            final_rulesets.append(','.join(['DOMAIN-KEYWORD',second, '🎯 全球直连']))
-
-        elif first == 'ip-cidr' or first == 'IP-CIDR':
-            final_rulesets.append(','.join(['IP-CIDR',second,'🎯 全球直连']))
-
-    return final_rulesets
-
-def google_github_openai_ruleset():
-    google_ruleset = requests.get('https://raw.githubusercontent.com/sve1r/Rules-For-Quantumult-X/develop/Rules/Services/Google.list')
-    github_ruleset = requests.get('https://raw.githubusercontent.com/sve1r/Rules-For-Quantumult-X/develop/Rules/Services/Github.list')
-    openai_ruleset = requests.get('https://raw.githubusercontent.com/sve1r/Rules-For-Quantumult-X/develop/Rules/Services/OpenAI.list')
-
-    google_rules = google_ruleset.text.split('\n')
-    github_rules = github_ruleset.text.split('\n')
-    openai_rules = openai_ruleset.text.split('\n')
-    all_rules = google_rules+github_rules+openai_rules
-
-    final_rulesets = []
-    for all_rule in all_rules:
-        new_rule = all_rule.strip()
-        if new_rule == '' or new_rule.startswith('#'):
-            continue
-        try:
-            rule_list = new_rule.split(',')
-        except:
-            continue
-        if len(rule_list) < 3:
-            continue
-        first = rule_list[0]
-        second = rule_list[1]
-        third = rule_list[2]
-        if first == 'host' or first == 'HOST':
-            if third == 'Google Domestic':
-                final_rulesets.append(','.join(['DOMAIN',second,'🎯 全球直连']))
-            else:
-                final_rulesets.append(','.join(['DOMAIN',second,third]))
-        elif first == 'host-suffix' or first == 'HOST-SUFFIX':
-            if third == 'Google Domestic':
-                final_rulesets.append(','.join(['DOMAIN-SUFFIX',second, '🎯 全球直连']))
-            else:
-                final_rulesets.append(','.join(['DOMAIN-SUFFIX',second, third]))
-        elif first == 'host-keyword' or first == 'HOST-KEYWORD':
-            final_rulesets.append(','.join(['DOMAIN-KEYWORD',second, third]))
-        elif first == 'ip-cidr' or first == 'IP-CIDR':
-            final_rulesets.append(','.join(['IP-CIDR',second, third]))
-    return final_rulesets
-
-def modify_dict(source_dict, new_key, old_key, value):
-    """
-    处理字典source_dict 在old_key之前插入new_key:value键值对 返回一个新的字典
-    """
-    new_dict = OrderedDict()
-    for k, v in source_dict.items():
-        if k == old_key:
-            new_dict[new_key] = value
-        new_dict[k] = v
-    return dict(new_dict)
-
-def generate_clash_config(raw_list:list,final_dict:dict): # type: ignore
-    count = 1
-    for index,raw in enumerate(raw_list):
-        logging.info(f'handle raw:{raw}======================================')
-        # sub_res = request.urlopen(f'https://sub.xeton.dev/sub?target=clash&url={parse.quote(raw)}&insert=false')
-        sub_res = requests.get(f'https://sub.xeton.dev/sub?target=clash&url={parse.quote(raw)}&insert=false')
-        # logging.info(f'订阅转换后的响应:状态码:{sub_res.status_code}  ok:{sub_res.ok}=====================================================')
-        # logging.info(f'clash dict:{sub_res.text}======================================')
-        if not sub_res.ok:
-            continue
-        try:
-            data_dict:dict = yaml.load(sub_res.text, Loader=yaml.FullLoader)
-            #logging.info(f'clash dict:{data_dict}======================================')
-            if not final_dict:
-                final_dict:dict = copy.deepcopy(data_dict)
-                final_dict['socks-port'] = 10808 # type: ignore
-                final_dict['port'] = 10809 # type: ignore
-            #   #自动选择 多久检测一次速度 自动切换 单位s(秒)
-                final_dict['proxy-groups'][1]['interval'] = 600 # type: ignore
-                # 剔除低延迟节点
-                if not bool(re.search(r'香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|Korea|KR|kr',final_dict['proxy-groups'][1]['proxies'][0])):
-                    final_dict['proxy-groups'][1]['proxies'] = []
-                else:
-                    # 自动选择
-                    handle_group_proxy(final_dict,count,1)
-                proxy:dict= copy.deepcopy(data_dict['proxies'][0])
-                final_dict['proxies'][0]['name'] = f'[{count}] ' + proxy['name'].replace('(Youtube:不良林)','')
-                # 节点选择
-                handle_group_proxy(final_dict,count,0)
-                # 国外媒体
-                handle_group_proxy(final_dict,count,2)
-                # 微软服务
-                handle_group_proxy(final_dict,count,4)
-                # 电报信息
-                handle_group_proxy(final_dict,count,5)
-                # 苹果服务
-                handle_group_proxy(final_dict,count,6)
-                # 漏网之鱼
-                handle_group_proxy(final_dict,count,9)
-                count+=1
-            else:
-                # 添加节点
-                proxy:dict= copy.deepcopy(data_dict['proxies'][0])
-
-                proxy['name'] = f'[{count}] ' + proxy['name'].replace('(Youtube:不良林)','')
-
-                final_dict['proxies'].append(proxy)
-
-                # 分组配置
-
-                # 节点选择
-                final_dict['proxy-groups'][0]['proxies'].append(proxy['name']) # type: ignore
-                # 自动选择
-                # 正则匹配 排除延迟低的节点
-                if bool(re.search(r'香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|Korea|KR|kr',proxy['name'])):
-                    final_dict['proxy-groups'][1]['proxies'].append(proxy['name']) # type: ignore
-                # 国外媒体
-                final_dict['proxy-groups'][2]['proxies'].append(proxy['name']) # type: ignore
-                # 微软服务
-                final_dict['proxy-groups'][4]['proxies'].append(proxy['name']) # type: ignore
-                # 电报信息
-                final_dict['proxy-groups'][5]['proxies'].append(proxy['name']) # type: ignore
-                # 苹果服务
-                final_dict['proxy-groups'][6]['proxies'].append(proxy['name']) # type: ignore
-                # 漏网之鱼
-                final_dict['proxy-groups'][9]['proxies'].append(proxy['name']) # type: ignore
-                count+=1
-        except Exception as e:
-            logging.error(f'=========================================raw:{raw}转换为clash配置文件失败!: {e}')
-    if len(final_dict['proxy-groups'][1]['proxies'])==0:
-        # 如果自动选择没用可用的节点 默认🎯 全球直连 防止clash客户端报错
-        final_dict['proxy-groups'][1]['proxies'].append('🎯 全球直连')
-    proxies = []
-
-    def sort_func(proxy):
-        # 获取测速结果
-        match = re.search(r'\d+.\d+',proxy.split('-')[-1])
-        if match is not None:
-            if proxy.split('-')[-1].lower().__contains__('mb'):
-                return float(match.group())*1000
-            return float(match.group())
-        return 0.0
-    
-    for p in final_dict['proxies']:
-        # 按照测速结果排序(降序) 
-        proxies.append(p['name'])
-    proxies.sort(key=sort_func,reverse=True) # type: ignore
-    proxy_groups:list = final_dict['proxy-groups']
-    # clash策略组详细配置请查看 https://stash.wiki/proxy-protocols/proxy-groups
-    # 添加自定义策略 高可用 Fallback
-    proxy_groups.insert(2,{
-        'name': '🤔 高可用',
-        'type': 'fallback',
-        'url': 'http://www.gstatic.com/generate_204',
-        'interval': 43200,
-        'proxies': proxies
-    })
-    final_dict['proxy-groups'][0]['proxies'].insert(1,'🤔 高可用')
-    # 添加自定义策略  Google
-    proxy_groups.insert(3,{
-        'name': 'Google',
-        'type': 'fallback',
-        'url': 'http://www.gstatic.com/generate_204',
-        'interval': 43200,
-        'proxies': filter_proxies('google',proxies)
-    })
-    # 添加自定义策略  Github
-    proxy_groups.insert(4,{
-        'name': 'Github',
-        'type': 'fallback',
-        'url': 'http://www.gstatic.com/generate_204',
-        'interval': 43200,
-        'proxies': filter_proxies('github',proxies)
-    })
-
-    # 添加自定义策略  OpenAI
-    proxy_groups.insert(5,{
-        'name': 'OpenAI',
-        'type': 'fallback',
-        'url': 'http://www.gstatic.com/generate_204',
-        'interval': 43200,
-        'proxies': filter_proxies('openai',proxies)
-    })
-
-    rules:list[str] = final_dict['rules']
-    # 添加自定义规则 在第一个`国外媒体`之前 添加自定义规则
-    logging.info(f'======================添加自定义规则: Google Github OpenAI==========================================')
-    flag = 0
-    for index,rule in enumerate(rules):
-        if rule.__contains__('国外媒体'):
-            # 找到插入位置
-            flag = index
-            break
-    rulesets = google_github_openai_ruleset()
-    for rule_index,ruleset in enumerate(rulesets):
-        rules.insert(flag+rule_index,ruleset)
-        if rule_index == len(rulesets)-1:
-            # ❤在国外媒体之前插入特殊规则
-            # ============================SPECIAL RULES BEFORE FOREIGN MEDIA===================================
-            before_foreign_special_rules = [
-                'DOMAIN-SUFFIX,docker.com,🌍 国外媒体'
-            ]
-            # ============================SPECIAL RULES BEFORE FOREIGN MEDIA===================================
-            for before_foreign_index,before_foreign_special_rule in enumerate(before_foreign_special_rules):
-                rules.insert(flag+rule_index+1+before_foreign_index,before_foreign_special_rule)
-
-    rules.remove('MATCH,,🐟 漏网之鱼,dns-failed')
-    logging.info(f'======================添加自定义规则: 🎯 全球直连==========================================')
-
-    # 针对性直连
-    rules_ = []
-    for index_,value in enumerate(rules):
-        if not value.__contains__('全球直连'):
-            rules_.append(rules[index_])
-    
-    # ❤在全球直连之前 补充特殊规则
-    # ================================SPECIAL RULES BEFORE DIRECT===========================================
-    before_direct_special_rules = [
-        'DOMAIN-SUFFIX,segmentfault.com,🎯 全球直连'
-    ]
-    # ================================SPECIAL RULES BEFORE DIRECT============================================
-
-    for before_direct_special_rule in before_direct_special_rules:
-        rules_.append(before_direct_special_rule)
-
-    direct_rules = direct_rulesets()
-    for direct_rule in direct_rules:
-        rules_.append(direct_rule)
-
-
-    # 将- MATCH,,🐟 漏网之鱼,dns-failed 移到最后面
-    rules_.append('MATCH,,🐟 漏网之鱼,dns-failed')
-
-    final_dict['rules'] = rules_
-
-    # 添加自定义dns
-    dns = {
-        'enable': True,
-        'listen': '0.0.0.0:53',
-        'default-nameserver': [
-            '223.5.5.5',
-            '233.6.6.6'
-        ],
-        'nameserver': [
-            'https://dns.alidns.com/dns-query'
-        ],
-        'fallback': [
-            '8.8.4.4',
-            'https://1.1.1.1/dns-query'
-        ],
-        'fallback-filter': {
-            'geoip': True,
-            'geoip-code': 'CN',
-            'ipcidr': [
-                '240.0.0.0/4'
-            ]
-        }
-    }
-    # 实验性功能 忽略 DNS 解析失败，默认值为 true
-    experimental = {
-        'ignore-resolve-fail': True
-    }
-
-    # 指定位置插入dns配置
-    final_dict = modify_dict(final_dict,'dns','proxies',dns)
-    # 插入实验性功能
-    final_dict = modify_dict(final_dict,'experimental','dns',experimental)
-    return final_dict
-
-
 if __name__ == '__main__':
-    # 环境
-    CARW_NUMBER = int(sys.argv[1])
-    if sys.argv[2] in ['true','TRUE','1','True']:
+    # 切换至本地开发模式 需手动将my_global的local改为True!
+    # 切换至线上模式 需手动将my_global的local改为False!
+    if local:
+        CARW_NUMBER = 1
+        CRAW_SLEEP_SECONDS = 10
         NEED_SAVE = True
-    elif sys.argv[2] in ['false','FALSE','0','False']:
-        NEED_SAVE = False
+        BULIANGLIN_CHANEL_ID = ''
+        CHANGFENG_CHANNEL_ID = ''
     else:
-        NEED_SAVE = False
-    NEED_SAVE = sys.argv[2]
-    # sys.argv[1]): CRAW_NUMBER 抓取次数
-    raw_list = craw(CARW_NUMBER,'qmRkvKo-KbQ',10)
-    
-    # 生成qx专用订阅
-    logging.info(f'=========================================================================生成qx配置文件...')
-    generate_ini = converter.generate_template_ini
-    if NEED_SAVE:
-        generate_ini = converter.add_quanx(raw_list,generate_ini)
-    logging.info(f'=========================================================================qx配置文件已生成!')
-    # 生成clash配置文件
-    logging.info(f'=========================================================================生成clash配置文件...')
-    if NEED_SAVE:
-        generate_ini = converter.add_clash(raw_list,generate_ini)
-    logging.info(f'=========================================================================clash配置文件已生成!')
+        # 环境变量检测
+        # 爬取次数
+        assert sys.argv[1] != None and sys.argv[1] != ''
+        # 爬取间隔(秒)
+        assert sys.argv[2] != None and sys.argv[2] != ''
+        # 是否需要创建/更新配置
+        assert sys.argv[3] != None and sys.argv[3] != ''
+        # 不良林yt频道id
+        assert sys.argv[4] != None and sys.argv[4] != ''
+        # 长风yt频道id
+        assert sys.argv[5] != None and sys.argv[5] != ''
+        CARW_NUMBER = int(sys.argv[1])
+        CRAW_SLEEP_SECONDS = int(sys.argv[2])
+        if sys.argv[3] in ['true','TRUE','1','True']:
+            NEED_SAVE = True
+        elif sys.argv[3] in ['false','FALSE','0','False']:
+            NEED_SAVE = False
+        else:
+            NEED_SAVE = False
+        # 不良林yt频道id
+        BULIANGLIN_CHANEL_ID = sys.argv[4]
+        # 长风yt频道id
+        CHANGFENG_CHANNEL_ID = sys.argv[5]
+    try:
+        # 不良林
+        # raw_list = craw(CARW_NUMBER,'qmRkvKo-KbQ',10)
+        raw_list = batch_craw(CARW_NUMBER, # type: ignore
+                              {
+                                #   不良林
+                                #   'bulianglin': {
+                                #       'channel_id': f'{BULIANGLIN_CHANEL_ID}',
+                                #       'func': bulianglin.bulianglin_func
+                                #   },
+                                #   长风
+                                  'changfeng': {
+                                     'channel_id':  f'{CHANGFENG_CHANNEL_ID}',
+                                     'func': changfeng.changfeng_func
+                                  }  
+                              }
+                            ,CRAW_SLEEP_SECONDS)
+    except Exception as e:
+        raw_list = []
+        logging.info(f'爬取yt频道出错:{e}')
 
-    # 生成v2ray订阅
-    logging.info(f'=========================================================================生成v2ray配置文件...')
-    if NEED_SAVE:
-        generate_ini = converter.add_v2ray(raw_list,generate_ini)
-    logging.info(f'=========================================================================v2ray配置文件已生成!')
+    # 有新的订阅才更新
+    if not len(raw_list)==0:
+        # 生成qx专用订阅
+        generate_ini = converter.generate_template_ini
+        if NEED_SAVE:
+            logging.info(f'=========================================================================生成qx配置文件...')
+            generate_ini = converter.add_quanx(raw_list,generate_ini)
+            logging.info(f'=========================================================================qx配置文件已生成!')
+        # 生成clash配置文件
+        if NEED_SAVE:
+            logging.info(f'=========================================================================生成clash配置文件...')
+            generate_ini = converter.add_clash(raw_list,generate_ini)
+            logging.info(f'=========================================================================clash配置文件已生成!')
 
-    logging.info(f'=========================================================================生成的generate_ini:{generate_ini}')
+        # 生成v2ray订阅
+        if NEED_SAVE:
+            logging.info(f'=========================================================================生成v2ray配置文件...')
+            generate_ini = converter.add_v2ray(raw_list,generate_ini)
+            logging.info(f'=========================================================================v2ray配置文件已生成!')
 
-    # 生成通用订阅二维码
-    # try:
-    #     qr = qrcode.QRCode(version=None
-    #                 ,error_correction=constants.ERROR_CORRECT_M,
-    #                 box_size=10, 
-    #                 border=4)
-    #     # 自适应大小
-    #     qr.add_data('https://ghproxy.net/https://raw.githubusercontent.com/nichuanfang/nogfw/main/dist/v2ray-sub.txt')
-    #     qr.make(fit=True)
-    #     img = qr.make_image(fill_color="black", back_color="white")
-    #     if NEED_SAVE:
-    #         with open('dist/sub.jpg', 'wb') as qrc:
-    #             img.save(qrc)
-    #         # 调整分辨率
-    #         resize('dist/sub.jpg')
-    # except Exception as e:
-    #     logging.error(f'================================二维码生成失败!:{e}==========================================')
-    
-    logging.info(f'')
-    logging.info(f'')
-    logging.info(f'')
-    logging.info(f'')
-    logging.info(f'=========================================================================节点更新完成!')
+        # 随机生成一个文件 保持仓库处于活跃
+        if NEED_SAVE:
+            open('dist/random','w+').write(''.join(random.sample('abcdefghigklmnopqrstuvwxyz1234567890',20)))
+        logging.info(f'')
+        logging.info(f'')
+        logging.info(f'')
+        logging.info(f'')
+        logging.info(f'=========================================================================节点更新完成!')

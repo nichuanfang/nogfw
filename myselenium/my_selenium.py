@@ -10,11 +10,8 @@ import sys
 from fake_useragent import UserAgent
 from bs4 import BeautifulSoup
 import logging
-
-# 日志设置
-LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s" 
-DATE_FORMAT = "%m/%d/%Y %H:%M:%S %p"
-logging.basicConfig(level=logging.INFO, format=LOG_FORMAT, datefmt=DATE_FORMAT)
+from my_global import logging
+from my_global import local
 
 # ip代理池 防止被屏蔽 很重要
 proxy_arr = [
@@ -41,7 +38,8 @@ def get_driver(type:str='google'):
     options = webdriver.ChromeOptions()
     options.add_argument('--no-sandbox')
     # 不用打开界面 无头浏览器
-    options.add_argument('--headless')
+    if not local:
+      options.add_argument('--headless')
     options.add_argument("--window-size=1920x1080")
     options.add_argument('--disable-dev-shm-usage')
     # 设置User-Agent
@@ -83,7 +81,8 @@ def get_driver(type:str='google'):
     options = webdriver.FirefoxOptions()
     options.add_argument('--no-sandbox')
     # 不用打开界面 无头浏览器
-    options.add_argument('--headless')
+    if not local:
+      options.add_argument('--headless')
     options.add_argument('--disable-gpu')
     options.add_argument("--window-size=1920x1080")
     # 规避检测
