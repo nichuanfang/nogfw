@@ -51,6 +51,10 @@ jobs:
           which chromedriver
           mkdir -p /opt/chromedriver/
           sudo ln -fs /usr/local/bin/chromedriver /opt/chromedriver/chromedriver
+          sudo apt-get install xsel -y
+          sudo apt-get install xclip -y
+          pip install gtk
+          pip install PyQt4
 
       # 最佳实践 yt-dlp+ffmpeg
       - name: Setup yt-dlp
@@ -73,7 +77,7 @@ jobs:
           git pull --allow-unrelated-histories
 
       - name: update proxy
-        continue-on-error: true
+        continue-on-error: false
         env:
           CRAW_NUMBER: ${{ vars.CRAW_NUMBER }}
           CRAW_SLEEP_SECONDS: ${{ vars.CRAW_SLEEP_SECONDS }}
