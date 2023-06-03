@@ -9,9 +9,6 @@ import sys
 import random
 from subconverter import converter
 import threading
-from threading import Thread
-from threading import Lock
-from threading import ThreadError
 import concurrent.futures
 
 def batch_craw(number:int,channels:dict[str,dict],sleeptime:int):
@@ -26,7 +23,6 @@ def batch_craw(number:int,channels:dict[str,dict],sleeptime:int):
         _type_: _description_
     """    
     raw_list = []
-    lock = threading.Lock()
     with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
         to_do = []
         for youtuber in channels:
