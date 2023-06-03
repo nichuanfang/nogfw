@@ -92,7 +92,7 @@ def changfeng_func(channel_id:str):
             all_check_ele.click()
             sleep(2)
         except Exception as e:
-            logging.error(f'点击全选失败: {e}')
+            logging.error(f'点击全选失败: {e} , 请检查密码是否正确获取!')
             raise e
         # 5. 点击复制
         try:
