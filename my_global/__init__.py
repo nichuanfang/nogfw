@@ -3,10 +3,6 @@ import cv2
 import easyocr
 import sys
 import io
-from collections import OrderedDict
-import yaml
-import copy
-import re
 from PIL import Image
 
 # 通过此flag 开启本地开发模式
@@ -39,14 +35,3 @@ def resize(file):
     reim=im.resize((640, 640))#宽*高
 
     reim.save(file,dpi=(300.0,300.0)) ##200.0,200.0分别为想要设定的dpi值
-
-def modify_dict(source_dict, new_key, old_key, value):
-    """
-    处理字典source_dict 在old_key之前插入new_key:value键值对 返回一个新的字典
-    """
-    new_dict = OrderedDict()
-    for k, v in source_dict.items():
-        if k == old_key:
-            new_dict[new_key] = value
-        new_dict[k] = v
-    return dict(new_dict)
