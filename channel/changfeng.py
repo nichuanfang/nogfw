@@ -190,15 +190,12 @@ def changfeng_func(channel_id:str):
 
         result = copy.deepcopy(sorted(set(result),key=result.index))
         # 节点排序
-
-        logging.info(f'====================================已抓取数据源: {len(raw_list)}个 ss/ssr节点:{len(ss_ssr_list)}个 vmess/trojan节点:{len(vmess_trojan_list)}个 其他协议节点: {len(other_list)}个')
+        logging.info(f'===========================================================================长风节点信息获取完毕,共获取有效数据源: [ss/ssr: {len(ss_ssr_list)}个,vmess/trojan: {len(vmess_trojan_list)}个,其他协议节点: {len(other_list)}个]')
+        logging.info(f'')
+        logging.info(f'')
+        logging.info(f'')
+        logging.info(f'')
         return result
     except Exception as err:
         logging.error(f'==============================={err}==============================================')
         return []
-
-    logging.info(f'===========================================================================长风节点信息获取完毕,共获取有效数据源: [ss/ssr: {len(ss_ssr_list)}个,vmess/trojan: {len(vmess_trojan_list)}个,其他协议节点: {len(other_list)}个]')
-    logging.info(f'')
-    logging.info(f'')
-    logging.info(f'')
-    logging.info(f'')
