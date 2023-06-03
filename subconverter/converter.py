@@ -92,7 +92,7 @@ def get_area_score(proxy):
         return area_scores['🇮🇱']
     elif re.search('(印度尼西亚|Indonesia|ID|id)',proxy):
         return area_scores['🇮🇩']
-    elif re.search('(中转节点)',proxy):
+    elif re.search('(中转节点|中国|CN|cn)',proxy):
         return area_scores['🇨🇳']
     else:
         return area_scores['other']
