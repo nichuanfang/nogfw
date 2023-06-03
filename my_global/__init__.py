@@ -6,7 +6,13 @@ import io
 from PIL import Image
 
 # 通过此flag 开启本地开发模式
-local = True
+try:
+    # 如果有环境变量 说明是测试/生产环境
+    NEED_SAVE = sys.argv[3]
+    local = False
+except:
+    # 如果没有环境变量 启动本地环境
+    local = True
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 # 日志配置
