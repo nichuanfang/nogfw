@@ -20,6 +20,9 @@ def bulianglin_func(channel_id:str,number:int,sleeptime:int):
 
     """  
     raw_list = []
+    ss_ssr_list = []
+    vmess_trojan_list = []
+    other_list = []
     logging.info(f'===========================================================================开始获取不良林节点信息...')
     # 默认165
     for craw_index in range(number):
@@ -35,6 +38,12 @@ def bulianglin_func(channel_id:str,number:int,sleeptime:int):
                 data:str = qr_recognize(f'dist/local/bulianglin.jpg')
             else:
                 data:str = qr_recognize(f'dist/bulianglin.jpg')
+            if data.startswith(('ss','ssr')):
+                ss_ssr_list.append(data)
+            elif data.startswith(('vmess','trojan')):
+                vmess_trojan_list.append(data)
+            else:
+                other_list.append(data)
             raw_list.append(data)
             logging.info(f'==================================================================raw_data: {data}')
             if local:
@@ -45,12 +54,15 @@ def bulianglin_func(channel_id:str,number:int,sleeptime:int):
             logging.info(f'===============================================================================OCR: {ocr_result}')
 
             raw_list = copy.deepcopy(sorted(set(raw_list),key=raw_list.index))
-            logging.info(f'=========================已抓取数据源: {len(raw_list)}个')
+            ss_ssr_list = copy.deepcopy(sorted(set(ss_ssr_list),key=ss_ssr_list.index))
+            vmess_trojan_list = copy.deepcopy(sorted(set(vmess_trojan_list),key=vmess_trojan_list.index))
+            other_list = copy.deepcopy(sorted(set(other_list),key=other_list.index))
+            logging.info(f'====================================已抓取数据源: {len(raw_list)}个 ss/ssr节点:{len(ss_ssr_list)}个 vmess/trojan节点:{len(vmess_trojan_list)}个 其他协议节点: {len(other_list)}个')
         except Exception as err:
             logging.error(f'==============================={err}==============================================')
         if craw_index != number-1:
             sleep(sleeptime)
-        logging.info(f'===========================================================================不良林节点信息获取完毕,共获取有效数据源:{len(raw_list)}个')
+        logging.info(f'===========================================================================不良林节点信息获取完毕,共获取有效数据源: [ss/ssr: {len(raw_list)}个,vmess/trojan: {len(vmess_trojan_list)}个,其他协议节点: {len(other_list)}个]')
         logging.info(f'')
         logging.info(f'')
         logging.info(f'')

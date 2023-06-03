@@ -30,6 +30,9 @@ def changfeng_func(channel_id:str):
         channel_id (str): _description_
     """    
     raw_list = []
+    ss_ssr_list = []
+    vmess_trojan_list = []
+    other_list = []
     result = []
     logging.info(f'===========================================================================开始获取长风节点信息...')
     if not local:
@@ -142,7 +145,12 @@ def changfeng_func(channel_id:str):
         try:
             for index,proxy in enumerate(raw_list): # type: ignore
                 if proxy.startswith(('ss','ssr')):
+                    ss_ssr_list.append(proxy)
                     continue
+                elif proxy.startswith(('vmess','trojan')):
+                    vmess_trojan_list.append(proxy)
+                else:
+                    other_list.append(proxy)
                 raw_tag = get_tag(proxy)
                 # 速度元素
                 speed_ele = driver.find_element(By.XPATH,rf'//*[@id="app"]/div[1]/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[3]/div[1]/table/tbody/tr[{index+1}]/td[4]')
@@ -157,12 +165,12 @@ def changfeng_func(channel_id:str):
         result = copy.deepcopy(sorted(set(result),key=result.index))
         # 节点排序
 
-        logging.info(f'=========================已抓取数据源: {len(result)}个')
+        logging.info(f'====================================已抓取数据源: {len(raw_list)}个 ss/ssr节点:{len(ss_ssr_list)}个 vmess/trojan节点:{len(vmess_trojan_list)}个 其他协议节点: {len(other_list)}个')
         return result
     except Exception as err:
         logging.error(f'==============================={err}==============================================')
 
-    logging.info(f'===========================================================================长风节点信息获取完毕,共获取有效数据源:{len(result)}个')
+    logging.info(f'===========================================================================长风节点信息获取完毕,共获取有效数据源: [ss/ssr: {len(raw_list)}个,vmess/trojan: {len(vmess_trojan_list)}个,其他协议节点: {len(other_list)}个]')
     logging.info(f'')
     logging.info(f'')
     logging.info(f'')
