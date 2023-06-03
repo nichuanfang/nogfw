@@ -4,7 +4,7 @@
 from my_global.yml_utils import YamlHandler
 
 def format():
-    handler = YamlHandler(f'dist/clash-sub.txt')
+    handler = YamlHandler(f'./dist/clash-sub.yml')
     data = handler.read_yaml_data()
     proxy_groups = data['proxy-groups']
     for group in proxy_groups:
