@@ -133,7 +133,7 @@ proxy_groups:
     # - { name:🛑 全球拦截, type: select, rule: ["GROUP=REJECT","GROUP=DIRECT"] }
     # - { name:🐟 漏网之鱼, type: select, rule: ["[]🔰 节点选择","[]🎯 全球直连","[]♻️ 低延迟","[]🤔 高可用","[]🇭🇰 Hong Kong","[]🇸🇬 Singapore","[]🇹🇼 Taiwan","[]🇺🇸 United States","[]🇯🇵 Japan","[]🇰🇷 Korea","[]🌐 Other"] }
 
-    - { import: snippets/groups.txt }
+    # - { import: snippets/groups.txt }
 
 template:
   template_path: ''
@@ -141,6 +141,36 @@ template:
     - { key: clash.mixed_port, value: 10809 }
     - { key: clash.allow_lan, value: true }
     - { key: clash.log_level, value: info }
+    - {
+        key: clash.proxy-groups,
+        value:
+          [
+            { name:🎯 全球直连, type: select, rule: ['GROUP=DIRECT'] },
+            {
+              name:🛑 全球拦截,
+              type: select,
+              rule: ['GROUP=REJECT', 'GROUP=DIRECT'],
+            },
+            {
+              name:🐟 漏网之鱼,
+              type: select,
+              rule:
+                [
+                  '[]🔰 节点选择',
+                  '[]🎯 全球直连',
+                  '[]♻️ 低延迟',
+                  '[]🤔 高可用',
+                  '[]🇭🇰 Hong Kong',
+                  '[]🇸🇬 Singapore',
+                  '[]🇹🇼 Taiwan',
+                  '[]🇺🇸 United States',
+                  '[]🇯🇵 Japan',
+                  '[]🇰🇷 Korea',
+                  '[]🌐 Other',
+                ],
+            },
+          ],
+      }
 
 aliases:
   - { uri: /v, target: /version }
