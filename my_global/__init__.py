@@ -1,6 +1,5 @@
 import logging
 import cv2
-import easyocr
 import sys
 import io
 from PIL import Image
@@ -19,9 +18,6 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
 DATE_FORMAT = "%m/%d/%Y %H:%M:%S %p"
 logging.basicConfig(level=logging.INFO, format=LOG_FORMAT, datefmt=DATE_FORMAT)
-
-# 图像识别器  windows下需要先下载模型文件  https://blog.csdn.net/Loliykon/article/details/114334699
-reader = easyocr.Reader(['ch_sim', 'en'], model_storage_directory='ocr_models')
 
 # 二维码识别
 def qr_recognize(file_path: str):

@@ -1,7 +1,7 @@
 # 长风频道
 from my_global import logging
 from my_global import local
-from my_global import reader
+from my_global import ocr_utils
 import copy
 import datetime
 import subprocess
@@ -26,6 +26,8 @@ else:
     else:
         NEED_SAVE = False
 
+reader = ocr_utils.get_reader()
+
 def changfeng_func(channel_id:str):
     """长风的频道处理逻辑
 
@@ -45,18 +47,18 @@ def changfeng_func(channel_id:str):
     try:
         logging.info(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
         if local:
-            ocr_result = reader.readtext('dist/local/changfeng.jpg')
+            ocr_result = ocr_utils.read_text('dist/local/changfeng.jpg',reader)
         else:
-            ocr_result = reader.readtext('dist/changfeng.jpg')
+            ocr_result = ocr_utils.read_text('dist/changfeng.jpg',reader)
         # additional handling to ocr result... 
         logging.info(f'===============================================================================OCR: {ocr_result}')
         # 1. 获取密码: free_node_secret
         free_node_secret = ''
         try:
             for index,item in enumerate(ocr_result):
-                if index>8 and (item[1].__contains__('V2rayse') or item[1].__contains__('VZrayse') or item[1].__contains__('comlfree') or item[1].__contains__('free-node')) and len(item[1])>=19: # type: ignore
+                if index>8 and (item.__contains__('V2rayse') or item.__contains__('VZrayse') or item.__contains__('comlfree') or item.__contains__('free-node')) and len(item)>=19: # type: ignore
                     # lower()防止OCR识别成了大写
-                    free_node_secret:str = ocr_result[index+1][1].lower() # type: ignore
+                    free_node_secret:str = ocr_result[index+1].lower() # type: ignore
                     break
         except Exception as e:
             logging.error(f'==============================================长风密码获取失败: {e}!!')    

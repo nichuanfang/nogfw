@@ -2,13 +2,14 @@
 from my_global import logging
 from my_global import qr_recognize
 from my_global import local
-from my_global import reader
+from my_global import ocr_utils
 import copy
 import datetime
 import subprocess
 from time import sleep
 from datetime import datetime
 
+reader = ocr_utils.get_reader(['ch_sim', 'en'])
 
 def bulianglin_func(channel_id:str,number:int,sleeptime:int):
     """不良林的频道处理逻辑
@@ -47,9 +48,9 @@ def bulianglin_func(channel_id:str,number:int,sleeptime:int):
             raw_list.append(data)
             logging.info(f'==================================================================raw_data: {data}')
             if local:
-                ocr_result = reader.readtext('dist/local/bulianglin.jpg')
+                ocr_result = ocr_utils.read_text('dist/local/bulianglin.jpg',reader)
             else:
-                ocr_result = reader.readtext('dist/bulianglin.jpg')
+                ocr_result = ocr_utils.read_text('dist/bulianglin.jpg',reader)
             # additional handling to ocr result... 
             logging.info(f'===============================================================================OCR: {ocr_result}')
 
