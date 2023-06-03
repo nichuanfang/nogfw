@@ -156,6 +156,28 @@ def changfeng_func(channel_id:str):
                 else:
                     other_list.append(proxy)
                 raw_tag = get_tag(proxy)
+                if raw_tag.__contains__('美国'):
+                    raw_tag = '美国'
+                elif raw_tag.__contains__('印度'):
+                    raw_tag = '印度'
+                elif raw_tag.__contains__('英国'):
+                    raw_tag = '英国'
+                elif raw_tag.__contains__('澳大利亚'):
+                    raw_tag =  '澳大利亚'
+                elif raw_tag.__contains__('荷兰'):
+                    raw_tag =  '荷兰'
+                elif raw_tag.__contains__('乌克兰'):
+                    raw_tag =  '乌克兰'
+                elif raw_tag.__contains__('以色列'):
+                    raw_tag =  '以色列'
+                elif raw_tag.__contains__('印度尼西亚'):
+                    raw_tag =  '印度尼西亚'
+                elif raw_tag.__contains__('俄罗斯'):
+                    raw_tag =  '俄罗斯'
+                elif raw_tag.__contains__('德国'):
+                    raw_tag =  '德国'
+                elif raw_tag.__contains__('法国'):
+                    raw_tag =  '法国'
                 # 速度元素
                 speed_ele = driver.find_element(By.XPATH,rf'//*[@id="app"]/div[1]/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[3]/div[1]/table/tbody/tr[{index+1}]/td[4]')
                 # 速度

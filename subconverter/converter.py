@@ -214,6 +214,7 @@ def get_tag(node:str):
         return 'none'
 
 def tag(node:str,new_tag):
+    
     type = node.split('://')[0]
     # 给节点替换新的tag
      # ss
