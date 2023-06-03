@@ -65,7 +65,7 @@ def changfeng_func(channel_id:str):
         # 2. 访问目标网站
         driver = my_selenium.get_driver(headless=True)
         driver.get('https://v2rayse.com/free-node')
-        sleep(5)
+        sleep(10)
         # 3. 获取密码输入框 输入密码
         try:
             password_ele = driver.find_element(By.ID,'input-200')
@@ -79,7 +79,7 @@ def changfeng_func(channel_id:str):
             submit_ele = driver.find_element(By.XPATH,r'//*[@id="app"]/div/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[2]/div/button')
             # ActionChains(driver).move_to_element(submit_ele).click(submit_ele)
             submit_ele.click()
-            sleep(5)
+            sleep(10)
         except Exception as e:
             logging.error(f'点击提交密码失败: {e}')
             raise e
