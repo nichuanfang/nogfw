@@ -87,8 +87,7 @@ jobs:
         run: |
           chmod +x ./subconverter/subconverter
           ./subconverter/subconverter -g
-          python ./subconverter/handle_qx.py
-          python ./subconverter/handle_clash.py
+          python handle_dist.py
 
       - name: logging dist
         env:

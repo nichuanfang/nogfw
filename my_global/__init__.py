@@ -6,7 +6,7 @@ import io
 from PIL import Image
 
 # 通过此flag 开启本地开发模式
-local = False
+local = True
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 # 日志配置
