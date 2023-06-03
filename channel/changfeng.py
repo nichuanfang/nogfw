@@ -55,7 +55,8 @@ def changfeng_func(channel_id:str):
         try:
             for index,item in enumerate(ocr_result):
                 if index>8 and (item[1].__contains__('V2rayse') or item[1].__contains__('VZrayse') or item[1].__contains__('comlfree') or item[1].__contains__('free-node')) and len(item[1])>=19: # type: ignore
-                    free_node_secret:str = ocr_result[index+1][1] # type: ignore
+                    # lower()防止OCR识别成了大写
+                    free_node_secret:str = ocr_result[index+1][1].lower() # type: ignore
                     break
         except Exception as e:
             logging.error(f'==============================================长风密码获取失败: {e}!!')    
@@ -75,7 +76,7 @@ def changfeng_func(channel_id:str):
         # 3. 获取密码输入框 输入密码
         try:
             password_ele = driver.find_element(By.ID,'input-200')
-            password_ele.send_keys(free_node_secret.lower())
+            password_ele.send_keys(free_node_secret)
             sleep(2)
         except Exception as e:
             logging.error(f'获取密码输入框 输入密码失败: {e}')
