@@ -1,12 +1,7 @@
 # 定制化生成的clash配置文件 
 #!/usr/local/bin/python
 # coding=utf-8
-import sys
-import io
 from my_global.yml_utils import YamlHandler
-
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
-
 
 def format():
     handler = YamlHandler(f'dist/clash-sub.txt')

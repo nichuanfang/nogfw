@@ -1,9 +1,5 @@
 #!/usr/local/bin/python
 # coding=utf-8
-import sys
-import io
-
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 
 def format():
     # 生成qx的节点订阅
