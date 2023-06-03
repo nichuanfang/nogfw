@@ -72,7 +72,7 @@ def changfeng_func(channel_id:str):
         # 3. 获取密码输入框 输入密码
         try:
             password_ele = driver.find_element(By.ID,'input-200')
-            password_ele.send_keys(free_node_secret)
+            password_ele.send_keys(free_node_secret.lower())
             sleep(2)
         except Exception as e:
             logging.error(f'获取密码输入框 输入密码失败: {e}')
@@ -170,7 +170,7 @@ def changfeng_func(channel_id:str):
     except Exception as err:
         logging.error(f'==============================={err}==============================================')
 
-    logging.info(f'===========================================================================长风节点信息获取完毕,共获取有效数据源: [ss/ssr: {len(raw_list)}个,vmess/trojan: {len(vmess_trojan_list)}个,其他协议节点: {len(other_list)}个]')
+    logging.info(f'===========================================================================长风节点信息获取完毕,共获取有效数据源: [ss/ssr: {len(ss_ssr_list)}个,vmess/trojan: {len(vmess_trojan_list)}个,其他协议节点: {len(other_list)}个]')
     logging.info(f'')
     logging.info(f'')
     logging.info(f'')

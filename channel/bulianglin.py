@@ -62,7 +62,7 @@ def bulianglin_func(channel_id:str,number:int,sleeptime:int):
             logging.error(f'==============================={err}==============================================')
         if craw_index != number-1:
             sleep(sleeptime)
-        logging.info(f'===========================================================================不良林节点信息获取完毕,共获取有效数据源: [ss/ssr: {len(raw_list)}个,vmess/trojan: {len(vmess_trojan_list)}个,其他协议节点: {len(other_list)}个]')
+        logging.info(f'===========================================================================不良林节点信息获取完毕,共获取有效数据源: [ss/ssr: {len(ss_ssr_list)}个,vmess/trojan: {len(vmess_trojan_list)}个,其他协议节点: {len(other_list)}个]')
         logging.info(f'')
         logging.info(f'')
         logging.info(f'')
