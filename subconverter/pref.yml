@@ -129,11 +129,11 @@ proxy_groups:
     # - { name:🌐 Other , type: url-test, rule: ["(印度|巴西|阿根廷|英国|澳门|土耳其|挪威|瑞士|俄罗斯|瑞典|爱尔兰|法国|菲律宾|越南|泰国|印度尼西亚|德国|英国|荷兰|乌克兰)"], url: http://cp.cloudflare.com/generate_204, interval: 300, tolerance: 80, timeout: 2, lazy: true}
 
     # 通用配置
-    - { name:🎯 全球直连, type: select, rule: ["GROUP=DIRECT"] }
-    - { name:🛑 全球拦截, type: select, rule: ["GROUP=REJECT","GROUP=DIRECT"] }
+    # - { name:🎯 全球直连, type: select, rule: ["GROUP=DIRECT"] }
+    # - { name:🛑 全球拦截, type: select, rule: ["GROUP=REJECT","GROUP=DIRECT"] }
     # - { name:🐟 漏网之鱼, type: select, rule: ["[]🔰 节点选择","[]🎯 全球直连","[]♻️ 低延迟","[]🤔 高可用","[]🇭🇰 Hong Kong","[]🇸🇬 Singapore","[]🇹🇼 Taiwan","[]🇺🇸 United States","[]🇯🇵 Japan","[]🇰🇷 Korea","[]🌐 Other"] }
-    
-    # - { import: snippets/groups.txt }
+
+    - { import: snippets/groups.toml }
 
 template:
   template_path: ''
