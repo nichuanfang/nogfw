@@ -44,9 +44,7 @@ def batch_craw(number:int,channels:dict[str,dict],sleeptime:int):
             to_do.append(res)
         # 并发执行 获取结果
         for future in concurrent.futures.as_completed(to_do):  # 并发执行
-            lock.acquire()
             raw_list = raw_list + future.result()
-            lock.release()
 
     return raw_list
 
