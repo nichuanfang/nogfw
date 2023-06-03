@@ -14,6 +14,14 @@ from myselenium import my_selenium
 from subconverter.converter import get_tag
 from subconverter.converter import tag
 import platform
+import sys
+
+if sys.argv[3] in ['true','TRUE','1','True']:
+    NEED_SAVE = True
+elif sys.argv[3] in ['false','FALSE','0','False']:
+    NEED_SAVE = False
+else:
+    NEED_SAVE = False
 
 def changfeng_func(channel_id:str):
     """长风的频道处理逻辑
@@ -47,7 +55,10 @@ def changfeng_func(channel_id:str):
             logging.error(f'==============================================长风密码获取失败: {e}!!')    
             raise Exception(f'密码获取失败!:{e}')
         if free_node_secret and len(free_node_secret) > 0:
-            logging.info(f'==============================================长风密码获取成功!')    
+            if not NEED_SAVE:
+                logging.info(f'==============================================长风密码:{free_node_secret}获取成功!')    
+            else:
+                logging.info(f'==============================================长风密码获取成功!')    
         else:
             logging.error(f'==============================================长风密码获取失败!!')    
             raise Exception('密码获取失败!')
@@ -73,8 +84,8 @@ def changfeng_func(channel_id:str):
             logging.error(f'点击提交密码失败: {e}')
             raise e
         # 5. 点击全选
-        try:
-            all_check_ele = driver.find_element(By.XPATH,r'//*[@id="app"]/div[1]/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[2]/div/div/div/span[1]/span')
+        try:                                                          
+            all_check_ele = driver.find_element(By.XPATH,r'/html/body/div/div/div/div/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[2]/div/div/div/span[1]/span')
             all_check_ele.click()
             sleep(2)
         except Exception as e:
@@ -82,7 +93,7 @@ def changfeng_func(channel_id:str):
             raise e
         # 5. 点击复制
         try:
-            cp_all_ele = driver.find_element(By.XPATH,r'//*[@id="app"]/div[1]/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[2]/div/div/div/span[3]/span')
+            cp_all_ele = driver.find_element(By.XPATH,r'/html/body/div/div/div/div/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[2]/div/div/div/span[3]/span')
             cp_all_ele.click()
             sleep(2)
         except Exception as e:
@@ -112,13 +123,13 @@ def changfeng_func(channel_id:str):
         # 控制分页
         try:
             driver.execute_script('window.scrollBy(0,-5000)')
-            page_ele = driver.find_element(By.XPATH,r'/html/body/div/div/div/div/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[3]/div[2]/div[1]/div/div/div/div[1]/div[2]/div/i')
+            page_ele = driver.find_element(By.XPATH,r'/html/body/div/div/div/div/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[3]/div[2]/div[1]/div/div/div/div[1]/div[2]/div')
             page_ele.click()
             sleep(2)
         except Exception as e:
             logging.error(f'控制分页失败:{e}')
             raise Exception(f'控制分页失败: {e}')
-        # 全选
+        # 控制下拉框全部
         try:
             all_page_ele = driver.find_element(By.XPATH,r'/html/body/div/div/div/div[2]/div/div[4]/div/div')
             all_page_ele.click()
