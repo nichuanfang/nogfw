@@ -60,7 +60,7 @@ def changfeng_func(channel_id:str):
                     break
         except Exception as e:
             logging.error(f'==============================================长风密码获取失败: {e}!!')    
-            raise Exception(f'密码获取失败!:{e}')
+            return []
         if free_node_secret and len(free_node_secret) > 0:
             if not NEED_SAVE:
                 logging.info(f'==============================================长风密码:{free_node_secret}获取成功!')    
@@ -68,7 +68,7 @@ def changfeng_func(channel_id:str):
                 logging.info(f'==============================================长风密码获取成功!')    
         else:
             logging.error(f'==============================================长风密码获取失败!!')    
-            raise Exception('密码获取失败!')
+            return []
         # 2. 访问目标网站
         driver = my_selenium.get_driver(headless=True)
         driver.get('https://v2rayse.com/free-node')
@@ -80,7 +80,7 @@ def changfeng_func(channel_id:str):
             sleep(2)
         except Exception as e:
             logging.error(f'获取密码输入框 输入密码失败: {e}')
-            raise e
+            return []
         # 4. 点击提交密码
         try:
             submit_ele = driver.find_element(By.XPATH,r'//*[@id="app"]/div/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[2]/div/button')
@@ -89,7 +89,7 @@ def changfeng_func(channel_id:str):
             sleep(10)
         except Exception as e:
             logging.error(f'点击提交密码失败: {e}')
-            raise e
+            return []
         # 5. 点击全选
         try:                                                          
             all_check_ele = driver.find_element(By.XPATH,r'/html/body/div/div/div/div/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[2]/div/div/div/span[1]/span')
@@ -97,7 +97,7 @@ def changfeng_func(channel_id:str):
             sleep(2)
         except Exception as e:
             logging.error(f'点击全选失败: {e} , 请检查密码是否正确获取!')
-            raise e
+            return []
         # 5. 点击复制
         try:
             cp_all_ele = driver.find_element(By.XPATH,r'/html/body/div/div/div/div/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[2]/div/div/div/span[3]/span')
@@ -105,7 +105,7 @@ def changfeng_func(channel_id:str):
             sleep(2)
         except Exception as e:
             logging.error(f'点击复制: {e}')
-            raise e
+            return []
         
         # 获取粘贴板内容 
         # `````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
@@ -121,7 +121,7 @@ def changfeng_func(channel_id:str):
         clipbord_content = driver.find_element(By.XPATH, f'//*[@id="wl-edit"]').get_attribute("value")  # 获取输入框内容
         if clipbord_content == '':
             logging.error(f'===================================粘贴板内容获取失败!')
-            raise Exception(f'===================================粘贴板内容获取失败!')
+            return []
         else:
             logging.info(f'===================================已获取粘贴板内容:{clipbord_content}!')
         raw_list = clipbord_content.split('\n')
@@ -135,7 +135,7 @@ def changfeng_func(channel_id:str):
             sleep(2)
         except Exception as e:
             logging.error(f'控制分页失败:{e}')
-            raise Exception(f'控制分页失败: {e}')
+            return []
         # 控制下拉框全部
         try:
             all_page_ele = driver.find_element(By.XPATH,r'/html/body/div/div/div/div[2]/div/div[4]/div/div')
@@ -143,7 +143,7 @@ def changfeng_func(channel_id:str):
             sleep(2)
         except Exception as e:  
             logging.error('控制下拉框全部失败')
-            raise Exception('控制下拉框全部失败')
+            return []
         
         # 获取节点速度
         try:
@@ -164,7 +164,7 @@ def changfeng_func(channel_id:str):
             pass
         except Exception as e:
             logging.error(f'获取节点速度失败!: {e}')
-            raise Exception(f'获取节点速度失败!: {e}')
+            return []
 
         result = copy.deepcopy(sorted(set(result),key=result.index))
         # 节点排序
@@ -173,6 +173,7 @@ def changfeng_func(channel_id:str):
         return result
     except Exception as err:
         logging.error(f'==============================={err}==============================================')
+        return []
 
     logging.info(f'===========================================================================长风节点信息获取完毕,共获取有效数据源: [ss/ssr: {len(ss_ssr_list)}个,vmess/trojan: {len(vmess_trojan_list)}个,其他协议节点: {len(other_list)}个]')
     logging.info(f'')

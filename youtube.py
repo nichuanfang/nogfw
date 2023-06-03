@@ -8,6 +8,11 @@ from channel import changfeng
 import sys
 import random
 from subconverter import converter
+import threading
+from threading import Thread
+from threading import Lock
+from threading import ThreadError
+import concurrent.futures
 
 def batch_craw(number:int,channels:dict[str,dict],sleeptime:int):
     """批量爬取频道的订阅
@@ -21,22 +26,28 @@ def batch_craw(number:int,channels:dict[str,dict],sleeptime:int):
         _type_: _description_
     """    
     raw_list = []
-    for youtuber in channels:
-        channel_handler = channels[youtuber]
-        channel_id = channel_handler['channel_id']
-        func = channel_handler['func']
-        # 执行对应的操作
-        if youtuber == 'bulianglin':
-            res:list = func(channel_id,number,sleeptime)
-            if res == None or len(res) == 0:
-                continue
-            raw_list = raw_list+res
-        elif youtuber == 'changfeng':
-            res = func(channel_id)
-            # changfeng需要OCR模块
-            if res == None or len(res) == 0:
-                continue
-            raw_list = raw_list + res
+    lock = threading.Lock()
+    with concurrent.futures.ThreadPoolExecutor(max_workers=len(channels)) as executor:
+        to_do = []
+        for youtuber in channels:
+            channel_handler = channels[youtuber]
+            channel_id = channel_handler['channel_id']
+            func = channel_handler['func']
+            # 执行对应的操作
+            res = concurrent.futures.Future()
+            if youtuber == 'bulianglin':
+                res = executor.submit(func,channel_id,number,sleeptime)
+            elif youtuber == 'changfeng':
+                res = executor.submit(func,channel_id)
+            else:
+                pass
+            to_do.append(res)
+        # 并发执行 获取结果
+        for future in concurrent.futures.as_completed(to_do):  # 并发执行
+            lock.acquire()
+            raw_list = raw_list + future.result()
+            lock.release()
+
     return raw_list
 
 if __name__ == '__main__':
