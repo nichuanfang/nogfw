@@ -144,6 +144,7 @@ jobs:
 
       - name: keep alive
         uses: Smart-Transportation/push@v1.3
+        continue-on-error: true
         env:
           NEED_SAVE: ${{ vars.NEED_SAVE }}
         # 需要更新则触发保活
@@ -154,3 +155,17 @@ jobs:
           author_email: 'f18326186224@gmail.com'
           author_name: 'nichuanfang'
           message: '🐳 chore: keep action alive'
+
+      - name: Push notification
+        uses: shink/bark-action@v2
+        continue-on-error: true
+        with:
+          key: ${{ secrets.BARK_KEY }} # Your secret key, it is required
+          host: ${{ vars.BARK_HOST }} # Your Bark host, the default is 'https://api.day.app'
+          title: Subscribe update!
+          body: Qx and Clash config has be deployed on Github Gist
+          sound: calypso
+          isArchive: 1
+          # url: https://yuanhaoji.com
+          # automaticallyCopy: 1
+          # copy: Content copied to clipboard
