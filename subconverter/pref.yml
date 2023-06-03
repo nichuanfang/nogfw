@@ -108,30 +108,31 @@ proxy_groups:
     # -------------------------------------fallback模板
     # - { name: , type: fallback, rule: [""], url: http://cp.cloudflare.com/generate_204, interval: 300, tolerance: 80, timeout: 2, lazy: true}
 
-    - { name:🔰 节点选择, type: select, rule: ["[]♻️ 低延迟","[]🤔 高可用","[]🎯 全球直连"] }
-    - { name:♻️ 低延迟 , type: url-test, rule: ["(中国|中转|China|CN|cn|香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|朝鲜|Korea|KR|KP|kr|kp)"], url: http://cp.cloudflare.com/generate_204, interval: 300, tolerance: 80, timeout: 2, lazy: true}
-    - { name:🤔 高可用 , type: fallback, rule: [".*"], url: http://cp.cloudflare.com/generate_204, interval: 300, tolerance: 80, timeout: 2, lazy: true}
-    - { name:🎥 NETFLIX, type: select, rule: ["[]🇭🇰 Hong Kong","[]🇸🇬 Singapore","[]🇹🇼 Taiwan","[]🇺🇸 United States","[]🇯🇵 Japan","[]🇰🇷 Korea","[]🌐 Other"] }
-    - { name:🌍 国外媒体, type: select, rule: ["[]🔰 节点选择","[]♻️ 低延迟","[]🤔 高可用","[]🇭🇰 Hong Kong","[]🇸🇬 Singapore","[]🇹🇼 Taiwan","[]🇺🇸 United States","[]🇯🇵 Japan","[]🇰🇷 Korea","[]🌐 Other"] }
-    - { name:🌏 国内媒体, type: select, rule: ["[]🎯 全球直连"] }
-    - { name:🏳️‍🌈 Google, type: select, rule: ["[]🔰 节点选择","[]🇭🇰 Hong Kong","[]🇸🇬 Singapore","[]🇹🇼 Taiwan","[]🇺🇸 United States","[]🇯🇵 Japan","[]🇰🇷 Korea","[]🌐 Other"] }
-    - { name:😄 Github, type: select, rule: ["[]🔰 节点选择","[]🇭🇰 Hong Kong","[]🇸🇬 Singapore","[]🇹🇼 Taiwan","[]🇺🇸 United States","[]🇯🇵 Japan","[]🇰🇷 Korea","[]🌐 Other"] }
-    - { name:📲 电报信息, type: select, rule: ["[]🔰 节点选择","[]🇭🇰 Hong Kong","[]🇸🇬 Singapore","[]🇹🇼 Taiwan","[]🇺🇸 United States","[]🇯🇵 Japan","[]🇰🇷 Korea","[]🌐 Other","[]🎯 全球直连"] }
-    - { name:🍎 苹果服务, type: select, rule: ["[]🔰 节点选择","[]🇭🇰 Hong Kong","[]🇸🇬 Singapore","[]🇹🇼 Taiwan","[]🇺🇸 United States","[]🇯🇵 Japan","[]🇰🇷 Korea","[]🌐 Other","[]🎯 全球直连"] }
-    - { name:Ⓜ️ 微软服务, type: select, rule: ["[]🎯 全球直连","[]🔰 节点选择"] }
-    # 地区
-    - { name:🇭🇰 Hong Kong , type: url-test, rule: ["(香港|Hong Kong|HK|hk)"], url: http://cp.cloudflare.com/generate_204, interval: 300, tolerance: 80, timeout: 2, lazy: true}
-    - { name:🇸🇬 Singapore , type: url-test, rule: ["(新加坡|Singapore|SG|sg)"], url: http://cp.cloudflare.com/generate_204, interval: 300, tolerance: 80, timeout: 2, lazy: true}
-    - { name:🇹🇼 Taiwan , type: url-test, rule: ["(台湾|Taiwan|TW|tw|台北)"], url: http://cp.cloudflare.com/generate_204, interval: 300, tolerance: 80, timeout: 2, lazy: true}
-    - { name:🇺🇸 United States , type: url-test, rule: ["(美国|United States|US|us)"], url: http://cp.cloudflare.com/generate_204, interval: 300, tolerance: 80, timeout: 2, lazy: true}
-    - { name:🇯🇵 Japan , type: url-test, rule: ["(日本|Japan|JP|jp)"], url: http://cp.cloudflare.com/generate_204, interval: 300, tolerance: 80, timeout: 2, lazy: true}
-    - { name:🇰🇷 Korea , type: url-test, rule: ["(韩国|Korea|KR|kr)"], url: http://cp.cloudflare.com/generate_204, interval: 300, tolerance: 80, timeout: 2, lazy: true}
-    - { name:🌐 Other , type: url-test, rule: ["(印度|巴西|阿根廷|英国|澳门|土耳其|挪威|瑞士|俄罗斯|瑞典|爱尔兰|法国|菲律宾|越南|泰国|印度尼西亚|德国|英国|荷兰|乌克兰)"], url: http://cp.cloudflare.com/generate_204, interval: 300, tolerance: 80, timeout: 2, lazy: true}
+    # - { name:🔰 节点选择, type: select, rule: ["[]♻️ 低延迟","[]🤔 高可用","[]🎯 全球直连"] }
+    # - { name:♻️ 低延迟 , type: url-test, rule: ["(中国|中转|China|CN|cn|香港|Hong Kong|HK|hk|新加坡|Singapore|SG|sg|台湾|Taiwan|TW|tw|台北|日本|Japan|JP|jp|韩国|朝鲜|Korea|KR|KP|kr|kp)"], url: http://cp.cloudflare.com/generate_204, interval: 300, tolerance: 80, timeout: 2, lazy: true}
+    # - { name:🤔 高可用 , type: fallback, rule: [".*"], url: http://cp.cloudflare.com/generate_204, interval: 300, tolerance: 80, timeout: 2, lazy: true}
+    # - { name:🎥 NETFLIX, type: select, rule: ["[]🇭🇰 Hong Kong","[]🇸🇬 Singapore","[]🇹🇼 Taiwan","[]🇺🇸 United States","[]🇯🇵 Japan","[]🇰🇷 Korea","[]🌐 Other"] }
+    # - { name:🌍 国外媒体, type: select, rule: ["[]🔰 节点选择","[]♻️ 低延迟","[]🤔 高可用","[]🇭🇰 Hong Kong","[]🇸🇬 Singapore","[]🇹🇼 Taiwan","[]🇺🇸 United States","[]🇯🇵 Japan","[]🇰🇷 Korea","[]🌐 Other"] }
+    # - { name:🌏 国内媒体, type: select, rule: ["[]🎯 全球直连"] }
+    # - { name:🏳️‍🌈 Google, type: select, rule: ["[]🔰 节点选择","[]🇭🇰 Hong Kong","[]🇸🇬 Singapore","[]🇹🇼 Taiwan","[]🇺🇸 United States","[]🇯🇵 Japan","[]🇰🇷 Korea","[]🌐 Other"] }
+    # - { name:😄 Github, type: select, rule: ["[]🔰 节点选择","[]🇭🇰 Hong Kong","[]🇸🇬 Singapore","[]🇹🇼 Taiwan","[]🇺🇸 United States","[]🇯🇵 Japan","[]🇰🇷 Korea","[]🌐 Other"] }
+    # - { name:📲 电报信息, type: select, rule: ["[]🔰 节点选择","[]🇭🇰 Hong Kong","[]🇸🇬 Singapore","[]🇹🇼 Taiwan","[]🇺🇸 United States","[]🇯🇵 Japan","[]🇰🇷 Korea","[]🌐 Other","[]🎯 全球直连"] }
+    # - { name:🍎 苹果服务, type: select, rule: ["[]🔰 节点选择","[]🇭🇰 Hong Kong","[]🇸🇬 Singapore","[]🇹🇼 Taiwan","[]🇺🇸 United States","[]🇯🇵 Japan","[]🇰🇷 Korea","[]🌐 Other","[]🎯 全球直连"] }
+    # - { name:Ⓜ️ 微软服务, type: select, rule: ["[]🎯 全球直连","[]🔰 节点选择"] }
+    # # 地区
+    # - { name:🇭🇰 Hong Kong , type: url-test, rule: ["(香港|Hong Kong|HK|hk)"], url: http://cp.cloudflare.com/generate_204, interval: 300, tolerance: 80, timeout: 2, lazy: true}
+    # - { name:🇸🇬 Singapore , type: url-test, rule: ["(新加坡|Singapore|SG|sg)"], url: http://cp.cloudflare.com/generate_204, interval: 300, tolerance: 80, timeout: 2, lazy: true}
+    # - { name:🇹🇼 Taiwan , type: url-test, rule: ["(台湾|Taiwan|TW|tw|台北)"], url: http://cp.cloudflare.com/generate_204, interval: 300, tolerance: 80, timeout: 2, lazy: true}
+    # - { name:🇺🇸 United States , type: url-test, rule: ["(美国|United States|US|us)"], url: http://cp.cloudflare.com/generate_204, interval: 300, tolerance: 80, timeout: 2, lazy: true}
+    # - { name:🇯🇵 Japan , type: url-test, rule: ["(日本|Japan|JP|jp)"], url: http://cp.cloudflare.com/generate_204, interval: 300, tolerance: 80, timeout: 2, lazy: true}
+    # - { name:🇰🇷 Korea , type: url-test, rule: ["(韩国|Korea|KR|kr)"], url: http://cp.cloudflare.com/generate_204, interval: 300, tolerance: 80, timeout: 2, lazy: true}
+    # - { name:🌐 Other , type: url-test, rule: ["(印度|巴西|阿根廷|英国|澳门|土耳其|挪威|瑞士|俄罗斯|瑞典|爱尔兰|法国|菲律宾|越南|泰国|印度尼西亚|德国|英国|荷兰|乌克兰)"], url: http://cp.cloudflare.com/generate_204, interval: 300, tolerance: 80, timeout: 2, lazy: true}
 
     # 通用配置
-    - { name:🎯 全球直连, type: select, rule: ["[]DIRECT"] }
-    - { name:🛑 全球拦截, type: select, rule: ["[]REJECT","[]DIRECT"] }
-    - { name:🐟 漏网之鱼, type: select, rule: ["[]🔰 节点选择","[]🎯 全球直连","[]♻️ 低延迟","[]🤔 高可用","[]🇭🇰 Hong Kong","[]🇸🇬 Singapore","[]🇹🇼 Taiwan","[]🇺🇸 United States","[]🇯🇵 Japan","[]🇰🇷 Korea","[]🌐 Other"] }
+    - { name:🎯 全球直连, type: select, rule: ["GROUP=DIRECT"] }
+    - { name:🛑 全球拦截, type: select, rule: ["GROUP=REJECT","GROUP=DIRECT"] }
+    # - { name:🐟 漏网之鱼, type: select, rule: ["[]🔰 节点选择","[]🎯 全球直连","[]♻️ 低延迟","[]🤔 高可用","[]🇭🇰 Hong Kong","[]🇸🇬 Singapore","[]🇹🇼 Taiwan","[]🇺🇸 United States","[]🇯🇵 Japan","[]🇰🇷 Korea","[]🌐 Other"] }
+    
     # - { import: snippets/groups.txt }
 
 template:
