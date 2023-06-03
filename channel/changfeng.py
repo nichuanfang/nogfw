@@ -16,12 +16,15 @@ from subconverter.converter import tag
 import platform
 import sys
 
-if sys.argv[3] in ['true','TRUE','1','True']:
-    NEED_SAVE = True
-elif sys.argv[3] in ['false','FALSE','0','False']:
+if local:
     NEED_SAVE = False
 else:
-    NEED_SAVE = False
+    if sys.argv[3] in ['true','TRUE','1','True']:
+        NEED_SAVE = True
+    elif sys.argv[3] in ['false','FALSE','0','False']:
+        NEED_SAVE = False
+    else:
+        NEED_SAVE = False
 
 def changfeng_func(channel_id:str):
     """长风的频道处理逻辑
