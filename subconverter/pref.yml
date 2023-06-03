@@ -133,7 +133,7 @@ proxy_groups:
     # - { name:🛑 全球拦截, type: select, rule: ["GROUP=REJECT","GROUP=DIRECT"] }
     # - { name:🐟 漏网之鱼, type: select, rule: ["[]🔰 节点选择","[]🎯 全球直连","[]♻️ 低延迟","[]🤔 高可用","[]🇭🇰 Hong Kong","[]🇸🇬 Singapore","[]🇹🇼 Taiwan","[]🇺🇸 United States","[]🇯🇵 Japan","[]🇰🇷 Korea","[]🌐 Other"] }
 
-    - { import: snippets/groups.toml }
+    - { import: snippets/groups.txt }
 
 template:
   template_path: ''
