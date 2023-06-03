@@ -27,7 +27,7 @@ def batch_craw(number:int,channels:dict[str,dict],sleeptime:int):
     """    
     raw_list = []
     lock = threading.Lock()
-    with concurrent.futures.ThreadPoolExecutor(max_workers=len(channels)) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
         to_do = []
         for youtuber in channels:
             channel_handler = channels[youtuber]
