@@ -74,10 +74,12 @@ def get_area_score(proxy):
         return area_scores['🇸🇬']
     elif re.search('(台湾|Taiwan|TW|tw|台北)',proxy):
         return area_scores['🇹🇼']
-    elif re.search('(美国|United States|US|us)',proxy):
-        return area_scores['🇺🇸']
+    elif re.search('(中转节点|中国|China|CN|cn)',proxy):
+        return area_scores['🇨🇳']
     elif re.search('(印度|India|IN|in)',proxy):
         return area_scores['🇮🇳']
+    elif re.search('(美国|United States|US|us)',proxy):
+        return area_scores['🇺🇸']
     elif re.search('(英国|England|GB|gb)',proxy):
         return area_scores['🇬🇧']
     elif re.search('(澳大利亚|Australia|AU|au)',proxy):
@@ -92,8 +94,6 @@ def get_area_score(proxy):
         return area_scores['🇮🇱']
     elif re.search('(印度尼西亚|Indonesia|ID|id)',proxy):
         return area_scores['🇮🇩']
-    elif re.search('(中转节点|中国|China|CN|cn)',proxy):
-        return area_scores['🇨🇳']
     else:
         return area_scores['other']
 
