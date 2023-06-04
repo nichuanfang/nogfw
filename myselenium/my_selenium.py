@@ -9,9 +9,6 @@ import io
 import sys
 from fake_useragent import UserAgent
 from bs4 import BeautifulSoup
-import logging
-from my_global import logging
-from my_global import local
 
 # ip代理池 防止被屏蔽 很重要
 proxy_arr = [

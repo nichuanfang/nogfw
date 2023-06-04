@@ -16,16 +16,6 @@ from subconverter.converter import tag
 import platform
 import sys
 
-if local:
-    NEED_SAVE = False
-else:
-    if sys.argv[3] in ['true','TRUE','1','True']:
-        NEED_SAVE = True
-    elif sys.argv[3] in ['false','FALSE','0','False']:
-        NEED_SAVE = False
-    else:
-        NEED_SAVE = False
-
 reader = ocr_utils.get_reader()
 
 def changfeng_func(channel_id:str):

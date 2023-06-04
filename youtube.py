@@ -1,10 +1,10 @@
 #!/usr/local/bin/python
 # coding=utf-8
-from math import inf
 from my_global import local
 from my_global import logging
 from channel import bulianglin
 from channel import changfeng
+import time
 import sys
 import random
 from subconverter import converter
@@ -49,7 +49,6 @@ if __name__ == '__main__':
     if local:
         CARW_NUMBER = 1
         CRAW_SLEEP_SECONDS = 10
-        NEED_SAVE = True
         BULIANGLIN_CHANEL_ID = ''
         CHANGFENG_CHANNEL_ID = ''
     else:
@@ -58,24 +57,16 @@ if __name__ == '__main__':
         assert sys.argv[1] != None and sys.argv[1] != ''
         # 爬取间隔(秒)
         assert sys.argv[2] != None and sys.argv[2] != ''
-        # 是否需要创建/更新配置
-        assert sys.argv[3] != None and sys.argv[3] != ''
         # 不良林yt频道id
-        assert sys.argv[4] != None and sys.argv[4] != ''
+        assert sys.argv[3] != None and sys.argv[3] != ''
         # 长风yt频道id
-        assert sys.argv[5] != None and sys.argv[5] != ''
+        assert sys.argv[4] != None and sys.argv[4] != ''
         CARW_NUMBER = int(sys.argv[1])
         CRAW_SLEEP_SECONDS = int(sys.argv[2])
-        if sys.argv[3] in ['true','TRUE','1','True']:
-            NEED_SAVE = True
-        elif sys.argv[3] in ['false','FALSE','0','False']:
-            NEED_SAVE = False
-        else:
-            NEED_SAVE = False
         # 不良林yt频道id
-        BULIANGLIN_CHANEL_ID = sys.argv[4]
+        BULIANGLIN_CHANEL_ID = sys.argv[3]
         # 长风yt频道id
-        CHANGFENG_CHANNEL_ID = sys.argv[5]
+        CHANGFENG_CHANNEL_ID = sys.argv[4]
     try:
         # 不良林
         # raw_list = craw(CARW_NUMBER,'qmRkvKo-KbQ',10)
@@ -112,7 +103,8 @@ if __name__ == '__main__':
             logging.info(f'=========================================================================v2ray配置文件已生成!')
 
             # 随机生成一个文件 保持仓库处于活跃
-            open('dist/dist-version','w+').write(''.join(random.sample('abcdefghigklmnopqrstuvwxyz1234567890',20)))
+            open('dist/dist-version','w+').write(time.strftime("%Y-%m-%d",time.localtime(time.time()))+'-'+''.join \
+                                                 (random.sample('-abcdefghigklmnopqrstuvwxyz1234567890',20)))
             logging.info(f'')
             logging.info(f'')
             logging.info(f'')

@@ -1,15 +1,11 @@
 # 处理generate.ini文件
 import re
-from urllib import request, parse
-import requests,base64,json,urllib
+from urllib import parse
+import base64,json
+from my_global import logging
 from urllib import parse
 import json
 import base64
-import logging
-
-LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
-DATE_FORMAT = "%m/%d/%Y %H:%M:%S %p"
-logging.basicConfig(level=logging.INFO, format=LOG_FORMAT, datefmt=DATE_FORMAT)
 
 # quanx的正则
 quanx_pattern = r'{quanx}'

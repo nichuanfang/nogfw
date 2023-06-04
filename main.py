@@ -1,18 +1,11 @@
 # 整合全网的vps 发布私人订阅
 
 import requests
-from urllib import request, parse
-from requests import Request
-from requests import Response
+from urllib import parse
 import json
 import re
 import base64
-import logging
-
-LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
-DATE_FORMAT = "%m/%d/%Y %H:%M:%S %p"
-logging.basicConfig(level=logging.INFO, format=LOG_FORMAT, datefmt=DATE_FORMAT)
-
+from my_global import logging
 
 with open('source.txt','r') as source_file:
     lines = source_file.readlines()

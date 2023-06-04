@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     # 优先级: Repository secrets/variables > Repository secrets/variables  优先级高的设置会覆盖优先级低的设置
     environment: uat
-    if: vars.SKIP_TEST == 'false'
+    if: vars.NEED_TEST == 'true'
     steps:
       - uses: actions/checkout@master
         with:
@@ -79,12 +79,11 @@ jobs:
         env:
           CRAW_NUMBER: ${{ vars.CRAW_NUMBER }}
           CRAW_SLEEP_SECONDS: ${{ vars.CRAW_SLEEP_SECONDS }}
-          NEED_SAVE: ${{ vars.NEED_SAVE }}
           BULIANGLIN_CHANNEL_ID: ${{ vars.BULIANGLIN_CHANNEL_ID }}
           CHANGFENG_CHANNEL_ID: ${{ vars.CHANGFENG_CHANNEL_ID }}
         continue-on-error: true
         run: |
-          python youtube.py $CRAW_NUMBER $CRAW_SLEEP_SECONDS $NEED_SAVE $BULIANGLIN_CHANNEL_ID $CHANGFENG_CHANNEL_ID
+          python youtube.py $CRAW_NUMBER $CRAW_SLEEP_SECONDS $BULIANGLIN_CHANNEL_ID $CHANGFENG_CHANNEL_ID
 
       - name: execute subconverter
         continue-on-error: true
@@ -106,10 +105,25 @@ jobs:
           echo '=====================v2ray配置: ====================================='
           cat ./dist/v2ray-sub.txt
 
+      - name: Push notification
+        uses: shink/bark-action@v2
+        continue-on-error: true
+        with:
+          key: ${{ secrets.BARK_KEY }} # Your secret key, it is required
+          host: ${{ vars.BARK_HOST }} # Your Bark host, the default is 'https://api.day.app'
+          title: Test Result
+          body: Pass the qx and clash config generate test!
+          sound: healthnotification
+          isArchive: 1
+          # url: https://yuanhaoji.com
+          # automaticallyCopy: 1
+          # copy: Content copied to clipboard
+
   job2:
     name: Deploy qx and clash config to Github Gist
     runs-on: ubuntu-latest
-    needs: job1
+    # NEED_SAVE表示需要将配置部署到Github Gist
+    if: vars.NEED_DEPLOY == 'true'
     environment: prod
     steps:
       - uses: actions/checkout@master
@@ -158,11 +172,10 @@ jobs:
         env:
           CRAW_NUMBER: ${{ vars.CRAW_NUMBER }}
           CRAW_SLEEP_SECONDS: ${{ vars.CRAW_SLEEP_SECONDS }}
-          NEED_SAVE: ${{ vars.NEED_SAVE }}
           BULIANGLIN_CHANNEL_ID: ${{ vars.BULIANGLIN_CHANNEL_ID }}
           CHANGFENG_CHANNEL_ID: ${{ vars.CHANGFENG_CHANNEL_ID }}
         run: |
-          python youtube.py $CRAW_NUMBER $CRAW_SLEEP_SECONDS $NEED_SAVE $BULIANGLIN_CHANNEL_ID $CHANGFENG_CHANNEL_ID
+          python youtube.py $CRAW_NUMBER $CRAW_SLEEP_SECONDS $BULIANGLIN_CHANNEL_ID $CHANGFENG_CHANNEL_ID
 
       - name: execute subconverter
         run: |
@@ -172,8 +185,6 @@ jobs:
 
       - name: Deploy quanx-sub
         uses: exuanbo/actions-deploy-gist@v1.1.4
-        # 需要更新则部署订阅
-        if: vars.NEED_SAVE == 'true'
         with:
           token: ${{ secrets.GH_TOKEN }}
           gist_id: ${{ secrets.QX_SUBSCRIBE_ID }}
@@ -182,8 +193,6 @@ jobs:
 
       - name: Deploy clash-sub
         uses: exuanbo/actions-deploy-gist@v1.1.4
-        # 需要更新则部署订阅
-        if: vars.NEED_SAVE == 'true'
         with:
           token: ${{ secrets.GH_TOKEN }}
           gist_id: ${{ secrets.CLASH_SUBSCRIBE_ID }}
@@ -191,8 +200,6 @@ jobs:
           file_type: text
 
       - name: Deploy v2ray-sub
-        # 需要更新则部署订阅
-        if: vars.NEED_SAVE == 'true'
         uses: exuanbo/actions-deploy-gist@v1.1.4
         with:
           token: ${{ secrets.GH_TOKEN }}
@@ -203,8 +210,6 @@ jobs:
       - name: keep alive
         uses: Smart-Transportation/push@v1.3
         continue-on-error: true
-        # 需要更新则触发保活
-        if: vars.NEED_SAVE == 'true'
         with:
           github_token: ${{ secrets.GH_TOKEN }}
           branch: 'main'
@@ -218,7 +223,7 @@ jobs:
         with:
           key: ${{ secrets.BARK_KEY }} # Your secret key, it is required
           host: ${{ vars.BARK_HOST }} # Your Bark host, the default is 'https://api.day.app'
-          title: Subscribe update!
+          title: Deploy Result
           body: Qx and Clash config has be deployed on Github Gist
           sound: calypso
           isArchive: 1
