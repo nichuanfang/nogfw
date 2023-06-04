@@ -1,6 +1,5 @@
 #!/usr/local/bin/python
 # coding=utf-8
-import lxml 
 import os
 from selenium import webdriver 
 from selenium.webdriver.remote.webdriver import WebDriver
@@ -8,7 +7,7 @@ import random
 import io
 import sys
 from fake_useragent import UserAgent
-from bs4 import BeautifulSoup
+# from bs4 import BeautifulSoup
 
 # ip代理池 防止被屏蔽 很重要
 proxy_arr = [
@@ -104,29 +103,29 @@ def get_driver(type:str='google',headless:bool = True):
     driver = WebDriver()
   return driver
 
-def get_soup(url:str,driver_type:str='google'):
-  """获取BeautifulSoup对象 lxml解析
+# def get_soup(url:str,driver_type:str='google'):
+#   """获取BeautifulSoup对象 lxml解析
 
-  Args:
-      url (str): _网址_
-      driver_type: 驱动类型 google|firefox
-  """  
-  driver:WebDriver = get_driver(driver_type)
-  driver.get(url)
-  html = driver.page_source
-  return BeautifulSoup(html,"lxml")
+#   Args:
+#       url (str): _网址_
+#       driver_type: 驱动类型 google|firefox
+#   """  
+#   driver:WebDriver = get_driver(driver_type)
+#   driver.get(url)
+#   html = driver.page_source
+#   return BeautifulSoup(html,"lxml")
 
 
-def get_frame_soup(url:str,frame_id:str,driver_type:str='google'):
-  """获取BeautifulSoup对象 lxml解析 前端使用frame骨架
+# def get_frame_soup(url:str,frame_id:str,driver_type:str='google'):
+#   """获取BeautifulSoup对象 lxml解析 前端使用frame骨架
 
-  Args:
-      url (str): _网址_
-      frame_id (str): frame的id
-      driver_type(str): 驱动类型 google|firefox
-  """  
-  driver:WebDriver = get_driver(driver_type)
-  driver.switch_to.frame(frame_id)
-  driver.get(url)
-  html = driver.page_source
-  return BeautifulSoup(html,"lxml")
+#   Args:
+#       url (str): _网址_
+#       frame_id (str): frame的id
+#       driver_type(str): 驱动类型 google|firefox
+#   """  
+#   driver:WebDriver = get_driver(driver_type)
+#   driver.switch_to.frame(frame_id)
+#   driver.get(url)
+#   html = driver.page_source
+#   return BeautifulSoup(html,"lxml")
