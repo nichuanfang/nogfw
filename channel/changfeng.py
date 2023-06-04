@@ -45,11 +45,7 @@ def changfeng_func(channel_id:str):
         # 1. 获取密码: free_node_secret
         free_node_secret = ''
         try:
-            for index,item in enumerate(ocr_result):
-                if index>8 and (item.__contains__('V2rayse') or item.__contains__('VZrayse') or item.__contains__('comlfree') or item.__contains__('free-node')) and len(item)>=19: # type: ignore
-                    # lower()防止OCR识别成了大写
-                    free_node_secret:str = ocr_result[index+1].lower() # type: ignore
-                    break
+            free_node_secret = ocr_utils.get_changfeng_password(ocr_result) # type: ignore
         except Exception as e:
             logging.error(f'==============================================================================长风密码获取失败: {e}!!')    
             return []

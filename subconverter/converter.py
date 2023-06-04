@@ -264,14 +264,17 @@ def handle_nodes(nodes:list[str]):
     sorted_tag_node_keys = sorted(tag_node_dict,key=sort_func,reverse=True)
     new_nodes = []
     # 节点重排序
+    tag_index = 1
     for index,sorted_tag_node_key in enumerate(sorted_tag_node_keys):
         sorted_tag_node = tag_node_dict[sorted_tag_node_key]
         # 过滤速度低于4.8Mbps的节点(即速度低于600KB/S的节点)
         speed = proxy_speed(sorted_tag_node_key)
         if speed*8 < 4.8:
+            # 跳到下一轮循环 则打的tag就会错误!
             continue
         # 处理节点 去除特殊标识(例如: youtube不良林) 添加标签 [序号]
-        new_nodes.append(tag(sorted_tag_node,f'[{index+1}] '+sorted_tag_node_key.replace('(Youtube:不良林)','')))
+        new_nodes.append(tag(sorted_tag_node,f'[{tag_index}] '+sorted_tag_node_key.replace('(Youtube:不良林)','')))
+        tag_index+=1
 
     return new_nodes
 
