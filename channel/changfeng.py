@@ -61,12 +61,12 @@ def changfeng_func(channel_id:str):
                     free_node_secret:str = ocr_result[index+1].lower() # type: ignore
                     break
         except Exception as e:
-            logging.error(f'==============================================长风密码获取失败: {e}!!')    
+            logging.error(f'==============================================================================长风密码获取失败: {e}!!')    
             return []
         if free_node_secret and len(free_node_secret) > 0:
-            logging.info(f'==============================================长风密码:{free_node_secret}获取成功!')
+            logging.info(f'========================================================================================长风密码:{free_node_secret}获取成功!')
         else:
-            logging.error(f'==============================================长风密码获取失败!!')    
+            logging.error(f'================================================================================================长风密码获取失败!!')    
             return []
         # 2. 访问目标网站
         driver = my_selenium.get_driver(headless=True)
@@ -78,7 +78,7 @@ def changfeng_func(channel_id:str):
             password_ele.send_keys(free_node_secret)
             sleep(2)
         except Exception as e:
-            logging.error(f'获取密码输入框 输入密码失败: {e}')
+            logging.error(f'================================================================================================获取密码输入框 输入密码失败: {e}')
             return []
         # 4. 点击提交密码
         try:
@@ -87,7 +87,7 @@ def changfeng_func(channel_id:str):
             submit_ele.click()
             sleep(10)
         except Exception as e:
-            logging.error(f'点击提交密码失败: {e}')
+            logging.error(f'=========================================================================================================点击提交密码失败: {e}')
             return []
         # 5. 点击全选
         try:                                                          
@@ -95,7 +95,7 @@ def changfeng_func(channel_id:str):
             all_check_ele.click()
             sleep(2)
         except Exception as e:
-            logging.error(f'长风频道密码:{free_node_secret}错误!')
+            logging.error(f'======================================================================================================================长风频道密码:{free_node_secret}错误!')
             return []
         # 5. 点击复制
         try:
@@ -119,10 +119,10 @@ def changfeng_func(channel_id:str):
             ac.key_down(Keys.COMMAND).send_keys('v').perform()
         clipbord_content = driver.find_element(By.XPATH, f'//*[@id="wl-edit"]').get_attribute("value")  # 获取输入框内容
         if clipbord_content == '':
-            logging.error(f'===================================粘贴板内容获取失败!')
+            logging.error(f'===================================================================================================================粘贴板内容获取失败!')
             return []
         else:
-            logging.info(f'===================================已获取粘贴板内容:{clipbord_content}!')
+            logging.info(f'===========================================================================================================已获取粘贴板内容:{clipbord_content}!')
         raw_list = clipbord_content.split('\n')
         # # ``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
 
@@ -187,5 +187,5 @@ def changfeng_func(channel_id:str):
         logging.info(f'')
         return result
     except Exception as err:
-        logging.error(f'==============================={err}==============================================')
+        logging.error(f'=================================================================={err}==============================================')
         return []
