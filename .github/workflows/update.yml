@@ -121,10 +121,10 @@ jobs:
 
   test-bark:
     uses: saphrioh/.github/.github/workflows/bark_notice.yml@main
-    needs: job1
     with:
       title: Pass the qx and clash config generate test!
       body: healthnotification
+    secrets: inherit
 
   job2:
     name: Deploy qx and clash config to Github Gist
