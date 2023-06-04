@@ -105,19 +105,25 @@ jobs:
           echo '=====================v2ray配置: ====================================='
           cat ./dist/v2ray-sub.txt
 
-      - name: Push notification
-        uses: shink/bark-action@v2
-        continue-on-error: true
-        with:
-          key: ${{ secrets.BARK_KEY }} # Your secret key, it is required
-          host: ${{ vars.BARK_HOST }} # Your Bark host, the default is 'https://api.day.app'
-          title: Test Result
-          body: Pass the qx and clash config generate test!
-          sound: healthnotification
-          isArchive: 1
-          # url: https://yuanhaoji.com
-          # automaticallyCopy: 1
-          # copy: Content copied to clipboard
+      # - name: Push notification
+      #   uses: shink/bark-action@v2
+      #   continue-on-error: true
+      #   with:
+      #     key: ${{ secrets.BARK_KEY }} # Your secret key, it is required
+      #     host: ${{ vars.BARK_HOST }} # Your Bark host, the default is 'https://api.day.app'
+      #     title: Test Result
+      #     body: Pass the qx and clash config generate test!
+      #     sound: healthnotification
+      #     isArchive: 1
+      #     # url: https://yuanhaoji.com
+      #     # automaticallyCopy: 1
+      #     # copy: Content copied to clipboard
+
+  test-bark:
+    uses: saphrioh/.github/.github/workflows/bark_notice.yml@main
+    with:
+      title: Pass the qx and clash config generate test!
+      body: healthnotification
 
   job2:
     name: Deploy qx and clash config to Github Gist
@@ -217,16 +223,16 @@ jobs:
           author_name: 'nichuanfang'
           message: '🐳 chore: keep action alive'
 
-      - name: Push notification
-        uses: shink/bark-action@v2
-        continue-on-error: true
-        with:
-          key: ${{ secrets.BARK_KEY }} # Your secret key, it is required
-          host: ${{ vars.BARK_HOST }} # Your Bark host, the default is 'https://api.day.app'
-          title: Deploy Result
-          body: Qx and Clash config has be deployed on Github Gist
-          sound: calypso
-          isArchive: 1
-          # url: https://yuanhaoji.com
-          # automaticallyCopy: 1
-          # copy: Content copied to clipboard
+      # - name: Push notification
+      #   uses: shink/bark-action@v2
+      #   continue-on-error: true
+      #   with:
+      #     key: ${{ secrets.BARK_KEY }} # Your secret key, it is required
+      #     host: ${{ vars.BARK_HOST }} # Your Bark host, the default is 'https://api.day.app'
+      #     title: Deploy Result
+      #     body: Qx and Clash config has be deployed on Github Gist
+      #     sound: calypso
+      #     isArchive: 1
+      #     # url: https://yuanhaoji.com
+      #     # automaticallyCopy: 1
+      #     # copy: Content copied to clipboard
