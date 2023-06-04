@@ -19,15 +19,8 @@ handler.setFormatter(colorlog.ColoredFormatter(
  '%(log_color)s%(levelname)s:%(name)s:%(message)s'))
 
 # 带颜色的logger 
-logger = colorlog.getLogger()
-logger.addHandler(handler)
-
-# 不带颜色的logging
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
-# 日志配置
-LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
-DATE_FORMAT = "%m/%d/%Y %H:%M:%S %p"
-logging.basicConfig(level=logging.INFO, format=LOG_FORMAT, datefmt=DATE_FORMAT)
+logging = colorlog.getLogger()
+logging.addHandler(handler)
 
 # 二维码识别
 def qr_recognize(file_path: str):

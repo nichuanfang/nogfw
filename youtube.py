@@ -3,7 +3,6 @@
 from math import inf
 from my_global import local
 from my_global import logging
-from my_global import logger
 from channel import bulianglin
 from channel import changfeng
 import sys
@@ -45,8 +44,6 @@ def batch_craw(number:int,channels:dict[str,dict],sleeptime:int):
     return raw_list
 
 if __name__ == '__main__':
-    logger.info('==================================================================test1')
-    logging.info('=================================================================test2')
     # 切换至本地开发模式 需手动将my_global的local改为True!
     # 切换至线上模式 需手动将my_global的local改为False!
     if local:

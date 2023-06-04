@@ -21,26 +21,6 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: 设置python环境(v3.11)
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-          cache: 'pip'
-
-      - name: 安装pip依赖(清华大学镜像源)
-        run: pip install -r requirements.txt
-
-      - name: update proxy
-        continue-on-error: false
-        env:
-          CRAW_NUMBER: ${{ vars.CRAW_NUMBER }}
-          CRAW_SLEEP_SECONDS: ${{ vars.CRAW_SLEEP_SECONDS }}
-          NEED_SAVE: ${{ vars.NEED_SAVE }}
-          BULIANGLIN_CHANNEL_ID: ${{ vars.BULIANGLIN_CHANNEL_ID }}
-          CHANGFENG_CHANNEL_ID: ${{ vars.CHANGFENG_CHANNEL_ID }}
-        run: |
-          python youtube.py $CRAW_NUMBER $CRAW_SLEEP_SECONDS $NEED_SAVE $BULIANGLIN_CHANNEL_ID $CHANGFENG_CHANNEL_ID
-
       - name: Push notification
         uses: shink/bark-action@v2
         continue-on-error: true
