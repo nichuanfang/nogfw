@@ -21,26 +21,26 @@ def read_detail_text(image:str,reader:Reader):
 
 # 获取长风频道的密码
 def get_changfeng_password(ocr_result:list[str]):
-    secret = ''
+    secrets = []
     for index,item in enumerate(ocr_result):
         if index>8 and (item.__contains__('V2rayse') or item.__contains__('VZrayse') or item.__contains__('comlfree') or item.__contains__('free-node')) and len(item)>=19: # type: ignore
             # 在剩下的元素中寻找密码
             remaining_index = index
             while True:
-                if remaining_index == len(ocr_result):
+                if remaining_index == len(ocr_result)-1:
                     break
                 # 向下读取 正则匹配 4-6位 (a-z) 
                 remaining_index = remaining_index+1
                 if bool(re.search(r'^[a-z]{3,6}$',ocr_result[remaining_index])):
                     # lower()防止OCR识别成了大写
                     secret = ocr_result[remaining_index].lower()
-                    # 符合条件就返回
-                    break
+                    # 符合条件就添加到结果集
+                    secrets.append(secret)
                 
-            if secret != '':
+            if len(secrets) != 0:
                 break
             else:
                 raise RuntimeError('changfeng password ocr parsed error!')
-    return secret
+    return secrets
     
                

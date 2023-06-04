@@ -14,7 +14,7 @@ from myselenium import my_selenium
 from subconverter.converter import get_tag
 from subconverter.converter import tag
 import platform
-import sys
+import concurrent.futures
 
 reader = ocr_utils.get_reader()
 
@@ -43,47 +43,22 @@ def changfeng_func(channel_id:str):
         # additional handling to ocr result... 
         logging.info(f'===============================================================================OCR: {ocr_result}')
         # 1. 获取密码: free_node_secret
-        free_node_secret = ''
-        try:
-            free_node_secret = ocr_utils.get_changfeng_password(ocr_result) # type: ignore
-        except Exception as e:
-            logging.error(f'==============================================================================长风密码获取失败: {e}!!')    
-            return []
-        if free_node_secret and len(free_node_secret) > 0:
-            logging.info(f'========================================================================================长风密码:{free_node_secret}获取成功!')
-        else:
-            logging.error(f'================================================================================================长风密码获取失败!!')    
-            return []
-        # 2. 访问目标网站
-        driver = my_selenium.get_driver(headless=True)
-        driver.get('https://v2rayse.com/free-node')
-        sleep(10)
-        # 3. 获取密码输入框 输入密码
-        try:
-            password_ele = driver.find_element(By.ID,'input-200')
-            password_ele.send_keys(free_node_secret)
-            sleep(2)
-        except Exception as e:
-            logging.error(f'================================================================================================获取密码输入框 输入密码失败: {e}')
-            return []
-        # 4. 点击提交密码
-        try:
-            submit_ele = driver.find_element(By.XPATH,r'//*[@id="app"]/div/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[2]/div/button')
-            # ActionChains(driver).move_to_element(submit_ele).click(submit_ele)
-            submit_ele.click()
-            sleep(10)
-        except Exception as e:
-            logging.error(f'=========================================================================================================点击提交密码失败: {e}')
-            return []
-        # 5. 点击全选
-        try:                                                          
-            all_check_ele = driver.find_element(By.XPATH,r'/html/body/div/div/div/div/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[2]/div/div/div/span[1]/span')
-            all_check_ele.click()
-            sleep(2)
-        except Exception as e:
-            logging.error(f'======================================================================================================================长风频道密码:{free_node_secret}错误!')
-            return []
-        # 5. 点击复制
+        free_node_secrets = ocr_utils.get_changfeng_password(ocr_result) # type: ignore
+        driver = my_selenium.get_driver()
+        #校验密码可用性
+        final_res = ()
+        with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+            to_do = []
+            for secret in free_node_secrets:
+                verify_future = executor.submit(verify_password,password=secret)
+                to_do.append(verify_future)
+            for future in concurrent.futures.as_completed(to_do):  # 并发执行
+                verify_result = future.result()
+                if verify_result:
+                    final_res = verify_result
+                    logging.info(f'===============================长风频道密码获取成功! 密码: {verify_result[0]}==============================================')
+                    break
+        driver = final_res[1] # type: ignore
         try:
             cp_all_ele = driver.find_element(By.XPATH,r'/html/body/div/div/div/div/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[2]/div/div/div/span[3]/span')
             cp_all_ele.click()
@@ -175,3 +150,38 @@ def changfeng_func(channel_id:str):
     except Exception as err:
         logging.error(f'=================================================================={err}==============================================')
         return []
+
+def verify_password(password:str):
+    result = None
+    # 校验长风频道密码可用性
+    # 2. 访问目标网站
+    driver = my_selenium.get_driver(headless=True)
+    driver.get('https://v2rayse.com/free-node')
+    sleep(10)
+    # 3. 获取密码输入框 输入密码
+    try:
+        password_ele = driver.find_element(By.ID,'input-200')
+        password_ele.send_keys(password)
+        sleep(2)
+    except Exception as e:
+        logging.error(f'================================================================================================获取密码输入框失败: {e}')
+        return result
+    # 4. 点击提交密码
+    try:
+        submit_ele = driver.find_element(By.XPATH,r'//*[@id="app"]/div/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[2]/div/button')
+        # ActionChains(driver).move_to_element(submit_ele).click(submit_ele)
+        submit_ele.click()
+        sleep(10)
+    except Exception as e:
+        logging.error(f'=========================================================================================================点击提交密码失败: {e}')
+        return result
+    # 5. 点击全选
+    try:                                                          
+        all_check_ele = driver.find_element(By.XPATH,r'/html/body/div/div/div/div/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[2]/div/div/div/span[1]/span')
+        all_check_ele.click()
+        sleep(2)
+    except Exception as e:
+        logging.error(f'======================================================================================================================密码:{password}校验失败!')
+        return result
+    result = (password,driver)
+    return result
