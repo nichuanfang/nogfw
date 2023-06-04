@@ -64,10 +64,7 @@ def changfeng_func(channel_id:str):
             logging.error(f'==============================================长风密码获取失败: {e}!!')    
             return []
         if free_node_secret and len(free_node_secret) > 0:
-            if not NEED_SAVE:
-                logging.info(f'==============================================长风密码:{free_node_secret}获取成功!')    
-            else:
-                logging.info(f'==============================================长风密码获取成功!')    
+            logging.info(f'==============================================长风密码:{free_node_secret}获取成功!')
         else:
             logging.error(f'==============================================长风密码获取失败!!')    
             return []
@@ -158,28 +155,19 @@ def changfeng_func(channel_id:str):
                 else:
                     other_list.append(proxy)
                 raw_tag = get_tag(proxy)
-                if raw_tag.__contains__('美国'):
-                    raw_tag = '美国'
-                elif raw_tag.__contains__('印度'):
-                    raw_tag = '印度'
-                elif raw_tag.__contains__('英国'):
-                    raw_tag = '英国'
-                elif raw_tag.__contains__('澳大利亚'):
-                    raw_tag =  '澳大利亚'
-                elif raw_tag.__contains__('荷兰'):
-                    raw_tag =  '荷兰'
-                elif raw_tag.__contains__('乌克兰'):
-                    raw_tag =  '乌克兰'
-                elif raw_tag.__contains__('以色列'):
-                    raw_tag =  '以色列'
-                elif raw_tag.__contains__('印度尼西亚'):
-                    raw_tag =  '印度尼西亚'
-                elif raw_tag.__contains__('俄罗斯'):
-                    raw_tag =  '俄罗斯'
-                elif raw_tag.__contains__('德国'):
-                    raw_tag =  '德国'
-                elif raw_tag.__contains__('法国'):
-                    raw_tag =  '法国'
+                try: 
+                    # 去除中转标识
+                    tag_split_list =  raw_tag.split('->') # type: ignore
+                    if len(tag_split_list) ==2:
+                        # ````中转节点  国家1为中转机(relay) 国家2为落地机器 实际使用和节点质量评估系统以落地机为准
+                        # logo1_国家代号1_国家中文名称1->logo2_国家代号2_国家中文名称2
+                        raw_tag = tag_split_list[1].split('_')[2]
+                    else:
+                        # ````一般节点
+                        # logo_国家代号_国家中文名称
+                        raw_tag = raw_tag.split('_')[2] # type: ignore
+                except:
+                    continue
                 # 速度元素
                 speed_ele = driver.find_element(By.XPATH,rf'//*[@id="app"]/div[1]/main/div/div/div/div/div[1]/div/div[1]/div[2]/div/div/div[3]/div[1]/table/tbody/tr[{index+1}]/td[4]')
                 # 速度
