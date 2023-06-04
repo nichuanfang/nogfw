@@ -95,7 +95,7 @@ def changfeng_func(channel_id:str):
             all_check_ele.click()
             sleep(2)
         except Exception as e:
-            logging.error(f'点击全选失败: {e} , 请检查密码是否正确获取!')
+            logging.error(f'长风频道密码:{free_node_secret}错误!')
             return []
         # 5. 点击复制
         try:
