@@ -3,7 +3,8 @@ import cv2
 import sys
 import io
 from PIL import Image
-
+import colorlog
+ 
 # 通过此flag 开启本地开发模式
 try:
     # 如果有环境变量 说明是测试/生产环境
@@ -12,7 +13,16 @@ try:
 except:
     # 如果没有环境变量 启动本地环境
     local = True
+ 
+handler = colorlog.StreamHandler()
+handler.setFormatter(colorlog.ColoredFormatter(
+ '%(log_color)s%(levelname)s:%(name)s:%(message)s'))
 
+# 带颜色的logger 
+logger = colorlog.getLogger()
+logger.addHandler(handler)
+
+# 不带颜色的logging
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 # 日志配置
 LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"

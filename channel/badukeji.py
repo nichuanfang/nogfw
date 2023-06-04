@@ -2,7 +2,6 @@
 from my_global import logging
 from my_global import qr_recognize
 from my_global import local
-from my_global import reader
 import copy
 import datetime
 import subprocess
@@ -19,9 +18,9 @@ def badukeji_func(channel_id:str,number:int,sleeptime:int):
         sleeptime(int): 间隔时间
 
     """  
-        logging.info(f'===========================================================================8度科技节点信息获取完毕,共获取有效数据源:{len(raw_list)}个')
-        logging.info(f'')
-        logging.info(f'')
-        logging.info(f'')
-        logging.info(f'')
-    return raw_list
+    logging.info(f'===========================================================================8度科技节点信息获取完毕,共获取有效数据源:个')
+    logging.info(f'')
+    logging.info(f'')
+    logging.info(f'')
+    logging.info(f'')
+    return []

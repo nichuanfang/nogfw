@@ -1,10 +1,10 @@
 beautifulsoup4==4.12.2
+colorlog==6.7.0
 easyocr==1.7.0
 fake_useragent==1.1.1
 lxml==4.9.2
 opencv_python_headless==4.7.0.72
 Pillow==9.5.0
-pyperclip==1.8.2
 PyYAML==6.0
 requests==2.27.1
 selenium==4.9.1
