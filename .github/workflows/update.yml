@@ -124,7 +124,6 @@ jobs:
     runs-on: ubuntu-latest
     # NEED_SAVE表示需要将配置部署到Github Gist
     if: vars.NEED_DEPLOY == 'true'
-    needs: job1
     environment: prod
     steps:
       - uses: actions/checkout@master
