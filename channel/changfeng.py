@@ -28,7 +28,7 @@ def changfeng_func(channel_id:str):
     ss_ssr_list = []
     vmess_trojan_list = []
     other_list = []
-    result = []
+    result = []  
     logging.info(f'===========================================================================开始获取长风节点信息...')
     if not local:
         # 隔一段时间获取二维码 pyenv3.8 && ffmpeg -y -i "$(yt-dlp -g N1Qyg0scz7g | head -n 1)" -vframes 1 changfeng.jpg
