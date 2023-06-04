@@ -3,7 +3,6 @@ import cv2
 import sys
 import io
 from PIL import Image
-import colorlog
  
 # 通过此flag 开启本地开发模式
 try:
@@ -13,14 +12,12 @@ try:
 except:
     # 如果没有环境变量 启动本地环境
     local = True
- 
-handler = colorlog.StreamHandler()
-handler.setFormatter(colorlog.ColoredFormatter(
- '%(log_color)s%(levelname)s:%(name)s:%(message)s'))
 
-# 带颜色的logger 
-logging = colorlog.getLogger()
-logging.addHandler(handler)
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
+# 日志配置
+LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
+DATE_FORMAT = "%m/%d/%Y %H:%M:%S %p"
+logging.basicConfig(level=logging.INFO, format=LOG_FORMAT, datefmt=DATE_FORMAT)
 
 # 二维码识别
 def qr_recognize(file_path: str):

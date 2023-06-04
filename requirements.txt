@@ -1,5 +1,4 @@
 beautifulsoup4==4.12.2
-colorlog==6.7.0
 easyocr==1.7.0
 fake_useragent==1.1.1
 lxml==4.9.2
