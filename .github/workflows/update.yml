@@ -211,20 +211,6 @@ jobs:
           author_name: 'nichuanfang'
           message: '🐳 chore: keep action alive'
 
-      # - name: Push notification
-      #   uses: shink/bark-action@v2
-      #   continue-on-error: true
-      #   with:
-      #     key: ${{ secrets.BARK_KEY }} # Your secret key, it is required
-      #     host: ${{ vars.BARK_HOST }} # Your Bark host, the default is 'https://api.day.app'
-      #     title: Deploy Result
-      #     body: Qx and Clash config has be deployed on Github Gist
-      #     sound: calypso
-      #     isArchive: 1
-      #     # url: https://yuanhaoji.com
-      #     # automaticallyCopy: 1
-      #     # copy: Content copied to clipboard
-
   deploy_bark_notice:
     uses: nichuanfang/.github/.github/workflows/reuse_bark_notice.yml@main
     needs: job2
