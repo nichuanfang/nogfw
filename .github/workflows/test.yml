@@ -4,7 +4,7 @@ on: push
 
 jobs:
   call-workflow-passing-data:
-    uses: nichuanfang/.github/.github/workflows/reuse_bark_notice.yml@main
+    uses: nichuanfang/.github/.github/workflows/reuse/reuse_bark_notice.yml@main
     with:
       title: title
       body: hahah
