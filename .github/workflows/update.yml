@@ -105,19 +105,13 @@ jobs:
           echo '=====================v2ray配置: ====================================='
           cat ./dist/v2ray-sub.txt
 
-      - name: Push notification
-        uses: shink/bark-action@v2
-        continue-on-error: true
-        with:
-          key: ${{ secrets.BARK_KEY }} # Your secret key, it is required
-          host: ${{ vars.BARK_HOST }} # Your Bark host, the default is 'https://api.day.app'
-          title: Test Result
-          body: Pass the qx and clash config generate test!
-          sound: healthnotification
-          isArchive: 1
-          # url: https://yuanhaoji.com
-          # automaticallyCopy: 1
-          # copy: Content copied to clipboard
+  test_bark_notice:
+    uses: nichuanfang/.github/.github/workflows/reuse_bark_notice.yml@main
+    needs: job1
+    with:
+      title: 测试结果通知
+      body: 测试通过！
+    secrets: inherit
 
   job2:
     name: Deploy qx and clash config to Github Gist
@@ -230,3 +224,10 @@ jobs:
       #     # url: https://yuanhaoji.com
       #     # automaticallyCopy: 1
       #     # copy: Content copied to clipboard
+
+  deploy_bark_notice:
+    uses: nichuanfang/.github/.github/workflows/reuse_bark_notice.yml@main
+    with:
+      title: 配置更新通知
+      body: qx和clash配置已同步至Github Gist！
+    secrets: inherit
