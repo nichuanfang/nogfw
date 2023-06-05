@@ -17,4 +17,4 @@ jobs:
     with:
       title: Pass the qx and clash config generate test!
       body: healthnotification
-    # secrets: inherit
+    secrets: inherit
