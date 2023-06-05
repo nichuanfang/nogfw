@@ -1,0 +1,20 @@
+name: test bark
+
+on:
+  # 手动触发
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+      tags:
+        description: 'test bark'
+
+jobs:
+  test-bark:
+    uses: nichuanfang/.github/.github/workflows/bark_notice.yml@main
+    with:
+      title: Pass the qx and clash config generate test!
+      body: healthnotification
+    # secrets: inherit
