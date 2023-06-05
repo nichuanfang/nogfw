@@ -227,6 +227,7 @@ jobs:
 
   deploy_bark_notice:
     uses: nichuanfang/.github/.github/workflows/reuse_bark_notice.yml@main
+    needs: job2
     with:
       title: 配置更新通知
       body: qx和clash配置已同步至Github Gist！
