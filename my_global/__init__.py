@@ -1,4 +1,6 @@
-import logging
+# import logging
+from loguru import logger as logging 
+# from tqdm import tqdm 进度条
 import cv2
 import sys
 import io
@@ -9,9 +11,9 @@ local = True if len(sys.argv)==1 else False
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 # 日志配置
-LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
-DATE_FORMAT = "%m/%d/%Y %H:%M:%S %p"
-logging.basicConfig(level=logging.INFO, format=LOG_FORMAT, datefmt=DATE_FORMAT)
+# LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
+# DATE_FORMAT = "%m/%d/%Y %H:%M:%S %p"
+# logging.basicConfig(level=logging.INFO, format=LOG_FORMAT, datefmt=DATE_FORMAT)
 
 # 二维码识别
 def qr_recognize(file_path: str):
