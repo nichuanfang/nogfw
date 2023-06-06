@@ -1,5 +1,6 @@
 easyocr==1.7.0
 fake_useragent==1.1.1
+loguru==0.7.0
 opencv_python_headless==4.7.0.72
 Pillow==9.5.0
 PyYAML==6.0
