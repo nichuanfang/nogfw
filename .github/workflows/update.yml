@@ -219,7 +219,7 @@ jobs:
           key: ${{ secrets.BARK_KEY }}
           host: ${{ vars.BARK_HOST }}
           title: 配置更新通知
-          body:  qx和clash配置已同步至Github Gist
+          body:  qx和clash配置已同步至Github%20Gist
           sound: calypso
         run: |
           curl -L "${{env.host}}/${{env.key}}/${{env.title}}/${{env.body}}?sound=${{env.sound}}"
