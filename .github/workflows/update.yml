@@ -104,14 +104,17 @@ jobs:
           echo '===================================================================='
           echo '=====================v2ray配置: ====================================='
           cat ./dist/v2ray-sub.txt
+          
+      - name: Push notification
+        env:
+          key: ${{ secrets.BARK_KEY }}
+          host: ${{ vars.BARK_HOST }}
+          title: 测试结果通知
+          body: 测试通过
+          sound: calypso
+        run: |
+          curl -L "${{env.host}}/${{env.key}}/${{env.title}}/${{env.body}}?sound=${{env.sound}}"
 
-  test_bark_notice:
-    uses: nichuanfang/.github/.github/workflows/reuse_bark_notice.yml@main
-    needs: job1
-    with:
-      title: 测试结果通知
-      body: 测试通过！
-    secrets: inherit
 
   job2:
     name: Deploy qx and clash config to Github Gist
@@ -210,11 +213,13 @@ jobs:
           author_email: 'f18326186224@gmail.com'
           author_name: 'nichuanfang'
           message: '🐳 chore: keep action alive'
-
-  deploy_bark_notice:
-    uses: nichuanfang/.github/.github/workflows/reuse_bark_notice.yml@main
-    needs: job2
-    with:
-      title: 配置更新通知
-      body: qx和clash配置已同步至Github Gist！
-    secrets: inherit
+          
+      - name: Push notification
+        env:
+          key: ${{ secrets.BARK_KEY }}
+          host: ${{ vars.BARK_HOST }}
+          title: 配置更新通知
+          body:  qx和clash配置已同步至Github Gist
+          sound: calypso
+        run: |
+          curl -L "${{env.host}}/${{env.key}}/${{env.title}}/${{env.body}}?sound=${{env.sound}}"
