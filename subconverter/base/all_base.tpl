@@ -1,6 +1,8 @@
 {% if request.target == "clash" or request.target == "clashr" %}
 
-mixed-port: {{ default(global.clash.mixed_port, "10809") }}
+#mixed-port: {{ default(global.clash.mixed_port, "10809") }}
+port: 10809
+socks-port: 10808
 allow-lan: {{ default(global.clash.allow_lan, "true") }}
 mode: Rule
 log-level: {{ default(global.clash.log_level, "info") }}
