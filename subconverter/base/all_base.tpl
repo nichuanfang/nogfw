@@ -6,7 +6,7 @@ mode: Rule
 log-level: {{ default(global.clash.log_level, "info") }}
 external-controller: :9090
 dns:
-  enabled: true
+  enabled: false
   nameserver:
     - 223.5.5.5
     - 223.6.6.6
