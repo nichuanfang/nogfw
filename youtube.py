@@ -5,6 +5,7 @@ from my_global import logging
 from channel import bulianglin
 from channel import changfeng
 import time
+import datetime
 import sys
 import random
 from subconverter import converter
@@ -102,9 +103,14 @@ if __name__ == '__main__':
             generate_ini = converter.add_v2ray(raw_list,generate_ini)
             logging.info(f'=========================================================================v2ray配置文件已生成!')
 
-            # 随机生成一个文件 保持仓库处于活跃
-            open('dist/dist-version','w+').write(time.strftime("%Y-%m-%d",time.localtime(time.time()))+'-'+''.join \
-                                                 (random.sample('-abcdefghigklmnopqrstuvwxyz1234567890',20)))
+            with open('dist/dist-version', 'r+') as f:
+                dist_version = f.read()
+            last_date = dist_version.rsplit('-', 1)[0]
+            # 如果和今天超过一个月 更新
+            if (datetime.datetime.now() - datetime.datetime.strptime(last_date, '%Y-%m-%d')).days >= 30:
+                # 随机生成一个文件 保持仓库处于活跃
+                open('dist/dist-version','w+').write(time.strftime("%Y-%m-%d",time.localtime(time.time()))+'-'+''.join \
+                                                     (random.sample('-abcdefghigklmnopqrstuvwxyz1234567890',20)))
             logging.info(f'')
             logging.info(f'')
             logging.info(f'')
