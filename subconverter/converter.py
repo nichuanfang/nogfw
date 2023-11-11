@@ -267,9 +267,9 @@ def handle_nodes(nodes:list[str]):
     tag_index = 1
     for index,sorted_tag_node_key in enumerate(sorted_tag_node_keys):
         sorted_tag_node = tag_node_dict[sorted_tag_node_key]
-        # 过滤速度低于2.4Mbps的节点(即速度低于300KB/S的节点)
+        # 过滤速度低于1.5Mbps的节点(即速度低于300KB/S的节点)
         speed = proxy_speed(sorted_tag_node_key)
-        if speed*8 < 2.4:
+        if speed*8 < 1.5:
             # 跳到下一轮循环 则打的tag就会错误!
             continue
         # 处理节点 去除特殊标识(例如: youtube不良林) 添加标签 [序号]
