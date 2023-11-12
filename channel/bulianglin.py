@@ -46,7 +46,7 @@ def bulianglin_func(channel_id:str):
         logging.error(f'==============================={err}==============================================')
     
     logging.info(f'===========================================================================开始获取不良林节点信息...')
-    if  local:
+    if  not local:
         crawl_number = 1
     for craw_index in range(crawl_number*2):
         logging.info(f'=====================================开始第{craw_index+1}/{crawl_number*2}轮抓取======================================================')

@@ -292,6 +292,7 @@ def add_quanx(nodes:list[str],template:str = generate_template_ini):
         nodes (list[str]): 节点
     """   
     url = '|'.join(handle_nodes(nodes))[:-1]
+    print(f'添加的quanx节点为: {url}')
     generate_ini = re.sub(quanx_pattern,f'{url}',template)
     with open('subconverter/generate.ini','w+',encoding='utf-8') as f:
         f.write(generate_ini)
@@ -305,6 +306,7 @@ def add_clash(nodes:list[str],template:str = generate_template_ini):
         nodes (list[str]): 节点
     """    
     url = '|'.join(handle_nodes(nodes))[:-1]
+    print(f'添加的clash节点为: {url}')
     generate_ini = re.sub(clash_pattern,f'{url}',template)
     with open('subconverter/generate.ini','w+',encoding='utf-8') as f:
         f.write(generate_ini)
@@ -317,6 +319,7 @@ def add_v2ray(nodes:list[str],template:str = generate_template_ini):
         nodes (list[str]): 节点
     """    
     url = '|'.join(handle_nodes(nodes))[:-1]
+    print(f'添加的v2ray节点为: {url}')
     generate_ini = re.sub(v2ray_pattern,f'{url}',template)
     with open('subconverter/generate.ini','w+',encoding='utf-8') as f:
         f.write(generate_ini)

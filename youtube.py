@@ -85,25 +85,21 @@ if __name__ == '__main__':
         # 有新的订阅才更新
         logging.info(f'==================================================总数据源:{len(raw_list)}个')
         if not len(raw_list)==0:
-            # 处理raw_list 
-            new_raw_list = []
-            for raw in raw_list:
-                new_raw_list.append(raw.split(':',1)[1])
             
             # 生成qx专用订阅
             generate_ini = converter.generate_template_ini
             logging.info(f'=========================================================================生成qx配置文件...')
-            generate_ini = converter.add_quanx(new_raw_list,generate_ini)
+            generate_ini = converter.add_quanx(raw_list,generate_ini)
             logging.info(f'=========================================================================qx配置文件已生成!')
             print(generate_ini)
             # 生成clash配置文件
             logging.info(f'=========================================================================生成clash配置文件...')
-            generate_ini = converter.add_clash(new_raw_list,generate_ini)
+            generate_ini = converter.add_clash(raw_list,generate_ini)
             logging.info(f'=========================================================================clash配置文件已生成!')
 
             # 生成v2ray订阅
             logging.info(f'=========================================================================生成v2ray配置文件...')
-            generate_ini = converter.add_v2ray(new_raw_list,generate_ini)
+            generate_ini = converter.add_v2ray(raw_list,generate_ini)
             logging.info(f'=========================================================================v2ray配置文件已生成!')
 
             with open('dist/dist-version', 'r+') as f:
