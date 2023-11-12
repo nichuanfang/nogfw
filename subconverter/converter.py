@@ -267,13 +267,17 @@ def handle_nodes(nodes:list[str]):
     tag_index = 1
     for index,sorted_tag_node_key in enumerate(sorted_tag_node_keys):
         sorted_tag_node = tag_node_dict[sorted_tag_node_key]
-        # 过滤速度低于1.5Mbps的节点(即速度低于300KB/S的节点)
-        speed = proxy_speed(sorted_tag_node_key)
-        if speed*8 < 1.5:
-            # 跳到下一轮循环 则打的tag就会错误!
-            continue
-        # 处理节点 去除特殊标识(例如: youtube不良林) 添加标签 [序号]
-        new_nodes.append(tag(sorted_tag_node,f'[{tag_index}] '+sorted_tag_node_key.replace('(Youtube:不良林)','')))
+        if sorted_tag_node.__contains__('sorted_tag_node_key'):
+            # 处理节点 去除特殊标识(例如: youtube不良林) 添加标签 [序号]
+            new_nodes.append(tag(sorted_tag_node,f'[{tag_index}] '+sorted_tag_node_key.replace('(频道:马克吐温)','')))
+        elif sorted_tag_node_key.__contains__('不良林'):
+            # 过滤速度低于1.5Mbps的节点(即速度低于300KB/S的节点)
+            speed = proxy_speed(sorted_tag_node_key)
+            if speed*8 < 1.5:
+                # 跳到下一轮循环 则打的tag就会错误!
+                continue
+            # 处理节点 去除特殊标识(例如: youtube不良林) 添加标签 [序号]
+            new_nodes.append(tag(sorted_tag_node,f'[{tag_index}] '+sorted_tag_node_key.replace('(Youtube:不良林)','')))
         tag_index+=1
 
     return new_nodes

@@ -44,6 +44,8 @@ def bulianglin_func(channel_id:str):
         logging.error(f'==============================={err}==============================================')
     
     logging.info(f'===========================================================================开始获取不良林节点信息...')
+    if local:
+        crawl_number = 1
     for craw_index in range(crawl_number*2):
         logging.info(f'=====================================开始第{craw_index+1}/{crawl_number*2}轮抓取======================================================')
         if not local:
@@ -72,7 +74,7 @@ def bulianglin_func(channel_id:str):
             logging.info(f'====================================已抓取数据源: [ ss/ssr节点:{len(ss_ssr_list)}个 vmess/trojan节点:{len(vmess_trojan_list)}个 其他协议节点: {len(other_list)}个 ]')
         except Exception as err:
             logging.error(f'==============================={err}==============================================')
-        if craw_index != crawl_number-1:
+        if craw_index != crawl_number*2-1:
             sleep(17)
         logging.info(f'')
         logging.info(f'')
