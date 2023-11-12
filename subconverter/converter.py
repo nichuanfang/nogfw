@@ -267,7 +267,7 @@ def handle_nodes(nodes:list[str]):
     tag_index = 1
     for index,sorted_tag_node_key in enumerate(sorted_tag_node_keys):
         sorted_tag_node = tag_node_dict[sorted_tag_node_key]
-        if sorted_tag_node.__contains__('sorted_tag_node_key'):
+        if sorted_tag_node_key.__contains__('马克吐温'):
             # 处理节点 去除特殊标识(例如: youtube不良林) 添加标签 [序号]
             new_nodes.append(tag(sorted_tag_node,f'[{tag_index}] '+sorted_tag_node_key.replace('(频道:马克吐温)','')))
         elif sorted_tag_node_key.__contains__('不良林'):
@@ -292,7 +292,6 @@ def add_quanx(nodes:list[str],template:str = generate_template_ini):
         nodes (list[str]): 节点
     """   
     url = '|'.join(handle_nodes(nodes))[:-1]
-    print(f'添加的quanx节点为: {url}')
     generate_ini = re.sub(quanx_pattern,f'{url}',template)
     with open('subconverter/generate.ini','w+',encoding='utf-8') as f:
         f.write(generate_ini)
@@ -306,7 +305,6 @@ def add_clash(nodes:list[str],template:str = generate_template_ini):
         nodes (list[str]): 节点
     """    
     url = '|'.join(handle_nodes(nodes))[:-1]
-    print(f'添加的clash节点为: {url}')
     generate_ini = re.sub(clash_pattern,f'{url}',template)
     with open('subconverter/generate.ini','w+',encoding='utf-8') as f:
         f.write(generate_ini)
@@ -319,7 +317,6 @@ def add_v2ray(nodes:list[str],template:str = generate_template_ini):
         nodes (list[str]): 节点
     """    
     url = '|'.join(handle_nodes(nodes))[:-1]
-    print(f'添加的v2ray节点为: {url}')
     generate_ini = re.sub(v2ray_pattern,f'{url}',template)
     with open('subconverter/generate.ini','w+',encoding='utf-8') as f:
         f.write(generate_ini)
