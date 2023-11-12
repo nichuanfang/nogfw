@@ -1,17 +1,39 @@
 #!/usr/local/bin/python
 # coding=utf-8
+import re
 from my_global import local
 from my_global import logging
 from channel import bulianglin
+from channel import mac2win
 from channel import changfeng
 import time
 import datetime
-import sys
 import random
 from subconverter import converter
 import concurrent.futures
+import requests
 
-def batch_craw(number:int,channels:dict[str,dict],sleeptime:int):
+live_pattern = re.compile(r'https://i.ytimg.com/vi/(.*?)/hqdefault_live.jpg')
+
+def  live_streaming_id(youtuber:str):
+    """通过youtuber油管主名称获取直播间id
+
+    Args:
+        youtuber (str): _description_
+    """ 
+    response = requests.get(f'https://www.youtube.com/@{youtuber}')
+    # 获取直播间id
+    if response.status_code == 200:
+        html = response.text
+        # 正则查找youtube直播间id
+        try:
+            live_id = live_pattern.findall(html)[0]
+            return live_id
+        except:
+            # 不存在直播间
+            return None
+
+def batch_craw(channels:dict[str,dict]):
     """批量爬取频道的订阅
 
     Args:
@@ -30,13 +52,8 @@ def batch_craw(number:int,channels:dict[str,dict],sleeptime:int):
             channel_id = channel_handler['channel_id']
             func = channel_handler['func']
             # 执行对应的操作
-            res = concurrent.futures.Future()
-            if youtuber == 'bulianglin':
-                res = executor.submit(func,channel_id,number,sleeptime)
-            elif youtuber == 'changfeng':
-                res = executor.submit(func,channel_id)
-            else:
-                pass
+            concurrent.futures.Future()
+            res = executor.submit(func,channel_id)
             to_do.append(res)
         # 并发执行 获取结果
         for future in concurrent.futures.as_completed(to_do):  # 并发执行
@@ -45,46 +62,26 @@ def batch_craw(number:int,channels:dict[str,dict],sleeptime:int):
     return raw_list
 
 if __name__ == '__main__':
-    # 切换至本地开发模式 需手动将my_global的local改为True!
-    # 切换至线上模式 需手动将my_global的local改为False!
-    if local:
-        CARW_NUMBER = 1
-        CRAW_SLEEP_SECONDS = 10
-        BULIANGLIN_CHANEL_ID = ''
-        CHANGFENG_CHANNEL_ID = ''
-    else:
-        # 环境变量检测
-        # 爬取次数
-        assert sys.argv[1] != None and sys.argv[1] != ''
-        # 爬取间隔(秒)
-        assert sys.argv[2] != None and sys.argv[2] != ''
-        # 不良林yt频道id
-        assert sys.argv[3] != None and sys.argv[3] != ''
-        # 长风yt频道id
-        assert sys.argv[4] != None and sys.argv[4] != ''
-        CARW_NUMBER = int(sys.argv[1])
-        CRAW_SLEEP_SECONDS = int(sys.argv[2])
-        # 不良林yt频道id
-        BULIANGLIN_CHANEL_ID = sys.argv[3]
-        # 长风yt频道id
-        CHANGFENG_CHANNEL_ID = sys.argv[4]
     try:
-        # 不良林
-        # raw_list = craw(CARW_NUMBER,'qmRkvKo-KbQ',10)
-        raw_list = batch_craw(CARW_NUMBER, # type: ignore
+        raw_list = batch_craw(
                               {
                                 #   不良林
                                   'bulianglin': {
-                                      'channel_id': f'{BULIANGLIN_CHANEL_ID}',
+                                      'channel_id': f'{live_streaming_id("bulianglin")}',
                                       'func': bulianglin.bulianglin_func
+                                  },
+                                #   马克吐温
+                                  'mac2win': {
+                                      'channel_id': f'{live_streaming_id("mac2win")}',
+                                      'func': mac2win.mac2win_func
                                   }
-                                #   长风
+                                #   长风 (节点质量太差 已废弃)
                                   #'changfeng': {
                                     # 'channel_id':  f'{CHANGFENG_CHANNEL_ID}',
                                      #'func': changfeng.changfeng_func
                                  # }  
                               }
-                            ,CRAW_SLEEP_SECONDS)
+                            )
         # 有新的订阅才更新
         logging.info(f'==================================================总数据源:{len(raw_list)}个')
         if not len(raw_list)==0:
@@ -116,6 +113,8 @@ if __name__ == '__main__':
             logging.info(f'')
             logging.info(f'')
             logging.info(f'=========================================================================节点更新完成!')
+        else:
+            logging.info(f'==================================================无新节点更新!')
     except Exception as e:
         raw_list = []
         logging.info(f'爬取yt频道出错:{e}')

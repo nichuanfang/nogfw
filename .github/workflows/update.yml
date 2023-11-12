@@ -14,114 +14,9 @@ on:
         description: 'update proxy'
 
 jobs:
-  job1:
-    name: Test craw and generate qx and clash config
-    runs-on: ubuntu-latest
-    # 优先级: Repository secrets/variables > Repository secrets/variables  优先级高的设置会覆盖优先级低的设置
-    environment: uat
-    if: vars.NEED_TEST == 'true'
-    steps:
-      - uses: actions/checkout@master
-        with:
-          persist-credentials: false
-          fetch-depth: 0
-
-      - uses: actions/cache@v2
-        id: cache-ocr-models
-        with:
-          path: ocr_models
-          key: ${{ runner.os }}-ocr
-          restore-keys: |
-            ${{ runner.os }}-ocr
-
-      - name: install Chrome
-        uses: browser-actions/setup-chrome@v1
-        # with:
-        #   chrome-version: beta
-
-      - run: |
-          chrome --version
-          which chrome
-
-      - name: install chromedriver
-        uses: nanasess/setup-chromedriver@v2
-        # with:
-        # Optional: do not specify to match Chrome's version
-        # chromedriver-version: '88.0.4324.96'
-
-      - run: |
-          chromedriver --version
-          which chromedriver
-          mkdir -p /opt/chromedriver/
-          sudo ln -fs /usr/local/bin/chromedriver /opt/chromedriver/chromedriver
-
-      # 最佳实践 yt-dlp+ffmpeg
-      - name: Setup yt-dlp
-        uses: AnimMouse/setup-yt-dlp@v1
-        with:
-          with-ffmpeg: true
-
-      - name: prepare python environment(v3.11)
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-          cache: 'pip'
-
-      - name: pip install
-        run: pip install -r requirements.txt
-
-      - name: pull
-        run: |
-          git checkout .
-          git pull --allow-unrelated-histories
-
-      - name: update proxy
-        env:
-          CRAW_NUMBER: ${{ vars.CRAW_NUMBER }}
-          CRAW_SLEEP_SECONDS: ${{ vars.CRAW_SLEEP_SECONDS }}
-          BULIANGLIN_CHANNEL_ID: ${{ vars.BULIANGLIN_CHANNEL_ID }}
-          CHANGFENG_CHANNEL_ID: ${{ vars.CHANGFENG_CHANNEL_ID }}
-        continue-on-error: true
-        run: |
-          python youtube.py $CRAW_NUMBER $CRAW_SLEEP_SECONDS $BULIANGLIN_CHANNEL_ID $CHANGFENG_CHANNEL_ID
-
-      - name: execute subconverter
-        continue-on-error: true
-        run: |
-          chmod +x ./subconverter/subconverter
-          ./subconverter/subconverter -g
-          python handle_dist.py
-
-      - name: logging dist
-        run: |
-          echo '=====================圈x配置: ======================================'
-          cat ./dist/quanx-sub.txt
-          echo '===================================================================='
-          echo '===================================================================='
-          echo '=====================clash配置: ====================================='
-          cat ./dist/clash-sub.yml
-          echo '===================================================================='
-          echo '===================================================================='
-          echo '=====================v2ray配置: ====================================='
-          cat ./dist/v2ray-sub.txt
-          
-      - name: Push notification
-        env:
-          key: ${{ secrets.BARK_KEY }}
-          host: ${{ vars.BARK_HOST }}
-          title: 测试结果通知
-          body: 测试通过
-          sound: calypso
-        run: |
-          curl -L "${{env.host}}/${{env.key}}/${{env.title}}/${{env.body}}?sound=${{env.sound}}"
-
-
-  job2:
+  job:
     name: Deploy qx and clash config to Github Gist
     runs-on: ubuntu-latest
-    # NEED_SAVE表示需要将配置部署到Github Gist
-    if: vars.NEED_DEPLOY == 'true'
-    environment: prod
     steps:
       - uses: actions/checkout@master
         with:
@@ -167,12 +62,9 @@ jobs:
 
       - name: update proxy
         env:
-          CRAW_NUMBER: ${{ vars.CRAW_NUMBER }}
-          CRAW_SLEEP_SECONDS: ${{ vars.CRAW_SLEEP_SECONDS }}
-          BULIANGLIN_CHANNEL_ID: ${{ vars.BULIANGLIN_CHANNEL_ID }}
-          CHANGFENG_CHANNEL_ID: ${{ vars.CHANGFENG_CHANNEL_ID }}
+          BARK_KEY: ${{ secrets.BARK_KEY }}
         run: |
-          python youtube.py $CRAW_NUMBER $CRAW_SLEEP_SECONDS $BULIANGLIN_CHANNEL_ID $CHANGFENG_CHANNEL_ID
+          python youtube.py $BARK_KEY
 
       - name: execute subconverter
         run: |
@@ -213,7 +105,7 @@ jobs:
           author_email: 'f18326186224@gmail.com'
           author_name: 'nichuanfang'
           message: '🐳 chore: keep action alive'
-          
+
       # - name: Push notification
       #   env:
       #     key: ${{ secrets.BARK_KEY }}

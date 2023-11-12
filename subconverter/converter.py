@@ -247,13 +247,13 @@ def tag(node:str,new_tag):
 
 def handle_nodes(nodes:list[str]):
     # 获取节点tag与该节点的印射字典
-
     # key: 节点中文名 value: 节点原始数据
     tag_node_dict:dict[str,str] = {}
-
     for node in nodes:
+        youtuber = node.split(':',1)[0]
+        node = node.split(':',1)[1]
         # 去除ss和ssr节点
-        if node.startswith('ss://') or node.startswith('ssr://'):
+        if youtuber != 'mac2win' and (node.startswith('ss://') or node.startswith('ssr://')):
             continue
         get_tag_res = get_tag(node)
         if type(get_tag_res) == tuple:
