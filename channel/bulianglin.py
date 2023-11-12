@@ -30,24 +30,26 @@ def bulianglin_func(channel_id:str):
     crawl_number = 0
     
     # 先生成截图 计算抓取次数
-    try:
-        if not local:
-            # 隔一段时间获取二维码
-            subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {channel_id} | head -n 1)" -vframes 1 dist/bulianglin.jpg',shell=True)
-            sleep(1)
-            ocr_result:list[str] = ocr_utils.read_text('dist/bulianglin.jpg',reader) # type: ignore
-        if local:
-            ocr_result:list[str] = ocr_utils.read_text('dist/local/bulianglin.jpg',reader) # type: ignore
-        for ocr in ocr_result: # type: ignore
-            if ocr.__contains__('当前节点数量'):
-                # 提取数字
-                crawl_number = int(re.findall(r"\d+",ocr)[0])
-    except Exception as err:
-        logging.error(f'==============================={err}==============================================')
+    # try:
+    #     if not local:
+    #         # 隔一段时间获取二维码
+    #         subprocess.call(f'ffmpeg -y -i "$(yt-dlp -g {channel_id} | head -n 1)" -vframes 1 dist/bulianglin.jpg',shell=True)
+    #         sleep(1)
+    #         ocr_result:list[str] = ocr_utils.read_text('dist/bulianglin.jpg',reader) # type: ignore
+    #     if local:
+    #         ocr_result:list[str] = ocr_utils.read_text('dist/local/bulianglin.jpg',reader) # type: ignore
+    #     for ocr in ocr_result: # type: ignore
+    #         if ocr.__contains__('当前节点数量'):
+    #             # 提取数字
+    #             crawl_number = int(re.findall(r"\d+",ocr)[0])
+    # except Exception as err:
+    #     logging.error(f'==============================={err}==============================================')
     
     logging.info(f'===========================================================================开始获取不良林节点信息...')
     if  local:
         crawl_number = 1
+    else:
+        crawl_number = 60
     for craw_index in range(crawl_number*2):
         logging.info(f'=====================================开始第{craw_index+1}/{crawl_number*2}轮抓取======================================================')
         if not local:
