@@ -41,7 +41,7 @@ def mac2win_func(channel_id:str):
         for ocr in ocr_result: # type: ignore
             # 获取二维码更新时间
             if ocr.__contains__('当前节点数量'):
-                crawl_number = int(ocr.split('当前节点数量:')[1].split('/')[1])
+                crawl_number = int(re.findall(r"\d+",ocr)[0])
     except Exception as err:
         logging.error(f'==============================={err}==============================================')
     

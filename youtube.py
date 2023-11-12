@@ -71,10 +71,10 @@ if __name__ == '__main__':
                                       'func': bulianglin.bulianglin_func
                                   },
                                 #   马克吐温
-                                  'mac2win': {
-                                      'channel_id': f'{live_streaming_id("mac2win")}',
-                                      'func': mac2win.mac2win_func
-                                  }
+                                #   'mac2win': {
+                                #       'channel_id': f'{live_streaming_id("mac2win")}',
+                                #       'func': mac2win.mac2win_func
+                                #   }
                                 #   长风 (节点质量太差 已废弃)
                                   #'changfeng': {
                                     # 'channel_id':  f'{CHANGFENG_CHANNEL_ID}',

@@ -40,7 +40,8 @@ def bulianglin_func(channel_id:str):
             ocr_result:list[str] = ocr_utils.read_text('dist/local/bulianglin.jpg',reader) # type: ignore
         for ocr in ocr_result: # type: ignore
             if ocr.__contains__('当前节点数量'):
-                crawl_number = int(ocr.split('当前节点数量:')[1].split('/')[1])
+                # 提取数字
+                crawl_number = int(re.findall(r"\d+",ocr)[0])
     except Exception as err:
         logging.error(f'==============================={err}==============================================')
     
