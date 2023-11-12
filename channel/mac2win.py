@@ -45,7 +45,7 @@ def mac2win_func(channel_id:str):
     except Exception as err:
         logging.error(f'==============================={err}==============================================')
     
-    if not local:
+    if  local:
         crawl_number = 1
     for craw_index in range(crawl_number*2):
         logging.info(f'=====================================开始第{craw_index+1}/{crawl_number*2}轮抓取======================================================')
