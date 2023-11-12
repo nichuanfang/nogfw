@@ -21,11 +21,12 @@ def bulianglin_func(channel_id:str):
         sleeptime(int): 间隔时间
 
     """  
+    if channel_id == None:
+        return []
     raw_list = []
     ss_ssr_list = []
     vmess_trojan_list = []
     other_list = []
-    
     crawl_number = 0
     
     # 先生成截图 计算抓取次数
