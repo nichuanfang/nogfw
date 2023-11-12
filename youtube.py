@@ -90,6 +90,7 @@ if __name__ == '__main__':
             logging.info(f'=========================================================================生成qx配置文件...')
             generate_ini = converter.add_quanx(raw_list,generate_ini)
             logging.info(f'=========================================================================qx配置文件已生成!')
+            print(generate_ini)
             # 生成clash配置文件
             logging.info(f'=========================================================================生成clash配置文件...')
             generate_ini = converter.add_clash(raw_list,generate_ini)
