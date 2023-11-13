@@ -252,8 +252,8 @@ def handle_nodes(nodes:list[str]):
     for node in nodes:
         youtuber = node.split(':',1)[0]
         node = node.split(':',1)[1]
-        # 去除ss和ssr节点
-        if youtuber != 'mac2win' and (node.startswith('ss://') or node.startswith('ssr://')):
+        # 去除某些频道(不良林)的ss和ssr节点
+        if (youtuber not in  ['mac2win','mgxray']) and (node.startswith('ss://') or node.startswith('ssr://')):
             continue
         get_tag_res = get_tag(node)
         if type(get_tag_res) == tuple:
@@ -270,6 +270,7 @@ def handle_nodes(nodes:list[str]):
         if sorted_tag_node_key.__contains__('马克吐温'):
             # 处理节点 去除特殊标识(例如: youtube不良林) 添加标签 [序号]
             new_nodes.append(tag(sorted_tag_node,f'[{tag_index}] '+sorted_tag_node_key.replace('(频道:马克吐温)','')))
+            tag_index+=1
         elif sorted_tag_node_key.__contains__('不良林'):
             # 过滤速度低于1.5Mbps的节点(即速度低于300KB/S的节点)
             speed = proxy_speed(sorted_tag_node_key)
@@ -278,15 +279,17 @@ def handle_nodes(nodes:list[str]):
                 continue
             # 处理节点 去除特殊标识(例如: youtube不良林) 添加标签 [序号]
             new_nodes.append(tag(sorted_tag_node,f'[{tag_index}] '+sorted_tag_node_key.replace('(Youtube:不良林)','')))
+            tag_index+=1
         else:
             # 过滤速度低于1.5Mbps的节点(即速度低于300KB/S的节点)
             speed = proxy_speed(sorted_tag_node_key)
-            if speed*8 < 1.5:
-                # 跳到下一轮循环 则打的tag就会错误!
+            if speed == 0.0 or speed*8 >= 1.5:
+                # 不包含速度选项或者速度达标的节点直接加入
+                new_nodes.append(tag(sorted_tag_node,f'[{tag_index}] '+sorted_tag_node_key))
+                tag_index+=1
+            else:
+                # 去除速度过低的节点
                 continue
-            # 处理节点 去除特殊标识(例如: youtube不良林) 添加标签 [序号]
-            new_nodes.append(tag(sorted_tag_node,f'[{tag_index}] '+sorted_tag_node_key))
-        tag_index+=1
 
     return new_nodes
 
