@@ -45,7 +45,7 @@ def mac2win_func(channel_id:str):
     # except Exception as err:
     #     logging.error(f'==============================={err}==============================================')
     
-    if  local:
+    if  not local:
         crawl_number = 1
     else:
         crawl_number = 60
