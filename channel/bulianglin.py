@@ -46,7 +46,7 @@ def bulianglin_func(channel_id:str):
     #     logging.error(f'==============================={err}==============================================')
     
     logging.info(f'===========================================================================开始获取不良林节点信息...')
-    if  not local:
+    if  local:
         crawl_number = 1
     else:
         crawl_number = 60
