@@ -217,6 +217,8 @@ def tag(node:str,new_tag):
     if type == 'ss':
         logging.info(f'开始给ss节点:{node}打tag')
         urlencoded_node = node.split('#')[1]
+        print(f'mac2win tag前:{node}')
+        print(f'mac2win tag后:{node.split("#")[0]+"#"+ parse.quote(new_tag)}')
         # url解码
         return node.split('#')[0]+'#'+ parse.quote(new_tag)
     if type == 'ssr':
@@ -268,10 +270,8 @@ def handle_nodes(nodes:list[str]):
     for index,sorted_tag_node_key in enumerate(sorted_tag_node_keys):
         sorted_tag_node = tag_node_dict[sorted_tag_node_key]
         if sorted_tag_node_key.__contains__('马克吐温'):
-            print(f'mac2win处理前的节点:{sorted_tag_node_key}')
             # 处理节点 去除特殊标识(例如: youtube不良林) 添加标签 [序号]
             new_nodes.append(tag(sorted_tag_node,f'[{tag_index}] '+sorted_tag_node_key.replace('(频道:马克吐温)','')))
-            print(f'mac2win处理后的节点: {tag(sorted_tag_node,f"[{tag_index}] "+sorted_tag_node_key.replace("(频道:马克吐温)",""))}')
         elif sorted_tag_node_key.__contains__('不良林'):
             # 过滤速度低于1.5Mbps的节点(即速度低于300KB/S的节点)
             speed = proxy_speed(sorted_tag_node_key)
