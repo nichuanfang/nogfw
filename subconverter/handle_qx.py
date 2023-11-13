@@ -3,7 +3,7 @@
 
 def format():
     # 生成qx的节点订阅
-    with open(f'dist/quanx-sub.txt','r+',encoding='utf-8') as quanx_f:
+    with open(f'dist/quanx-sub.txt','r+',encoding='ISO-8859-1') as quanx_f:
         quanxs = quanx_f.readlines()
 
 
