@@ -272,8 +272,8 @@ def handle_nodes(nodes:list[str]):
             new_nodes.append(tag(sorted_tag_node,f'[{tag_index}] '+sorted_tag_node_key.replace('(频道:马克吐温)','')))
             tag_index+=1
         elif sorted_tag_node_key.__contains__('不良林'):
-            if  (sorted_tag_node.startswith('ss://') or sorted_tag_node.startswith('ssr://')) and not sorted_tag_node_key.__contains__('存活'):
-                # 如果是不良林的ss/ssr节点 且该节点不是存活节点 则跳过
+            if  sorted_tag_node.startswith('ss://') or sorted_tag_node.startswith('ssr://'):
+                # 如果是不良林的ss/ssr节点 则跳过
                 continue
             # 过滤速度低于1.5Mbps的节点(即速度低于300KB/S的节点)
             speed = proxy_speed(sorted_tag_node_key)
