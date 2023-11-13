@@ -66,16 +66,16 @@ if __name__ == '__main__':
     try:
         raw_list = batch_craw(
                               {
-                                # #   不良林
-                                #   'bulianglin': {
-                                #       'channel_id': f'{live_streaming_id("bulianglin")}',
-                                #       'func': bulianglin.bulianglin_func
-                                #   },
-                                # #   马克吐温
-                                #   'mac2win': {
-                                #       'channel_id': f'{live_streaming_id("mac2win")}',
-                                #       'func': mac2win.mac2win_func
-                                #   },
+                                #   不良林
+                                  'bulianglin': {
+                                      'channel_id': f'{live_streaming_id("bulianglin")}',
+                                      'func': bulianglin.bulianglin_func
+                                  },
+                                #   马克吐温
+                                  'mac2win': {
+                                      'channel_id': f'{live_streaming_id("mac2win")}',
+                                      'func': mac2win.mac2win_func
+                                  },
                                 #   梦歌
                                   'mgxray': {
                                         'channel_id': f'{live_streaming_id("mgxray")}',
