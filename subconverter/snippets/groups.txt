@@ -1,5 +1,6 @@
-🔰 节点选择`select`[]♻️ 高可用`[]🎯 全球直连
-♻️ 高可用`fallback`(中国|中转|China|CN|cn|香港|Hong Kong|HK|hk|日本|Japan|JP|jp|韩国|朝鲜|Korea|KR|KP|kr|kp|台湾|Taiwan|TW|tw|台北|新加坡|Singapore|SG|sg)((?!(美国|US|us))(?!(印度|IN|in))(?!(英国|GB|gb))(?!(俄罗斯|RU|ru))(?!(英国|GB|gb))(?!(澳大利亚|AU|au))(?!(英属维尔京群岛|VG|vg))(?!(荷兰|NL|nl))(?!(法国|FR|fr))(?!(德国|DE|de))(?!(乌克兰|UA|ua))(?!(以色列|IL|il))(?!(印度尼西亚|ID|id)).)*$`http://cp.cloudflare.com/generate_204`300,2,100
+🔰 节点选择`select`[]🤔 低延迟`[]♻️ 高可用`[]🎯 全球直连
+🤔 低延迟`url-test`(中国|中转|China|CN|cn|香港|Hong Kong|HK|hk|日本|Japan|JP|jp|韩国|朝鲜|Korea|KR|KP|kr|kp|台湾|Taiwan|TW|tw|台北|新加坡|Singapore|SG|sg|美国|US|us)`http://cp.cloudflare.com/generate_204`300,2,150
+♻️ 高可用`fallback`.*`http://cp.cloudflare.com/generate_204`300,2,150
 ;⛔️ 广告拦截`select`[]🛑 全球拦截`[]🎯 全球直连`[]🔰 节点选择
 ;🚫 运营劫持`select`[]🛑 全球拦截`[]🎯 全球直连`[]🔰 节点选择
 🎥 NETFLIX`select`[]🇭🇰 Hong Kong`[]🇸🇬 Singapore`[]🇹🇼 Taiwan`[]🇺🇸 United States`[]🇯🇵 Japan`[]🇰🇷 Korea`[]🌐 Other`
