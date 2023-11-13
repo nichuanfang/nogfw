@@ -9,7 +9,7 @@ import subprocess
 from time import sleep
 import re
 
-reader = ocr_utils.get_reader(['ch_sim', 'en'])
+# reader = ocr_utils.get_reader(['ch_sim', 'en'])
 
 def mac2win_func(channel_id:str):
     """马克吐温的频道处理逻辑

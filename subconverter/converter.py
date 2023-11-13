@@ -217,8 +217,6 @@ def tag(node:str,new_tag):
     if type == 'ss':
         logging.info(f'开始给ss节点:{node}打tag')
         urlencoded_node = node.split('#')[1]
-        print(f'mac2win tag前:{node}')
-        print(f'mac2win tag后:{node.split("#")[0]+"#"+ parse.quote(new_tag)}')
         # url解码
         return node.split('#')[0]+'#'+ parse.quote(new_tag)
     if type == 'ssr':
@@ -280,6 +278,14 @@ def handle_nodes(nodes:list[str]):
                 continue
             # 处理节点 去除特殊标识(例如: youtube不良林) 添加标签 [序号]
             new_nodes.append(tag(sorted_tag_node,f'[{tag_index}] '+sorted_tag_node_key.replace('(Youtube:不良林)','')))
+        else:
+            # 过滤速度低于1.5Mbps的节点(即速度低于300KB/S的节点)
+            speed = proxy_speed(sorted_tag_node_key)
+            if speed*8 < 1.5:
+                # 跳到下一轮循环 则打的tag就会错误!
+                continue
+            # 处理节点 去除特殊标识(例如: youtube不良林) 添加标签 [序号]
+            new_nodes.append(tag(sorted_tag_node,f'[{tag_index}] '+sorted_tag_node_key))
         tag_index+=1
 
     return new_nodes
@@ -293,7 +299,7 @@ def add_quanx(nodes:list[str],template:str = generate_template_ini):
     Args:
         nodes (list[str]): 节点
     """   
-    url = '|'.join(handle_nodes(nodes))[:-1]
+    url = '|'.join(handle_nodes(nodes))
     generate_ini = re.sub(quanx_pattern,f'{url}',template)
     with open('subconverter/generate.ini','w+',encoding='utf-8') as f:
         f.write(generate_ini)
@@ -306,7 +312,7 @@ def add_clash(nodes:list[str],template:str = generate_template_ini):
     Args:
         nodes (list[str]): 节点
     """    
-    url = '|'.join(handle_nodes(nodes))[:-1]
+    url = '|'.join(handle_nodes(nodes))
     generate_ini = re.sub(clash_pattern,f'{url}',template)
     with open('subconverter/generate.ini','w+',encoding='utf-8') as f:
         f.write(generate_ini)
@@ -318,7 +324,7 @@ def add_v2ray(nodes:list[str],template:str = generate_template_ini):
     Args:
         nodes (list[str]): 节点
     """    
-    url = '|'.join(handle_nodes(nodes))[:-1]
+    url = '|'.join(handle_nodes(nodes))
     generate_ini = re.sub(v2ray_pattern,f'{url}',template)
     with open('subconverter/generate.ini','w+',encoding='utf-8') as f:
         f.write(generate_ini)

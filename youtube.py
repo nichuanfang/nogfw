@@ -5,7 +5,7 @@ from my_global import local
 from my_global import logging
 from channel import bulianglin
 from channel import mac2win
-from channel import changfeng
+# from channel import changfeng
 import time
 import datetime
 import random

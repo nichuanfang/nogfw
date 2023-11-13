@@ -10,7 +10,7 @@ import datetime
 import re
 
 
-reader = ocr_utils.get_reader(['ch_sim', 'en'])
+# reader = ocr_utils.get_reader(['ch_sim', 'en'])
 
 def bulianglin_func(channel_id:str):
     """不良林的频道处理逻辑

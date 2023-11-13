@@ -16,7 +16,7 @@ from subconverter.converter import tag
 import platform
 import concurrent.futures
 
-reader = ocr_utils.get_reader()
+# reader = ocr_utils.get_reader()
 
 def changfeng_func(channel_id:str):
     """长风的频道处理逻辑
@@ -36,12 +36,12 @@ def changfeng_func(channel_id:str):
         sleep(1)
     try:
         logging.info(f'====================================={datetime.now().strftime("%Y-%m-%d %H:%M:%S")}--节点信息======================================================')
-        if local:
-            ocr_result = ocr_utils.read_text('dist/local/changfeng.jpg',reader)
-        else:
-            ocr_result = ocr_utils.read_text('dist/changfeng.jpg',reader)
+        # if local:
+        #     ocr_result = ocr_utils.read_text('dist/local/changfeng.jpg',reader)
+        # else:
+        #     ocr_result = ocr_utils.read_text('dist/changfeng.jpg',reader)
         # additional handling to ocr result... 
-        logging.info(f'===============================================================================OCR: {ocr_result}')
+        # logging.info(f'===============================================================================OCR: {ocr_result}')
         # 1. 获取密码: free_node_secret
         free_node_secrets = ocr_utils.get_changfeng_password(ocr_result) # type: ignore
         driver = my_selenium.get_driver()
