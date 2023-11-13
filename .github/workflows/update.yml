@@ -70,6 +70,7 @@ jobs:
         run: |
           chmod +x ./subconverter/subconverter
           ./subconverter/subconverter -g
+          cat dist/quanx-sub.txt
           python handle_dist.py
 
       - name: Deploy quanx-sub

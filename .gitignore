@@ -5,9 +5,9 @@ page_source
 myselenium/__pycache__/*.pyc
 dist/bulianglin.jpg
 dist/changfeng.jpg
-# dist/v2ray-sub.txt
-# dist/clash-sub.yml
-# dist/quanx-sub.txt
+dist/v2ray-sub.txt
+dist/clash-sub.yml
+dist/quanx-sub.txt
 subconverter/generate.ini
 ocr_module/*.zip
 ocr_models/craft_mlt_25k.pth
