@@ -103,9 +103,9 @@ if __name__ == '__main__':
             logging.info(f'=========================================================================clash配置文件已生成!')
 
             # 生成v2ray订阅
-            logging.info(f'=========================================================================生成v2ray配置文件...')
-            generate_ini = converter.add_v2ray(raw_list,generate_ini)
-            logging.info(f'=========================================================================v2ray配置文件已生成!')
+            # logging.info(f'=========================================================================生成v2ray配置文件...')
+            # generate_ini = converter.add_v2ray(raw_list,generate_ini)
+            # logging.info(f'=========================================================================v2ray配置文件已生成!')
 
             with open('dist/dist-version', 'r+') as f:
                 dist_version = f.read()
