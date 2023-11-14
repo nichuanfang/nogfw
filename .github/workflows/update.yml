@@ -89,13 +89,13 @@ jobs:
           file_path: dist/clash-sub.yml
           file_type: text
 
-      - name: Deploy v2ray-sub
-        uses: exuanbo/actions-deploy-gist@v1.1.4
-        with:
-          token: ${{ secrets.GH_TOKEN }}
-          gist_id: ${{ secrets.V2RAY_SUBSCRIBE_ID }}
-          file_path: dist/v2ray-sub.txt
-          file_type: text
+      # - name: Deploy v2ray-sub
+      #   uses: exuanbo/actions-deploy-gist@v1.1.4
+      #   with:
+      #     token: ${{ secrets.GH_TOKEN }}
+      #     gist_id: ${{ secrets.V2RAY_SUBSCRIBE_ID }}
+      #     file_path: dist/v2ray-sub.txt
+      #     file_type: text
 
       - name: keep alive
         uses: Smart-Transportation/push@v1.3
